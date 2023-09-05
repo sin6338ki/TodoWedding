@@ -15,5 +15,5 @@ import lombok.Getter;
 public class TodolistDto {
 
 	private String todolistContents;
-	private int memberSeq;
+	private Long memberSeq;
 }

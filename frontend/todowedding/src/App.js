@@ -13,7 +13,8 @@ import Map from "./components/Map";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Footer from "./components/footer/footer";
 
-import "./App.css";
+import "./tailwind.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -35,9 +36,7 @@ function App() {
                     <Route path="/todowedding/budget" element={<Budget />} />
                     <Route path="/todowedding/map" element={<Map />} />
 
-                    {/* footer */}
-                    <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
-                    <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
+                    {/*웨딩리포트 */}
                     <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
                 </Routes>
                 <Footer />

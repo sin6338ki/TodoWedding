@@ -23,7 +23,7 @@ public class MarryDateService {
 	}
 	
 	//memberSeq에 대한 marryDate 조회하기
-	public String findMarryDate(int memberSeq) {
+	public String findMarryDate(Long memberSeq) {
 		
 		MarryDate marryDate = marryDateMapper.findMarryDate(memberSeq);
 		return marryDate.getMarryDt();

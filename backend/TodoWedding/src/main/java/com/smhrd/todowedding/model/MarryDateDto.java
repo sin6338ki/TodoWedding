@@ -17,6 +17,6 @@ public class MarryDateDto {
 	//데이터 포맷 변환
 	@JsonFormat(pattern = "yyyy.MM.dd") 
 	private String marryDt;
-	private int memberSeq;
+	private Long memberSeq;
 	
 }
