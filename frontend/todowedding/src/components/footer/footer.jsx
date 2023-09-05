@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const footer = () => {
   return (
     <div>
-      <nav>
       <Link to="todowedding/weddingreport">
         <span>웨딩리포트</span>
       </Link>
@@ -17,7 +16,6 @@ const footer = () => {
       <Link to="/">
         <span> Home</span>
       </Link>
-      </nav>
     </div>
   )
 }
