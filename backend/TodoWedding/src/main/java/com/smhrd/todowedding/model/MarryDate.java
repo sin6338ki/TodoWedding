@@ -13,8 +13,7 @@ import lombok.Getter;
 @Getter
 public class MarryDate {
 	
-	private int marryDtSeq;
 	private String marryDt;
-	private int memberSeq;
+	private Long memberSeq;
 	
 }

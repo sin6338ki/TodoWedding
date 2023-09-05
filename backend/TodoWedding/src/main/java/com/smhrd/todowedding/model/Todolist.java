@@ -15,13 +15,13 @@ import lombok.Getter;
 @Getter
 public class Todolist {
 	
-	private int todolistSeq;
+	private Long todolistSeq;
 	private String todolistContents;
 	private String todolist_completed;
-	private int memberSeq;
+	private Long memberSeq;
 	
 	@Builder
-	public Todolist(int todolistSeq, String todolistContents, int memberSeq) {
+	public Todolist(Long todolistSeq, String todolistContents, Long memberSeq) {
 		this.todolistSeq = todolistSeq;
 		this.todolistContents = todolistContents;
 		this.memberSeq = memberSeq;

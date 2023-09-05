@@ -36,26 +36,26 @@ public class TodolistService {
 	}
 	
 	//memberSeq에 대한 todolist 전체 조회하기 
-	public List<Todolist> findAllTodolist(int memberSeq){
+	public List<Todolist> findAllTodolist(Long memberSeq){
 		return todolistMapper.findAllTodolist(memberSeq);
 	}
 	
 	//memberSeq, todolistSeq에 대한 todolist 내용 수정하기
-	public int updateTodolist(int todolistSeq, TodolistDto todolistDto) {
+	public int updateTodolist(Long todolistSeq, TodolistDto todolistDto) {
 		String todolistContents = todolistDto.getTodolistContents();
-		int memberSeq = todolistDto.getMemberSeq();
+		Long memberSeq = todolistDto.getMemberSeq();
 		return todolistMapper.updateTodolist(todolistSeq, todolistContents, memberSeq);
 	}
 	
 	//memberSeq, todolistSeq에 해당하는 투두리스트 삭제 
-	public String deleteTodolist(int memberSeq, int todolistSeq) {
+	public String deleteTodolist(Long memberSeq, Long todolistSeq) {
 		todolistMapper.deleteTodolist(memberSeq, todolistSeq);
 		log.info("success delete todolist : memberSeq - " + memberSeq + " todolistSeq - " + todolistSeq);
 		return "success";
 	}
 	
 	//해당 유저의 투두리스트 총 개수, 완료 개수, 미완료 개수 불러오기
-	public List<CountTodolist> allCountTodolist(int memberSeq){
+	public List<CountTodolist> allCountTodolist(Long memberSeq){
 		return todolistMapper.allCountTodolist(memberSeq);
 	}
 }

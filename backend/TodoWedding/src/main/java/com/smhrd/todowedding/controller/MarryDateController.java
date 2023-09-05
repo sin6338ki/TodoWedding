@@ -37,7 +37,7 @@ public class MarryDateController {
 	
 	//memberSeq에 대한 marryDate 조회하기 
 	@GetMapping(value="marrydate/{memberSeq}")
-	public String findMarryDate(@PathVariable(name="memberSeq") int memberSeq) {
+	public String findMarryDate(@PathVariable(name="memberSeq") Long memberSeq) {
 		log.info("findMarryDate - communication success..... : " + memberSeq);
 		//성공시 결혼식 날짜 String으로 return
 		return marryDateService.findMarryDate(memberSeq);
