@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/header/header";
-import Login from "./components/Login";
+//import Login from "./components/Login/Login";
+import Kakaologin from "./components/Login/Kakaologin"
+import Callback from "./components/Login/Callback";
 import Join from "./components/Member/Join";
 import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
@@ -13,6 +15,7 @@ import Footer from "./components/footer/footer";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function App() {
     return (
@@ -45,3 +48,4 @@ function App() {
 }
 
 export default App;
+
