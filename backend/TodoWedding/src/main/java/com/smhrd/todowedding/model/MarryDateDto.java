@@ -1,5 +1,7 @@
 package com.smhrd.todowedding.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,6 +14,8 @@ import lombok.Getter;
 @Getter
 public class MarryDateDto {
 
+	//데이터 포맷 변환
+	@JsonFormat(pattern = "yyyy.MM.dd") 
 	private String marryDt;
 	private int memberSeq;
 	
