@@ -24,20 +24,22 @@ import lombok.extern.slf4j.Slf4j;
 public class MarryDateController {
 
 	@Autowired
-	private MarryDateService service;
+	private MarryDateService marryDateService;
 	
 	//memberSeq에 대한 marryDate 등록하기
 	@PostMapping(value="marrydate")
 	public int addMarryDate(@RequestBody MarryDateDto marryDateDto) {
 		
 		log.info("addMarryDate - client and backend communication success..... : " + marryDateDto.getMarryDt() + " , " + marryDateDto.getMemberSeq());
-		return service.addMarryDate(marryDateDto);
+		//성공시 1 return
+		return marryDateService.addMarryDate(marryDateDto);
 	}
 	
 	//memberSeq에 대한 marryDate 조회하기 
 	@GetMapping(value="marrydate/{memberSeq}")
 	public String findMarryDate(@PathVariable(name="memberSeq") int memberSeq) {
 		log.info("findMarryDate - communication success..... : " + memberSeq);
-		return service.findMarryDate(memberSeq);
+		//성공시 결혼식 날짜 String으로 return
+		return marryDateService.findMarryDate(memberSeq);
 	}
 }

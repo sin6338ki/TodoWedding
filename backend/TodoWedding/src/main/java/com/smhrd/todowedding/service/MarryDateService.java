@@ -15,17 +15,17 @@ import com.smhrd.todowedding.model.MarryDateDto;
 public class MarryDateService {
 
 	@Autowired
-	private MarryDateMapper mapper;
+	private MarryDateMapper marryDateMapper;
 	
 	//memberSeq에 대한 marryDate 등록하기
 	public int addMarryDate(MarryDateDto marryDateDto) {
-		return mapper.addMarryDate(marryDateDto);
+		return marryDateMapper.addMarryDate(marryDateDto);
 	}
 	
 	//memberSeq에 대한 marryDate 조회하기
 	public String findMarryDate(int memberSeq) {
 		
-		MarryDate marryDate = mapper.findMarryDate(memberSeq);
+		MarryDate marryDate = marryDateMapper.findMarryDate(memberSeq);
 		return marryDate.getMarryDt();
 	}
 }
