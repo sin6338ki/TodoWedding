@@ -6,7 +6,7 @@ import lombok.Getter;
 
 /*
  * 결혼식 D-day Entity
- * 작성 : 신지영
+ * 작성 : 신지영]
  * 일자 : 2023.09.04
  */
 @AllArgsConstructor
