@@ -1,11 +1,15 @@
 package com.smhrd.todowedding.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.smhrd.todowedding.model.ChatEnterDto;
 import com.smhrd.todowedding.service.ChatService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /*
@@ -15,12 +19,21 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-@Controller
+@RestController
+@CrossOrigin("http://localhost:3000")
 public class ChatController {
 
 	@Autowired
 	private ChatService chatService;
 	
-//	@MessageMapping("/chat/{chatRoomSeq}")
+	@PostMapping(value="enter-chat")
+	public Long enter(@RequestBody ChatEnterDto chatEnterDto) {
+
+		log.info("enter-chat dto 확인 : " + chatEnterDto.getMemberSeq() + " , " + chatEnterDto.getPartnerSeq());
+		
+		//채팅방이 존재하면 채팅방 고유번호를, 존재하지 않으면 0 전송
+		return chatService.isChatRoom(chatEnterDto);
+	}
+	
 	
 }
