@@ -8,9 +8,11 @@ import Calendar from "./components/Calendar/Calendar";
 import TodoList from "./components/TodoList/TodoList";
 import Budget from "./components/Budget/Budget";
 import Map from "./components/Map";
-import AllMenu from "./components/AllMenu";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Footer from "./components/footer/footer";
+
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
     return (
