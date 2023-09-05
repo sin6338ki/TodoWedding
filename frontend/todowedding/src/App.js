@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/header/header";
 //import Login from "./components/Login/Login";
-import Kakaologin from "./components/Login/Kakaologin"
+import Kakaologin from "./components/Login/Kakaologin";
 import Callback from "./components/Login/Callback";
 import Join from "./components/Member/Join";
 import Delete from "./components/Member/Delete";
@@ -16,7 +16,6 @@ import Footer from "./components/footer/footer";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 function App() {
     return (
         <BrowserRouter>
@@ -26,7 +25,7 @@ function App() {
                     <Route path="/" element={<Main />} />
 
                     {/* 로그인 */}
-                    <Route path="/todowedding/login" element={<Login />} />
+                    <Route path="/todowedding/login" element={<Kakaologin />} />
                     <Route path="/todowedding/join" element={<Join />} />
                     <Route path="/todowedding/delete" element={<Delete />} />
 
@@ -48,4 +47,3 @@ function App() {
 }
 
 export default App;
-
