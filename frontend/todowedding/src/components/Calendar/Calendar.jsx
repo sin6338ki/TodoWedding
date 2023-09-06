@@ -2,7 +2,7 @@ import React from 'react'
 
 const Calendar = () => {
   return (
-    <div>Calendar</div>
+    <div class="bg-purple-200"> Calendar </div>
   )
 }
 
