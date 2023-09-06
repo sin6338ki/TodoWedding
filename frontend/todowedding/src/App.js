@@ -13,7 +13,7 @@ import Map from "./components/Map";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Footer from "./components/footer/footer";
 
-import "./App.css";
+import "./tailwind.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
