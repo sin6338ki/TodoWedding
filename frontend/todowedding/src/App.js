@@ -31,6 +31,7 @@ function App() {
                      
                     {/* 로그인 */}
                     <Route path="/todowedding/login" element={<Kakaologin />} />
+                    <Route path='/auth/kakao/callback' element={<Callback />} />
                     <Route path="/todowedding/join" element={<Join />} />
                     <Route path="/todowedding/delete" element={<Delete />} />
 
