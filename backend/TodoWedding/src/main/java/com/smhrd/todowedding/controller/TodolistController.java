@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.model.CountTodolist;
+import com.smhrd.todowedding.model.IsCheckedTodolist;
 import com.smhrd.todowedding.model.Todolist;
 import com.smhrd.todowedding.model.TodolistDto;
 import com.smhrd.todowedding.service.TodolistService;
@@ -38,7 +39,11 @@ public class TodolistController {
 	//해당 유저에 대하여 투두리스트 1개 추가하기
 	@PostMapping(value="todolist")
 	public int addTodoList(@RequestBody TodolistDto todoListDto) {
+<<<<<<< HEAD
 		log.info("통신확인");
+=======
+		//성공시 1 리턴, 실패시 0 리턴
+>>>>>>> cc3d842fff0d8cd216d25dd8df3c14ccac633216
 		return todolistService.addTodoList(todoListDto);
 	}
 	
@@ -64,5 +69,12 @@ public class TodolistController {
 	@GetMapping(value="count-of-todolist/{memberSeq}")
 	public List<CountTodolist> allCountTodolist(@PathVariable(name="memberSeq") Long memberSeq){
 		return todolistService.allCountTodolist(memberSeq);
+	}
+	
+	//해당 유저의 해당 체크리스트에 대하여 완료 여부 변경
+	@PutMapping(value="todolist/check")
+	public int isCheckedTodolist(@RequestBody IsCheckedTodolist isCheckedTodolist) {
+		//성공시 1, 실패시 0 리턴
+		return todolistService.isCheckedTodolist(isCheckedTodolist);
 	}
 }

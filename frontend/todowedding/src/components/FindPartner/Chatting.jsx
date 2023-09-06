@@ -17,7 +17,7 @@ const Chatting = () => {
         memberSeq: 123456789,
     };
 
-    //상담 시작 클릭시 발생하는 이벤ㅌ
+    //상담 시작 클릭시 발생하는 이벤트
     const enterChat = () => {
         axios
             .post("http://localhost:8085/enter-chat", data)
@@ -37,6 +37,9 @@ const Chatting = () => {
                 console.log("error : ", err);
             });
     };
+
+    //채팅방 만드는 이벤트
+    const createChat = () => {};
 
     return (
         <div>

@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.smhrd.todowedding.model.CountTodolist;
+import com.smhrd.todowedding.model.IsCheckedTodolist;
 import com.smhrd.todowedding.model.Todolist;
 import com.smhrd.todowedding.model.TodolistDto;
 
@@ -40,4 +41,7 @@ public interface TodolistMapper {
 	@Select("select todolist_completed, count(todolist_completed) as count from tw_todolist where member_seq=#{memberSeq} group by todolist_completed")
 	public List<CountTodolist> allCountTodolist(Long memberSeq);
 	
+	//memberSeq, todolistSeq에 대하여 완료여부 수정
+	@Update("update tw_todolist set todolist_completed =#{todolistCompleted} where todolist_seq=#{todolistSeq} and member_seq=#{memberSeq}")
+	public int isCheckedTodolist(IsCheckedTodolist isCheckdTodolist);
 }
