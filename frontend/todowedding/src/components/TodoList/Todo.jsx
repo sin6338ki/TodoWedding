@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {FaRegTrashAlt} from 'react-icons/fa'
+import axios from 'axios'
 
 
 const style = {
@@ -11,16 +12,58 @@ const style = {
    button : `cursor-pointer flex items-center`
 } 
 
-const Todo = ({todo, toggleComplete, deleteTodo }) => {
+
+const Todo = ({todolistContents, deleteTodo }) => {
+
+  const [isChecked, setIsChecked] = useState(false)
+  const [isCheckedValue, setIsCheckedValue] = useState("N")
+
+  const completedTodolist = () => {
+    setIsChecked(!isChecked)
+    toggleComplete();
+  }
+  
+  useEffect(()=>{
+    setIsCheckedValue(isChecked === false ? "N" : "Y")
+  },[isChecked])
+  
+  useEffect(()=>{
+    console.log(isCheckedValue);
+  },[isCheckedValue])
+
+    // 3 Backend [check_Todolist]
+  //  투두리스트 체크했을 때 실행되는 메서드
+  const toggleComplete = async () => {
+    console.log("check_실행");
+    const data = {
+      "todolistCompleted" : isCheckedValue,
+      "todolistSeq" : todolistContents.todolistSeq,
+      "memberSeq" : todolistContents.memberSeq
+    }
+    try {
+      await axios.put(`http://localhost:8085/todolist/check`, data);    //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+      console.log("성공 checked ");
+    } catch (err) {
+      console.error("Error checked: ", err);
+    }
+  }
+
+  
+useEffect(()=>{
+  console.log("todolistContents", todolistContents.todolistContents);
+},[])
+
   return (
-    <li className={todo.completed ? style.liComplete : style.li}>
+    <li className={todolistContents.completed ? style.liComplete : style.li}>
         <div className={style.row}>
-              <input onChange={() => toggleComplete(todo)} type="checkbox" checked={todo.completed ? 'checked' : ''} />
-              <p onClick={()=> toggleComplete(todo)} className={todo.completed ? style.textComplete : style.text}>
-                {todo.text}
+              {/* <input onChange={() => toggleComplete(todolistContents)} type="checkbox" checked={todolistContents.completed ? 'checked' : ''} /> */}
+              <input onChange={completedTodolist} type="checkbox" checked={isChecked}/>
+              <p onClick={()=> toggleComplete(todolistContents)} className={todolistContents.completed ? style.textComplete : style.text}>
+                {todolistContents.todolistContents}
               </p>
         </div>
-        <button onClick={() => deleteTodo(todo.id)}>{<FaRegTrashAlt />}</button>
+        <button onClick={() => deleteTodo(todolistContents.id)}>{<FaRegTrashAlt />}</button>
+        <button></button>
     </li>
   )
 }

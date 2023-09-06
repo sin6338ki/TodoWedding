@@ -28,7 +28,7 @@ function App() {
                 <div className="body" id="Pretendard-Regular">
                 <Routes>
                     <Route path="/" element={<Main />} />
-
+                     
                     {/* 로그인 */}
                     <Route path="/todowedding/login" element={<Kakaologin />} />
                     <Route path="/todowedding/join" element={<Join />} />
@@ -49,6 +49,7 @@ function App() {
 
                     {/*웨딩리포트 */}
                     <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
+                   
                 </Routes>
                 </div>
                 <BottomBar/ >

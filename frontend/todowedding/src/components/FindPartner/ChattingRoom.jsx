@@ -21,6 +21,9 @@ const ChattingRoom = () => {
         return () => wsDisconnect();
     }, []);
 
+    //불러와지는 Data(기존 채팅방 존재여부 확인)가 있다면,
+    //기존 채팅방 구독
+    //없다면 새로운 채팅방 생성 및 구독
     useEffect(() => {
         console.log("locationData : ", locationData);
     }, [locationData]);
