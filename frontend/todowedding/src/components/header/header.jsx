@@ -4,8 +4,8 @@ import TodoLogo from '../../assets/images/todo_logo.png';
 
 const header = () => {
   return (
-    <div>
-        <img src={TodoLogo} alt="ToDo" width="130px" 
+    <div className='header-bar'>
+        <img src={TodoLogo} alt="ToDo" width="90px" 
         onClick={()=>{window.location.href="/"}}/>
         <Link to="/todowedding/login" >
           <span>로그인</span>
