@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
  *  작성일 : 2023.09.05 
  */
 
+@Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class TodolistController {
@@ -37,6 +38,7 @@ public class TodolistController {
 	//해당 유저에 대하여 투두리스트 1개 추가하기
 	@PostMapping(value="todolist")
 	public int addTodoList(@RequestBody TodolistDto todoListDto) {
+		log.info("통신확인");
 		return todolistService.addTodoList(todoListDto);
 	}
 	
