@@ -2,23 +2,29 @@
 .header-bar {
   display: flex;
   height: 70px;
-  width: 100%;
+  width: 560px;
   background-color: rgb(255, 255, 255);
-  padding-top: 17px;
-  padding-left: 14px;
-  padding-bottom: 15px;
+  padding-top: 18px;
+  padding-left: 18px;
+  padding-bottom: 18px;
+  a {
+         color: dark;
+  }
+}
+
+//body
+.body{
+  width: 560px;
 }
 
 //footer
 .bottom-bar {
-  position : fixed;
+  position: fixed;
   display: flex;
-  left : 0px;
   bottom : 0px;
   height: 70px;
-  width: 100%;
-  background-color: rgba(225, 207, 255, 0.788);
-  bottom:0;
+  width: 560px;
+  background-color: rgba(249, 245, 255, 0.788);
   margin-top: 0px;
   align-items: center;
   // a {
@@ -31,37 +37,50 @@
 }
 
 //footer 메뉴 아이콘
-.footer-menu {
+.footer-menu-left {
   color: black;
   text-decoration: none;
-  padding: 2%;
+  padding: 32px;
   margin: 10px;
   align-items: center;
+  text-align: center;
+  font-family: 'Pretendard-Regular';
+}
+
+.footer-menu-right {
+  color: black;
+  text-decoration: none;
+  padding: 3% 3% 3% 2%;
+  margin: 10px;
+  align-items: center;
+  text-align: center;
 }
 
 .footer-add {
   width: 55px;
-  margin-left: 10px;
   color: black;
   text-decoration: none;
-  margin: 10px;
+  margin: 10px 20px 75px 20px;
   align-items: center;
 }
 
 //메인페이지 아이콘
-.menu-top {
+.main-menu{
   color:black;
   align-items: center;
-  padding:4%;
+  text-align: center;
+  padding: 10% 0 0 10%;
   text-decoration: none;
-  margin-left: 15%;
+  font-family: 'Pretendard-Regular';
 }
 
-//메인페이지 아이콘
-.menu-bottom {
-  color:black;
-  align-items: center;
-  padding:4%;
+//메인페이지 로그인
+.main-login{
+  color: black;
   text-decoration: none;
-  margin-left: 15%;
+  margin-left: 385px;
+  font-family: 'Pretendard-Regular';
+  align-items: center;
+  text-align: center;
+
 }
