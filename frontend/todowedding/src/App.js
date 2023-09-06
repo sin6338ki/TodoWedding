@@ -14,9 +14,7 @@ import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Footer from "./components/footer/footer";
 import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
-
 import "./tailwind.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -29,6 +27,7 @@ function App() {
 
                     {/* 로그인 */}
                     <Route path="/todowedding/login" element={<Kakaologin />} />
+                    <Route path='/auth/kakao/callback' element={<Callback />} />
                     <Route path="/todowedding/join" element={<Join />} />
                     <Route path="/todowedding/delete" element={<Delete />} />
 

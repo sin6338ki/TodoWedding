@@ -3,7 +3,7 @@ package com.smhrd.todowedding.model;
 import lombok.Data;
 
 /*
- * 카카오 로그인 토큰
+ * 카카오 로그인 토큰 값 저장
  * 작성 : 서유광
  * 일자 : 2023.09.05
  */
