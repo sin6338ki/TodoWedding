@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.model.ChatEnterDto;
+import com.smhrd.todowedding.model.Chatroom;
 import com.smhrd.todowedding.service.ChatService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,6 +35,11 @@ public class ChatController {
 		
 		//채팅방이 존재하면 채팅방 고유번호를, 존재하지 않으면 0 전송
 		return chatService.isChatRoom(chatEnterDto);
+	}
+	
+	@PostMapping(value="chat")
+	public int createChat(@RequestBody Chatroom chatroom) {
+		return chatService.createChat(chatroom);
 	}
 	
 	

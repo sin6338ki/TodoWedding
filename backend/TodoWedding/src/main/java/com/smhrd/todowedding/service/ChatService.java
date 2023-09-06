@@ -1,5 +1,9 @@
 package com.smhrd.todowedding.service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +33,33 @@ public class ChatService {
 		}else {
 			return 0L;
 		}
+	}
+	
+	//채팅방 만들기 
+	public int createChat(Chatroom chatroom) {
+		int createChatroomResult = -1;
+				
+		try {
+			//현재 시간 설정
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String now = formatter.format(new Date(System.currentTimeMillis()));
+			
+			//현재시간 포함 Chatroom 객체 생성
+			Chatroom addNowChatroom = Chatroom.builder()
+					.memberSeq(chatroom.getMemberSeq())
+					.chatRoomCreateDt(now)
+					.partnerSeq(chatroom.getPartnerSeq())
+					.build();
+			
+			if(chatMapper.createChat(addNowChatroom) > 0) {
+				createChatroomResult = 1;
+			}else {
+				createChatroomResult = 0;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return createChatroomResult;
 	}
 }

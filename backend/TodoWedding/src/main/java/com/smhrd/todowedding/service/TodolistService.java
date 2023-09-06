@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.smhrd.todowedding.mapper.TodolistMapper;
 import com.smhrd.todowedding.model.CountTodolist;
+import com.smhrd.todowedding.model.IsCheckedTodolist;
 import com.smhrd.todowedding.model.Todolist;
 import com.smhrd.todowedding.model.TodolistDto;
 
@@ -30,9 +31,13 @@ public class TodolistService {
 	private TodolistMapper todolistMapper;
 	
 	//memberSeq에 대한 todolist 등록하기
-	public int addTodoList(TodolistDto todolistDto) {
-		//성공시 1 return
-		return todolistMapper.addTodoList(todolistDto);
+	public int addTodoList(TodolistDto todolistDto){
+		int result = todolistMapper.addTodoList(todolistDto);
+		if(result > 0) {
+			return result;
+		}else {			
+			return 0;
+		}
 	}
 	
 	//memberSeq에 대한 todolist 전체 조회하기 
@@ -57,5 +62,14 @@ public class TodolistService {
 	//해당 유저의 투두리스트 총 개수, 완료 개수, 미완료 개수 불러오기
 	public List<CountTodolist> allCountTodolist(Long memberSeq){
 		return todolistMapper.allCountTodolist(memberSeq);
+	}
+	
+	//해당 유저의 해당 투두리스트 완료 여부 변경
+	public int isCheckedTodolist(IsCheckedTodolist isCheckedTodolist) {
+		if(todolistMapper.isCheckedTodolist(isCheckedTodolist)>0) {
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 }
