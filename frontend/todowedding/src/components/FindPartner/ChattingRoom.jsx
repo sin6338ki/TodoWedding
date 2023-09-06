@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
@@ -11,87 +11,88 @@ import * as SockJS from "sockjs-client";
 
 const ChattingRoom = () => {
     //useNavigate 활용하여 가져온 데이터 불러오기
+    //- 채팅방 고유번호, 회원 고유번호, 업체 고유번호
     const location = useLocation();
-    const data = location.data;
-    const client = useRef({});
+    const locationData = location.state;
+    const [content, setContent] = useState("");
 
     useEffect(() => {
-        //창이 띄어지면 소켓 연결
-        connect();
+        wsSubscribe();
+        return () => wsDisconnect();
     }, []);
 
-    //소켓 연결 메서드
-    let socket = null;
-    let isStomp = false;
+    useEffect(() => {
+        console.log("locationData : ", locationData);
+    }, [locationData]);
 
-    //소켓 연결
-    const connect = () => {
-        client.current = new StompJs.Client({
-            brokerURL: "ws://localhost:8085/stompTest",
-            // webSocketFactory: () => new SockJS("/websocket"),
-            onConnect: () => {
-                console.log("socket connect success!");
-            },
-            onStompError: (frame) => {
-                console.log("onStompError : ", frame);
-            },
-        });
-        client.current.activate();
+    //웹소켓 연결
+    const client = new StompJs.Client({
+        brokerURL: "ws://localhost:8085/gs-guide-websocket",
+        connectHeaders: {
+            //header에 채팅방과 참가자 정보 함께 전송
+            chatRoomSeq: locationData.chatRoomSeq,
+            memberSeq: locationData.memberSeq,
+            partnerSeq: locationData.partnerSeq,
+        },
+        debug: function (str) {
+            console.log("웹소켓 연결 debug : ", str);
+        },
+    });
 
-        // return disconnect();
+    client.activate();
+
+    const message = {
+        chattingCreateDt: Date.now(),
+        chattingSender: locationData.memberSeq,
+        chattingContents: content,
+        chatRoomReq: locationData.chatRoomSeq,
+        chattingSenderType: "Y",
     };
 
-    //소켓 연결 해제
-    const disconnect = () => {
-        client.current.deactivate();
-    };
+    const sendMessage = () => {
+        console.log("sendMessage : ", client.connected);
+        if (!client.connected) return;
 
-    //구독
-    const subscribe = () => {
-        client.current.subscribe("/sub/chat", ({ body }) => {
-            JSON.parse(body);
-        });
-    };
-
-    //발행
-    const publish = (message) => {
-        if (!client.current.connected) {
-            return;
-        }
-
-        client.current.publish({
-            destination: "pub/chat",
-            body: JSON.stringify({ message }),
+        client.publish({
+            destination: "/app/hello",
+            body: JSON.stringify({
+                message: message,
+            }),
         });
     };
 
-    const sendMessage = (evt) => {
-        evt.preventDefault();
-        if (!isStomp && socket.readyState !== 1) return;
-
-        let message = document.getElementById("message").value;
-
-        if (isStomp) {
-            socket.send(
-                "/TTT",
-                {},
-                JSON.stringify({
-                    chatRoomdata: data,
-                    message: message,
-                })
+    const wsSubscribe = () => {
+        client.onConnect = () => {
+            client.subscribe(
+                "/topic/message",
+                (msg) => {
+                    const newMessage = JSON.parse(msg.body).message;
+                    setContent(newMessage);
+                },
+                { id: locationData.chatRoomSeq }
             );
-        } else {
-            socket.send(message);
-        }
+        };
+    };
+
+    const wsDisconnect = () => {
+        client.deactivate();
     };
 
     return (
         <div>
             {/* 채팅목록 불러와서 띄울 예정 */}
-            <div>채팅 목록</div>
             <div>
-                <input id="message" value="상담신청합니다."></input>
-                <button onClick={sendMessage}>보내기</button>
+                <div id="menu">
+                    <p>Welcome,</p>
+                </div>
+                <div>{content}</div>
+                <button
+                    onClick={() => {
+                        sendMessage();
+                    }}
+                >
+                    메세지 보내기
+                </button>
             </div>
         </div>
     );

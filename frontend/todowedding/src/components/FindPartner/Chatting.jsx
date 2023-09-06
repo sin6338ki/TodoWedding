@@ -26,7 +26,7 @@ const Chatting = () => {
                 //response 되면 실제 채팅 상담 페이지로 이동
                 //페이지 이동시 data 함께 보낼 예정
                 navigate("/todowedding/chat-room", {
-                    data: {
+                    state: {
                         partnerSeq: 123456,
                         memberSeq: 123456789,
                         chatRoomSeq: parseInt(res.data),
