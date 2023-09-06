@@ -14,9 +14,7 @@ import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Footer from "./components/footer/footer";
 import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
-
 import "./tailwind.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
