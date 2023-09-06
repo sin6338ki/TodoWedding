@@ -75,9 +75,9 @@ const TodoList = () => {
         // };
 
         // 2.전체 투두리스트 조회
-        useEffect(() => {
-            fetchData();
-        }, []);
+        // useEffect(() => {
+        //     fetchData();
+        // }, []);
 
         // 3. 투두리스트 체크했을 때 실행되는 메서드 ---> (현재 Todo.jsx에 넣어둠)
         const toggleComplete = async (todo) => {
