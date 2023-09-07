@@ -8,6 +8,17 @@ import TodoList from '../../src/assets/images/icon/todolist_bg.png'
 import Budget from '../../src/assets/images/icon/budget_bg.png'
 import Map from '../../src/assets/images/icon/map_bg.png'
 
+//React-Slick 라이브러리
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+/*
+ * 메인페이지
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.05
+ */
+
 const Main = () => {
   return (
     <div>
@@ -24,7 +35,7 @@ const Main = () => {
           <Link to="todowedding/budget" className='main-menu'>
             <img src={Budget} alt="Budget" width="70px"/>
             <span className="menu"  class='text-sm'>예산관리</span>
-          </Link>       
+          </Link>
           <Link to="todowedding/map" className='main-menu'>
             <img src={Map} alt="Map" width="70px"/>
             <span className="menu"  class='text-sm'>업체찾기</span>

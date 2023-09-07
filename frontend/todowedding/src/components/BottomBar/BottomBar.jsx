@@ -6,7 +6,16 @@ import Budget from '../../assets/images/icon/budget.png';
 import Home from '../../assets/images/icon/home.png';
 import AddButton from '../../assets/images/icon/footer_plus.png';
 
+import Modal from "../../components/Modal";
+
+/*
+ * BottomBar
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.05
+ */
+
 function BottomBar(){
+  const [add, setAdd] = useState(false);
 
   return (
     <div className="bottom-bar">
@@ -20,7 +29,11 @@ function BottomBar(){
       </Link>
 
       {/* AddButton */}
-      <img className='footer-add' src={AddButton} alt="AddButton" width="55px"/>
+      {/* Modal 설정 */}
+      <img className='footer-add' src={AddButton} alt="AddButton" width="55px" type="button" onClick={()=>setAdd(!add)}/>
+      {add && (
+        <Modal closeModal={()=>setAdd(!add)}/>
+      )}
 
       <Link to="todowedding/budget" className='footer-menu-left'>
       <img src={Budget} alt="Budget" width="32px"/>
