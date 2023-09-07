@@ -46,23 +46,24 @@ const Todo = ({ todolistContents, deleteTodo }) => {
     };
 
     useEffect(() => {
-        console.log("todolistContents", todolistContents.todolistContents);
+        console.log("todolistContents", todolistContents.todolistSeq);
     }, []);
 
     return (
         <li className={todolistContents.completed ? style.liComplete : style.li}>
             <div className={style.row}>
                 {/* <input onChange={() => toggleComplete(todolistContents)} type="checkbox" checked={todolistContents.completed ? 'checked' : ''} /> */}
-                <input onChange={completedTodolist} type="checkbox" checked={isChecked}/>
+                <input onChange={completedTodolist} type="checkbox" checked={isChecked} />
                 <p
                     onClick={() => toggleComplete(todolistContents)}
                     className={todolistContents.completed ? style.textComplete : style.text}
                 >
                     {todolistContents.todolistContents}
                 </p>
-                <hr/>
+                <hr />
             </div>
-            <button onClick={() => deleteTodo(todolistContents.id)} className="trashBtn">{<FaRegTrashAlt />}</button>
+
+            <button onClick={() => deleteTodo(todolistContents.todolistSeq)}>{<FaRegTrashAlt />}</button>
             <button></button>
         </li>
     );
