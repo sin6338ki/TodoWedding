@@ -6,7 +6,7 @@ import axios from "axios";
 
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-    container: `bg-slate-100 max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
+    container: `max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
     heading: `text-3xl font-bold text-center text-greay-800 p-2`,
     form: `flex justify-between`,
     input: `border p-2 w-full text-xl`,
@@ -129,7 +129,7 @@ const TodoList = () => {
 
     return (
         //html
-        <div className={style.bg}>
+        <div>
             <div className={style.container}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <Link to="todowedding/calendar" style={{ marginRight: "30px" }}>
