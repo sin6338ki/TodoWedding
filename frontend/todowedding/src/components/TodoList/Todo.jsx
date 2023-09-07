@@ -62,7 +62,6 @@ const Todo = ({ todolistContents, deleteTodo }) => {
                 </p>
                 <hr />
             </div>
-
             <button onClick={() => deleteTodo(todolistContents.todolistSeq)}>{<FaRegTrashAlt />}</button>
             <button></button>
         </li>

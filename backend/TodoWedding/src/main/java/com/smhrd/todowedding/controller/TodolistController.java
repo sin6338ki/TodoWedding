@@ -2,6 +2,7 @@ package com.smhrd.todowedding.controller;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,9 +57,10 @@ public class TodolistController {
 	}
 	
 	//해당 유저의 선택된 투두리스트 삭제하기
-	@DeleteMapping(value="todolist/{memberSeq}/{todolistSeq}")
-	public String deleteTodolist(@PathVariable(name="memberSeq") Long memberSeq, @PathVariable(name="todolistSeq") Long todolistSeq) {
-		return todolistService.deleteTodolist(memberSeq, todolistSeq);
+	@DeleteMapping(value="todolist/{todolistSeq}")
+	public int deleteTodolist(@PathVariable(name="todolistSeq") Long todolistSeq) {
+		log.info("path 경로 확인 : " + todolistSeq);
+		return todolistService.deleteTodolist(todolistSeq);
 	}
 	
 	//해당 유저의 총 투두리스트 개수, 완료 건수, 미완료 건수 불러오기

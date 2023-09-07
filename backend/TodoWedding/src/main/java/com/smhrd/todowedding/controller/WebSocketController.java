@@ -1,29 +1,36 @@
 package com.smhrd.todowedding.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.util.HtmlUtils;
 
-import com.smhrd.todowedding.model.Greeting;
-import com.smhrd.todowedding.model.HelloMessage;
+import com.smhrd.todowedding.model.Chatting;
+import com.smhrd.todowedding.service.WebSocketService;
 
 import lombok.extern.slf4j.Slf4j;
+
+/*
+ * 웹소켓 메시지 핸들링 컨트롤러
+ * 작성자 : 신지영
+ * 작성일 : 2023.09.07
+ */
 
 @Slf4j
 @Controller
 public class WebSocketController {
 
-//	@MessageMapping("/hello")
-//	@SendTo("topic/greetings")
-//	public Greeting greeting(HelloMessage message) throws Exception {
-//		Thread.sleep(1000); // simulated delay
-//		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getChattingContents() + "!");
-//	}
+	@Autowired
+	private WebSocketService wsService;
 	
-	@MessageMapping("/hello")
-	public void greeting(HelloMessage message) throws Exception {
-		Thread.sleep(1000); // simulated delay
-		log.info("확인 : " + message.getChattingContents());
+	//채팅 메세지 전달
+	@MessageMapping(value="chat/{chatRoomSeq}")
+	@SendTo(value="sub/chat/{chatRoomSeq}")
+	public int broadCasting(Chatting chatting, 
+			@DestinationVariable(value="chatRoomSeq") Long chatRoomSeq) {
+		log.info("웹소켓 메시지 : "+ chatting.getChattingContents() + chatRoomSeq);
+		return wsService.recordHistory(chatRoomSeq, chatting);
 	}
+	
 }

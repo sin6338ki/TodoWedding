@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.json.simple.JSONObject;
 
 import com.smhrd.todowedding.model.CountTodolist;
 import com.smhrd.todowedding.model.IsCheckedTodolist;
@@ -34,8 +35,8 @@ public interface TodolistMapper {
 	public int updateTodolist(Long todolistSeq, String todolistContents, Long memberSeq);
 	
 	//memberSeq, todolistSeq에 대한 투두리스트 삭제하기 
-	@Delete("delete from tw_todolist where todolist_seq=#{todolistSeq} and member_seq=#{memberSeq}")
-	public void deleteTodolist(Long todolistSeq, Long memberSeq);
+	@Delete("delete from tw_todolist where todolist_seq=#{todolistSeq}")
+	public int deleteTodolist(Long todolistSeq);
 	
 	//memberSeq의 전체 투두리스트 개수 조회
 	@Select("select todolist_completed, count(todolist_completed) as count from tw_todolist where member_seq=#{memberSeq} group by todolist_completed")

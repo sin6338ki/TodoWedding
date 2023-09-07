@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -11,10 +11,9 @@ const Chatting = () => {
     //페이지 이동시 데이터 함께 전달하기 위해 사용
     const navigate = useNavigate();
 
-    const memberSeq = 12345;
+    const memberSeq = 101;
     const partnerSeq = 11111;
     const [chatRoomSeq, setChatRoomSeq] = useState();
-    const [isChatroom, setIsChatRoom] = useState();
 
     //request 데이터 - 업체 고유번호, 멤버 고유번호
     const data = {
@@ -23,52 +22,58 @@ const Chatting = () => {
         partnerSeq: partnerSeq,
     };
 
+    let isChatroom = "";
+
     //상담 시작 클릭시 발생하는 이벤트
-    const enterChat = () => {
+    const enterChat = async () => {
         //기존 연결되어 있는 채팅방 유무 확인
-        isAlivedChat();
-        //기존 채팅방이 없다면 채팅방 만들기 진행, 있다면 채팅방으로 이동
-        // isChatroom == 0 ? createChat() : moveToChat();
-        isChatroom == "none" && createChat();
+        isChatroom = await isAlivedChat();
+
+        if (isChatroom === "none") {
+            const chatRoomSeq = await createChat();
+            isChatroom = await isAlivedchat();
+        }
+
+        if (isChatroom !== "none") {
+            moveToChat(isChatroom); // 생성된 채팅방 번호를 인자로 전달합니다.
+        }
     };
 
     //채팅방 만드는 이벤트
-    const createChat = () => {
-        axios
-            .post("http://localhost:8085/chat", data)
-            .then((res) => {
-                console.log("createChat response : ", res.data);
-                setChatRoomSeq(res.data);
-                isAlivedChat();
-                // moveToChat();
-            })
-            .catch((err) => {
-                console.log("createChat error : ", err);
-            });
+    const createChat = async () => {
+        console.log("createChat 실행 : ", isChatroom);
+        try {
+            const res = await axios.post("http://localhost:8085/chat", data);
+            console.log("createChat response : ", res.data);
+            setChatRoomSeq(res.data);
+            return res.data;
+        } catch (err) {
+            console.log("createChat err : ", err);
+        }
     };
 
     //채팅방 유무 확인 이벤트
-    const isAlivedChat = () => {
-        axios
-            .get(`http://localhost:8085/chat/${memberSeq}/${partnerSeq}`)
-            .then((res) => {
-                console.log("채팅방 성공 유무 : ", res.data);
-                setIsChatRoom(res.data);
-            })
-            .catch((err) => {
-                console.log("채팅방 유무 확인 error : ", err);
-            });
+    const isAlivedChat = async () => {
+        try {
+            const res = await axios.get(`http://localhost:8085/chat/${memberSeq}/${partnerSeq}`);
+            console.log("isAlivedChat 채팅방 유무 : ", res.data);
+
+            // 채팅방이 없으면 "none"을 반환하도록 가정합니다.
+            return res.data === "none" ? "none" : res.data;
+        } catch (err) {
+            console.log("채팅방 유무 확인 error : ", err);
+
+            // 에러 발생 시 "none"을 반환합니다.
+            return "err";
+        }
     };
 
     //채팅방으로 이동하는 이벤트
-    const moveToChat = () => {
+    const moveToChat = (chatRoomSeq) => {
         //response 되면 실제 채팅 상담 페이지로 이동
         //페이지 이동시 data 함께 보낼 예정
         navigate(`/todowedding/chat-room/${chatRoomSeq}`, {
-            state: {
-                partnerSeq: partnerSeq,
-                memberSeq: memberSeq,
-            },
+            state: { partnerSeq: partnerSeq, memberSeq: memberSeq },
         });
     };
 
