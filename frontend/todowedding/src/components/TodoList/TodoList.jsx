@@ -47,137 +47,131 @@ const TodoList = () => {
             memberSeq: 123456789,
         };
 
-        //   //backend axios통신
-        //   await axios.post('http://localhost:8085/todolist'
-        //     , data).then((res)=>{
-        //     console.log("response : ", res);
-        //     fetchData();
-        //   }).catch((err)=>{
-        //     console.log("error", err);
-        //   })
-        //  }
-
-        //                 <form onSubmit={createTodo} className={style.form}>
-        //                     <input
-        //                         value={input}
-        //                         onChange={(e) => setInput(e.target.value)}
-        //                         className={style.input}
-        //                         type="text"
-        //                         placeholder="내용을 기입하세요"
-        //                     />
-        //                     <button className={style.button}>
-        //                         <AiOutlinePlus size={30} />
-        //                     </button>
-        //                 </form>
-        //             </div>
-        //         </div>
-        //     );
-        // };
-
-        // 2.전체 투두리스트 조회
-        // useEffect(() => {
-        //     fetchData();
-        // }, []);
-
-        // 3. 투두리스트 체크했을 때 실행되는 메서드 ---> (현재 Todo.jsx에 넣어둠)
-        const toggleComplete = async (todo) => {
-            console.log("check_실행", todo);
-            const data = {
-                todolistCompleted: isChecked,
-                todolistSeq: todo.todolistSeq,
-                memberSeq: todo.memberSeq,
-            };
-            try {
-                await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
-                console.log("성공 checked ");
-            } catch (err) {
-                console.error("Error checked: ", err);
-            }
-        };
-
-        //  4. const deleteTodo = async (id) =>{
-        //    await deleteDoc(doc(db, 'todos', id))
-        //  }
-
-        // 4. 투두리스트 삭제 실행 메서드
-        const deleteTodo = async (id) => {
-            //
-            try {
-                const data = await axios
-                    .delete(`http://localhost:8085/todolist/123456789/100345720715870279`) //`http://localhost:8085/todolist/${memberSeq}/${todolistSeq}`
-                    .then((res) => {
-                        // console.log("deleteTodolist 삭제성공 response : ", res.data);
-                    })
-                    .catch((err) => {
-                        console.log("delete 삭제 error : ", err);
-                    });
-            } catch (err) {
-                console.error("deleteTodolist: ", err);
-            }
-        };
-
-        //전체 투두리스트 조회 메서드
-        const fetchData = async () => {
-            try {
-                const response = await axios
-                    .get(`http://localhost:8085/todolist/123456789`) //`http://localhost:8085/todolist/${memberSeq}`
-                    .then((res) => {
-                        console.log("findallTodolist 조회 response : ", res.data);
-                        setTodos(res.data);
-                    })
-                    .catch((err) => {
-                        console.log("findallTodolist 조회 error : ", err);
-                    });
-            } catch (error) {
-                console.error("Error", error);
-            }
-        };
-
-        return (
-            //html
-            <div className={style.bg}>
-                <div className={style.container}>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                        <Link to="todowedding/calendar" style={{ marginRight: "30px" }}>
-                            <span>Calendar</span>
-                        </Link>
-                        <Link to="todowedding/todolist" style={{ marginRight: "30px" }}>
-                            <span>TodoList</span>
-                        </Link>
-                        <Link to="todowedding/budget" style={{ marginRight: "30px" }}>
-                            <span>Budget</span>
-                        </Link>
-                    </div>
-
-                    {/* 투두리스트 갯수 (전체_진행_완료)  */}
-                    {todos.length < 1 ? null : <p className={style.count}> {`전체 : ${todos.length}`}</p>}
-
-                    <h3 className={style.heading}>Todo List😎</h3>
-                    <form onSubmit={createTodo} className={style.form}>
-                        <input
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            className={style.input}
-                            type="text"
-                            placeholder="내용을 기입하세요"
-                        />
-                        <button className={style.button}>
-                            <AiOutlinePlus size={30} />
-                        </button>
-                    </form>
-                    <ul>
-                        {todos.map((todolistContents, index) => (
-                            <Todo
-                                key={index}
-                                todolistContents={todolistContents}
-                                toggleComplete={toggleComplete} // 투두체크 props처리 문제
-                                deleteTodo={deleteTodo(todolistContents.todolistSeq)} // 투두삭제 props처리 문제
-                            />
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        );
+        //backend axios통신
+        await axios
+            .post("http://localhost:8085/todolist", data)
+            .then((res) => {
+                console.log("response : ", res);
+                fetchData();
+            })
+            .catch((err) => {
+                console.log("error", err);
+            });
     };
+
+    // 2.전체 투두리스트 조회
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    // 3. 투두리스트 체크했을 때 실행되는 메서드 ---> (현재 Todo.jsx에 넣어둠)
+    const toggleComplete = async (todo) => {
+        console.log("check_실행", todo);
+        const data = {
+            todolistCompleted: isChecked,
+            todolistSeq: todo.todolistSeq,
+            memberSeq: todo.memberSeq,
+        };
+        try {
+            await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+            console.log("성공 checked ");
+        } catch (err) {
+            console.error("Error checked: ", err);
+        }
+    };
+
+    //  4. const deleteTodo = async (id) =>{
+    //    await deleteDoc(doc(db, 'todos', id))
+    //  }
+
+    // 4. 투두리스트 삭제 실행 메서드
+    //  const deleteTodo = async (id) => {                      //
+    //   try {
+    //     const data = await axios.delete(`http://localhost:8085/todolist/123456789/100345720715870279`)     //`http://localhost:8085/todolist/${memberSeq}/${todolistSeq}`
+    //     .then((res) =>{
+    //        console.log("deleteTodolist 삭제성공 response : ", res.data);
+    //     }).catch((err) =>{
+    //       console.log("delete 삭제 error : ", err)
+    //     })
+    //   } catch (err) {
+    //     console.error("deleteTodolist: ", err);
+    //   }
+    // }
+
+    // 삭제 실행 메서드 변경 코드
+    const deleteTodo = async (id) => {
+        try {
+            const response = await axios.delete(`http://localhost:8085/todolist/${memberSeq}/${id}`);
+            console.log("deleteTodolist 삭제성공 response : ", response.data);
+            // 화면에서 삭제 시각적인 효과 적용
+            setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== id));
+        } catch (err) {
+            console.error("delete 삭제 error : ", err);
+        }
+    };
+
+    //전체 투두리스트 조회 메서드
+    const fetchData = async () => {
+        try {
+            const response = await axios
+                .get(`http://localhost:8085/todolist/123456789`) //`http://localhost:8085/todolist/${memberSeq}`
+                .then((res) => {
+                    console.log("findallTodolist 조회 response : ", res.data);
+                    setTodos(res.data);
+                })
+                .catch((err) => {
+                    console.log("findallTodolist 조회 error : ", err);
+                });
+        } catch (error) {
+            console.error("Error", error);
+        }
+    };
+
+    return (
+        //html
+        <div className={style.bg}>
+            <div className={style.container}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Link to="todowedding/calendar" style={{ marginRight: "30px" }}>
+                        <span>Calendar</span>
+                    </Link>
+                    <Link to="todowedding/todolist" style={{ marginRight: "30px" }}>
+                        <span>TodoList</span>
+                    </Link>
+                    <Link to="todowedding/budget" style={{ marginRight: "30px" }}>
+                        <span>Budget</span>
+                    </Link>
+                </div>
+
+                {/* 투두리스트 갯수 (전체_진행_완료)  */}
+                {todos.length < 1 ? null : <p className={style.count}> {`전체 : ${todos.length}`}</p>}
+
+                <h3 className={style.heading}>Todo List😎</h3>
+                <form onSubmit={createTodo} className={style.form}>
+                    <input
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        className={style.input}
+                        type="text"
+                        placeholder="내용을 기입하세요"
+                    />
+                    <button className={style.button}>
+                        <AiOutlinePlus size={30} />
+                    </button>
+                </form>
+                <ul>
+                    {todos.map((todolistContents, index) => (
+                        <Todo
+                            key={index}
+                            todolistContents={todolistContents}
+                            toggleComplete={toggleComplete} // 투두체크 props처리 문제
+                            deleteTodo={() => deleteTodo(todolistContents.todolistSeq)} // 투두삭제 props처리 문제
+                        />
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
 };
+
 export default TodoList;
