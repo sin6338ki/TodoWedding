@@ -17,8 +17,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/pub");
-		config.setApplicationDestinationPrefixes("/sub");
+		config.enableSimpleBroker("/sub"); // 해당 경로를 구독하는 클라이언트에게 메세지 전달
+		config.setApplicationDestinationPrefixes("/pub"); //클라이언트에서 send 요청 처리
 	}
 	
 	@Override

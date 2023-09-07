@@ -1,5 +1,8 @@
 package com.smhrd.todowedding.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -28,4 +31,17 @@ public interface ChatMapper {
 	//채팅 메세지 저장
 	@Insert("insert into tw_chatting (chatting_create_dt, chatting_sender, chatting_contents, chat_room_seq, chatting_sender_type) values (#{chattingCreateDt}, #{chattingSender}, #{chattingContents}, #{chatRoomSeq}, #{chattingSenderType})")
 	public int saveChatMessage(Chatting chatting);
+	
+	//partnerSeq 에 대한 채팅방 목록 조회
+	@Select("select * from tw_chatroom where partner_seq=#{partnerSeq}")
+	public List<JSONObject> findChatroom(Long partnerSeq);
+	
+	//chatRoomSeq 채팅방 삭제 
+	@Delete("delete from tw_chatroom where chat_room_seq=#{chatRoomSeq}")
+	public int deleteChatroom(Long chatRoomSeq);
+	
+	//chatRoomSeq에 따른 전체 메세지 조회 
+	@Select("select * from tw_chatting where chat_room_seq=#{chatRoomSeq}")
+	public List<JSONObject> findChatMessage(Long chatRoomSeq);
+	
 }

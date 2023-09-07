@@ -51,9 +51,9 @@ const ChattingRoom = () => {
                 heartbeatOutgoing: 4000,
             });
 
-            //해당 채팅방 구독
+            // //해당 채팅방 구독
             newClient.onConnect = () => {
-                newClient.subscribe(`/pub/chat/${chatRoomSeq}`, callback);
+                newClient.subscribe(`/sub/chat/${chatRoomSeq}`, callback);
             };
 
             newClient.activate(); //클라이언트 활성화
@@ -66,11 +66,13 @@ const ChattingRoom = () => {
     };
 
     //callback 함수
-    const callback = (message) => {
+    const callback = async (message) => {
+        console.log("message : ", message.body);
         if (message.body) {
             let msg = JSON.parse(message.body);
-            setContent(msg);
-            setChatList((chats) => [...chats, msg]);
+            console.log("msg : ", msg);
+            await setContent(msg);
+            await setChatList((chats) => [...chats, msg]);
         }
     };
 
@@ -91,7 +93,7 @@ const ChattingRoom = () => {
 
         console.log("propertied : ", chatRoomSeq, memberSeq, content);
         stompClient.publish({
-            destination: "/sub/chat/" + chatRoomSeq,
+            destination: "/pub/chat/" + chatRoomSeq,
             body: JSON.stringify({
                 chattingCreateDt: new Date().toString(),
                 chattingSender: memberSeq,
@@ -100,33 +102,39 @@ const ChattingRoom = () => {
             }),
         });
         setContent("");
+        document.getElementById("messageInputBox").value = "";
     };
 
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
-    const msgBox = chatList.map((item, idx) => {
-        if (Number(item.sender) !== memberSeq) {
-            return (
-                <div key={idx} className={styles.otherchat}>
-                    <div className={styles.otherimg}>
-                        <img src={testImg} alt="" />
+    const msgBox = () => {
+        return chatList.map((item, idx) => {
+            if (item.chattingSenderType != "N") {
+                return (
+                    <div key={idx}>
+                        <div>
+                            <span>{item.chattingContents}</span>
+                        </div>
+                        <span>{item.chattingCreateDt}</span>
+                        <div>
+                            <span>{item.chattingSender}</span>
+                        </div>
                     </div>
-                    <div className={styles.othermsg}>
-                        <span>{item.data}</span>
+                );
+            } else {
+                return (
+                    <div key={idx}>
+                        <div>
+                            <span>{item.chattingContents}</span>
+                        </div>
+                        <span>{item.chattingCreateDt}</span>
+                        <div>
+                            <span>{item.chattingSender}</span>
+                        </div>
                     </div>
-                    <span className={styles.otherdate}>{item.date}</span>
-                </div>
-            );
-        } else {
-            return (
-                <div key={idx} className={styles.mychat}>
-                    <div className={styles.mymsg}>
-                        <span>{item.data}</span>
-                    </div>
-                    <span className={styles.mydate}>{item.date}</span>
-                </div>
-            );
-        }
-    });
+                );
+            }
+        });
+    };
 
     return (
         <div>
@@ -135,8 +143,9 @@ const ChattingRoom = () => {
                 <div id="menu">
                     <p>Welcome,</p>
                 </div>
-                {/* <div>{msgBox}</div> */}
+                <div>{msgBox()}</div>
                 <input
+                    id="messageInputBox"
                     onChange={(e) => {
                         setContent(e.target.value);
                     }}
