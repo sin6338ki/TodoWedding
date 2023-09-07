@@ -26,7 +26,7 @@ public interface TodolistMapper {
 	public int addTodoList(TodolistDto todolistDto);
 	
 	//해당 user의 전체 투두리스트 조회하기
-	@Select("select * from tw_todolist where member_seq=#{memberSeq}")
+	@Select("select * from tw_todolist where member_seq=#{memberSeq} order by todolist_seq desc")
 	public List<Todolist> findAllTodolist(Long memberSeq);
 	
 	//memberSeq, todolistSeq에 대하여 내용 수정하기 
