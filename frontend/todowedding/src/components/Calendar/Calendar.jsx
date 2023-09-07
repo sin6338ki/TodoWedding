@@ -4,11 +4,8 @@ import MyCalendar from './MyCalendar'
 const Calendar = () => {
   return (
     <div>
-      <div>
-        <MyCalendar />
-      </div>
+        <MyCalendar/>
     </div>
-    
   )
 }
 

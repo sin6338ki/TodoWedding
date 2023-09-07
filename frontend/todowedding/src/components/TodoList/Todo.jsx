@@ -3,7 +3,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 
 const style = {
-    li: `flex justify-between bg-slate-200 p-4 my-2 capitalize`,
+    li: `flex justify-between bg-slate-100 p-4 my-2 capitalize`,
     liComplete: `flex justify-between bg-slate-400 p-4 my-2 capitalize`,
     row: `flex`,
     text: `ml-2 cursor-pointer`,
@@ -53,15 +53,16 @@ const Todo = ({ todolistContents, deleteTodo }) => {
         <li className={todolistContents.completed ? style.liComplete : style.li}>
             <div className={style.row}>
                 {/* <input onChange={() => toggleComplete(todolistContents)} type="checkbox" checked={todolistContents.completed ? 'checked' : ''} /> */}
-                <input onChange={completedTodolist} type="checkbox" checked={isChecked} />
+                <input onChange={completedTodolist} type="checkbox" checked={isChecked}/>
                 <p
                     onClick={() => toggleComplete(todolistContents)}
                     className={todolistContents.completed ? style.textComplete : style.text}
                 >
                     {todolistContents.todolistContents}
                 </p>
+                <hr/>
             </div>
-            <button onClick={() => deleteTodo(todolistContents.id)}>{<FaRegTrashAlt />}</button>
+            <button onClick={() => deleteTodo(todolistContents.id)} className="trashBtn">{<FaRegTrashAlt />}</button>
             <button></button>
         </li>
     );

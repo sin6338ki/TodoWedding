@@ -9,6 +9,8 @@ import Join from "./components/Member/Join";
 import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
+import MyCalendar from "./components/Calendar/MyCalendar";
+import Schedule from "./components/Calendar/Schedule";
 import TodoList from "./components/TodoList/TodoList";
 import Budget from "./components/Budget/Budget";
 import Map from "./components/Map";
@@ -39,11 +41,13 @@ function App() {
 
                             {/* MainMenu */}
                             <Route path="/todowedding/calendar" element={<Calendar />} />
+                            <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/todolist" element={<TodoList />} />
                             <Route path="/todowedding/budget" element={<Budget />} />
-                            <Route path="/todowedding/map" element={<Map />} />
+                            
 
                             {/* 업체찾기 */}
+                            <Route path="/todowedding/map" element={<Map />} />
 
                             {/* 채팅목록 */}
                             <Route path="/todowedding/chatting" element={<Chatting />}></Route>
