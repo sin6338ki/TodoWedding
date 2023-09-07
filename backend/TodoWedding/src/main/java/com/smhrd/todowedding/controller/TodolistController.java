@@ -28,53 +28,49 @@ import lombok.extern.slf4j.Slf4j;
  *  작성일 : 2023.09.05 
  */
 
-@Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class TodolistController {
 
-	@Autowired
-	private TodolistService todolistService;
-	
-	//해당 유저에 대하여 투두리스트 1개 추가하기
-	@PostMapping(value="todolist")
-	public int addTodoList(@RequestBody TodolistDto todoListDto) {
-<<<<<<< HEAD
-		log.info("통신확인");
-=======
-		//성공시 1 리턴, 실패시 0 리턴
->>>>>>> cc3d842fff0d8cd216d25dd8df3c14ccac633216
-		return todolistService.addTodoList(todoListDto);
-	}
-	
-	//해당 유저에 대하여 투두리스트 전체 조회하기
-	@GetMapping(value="todolist/{memberSeq}")
-	public List<Todolist> findAllTodolist(@PathVariable(name="memberSeq") Long memberSeq){
-		return todolistService.findAllTodolist(memberSeq);
-	}
-	
-	//해당 유저의 선택된 투두리스트에 대하여 내용 수정하기
-	@PutMapping(value="todolist/{todolistSeq}")
-	public int updateTodolist(@PathVariable(name="todolistSeq") Long todolistSeq, @RequestBody TodolistDto todolistDto) {
-		return todolistService.updateTodolist(todolistSeq, todolistDto);
-	}
-	
-	//해당 유저의 선택된 투두리스트 삭제하기
-	@DeleteMapping(value="todolist/{memberSeq}/{todolistSeq}")
-	public String deleteTodolist(@PathVariable(name="memberSeq") Long memberSeq, @PathVariable(name="todolistSeq") Long todolistSeq) {
-		return todolistService.deleteTodolist(memberSeq, todolistSeq);
-	}
-	
-	//해당 유저의 총 투두리스트 개수, 완료 건수, 미완료 건수 불러오기
-	@GetMapping(value="count-of-todolist/{memberSeq}")
-	public List<CountTodolist> allCountTodolist(@PathVariable(name="memberSeq") Long memberSeq){
-		return todolistService.allCountTodolist(memberSeq);
-	}
-	
-	//해당 유저의 해당 체크리스트에 대하여 완료 여부 변경
-	@PutMapping(value="todolist/check")
-	public int isCheckedTodolist(@RequestBody IsCheckedTodolist isCheckedTodolist) {
-		//성공시 1, 실패시 0 리턴
-		return todolistService.isCheckedTodolist(isCheckedTodolist);
-	}
+   @Autowired
+   private TodolistService todolistService;
+   
+   //해당 유저에 대하여 투두리스트 1개 추가하기
+   @PostMapping(value="todolist")
+   public int addTodoList(@RequestBody TodolistDto todoListDto) {
+      //성공시 1 리턴, 실패시 0 리턴
+      return todolistService.addTodoList(todoListDto);
+   }
+   
+   //해당 유저에 대하여 투두리스트 전체 조회하기
+     @GetMapping(value="todolist/{memberSeq}")
+     public List<Todolist> findAllTodolist(@PathVariable(name="memberSeq") Long memberSeq){
+    	 System.out.println("컨트롤러확인");
+        return todolistService.findAllTodolist(memberSeq);
+     }
+   
+   //해당 유저의 선택된 투두리스트에 대하여 내용 수정하기
+   @PutMapping(value="todolist/{todolistSeq}")
+   public int updateTodolist(@PathVariable(name="todolistSeq") Long todolistSeq, @RequestBody TodolistDto todolistDto) {
+      return todolistService.updateTodolist(todolistSeq, todolistDto);
+   }
+   
+   //해당 유저의 선택된 투두리스트 삭제하기
+   @DeleteMapping(value="todolist/{memberSeq}/{todolistSeq}")
+   public String deleteTodolist(@PathVariable(name="memberSeq") Long memberSeq, @PathVariable(name="todolistSeq") Long todolistSeq) {
+      return todolistService.deleteTodolist(memberSeq, todolistSeq);
+   }
+   
+   //해당 유저의 총 투두리스트 개수, 완료 건수, 미완료 건수 불러오기
+   @GetMapping(value="count-of-todolist/{memberSeq}")
+   public List<CountTodolist> allCountTodolist(@PathVariable(name="memberSeq") Long memberSeq){
+      return todolistService.allCountTodolist(memberSeq);
+   }
+   
+   //해당 유저의 해당 체크리스트에 대하여 완료 여부 변경
+   @PutMapping(value="todolist/check")
+   public int isCheckedTodolist(@RequestBody IsCheckedTodolist isCheckedTodolist) {
+      //성공시 1, 실패시 0 리턴
+      return todolistService.isCheckedTodolist(isCheckedTodolist);
+   }
 }

@@ -42,6 +42,7 @@ public class TodolistService {
 	
 	//memberSeq에 대한 todolist 전체 조회하기 
 	public List<Todolist> findAllTodolist(Long memberSeq){
+		System.out.println("서비스확인");
 		return todolistMapper.findAllTodolist(memberSeq);
 	}
 	

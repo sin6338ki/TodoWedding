@@ -42,7 +42,7 @@ const TodoList = () => {
   e.preventDefault(e) 
   console.log("실행", input);
    if(input === '') {
-    alert ('please enter a valid todo')
+    alert ('투두리스트 내용을 입력해주세요')
     return
    }
 
