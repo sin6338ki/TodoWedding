@@ -91,6 +91,7 @@ console.log('code :', code);
      axios.get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
       .then((res) => {
        console.log("callback rsponse : ", res.data);
+
     })
       .catch((error) => {
        console.log("callback error", error);

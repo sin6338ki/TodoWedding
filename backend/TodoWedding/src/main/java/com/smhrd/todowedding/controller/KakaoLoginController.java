@@ -1,5 +1,7 @@
 package com.smhrd.todowedding.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,13 +35,14 @@ public class KakaoLoginController {
 	private KakaoLoginService kakaoLoginService;
 	
 	@GetMapping("/auth/kakao/callback")
-	public String kakaoCallback(String code) { 
+	public Map<String,Object> kakaoCallback(String code) { 
 		System.out.println("프론트에서 넘어온 카카오 코드값 : " + code);
 		
 		// 서비스에 코드값 전달
-		kakaoLoginService.getAccessToken(code);
+		Map<String, Object> KakaoData = kakaoLoginService.getAccessToken(code);
 		
-		return "끝";
+		
+		return KakaoData;
 
 	}
 }
