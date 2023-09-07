@@ -49,6 +49,7 @@ public class KakaoLoginService {
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
 		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
 		params.add("code", code);
+		
 
 		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
@@ -125,16 +126,18 @@ public class KakaoLoginService {
 			kakaoLoginMapper.kakaoUserData(member);
 		}
 		
-		
+
 		
 		
 		// 해당 사용자의 seq, nickname 보내기
 		Map<String, Object> KakaoData = new HashMap<>();
+		
 		// 사용자 seq값 매퍼에서 가져오기
 		Long Seq = kakaoLoginMapper.kakaoseq(memberKakaoId);
 		
 		KakaoData.put("userseq",Seq);
 		KakaoData.put("userNick",nickname);
+		KakaoData.put("kakaoAccess",response.getBody());
 		
 		
 		return KakaoData; 

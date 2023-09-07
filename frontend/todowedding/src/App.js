@@ -1,9 +1,9 @@
 /* eslint-disable */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
-//import Login from "./components/Login/Login";
 import Kakaologin from "./components/Login/Kakaologin";
+import KakaologOut from"./components/Login/KakaologOut";
 import Callback from "./components/Login/Callback";
 import Join from "./components/Member/Join";
 import Delete from "./components/Member/Delete";
@@ -21,6 +21,7 @@ import "./calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WebImage from "./assets/images/web_image.png";
 
+
 function App() {
     return (
         <BrowserRouter>
@@ -34,6 +35,7 @@ function App() {
                             {/* 로그인 */}
                             <Route path="/todowedding/login" element={<Kakaologin />} />
                             <Route path="/auth/kakao/callback" element={<Callback />} />
+                            <Route path="/auth/kakao/logout" element={<KakaologOut />} />
                             <Route path="/todowedding/join" element={<Join />} />
                             <Route path="/todowedding/delete" element={<Delete />} />
 
