@@ -1,6 +1,5 @@
 package com.smhrd.todowedding.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,15 +20,15 @@ public class Chatroom {
 	private Long partnerSeq;
 	
 	@Builder
-	public Chatroom(Long memberSeq, Long partnerSeq) {
+	public Chatroom(Long memberSeq, String chatRoomCreateDt, Long partnerSeq) {
 		this.memberSeq = memberSeq;
+		this.chatRoomCreateDt = chatRoomCreateDt;
 		this.partnerSeq = partnerSeq;
 	}
 	
 	@Builder
-	public Chatroom(Long memberSeq, String chatRoomCreateDt, Long partnerSeq) {
+	public Chatroom(Long memberSeq, Long partnerSeq) {
 		this.memberSeq = memberSeq;
-		this.chatRoomCreateDt = chatRoomCreateDt;
 		this.partnerSeq = partnerSeq;
 	}
 }
