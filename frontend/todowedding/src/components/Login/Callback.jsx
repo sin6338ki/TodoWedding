@@ -1,105 +1,50 @@
-import React, { useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import React, { useEffect, useState  } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import axios from 'axios'
-import { useState } from 'react';
+
 
 const Callback = () => {
 
     // useSearchParams() : URL의 쿼리파라미터에 대한 접근과 조작을 할 수 있음 
     const [searchParams] = useSearchParams()
+
      // Callback 화면 URL에서 code값 가져오기 
     const code = searchParams.get('code');
     console.log('code :', code);
+    const [kakaoAccess, setKakaoAccess] = useState('');
 
-    // const [error, setError] = useState(null)  //상태를 추가하여 에러를 저장한다고함 
+/*
+ * KakaoCallback (사용자가 카카오 로그인을 하면 사용자입장에선 안보여지는 페이지)
+ * 작성자 : 서류광
+ * 작성일 : 2023.09.07
+ */
 
-    // useNavigate() : 페이지 이동
-    //  const navigator = useNavigate();
-
-  
-
-     
-  //    // Spring으로 code값 넘겨주기 (coco코드)
-  //   const fetchData = async () => {
-  //     try {
-  //         const res = await axios.get(`http://localhost:8085/kakaologin?code=${code}`);
-  //         console.log(res.data);
-  //         console.log(res.data.CUST_ID);
-  //         console.log(res.data.CUST_IMG);
-
-  //         //쿠키 저장 
-  //         cookies.save('CUST_ID', res.data.CUST_ID);
-  //         cookies.save('CUST_IMG', res.data.CUST_IMG);
-
-  //         if (res.data.CUST_IMG == "0") { //회원가입 
-  //             navigator('/join');
-  //         } else { //로그인 
-  //             navigator('/');
-  //         }
-
-  //     } catch (error) {
-  //         console.error(error);
-  //     }
-  // }
-
-  //   //useEffect( ()=>{}) : 화면이 렌더링이 될 때마다 매번 실행 
-  //   //useEffect( ()=>{},[]) : []안에 들어간 값이 변경될 때마다 실행 
-  //   useEffect(() => {
-  //     fetchData();
-  // }, [code, navigator]);
-
-
-
-     
-//   useEffect(() => {
-//     console.log('code :', code);
-
-//     axios.get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
-//     .then((res) => {
-//       console.log(res.data);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       setError(error); // 에러발생한 경우 상태에 저장
-//     })
-//   }, [code])
-
-//   return (
-//     <div>
-//     {error ? (
-//       <div>
-//         {/* 네트워크 오류인 경우 */}
-//         {error.message === 'Network Error' ? (
-//           <p> 네트워크 연결에 문제가 있습니다. 인터넷 연결을 확인하세요.</p>
-//         ) : (
-//           // 404 오류 또는 다른 서버 오류인 경우
-//           <p>서버에서 요청한 페이지를 찾을 수 없습니다.</p>
-//         )}
-//       </div>
-//     ) : (
-//       // 에러가 없는 경우
-//       <div>Callback</div>
-//     )}
-//   </div>
-// );
-// };
-
+let inMemoryAccessToken = '';
 
 useEffect(() => {
 console.log('code :', code);
-
+        // 3가지의 정보 전달 (사용자 seq, nick, access)
      axios.get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
       .then((res) => {
-       console.log("callback rsponse : ", res.data);
+        console.log("accesstoken 정보 : ", res.data.kakaoAccess);
+        // console.log("사용자 닉네임: ", res.data.userNick);
+        // console.log("사용자 SEQ: ", res.data.userseq);
 
+        // 메인페이지로 이동, 세션에 사용자 닉네임 SEQ값 전달
+        sessionStorage.setItem('KakaoUserSeq', res.data.userseq);
+        sessionStorage.setItem('KakaoUserNick', res.data.userNick);
+        sessionStorage.setItem('kakaoAccess', res.data.kakaoAccess);
+        
+        window.location.href = '/';
     })
       .catch((error) => {
-       console.log("callback error", error);
+       console.log("유저 정보를 가져오는데 실패 ", error);
     })
    }, [code])
 
  return (
-    <div>Callback</div>
+    <div>
+    </div>
  )
 }
 
