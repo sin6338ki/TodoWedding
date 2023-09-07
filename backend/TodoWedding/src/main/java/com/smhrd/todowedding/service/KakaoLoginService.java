@@ -1,6 +1,8 @@
 package com.smhrd.todowedding.service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -28,11 +30,11 @@ import com.smhrd.todowedding.model.OAuthToken;
 
 @Service
 public class KakaoLoginService {
-	
+
 	@Autowired
-	private KakaoLoginMapper kakaoLoginMapper; 
-	
-	public void getAccessToken(String code) {
+	private KakaoLoginMapper kakaoLoginMapper;
+
+	public Map<String, Object> getAccessToken(String code) {
 		System.out.println("서비스에서 받은 카카오 코드값: " + code);
 
 		RestTemplate rt = new RestTemplate();
@@ -88,8 +90,16 @@ public class KakaoLoginService {
 		KakaoProfile kakaoProfile = null;
 		
 		try {
-			kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoProfile.class);
-			
+		kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoProfile.class);
+		
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		
 		System.out.println("닉네임 : " + kakaoProfile.getProperties().nickname);
 		System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().email);
 		System.out.println("성별 : " + kakaoProfile.getKakao_account().getGender());
@@ -102,30 +112,34 @@ public class KakaoLoginService {
 		String ageRange = kakaoProfile.getKakao_account().age_range;
 		Long memberKakaoId = kakaoProfile.getId();
 		
-	
+		int idCheck = kakaoLoginMapper.kakaoIdCheck(memberKakaoId);
+		System.out.println("아이디 중복 리턴"+idCheck);
 		
+		// memberKakaoId 중복 확인후 DB 저장
+		if(idCheck > 0) {
+			System.out.println(" db저장 안함 "+idCheck);
+		}else {
+			System.out.println("새로운 카카오 정보-> db저장 ");
 			Member member = new Member(nickname, email, gender, ageRange, memberKakaoId);
-			
 			 // DB에 저장하기 위해 매퍼 메서드 호출
-			int result = kakaoLoginMapper.kakaoUserData(member);
-			if ("SUCCESS".equals(result)) {
-			    // 삽입 성공
-			    System.out.println("데이터베이스 성공");
-			} else {
-			    // 삽입 실패 또는 오류 처리
-			    System.out.println("데이터베이스 실패");
-			}
-			
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			kakaoLoginMapper.kakaoUserData(member);
 		}
 		
 		
 		
 		
-	}
+		// 해당 사용자의 seq, nickname 보내기
+		Map<String, Object> KakaoData = new HashMap<>();
+		// 사용자 seq값 매퍼에서 가져오기
+		Long Seq = kakaoLoginMapper.kakaoseq(memberKakaoId);
+		
+		KakaoData.put("userseq",Seq);
+		KakaoData.put("userNick",nickname);
+		
+		
+		return KakaoData; 
 
+	}
 }
+
+
