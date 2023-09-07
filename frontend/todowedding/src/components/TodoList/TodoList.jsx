@@ -101,7 +101,7 @@ const TodoList = () => {
     // 삭제 실행 메서드 변경 코드
     const deleteTodo = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8085/todolist/${memberSeq}/${id}`);
+            const response = await axios.delete(`http://localhost:8085/todolist/123456789/${id}`);
             console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
             setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== id));
