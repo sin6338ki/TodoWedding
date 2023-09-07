@@ -16,69 +16,56 @@ const ChattingRoom = () => {
     const locationData = location.state;
     const [content, setContent] = useState("");
 
-    useEffect(() => {
-        wsSubscribe();
-        return () => wsDisconnect();
-    }, []);
-
     //불러와지는 Data(기존 채팅방 존재여부 확인)가 있다면,
     //기존 채팅방 구독
     //없다면 새로운 채팅방 생성 및 구독
+
     useEffect(() => {
-        console.log("locationData : ", locationData);
-    }, [locationData]);
+        //최초 렌더링시 웹소켓 연결
+        connect();
+        return () => disConnect();
+    }, [location]);
 
     //웹소켓 연결
-    const client = new StompJs.Client({
-        brokerURL: "ws://localhost:8085/gs-guide-websocket",
-        connectHeaders: {
-            //header에 채팅방과 참가자 정보 함께 전송
-            chatRoomSeq: locationData.chatRoomSeq,
-            memberSeq: locationData.memberSeq,
-            partnerSeq: locationData.partnerSeq,
-        },
-        debug: function (str) {
-            console.log("웹소켓 연결 debug : ", str);
-        },
-    });
-
-    client.activate();
-
-    const message = {
-        chattingCreateDt: Date.now(),
-        chattingSender: locationData.memberSeq,
-        chattingContents: content,
-        chatRoomReq: locationData.chatRoomSeq,
-        chattingSenderType: "Y",
-    };
-
-    const sendMessage = () => {
-        console.log("sendMessage : ", client.connected);
-        if (!client.connected) return;
-
-        client.publish({
-            destination: "/app/hello",
-            body: JSON.stringify({
-                message: message,
-            }),
-        });
-    };
-
-    const wsSubscribe = () => {
-        client.onConnect = () => {
-            client.subscribe(
-                "/topic/message",
-                (msg) => {
-                    const newMessage = JSON.parse(msg.body).message;
-                    setContent(newMessage);
+    const connect = () => {
+        try {
+            const client = new StompJs.Client({
+                brokerURL: "ws://localhost:8085/gs-guide-websocket",
+                connectHeaders: {
+                    //header에 채팅방과 참가자 정보 함께 전송
+                    chatRoomSeq: location.pathname.split("/")[3],
+                    memberSeq: locationData.memberSeq,
+                    partnerSeq: locationData.partnerSeq,
                 },
-                { id: locationData.chatRoomSeq }
-            );
-        };
+                debug: function (str) {
+                    console.log("웹소켓 연결 debug : ", str);
+                },
+            });
+
+            //해당 채팅방 구독
+            client.onConnect = () => {
+                client.subscribe("/topic/" + chatRoomSeq, callback);
+            };
+
+            client.activate(); //클라이언트 활성화
+        } catch (err) {
+            console.log("websocket 연결 error : ", error);
+        }
     };
 
-    const wsDisconnect = () => {
-        client.deactivate();
+    //callback 함수
+    const callback = (message) => {
+        if (message.body) {
+            let msg = JSON.parse(message.body);
+        }
+    };
+
+    //연결해제
+    const disConnect = () => {
+        if (locationData.memberSeq == null) {
+            return;
+        }
+        client.deactive();
     };
 
     return (

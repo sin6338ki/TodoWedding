@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -11,35 +11,66 @@ const Chatting = () => {
     //페이지 이동시 데이터 함께 전달하기 위해 사용
     const navigate = useNavigate();
 
+    const memberSeq = 12345;
+    const partnerSeq = 11111;
+    const [chatRoomSeq, setChatRoomSeq] = useState();
+    const [isChatroom, setIsChatRoom] = useState();
+
     //request 데이터 - 업체 고유번호, 멤버 고유번호
     const data = {
-        partnerSeq: 123456,
-        memberSeq: 123456789,
+        memberSeq: memberSeq,
+        chatRoomCreateDt: new Date(),
+        partnerSeq: partnerSeq,
     };
 
     //상담 시작 클릭시 발생하는 이벤트
     const enterChat = () => {
-        axios
-            .post("http://localhost:8085/enter-chat", data)
-            .then((res) => {
-                console.log("response : ", res.data);
-                //response 되면 실제 채팅 상담 페이지로 이동
-                //페이지 이동시 data 함께 보낼 예정
-                navigate("/todowedding/chat-room", {
-                    state: {
-                        partnerSeq: 123456,
-                        memberSeq: 123456789,
-                        chatRoomSeq: parseInt(res.data),
-                    },
-                });
-            })
-            .catch((err) => {
-                console.log("error : ", err);
-            });
+        //기존 연결되어 있는 채팅방 유무 확인
+        isAlivedChat();
+        //기존 채팅방이 없다면 채팅방 만들기 진행, 있다면 채팅방으로 이동
+        // isChatroom == 0 ? createChat() : moveToChat();
+        isChatroom == "none" && createChat();
     };
 
     //채팅방 만드는 이벤트
-    const createChat = () => {};
+    const createChat = () => {
+        axios
+            .post("http://localhost:8085/chat", data)
+            .then((res) => {
+                console.log("createChat response : ", res.data);
+                setChatRoomSeq(res.data);
+                isAlivedChat();
+                // moveToChat();
+            })
+            .catch((err) => {
+                console.log("createChat error : ", err);
+            });
+    };
+
+    //채팅방 유무 확인 이벤트
+    const isAlivedChat = () => {
+        axios
+            .get(`http://localhost:8085/chat/${memberSeq}/${partnerSeq}`)
+            .then((res) => {
+                console.log("채팅방 성공 유무 : ", res.data);
+                setIsChatRoom(res.data);
+            })
+            .catch((err) => {
+                console.log("채팅방 유무 확인 error : ", err);
+            });
+    };
+
+    //채팅방으로 이동하는 이벤트
+    const moveToChat = () => {
+        //response 되면 실제 채팅 상담 페이지로 이동
+        //페이지 이동시 data 함께 보낼 예정
+        navigate(`/todowedding/chat-room/${chatRoomSeq}`, {
+            state: {
+                partnerSeq: partnerSeq,
+                memberSeq: memberSeq,
+            },
+        });
+    };
 
     return (
         <div>
