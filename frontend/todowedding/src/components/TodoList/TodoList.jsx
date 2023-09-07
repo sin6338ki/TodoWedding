@@ -1,41 +1,51 @@
-import React, {useState, useEffect} from 'react'
-import {AiOutlinePlus} from 'react-icons/ai'
-import Todo from './Todo'
-import { Link } from 'react-router-dom';
-import axios from 'axios'
-
-
+import React, { useState, useEffect } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import Todo from "./Todo";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const style = {
-   bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-   container : `bg-slate-100 max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
-   heading : `text-3xl font-bold text-center text-greay-800 p-2`,
-   form : `flex justify-between` , 
-   input : `border p-2 w-full text-xl`,
-   button : `border p-4 ml-2 bg-purple-500 text-slate-100`,
-   count : `text-center p-2`
-}
+    bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
+    container: `bg-slate-100 max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
+    heading: `text-3xl font-bold text-center text-greay-800 p-2`,
+    form: `flex justify-between`,
+    input: `border p-2 w-full text-xl`,
+    button: `border p-4 ml-2 bg-purple-500 text-slate-100`,
+    count: `text-center p-2`,
+};
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([])
-  const [input , setInput] = useState('')
-  const [isChecked , setIsChecked] = useState('')
+    const [todos, setTodos] = useState([]);
+    const [input, setInput] = useState("");
+    const [isChecked, setIsChecked] = useState("");
 
+    // GET : axios.get(url)
+    // POST : axios.post(url, data)
+    // PUT : axios.put(url, data)
+    // DELETE : axios.delete(url)
 
-  
-  // GET : axios.get(url)
-  // POST : axios.post(url, data)
-  // PUT : axios.put(url, data)
-  // DELETE : axios.delete(url)
+    // axios 구조 : axios.get('url')
+    // .then((res)=>{
+    //       console.log("response : ", res.data);
+    //       어떤식 데이터를 받는지 확인 후 내가 뭘 필요하는가를 생각해본 뒤 프론트(화면 혹은 변수로 지정)
+    // }).catch((err)=>{
+    //       console.log("error : ", err)
+    // })
 
-  // axios 구조 : axios.get('url')
-  // .then((res)=>{
-  //       console.log("response : ", res.data); 
-  //       어떤식 데이터를 받는지 확인 후 내가 뭘 필요하는가를 생각해본 뒤 프론트(화면 혹은 변수로 지정)
-  // }).catch((err)=>{
-  //       console.log("error : ", err)
-  // })
+    // 1.투두리스트 추가 메서드
+    const createTodo = async (e) => {
+        e.preventDefault(e);
+        console.log("실행", input);
+        if (input === "") {
+            alert("please enter a valid todo");
+            return;
+        }
 
+        // boot에서 쓰는 dto참조해서 가져오기
+        const data = {
+            todolistContents: input,
+            memberSeq: 123456789,
+        };
 
         //backend axios통신
        await axios
@@ -91,7 +101,7 @@ const TodoList = () => {
     // 삭제 실행 메서드 변경 코드
     const deleteTodo = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8085/todolist/${memberSeq}/${id}`);
+            const response = await axios.delete(`http://localhost:8085/todolist/123456789/${id}`);
             console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
             setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== id));
