@@ -10,7 +10,7 @@ import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
 import TodoList from "./components/TodoList/TodoList";
-import Budget from "./components/Budget/Budget";
+ import Budget from "./components/Budget/Budget";
 import Map from "./components/Map";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Chatting from "./components/FindPartner/Chatting";
@@ -20,6 +20,7 @@ import "./index.css";
 import "./calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WebImage from "./assets/images/web_image.png";
+
 
 function App() {
     return (

@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import kakao from "../../assets/snslogin/kakao.png";
 import Logo from "../../assets/images/todo_logo.png";
 
+
+
+/*
+ * kakaologin 
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.04
+ */
+
 const Kakaologin = () => {
     //const clientId = process.env.REACT_APP_CLIENT_ID
     //const redirectUri = process.env.REACT_APP_REDIRECT_URI
