@@ -53,6 +53,9 @@ useEffect(()=>{
   console.log("todolistContents", todolistContents.todolistContents);
 },[])
 
+
+
+
   return (
     <li className={todolistContents.completed ? style.liComplete : style.li}>
         <div className={style.row}>
