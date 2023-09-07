@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import kakao from '../../assets/snslogin/kakao.png'
+import Logo from '../../assets/images/todo_logo.png'
 
 
 
@@ -19,6 +20,10 @@ const Kakaologin = () => {
   return (
   
     <div>
+<<<<<<< HEAD
+=======
+        <img src={Logo} width="300px"/>
+>>>>>>> 1d3992c9ba08550eaba7eb9a6165a2fd9cd6227d
         <a className='kakao' href={URL}>
             <em></em>
             <img src={kakao} width={200} alt="Kakao Login" onClick={()=>{console.log("kakaologin 클릭!")}}></img>

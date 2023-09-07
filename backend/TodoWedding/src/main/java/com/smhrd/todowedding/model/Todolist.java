@@ -19,7 +19,7 @@ public class Todolist {
 	private String todolistContents;
 	private String todolist_completed;
 	private Long memberSeq;
-	private String date; //추가함
+	private String date;
 	
 	@Builder
 	public Todolist(Long todolistSeq, String todolistContents, Long memberSeq) {
