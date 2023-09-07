@@ -46,7 +46,7 @@ const Todo = ({ todolistContents, deleteTodo }) => {
     };
 
     useEffect(() => {
-        console.log("todolistContents", todolistContents.todolistContents);
+        console.log("todolistContents", todolistContents.todolistSeq);
     }, []);
 
     return (
@@ -61,7 +61,7 @@ const Todo = ({ todolistContents, deleteTodo }) => {
                     {todolistContents.todolistContents}
                 </p>
             </div>
-            <button onClick={() => deleteTodo(todolistContents.id)}>{<FaRegTrashAlt />}</button>
+            <button onClick={() => deleteTodo(todolistContents.todolistSeq)}>{<FaRegTrashAlt />}</button>
             <button></button>
         </li>
     );

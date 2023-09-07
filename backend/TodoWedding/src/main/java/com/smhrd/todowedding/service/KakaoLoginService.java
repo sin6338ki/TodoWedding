@@ -22,6 +22,8 @@ import com.smhrd.todowedding.model.KakaoProfile;
 import com.smhrd.todowedding.model.Member;
 import com.smhrd.todowedding.model.OAuthToken;
 
+import jakarta.servlet.http.HttpSession;
+
 /*
  * KakaoLogin 서비스
  * 작성자 : 서유광
@@ -135,7 +137,6 @@ public class KakaoLoginService {
 		
 		KakaoData.put("userseq",Seq);
 		KakaoData.put("userNick",nickname);
-		
 		
 		return KakaoData; 
 

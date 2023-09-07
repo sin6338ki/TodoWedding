@@ -18,6 +18,7 @@ const TodoList = () => {
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
     const [isChecked, setIsChecked] = useState("");
+    const memberSeq = 123456789;
 
     // GET : axios.get(url)
     // POST : axios.post(url, data)
@@ -99,22 +100,24 @@ const TodoList = () => {
     // }
 
     // 삭제 실행 메서드 변경 코드
-    const deleteTodo = async (id) => {
+    const deleteTodo = async (todolistSeq) => {
         try {
-            const response = await axios.delete(`http://localhost:8085/todolist/123456789/${id}`);
+            console.log("투두리스트 삭제 실행, todolistSeq : ", todolistSeq);
+            const response = await axios.delete(`http://localhost:8085/todolist/${todolistSeq}`);
             console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
-            setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== id));
+            response.data === 1 &&
+                setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== todolistSeq));
         } catch (err) {
             console.error("delete 삭제 error : ", err);
         }
     };
 
     //전체 투두리스트 조회 메서드
-    const fetchData = async () => {
+    const fetchData = () => {
         try {
-            const response = await axios
-                .get(`http://localhost:8085/todolist/123456789`) //`http://localhost:8085/todolist/${memberSeq}`
+            axios
+                .get(`http://localhost:8085/todolist/${memberSeq}`) //`http://localhost:8085/todolist/${memberSeq}`
                 .then((res) => {
                     console.log("findallTodolist 조회 response : ", res.data);
                     setTodos(res.data);
@@ -165,7 +168,7 @@ const TodoList = () => {
                             key={index}
                             todolistContents={todolistContents}
                             toggleComplete={toggleComplete} // 투두체크 props처리 문제
-                            deleteTodo={() => deleteTodo(todolistContents.todolistSeq)} // 투두삭제 props처리 문제
+                            deleteTodo={deleteTodo} // 투두삭제 props처리 문제
                         />
                     ))}
                 </ul>

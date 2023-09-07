@@ -30,13 +30,11 @@ function App() {
                     <div className="body" id="Pretendard-Regular">
                         <Routes>
                             <Route path="/" element={<Main />} />
-
                             {/* 로그인 */}
                             <Route path="/todowedding/login" element={<Kakaologin />} />
                             <Route path="/auth/kakao/callback" element={<Callback />} />
                             <Route path="/todowedding/join" element={<Join />} />
                             <Route path="/todowedding/delete" element={<Delete />} />
-
                             {/* MainMenu */}
                             <Route path="/todowedding/calendar" element={<Calendar />} />
                             <Route path="/todowedding/todolist" element={<TodoList />} />

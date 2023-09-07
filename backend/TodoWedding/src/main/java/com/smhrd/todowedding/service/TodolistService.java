@@ -53,10 +53,21 @@ public class TodolistService {
 	}
 	
 	//memberSeq, todolistSeq에 해당하는 투두리스트 삭제 
-	public String deleteTodolist(Long memberSeq, Long todolistSeq) {
-		todolistMapper.deleteTodolist(memberSeq, todolistSeq);
-		log.info("success delete todolist : memberSeq - " + memberSeq + " todolistSeq - " + todolistSeq);
-		return "success";
+	public int deleteTodolist(Long todolistSeq) {
+		int resultDelete = -1;
+		try {
+			log.info("todolist delete mapper 실행");
+			resultDelete = todolistMapper.deleteTodolist(todolistSeq);
+			if(resultDelete > 0) {
+				log.info("todolist delete result : " + resultDelete );
+			}else {
+				resultDelete = 0;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return resultDelete;
 	}
 	
 	//해당 유저의 투두리스트 총 개수, 완료 개수, 미완료 개수 불러오기
