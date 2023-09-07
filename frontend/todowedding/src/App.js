@@ -17,6 +17,7 @@ import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
 import "./tailwind.css";
 import "./index.css";
+import "./calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WebImage from "./assets/images/web_image.png";
 
