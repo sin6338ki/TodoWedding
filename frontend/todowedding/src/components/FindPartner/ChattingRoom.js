@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import SockJS from "sockjs-client";
 import * as StompJs from "@stomp/stompjs";
-import { WebSocket } from "websocket";
+import "../../tailwind.css";
 /*
  * 실제 채팅방 - 채팅목록 및 채팅 보낼 수 있는 창
  * 작성자 : 신지영
@@ -10,6 +9,14 @@ import { WebSocket } from "websocket";
  */
 
 const ChattingRoom = () => {
+    //스타일
+    const style = {
+        bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
+        container: `m-auto p-4`,
+        containerDate: `bg-slate-100 m-auto p-5`,
+        input: `p-3 w-full text-lg`,
+    };
+
     //useNavigate 활용하여 가져온 데이터 불러오기
     //- 채팅방 고유번호, 회원 고유번호, 업체 고유번호
     const location = useLocation();
@@ -69,10 +76,10 @@ const ChattingRoom = () => {
     const callback = async (message) => {
         console.log("message : ", message.body);
         if (message.body) {
-            let msg = JSON.parse(message.body);
-            console.log("msg : ", msg);
-            await setContent(msg);
-            await setChatList((chats) => [...chats, msg]);
+            let chatting = await JSON.parse(message.body);
+            console.log("chatting", chatting);
+            await setContent(chatting);
+            await setChatList((chats) => [...chats, chatting]);
         }
     };
 
@@ -102,7 +109,7 @@ const ChattingRoom = () => {
             }),
         });
         setContent("");
-        document.getElementById("messageInputBox").value = "";
+        document.getElementById("chatting-input-box").value = "";
     };
 
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
@@ -111,7 +118,7 @@ const ChattingRoom = () => {
             if (item.chattingSenderType != "N") {
                 return (
                     <div key={idx}>
-                        <div>
+                        <div className="mt-3">
                             <span>{item.chattingContents}</span>
                         </div>
                         <span>{item.chattingCreateDt}</span>
@@ -122,12 +129,17 @@ const ChattingRoom = () => {
                 );
             } else {
                 return (
-                    <div key={idx}>
-                        <div>
+                    <div
+                        key={idx}
+                        className="shadow-md shadow-gray-400 border rounded-xl border-black mr-3 my-2 text-xs w-max"
+                    >
+                        <div className="mt-3 mr-5 text-right">
                             <span>{item.chattingContents}</span>
                         </div>
-                        <span>{item.chattingCreateDt}</span>
-                        <div>
+                        <div className="mt-1 mr-5 text-right">
+                            <span>{item.chattingCreateDt}</span>
+                        </div>
+                        <div className="mt-1 mr-5 text-right">
                             <span>{item.chattingSender}</span>
                         </div>
                     </div>
@@ -138,27 +150,39 @@ const ChattingRoom = () => {
 
     return (
         <div>
-            {/* 채팅목록 불러와서 띄울 예정 */}
-            <div>
-                <div id="menu">
-                    <p>Welcome,</p>
-                </div>
-                <div>{msgBox()}</div>
-                <input
-                    id="messageInputBox"
-                    onChange={(e) => {
-                        setContent(e.target.value);
-                    }}
-                    type="text"
-                    className="border"
-                ></input>
-                <button
-                    onClick={() => {
-                        send();
-                    }}
+            <div
+                id="chatting-container"
+                className="mx-auto mt-10 flex flex-col border rounded-2xl border-black w-5/6 h-full"
+            >
+                <div
+                    id="chatting-banner"
+                    className="flex flex-col bg-[#D0CFFA] text-lg font-bold h-12 border rounded-t-2xl"
                 >
-                    메세지 보내기
-                </button>
+                    <p className="text-left ml-9 mt-2">1:1 상담하기</p>
+                </div>
+                <div id="chatting-contents-container" className="flex flex-col h-[430px]">
+                    {msgBox()}
+                </div>
+                <div id="chatting-input-container" className="flex flex-row bg-[#F4F4F4] h-32 rounded-b-2xl">
+                    <div className="flex flex-col-reverse border-b border-black ml-5 mb-3 align-bottom basis-4/5">
+                        <input
+                            onChange={(e) => {
+                                setContent(e.target.value);
+                            }}
+                            id="chatting-input-box"
+                            type="text"
+                            className="appearance-none bg-transparent border-noneh-9 w-80 ml-2 mb-2 focus:outline-none  text-gray-700 border-[#9F7FFC]-500"
+                        ></input>
+                    </div>
+                    <button
+                        onClick={() => {
+                            send();
+                        }}
+                        className="bg-[#C8C8C8] basis-1/5 mt-20 mb-3 mx-3 align-bottom rounded-md h-9"
+                    >
+                        전송
+                    </button>
+                </div>
             </div>
         </div>
     );
