@@ -18,9 +18,10 @@ const Header = () => {
                 onClick={() => {
                     window.location.href = "/";
                 }}
+                style={{cursor: 'pointer'}}
             />
-            <Link to="/todowedding/login">
-                <span className="main-login text-sm">로그인</span>
+            <Link to="/todowedding/login" className="main-login">
+                <span className="text-sm">로그인</span>
             </Link>
         </div>
     );

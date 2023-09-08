@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+//React-Slick 라이브러리
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default class SlickSlider extends Component {
   render() {
@@ -37,4 +40,3 @@ export default class SlickSlider extends Component {
     );
   }
 }
-[출처] [React] React slide 구현하기 react-slick 사용방법, 커스텀 방법|작성자 Jaeeun
