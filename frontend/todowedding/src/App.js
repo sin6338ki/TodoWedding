@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
 import Kakaologin from "./components/Login/Kakaologin";
 import KakaologOut from "./components/Login/KakaologOut";
@@ -43,7 +43,7 @@ function App() {
                             <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/todolist" element={<TodoList />} />
                             <Route path="/todowedding/budget" element={<Budget />} />
-                            
+
                             {/* 업체찾기 */}
                             <Route path="/todowedding/map" element={<Map />} />
 
