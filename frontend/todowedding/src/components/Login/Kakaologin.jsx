@@ -23,7 +23,7 @@ const Kakaologin = () => {
 
     return (
         <div>
-            <img src={Logo} width="300px" />
+            {/* <img src={Logo} width="300px" /> 이미지에서 오류나와서 주석
             <a className="kakao" href={loginURL}>
                 <em></em>
                 <img
@@ -34,6 +34,10 @@ const Kakaologin = () => {
                         console.log("kakaologin 클릭!");
                     }}
                 ></img>
+            </a> */}
+
+            <a href={loginURL}>
+                <button>카카오 로그인</button>
             </a>
             <br />
             {/* 로그아웃을 하게 되면 다른 카카오 계정으로 로그인 가능 */}
