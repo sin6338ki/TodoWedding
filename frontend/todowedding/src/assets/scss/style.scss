@@ -45,6 +45,13 @@
   align-items: center;
   text-align: center;
   font-family: 'Pretendard-Regular';
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-bar-hover:hover {
+  border-radius: 10%;
+  box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
 }
 
 .footer-menu-right {
@@ -54,6 +61,8 @@
   margin: 10px;
   align-items: center;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer-add {
@@ -62,6 +71,15 @@
   text-decoration: none;
   margin: 10px 20px 75px 20px;
   align-items: center;
+}
+
+.footer-add:hover {
+  border-radius: 100%;
+  box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
+}
+
+.calendar-font-container{
+  z-index: -1;
 }
 
 //메인페이지 아이콘
@@ -79,6 +97,7 @@
   color: black;
   text-decoration: none;
   margin-left: 375px;
+  margin-top: 4px;
   font-family: 'Pretendard-Regular';
   align-items: center;
   text-align: center;

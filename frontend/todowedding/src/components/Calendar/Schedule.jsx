@@ -2,44 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom'
 
+/*
+ * 일정추가 페이지에서 캘린더 추가하기, TodoList 추가하기 
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.07
+ */
+
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
     container: `m-auto p-4`,
     containerDate: `bg-slate-100 m-auto p-5`,
-    input: `p-4 w-full text-m`,
+    input: `p-3 w-full text-lg`,
 };
 
 const Schedule = () => {
     const nav = useNavigate()
 
-    const [title, setTitle] = useState("");
-    const [schedule, setSchedule] = useState([]);
-    const [startDate, setStartDate] = useState([]);
-    const [endDate, setEndDate] = useState([]);
-
-    const addTodoInfo = {
-        title: `${title}`
-    }
-
-
-    // //'캘린더 일정 추가' 버튼 클릭
-    // const addSchedule = () => {
-    //     console.log('캘린더 일정 추가 버튼 클릭!');
-
-    //     if (title === '' || startDate === '' || endDate === ""){
-    //         alert('일정 제목과 날짜를 입력해주세요!')
-
-    //     } else {
-    //         console.log('스프링으로 넘기는 값 :', scheduleInfo);
-    //         axios.post('http://localhost:8085/schedule', scheduleInfo)
-    //         .then(res => {
-    //             console.log('통신성공', res.data);
-    //         })            
-    //     }
-    // }
+    const [title, setTitle] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
 
     
-    // 캘린더 일정 추가' 버튼 클릭
+    //'캘린더 일정 추가' 버튼 클릭
     const createSchedule = async (e) => {
         e.preventDefault(e);
         console.log('캘린더 일정 추가 버튼 클릭!');
@@ -52,7 +36,7 @@ const Schedule = () => {
                 scheduleStartDt: startDate,
                 scheduleEndDt: endDate,
                 scheduleContents: title,
-                memberSeq: 1
+                memberSeq: 123456789
             };
             await axios
             .post("http://localhost:8085/schedule", data)
@@ -66,7 +50,6 @@ const Schedule = () => {
             });
         };        
     };
-
 
 
     //'TodoList 추가하기' 버튼 클릭
@@ -106,7 +89,7 @@ const Schedule = () => {
                 onChange={(e) => setTitle(e.target.value)}
                 className={style.input}
                 type="text"
-                style={{textAlign: 'center', border: 'none', background: 'transparent'}}
+                style={{textAlign: 'center', border: 'none', background: 'transparent', outline:'none'}}
                 placeholder="일정 제목을 입력하세요"/>
         </form>
         <form style={{width:'480px'}}  className={style.containerDate} id="schedule-date">
@@ -116,8 +99,7 @@ const Schedule = () => {
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                     className="add-date"/>
-            </h5>
-                
+            </h5>              
             <h5>일정 종료 
                 <input 
                     type="date" 

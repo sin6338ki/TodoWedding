@@ -13,6 +13,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 /*
  * 메인페이지
  * 작성자 : 서현록
@@ -22,7 +23,9 @@ import "slick-carousel/slick/slick-theme.css";
 const Main = () => {
     return (
         <div>
+            <div>
             <img src={Guide} alt="Guide" />
+            </div>
             <div style={{ display: "flex" }}>
                 <Link to="todowedding/calendar" className="main-menu">
                     <img src={Calendar} alt="Calender" width="70px" />
