@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Main from "../Main"
 
 const KakaologOut = () => {
     //     // const ACCESS_TOKEN = sessionStorage.getItem('kakaoAccess');
@@ -28,7 +29,7 @@ const KakaologOut = () => {
     //     console.error(error);
     // });
 
-    return <div>KakaoLogout</div>;
+    return <div><Main/></div>;
 };
 
 export default KakaologOut;

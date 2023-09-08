@@ -41,7 +41,7 @@ const Kakaologin = () => {
             </a>
             <br />
             {/* 로그아웃을 하게 되면 다른 카카오 계정으로 로그인 가능 */}
-            <a href={logoutURL}>
+            <a href={logoutURL} onClick={() => { sessionStorage.clear()}}>
                 <button>카카오 로그아웃</button>
             </a>
 
