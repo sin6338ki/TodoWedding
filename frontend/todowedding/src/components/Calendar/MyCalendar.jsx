@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import axios from "axios";
 
 /*
  * FullCalendar 
@@ -26,13 +27,12 @@ export default class MyCalendar extends Component {
               plugins={[dayGridPlugin,timeGridPlugin,interactionPlugin]}
               initialView={'dayGridMonth'}
               headerToolbar={
-                {
-                    start: 'today', 
-                    center: 'title',
-                    end: 'prev,next' 
-                }
-            }
-            height={"52vh"}
+                { start: 'today', 
+                  center: 'title',
+                  end: 'prev,next'}
+              }
+              locale = 'ko' //한국어 설정
+              height={"52vh"}
             //dateClick={this.dateClick}
               events={[
                 { title: '상견례', 
