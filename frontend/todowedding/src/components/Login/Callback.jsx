@@ -11,15 +11,13 @@ const Callback = () => {
      // Callback 화면 URL에서 code값 가져오기 
     const code = searchParams.get('code');
     console.log('code :', code);
-    const [kakaoAccess, setKakaoAccess] = useState('');
 
 /*
  * KakaoCallback (사용자가 카카오 로그인을 하면 사용자입장에선 안보여지는 페이지)
- * 작성자 : 서류광
+ * 작성자 : 서유광
  * 작성일 : 2023.09.07
  */
 
-let inMemoryAccessToken = '';
 
 useEffect(() => {
 console.log('code :', code);
