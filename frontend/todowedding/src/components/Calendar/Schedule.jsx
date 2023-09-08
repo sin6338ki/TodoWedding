@@ -21,6 +21,7 @@ const Schedule = () => {
     const [title, setTitle] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [schedule, setSchedule] = useState([]);
 
     
     //'캘린더 일정 추가' 버튼 클릭
@@ -43,6 +44,7 @@ const Schedule = () => {
             .then((res) => {
                 console.log("스프링으로 넘기는 값 -> ", data);
 //                fetchData();
+                  allSchedule();
             nav('/todowedding/calendar')  
             })
             .catch((err) => {
@@ -69,8 +71,9 @@ const Schedule = () => {
         await axios
             .post("http://localhost:8085/todolist", data)
             .then((res) => {
-                console.log("response : ", res);
+                console.log("스프링으로 넘기는 값 -> ", data);
 //                fetchData();
+                  allSchedule();
             nav('/todowedding/todolist')
             })
             .catch((err) => {
@@ -78,6 +81,24 @@ const Schedule = () => {
             });
         };
     }
+
+    //전체 일정 조회 메서드
+    const allSchedule = () => {
+        try {
+            axios
+                //.get(`http://localhost:8085/all-schedule/${memberSeq}`)
+                .get(`http://localhost:8085/all-schedule/123456789`)
+                .then((res) => {
+                    console.log("findAllSchedule 조회 response : ", res.data);
+                    setSchedule(res.data);
+                })
+                .catch((err) => {
+                    console.log("findAllSchedule 조회 error : ", err);
+                });
+        } catch (error) {
+            console.error("Error", error);
+        }
+    };
 
   return (
     <div>
