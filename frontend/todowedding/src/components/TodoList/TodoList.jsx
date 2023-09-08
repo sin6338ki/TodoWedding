@@ -4,6 +4,13 @@ import Todo from "./Todo";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+/*
+ * Todolist (추가/삭제/전체조회:완료), (완료-미완료 개수조회 /수정 :기능수정)
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.08
+ */
+
+
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
     container: `max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
@@ -62,12 +69,12 @@ const TodoList = () => {
 
     // 2.전체 투두리스트 조회
     useEffect(() => {
-        const fetchDataAndCount = async () => {
+        const fetchDataAndCout = async () => {
             await fetchData();
-            cntTodoList();
+            cntTodoList();  //수정
         }
 
-        fetchDataAndCount();
+        fetchDataAndCout();
     }, []);
 
     // 3. 투두리스트 체크했을 때 실행되는 메서드 ---> (현재 Todo.jsx에 넣어둠)
@@ -160,6 +167,7 @@ const TodoList = () => {
                 {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${todos.length}`}</span>}
                 {/* {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${todos.length}`}</span>} */}
                 {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
+               
                 </div>
 
                 <h3 className={style.heading}>Todo List</h3>

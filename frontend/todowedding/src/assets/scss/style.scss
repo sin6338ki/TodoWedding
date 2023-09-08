@@ -12,6 +12,38 @@
   }
 }
 
+//로그인 하면 header에 나타나는 닉네임, 버튼
+//header-nickname  --> 현록 사이즈 물어보기
+.text-sj {
+  display: flex;
+  margin: 5px 0 0 20px;
+  height: 70px;
+  width: 300px;
+}
+
+.welcome-nick {
+  display: flex;
+  flex-direction: row;
+
+}
+
+#login-btn {
+  position: fixed;
+  margin-left: 350px;
+}
+
+// .main-login{
+//   color: black;
+//   text-decoration: none;
+//   margin-left: 350px;  // nickname 로그인 이후 넣어야 되어서 사이즈 수정함  
+//   margin-top: 4px;
+//   font-family: 'Pretendard-Regular';
+//   align-items: center;
+//   text-align: center;
+
+// }
+
+
 //body
 .body{
   width: 560px;
@@ -96,7 +128,7 @@
 .main-login{
   color: black;
   text-decoration: none;
-  margin-left: 375px;
+  margin-left: 350px;  // nickname 로그인 이후 넣어야 되어서 사이즈 수정함  
   margin-top: 4px;
   font-family: 'Pretendard-Regular';
   align-items: center;

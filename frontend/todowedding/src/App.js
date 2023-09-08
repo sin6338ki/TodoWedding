@@ -43,7 +43,7 @@ function App() {
                             <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/todolist" element={<TodoList />} />
                             <Route path="/todowedding/budget" element={<Budget />} />
-
+                            
                             {/* 업체찾기 */}
                             <Route path="/todowedding/map" element={<Map />} />
 
