@@ -60,6 +60,7 @@ public class ChatController {
 	//채팅방 삭제
 	@DeleteMapping(value="chat/{chatRoomSeq}")
 	public int deleteChatroom(@PathVariable(name="chatRoomSeq") Long chatRoomSeq) {
+		//성공하면 1, 실패하면 0, 백엔드 에러 발생시 -1 리턴
 		return chatService.deleteChatroom(chatRoomSeq);
 	}
 	
