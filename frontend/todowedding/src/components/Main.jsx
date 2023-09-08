@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Guide from "../../src/assets/images/todo_main.png";
 
@@ -20,6 +20,13 @@ import "slick-carousel/slick/slick-theme.css";
  */
 
 const Main = () => {
+    useEffect(() => {
+        //카카오 로그인 정보 가져오기 - 헤더에서 따서 쓰기
+        const KakaoUserSeq = sessionStorage.getItem("KakaoUserSeq");
+        const KakaoUserNick = sessionStorage.getItem("KakaoUserNick");
+        console.log("카카오 로그인 정보 : ", KakaoUserNick, KakaoUserSeq);
+    }, []);
+
     return (
         <div>
             <img src={Guide} alt="Guide" />

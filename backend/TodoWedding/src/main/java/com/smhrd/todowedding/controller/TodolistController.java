@@ -39,7 +39,7 @@ public class TodolistController {
 	//해당 유저에 대하여 투두리스트 1개 추가하기
 	@PostMapping(value="todolist")
 	public int addTodoList(@RequestBody TodolistDto todoListDto) {
-		//성공시 1 리턴, 실패시 0 리턴
+		//성공시 1 리턴, 실패시 0, 백엔드 에러 발생시 -1 리턴
 		return todolistService.addTodoList(todoListDto);
 	}
 	
@@ -52,6 +52,7 @@ public class TodolistController {
 	//해당 유저의 선택된 투두리스트에 대하여 내용 수정하기
 	@PutMapping(value="todolist/{todolistSeq}")
 	public int updateTodolist(@PathVariable(name="todolistSeq") Long todolistSeq, @RequestBody TodolistDto todolistDto) {
+		//성공시 1, 실패시 0, 백엔드 에러 발생시 -1 리턴
 		return todolistService.updateTodolist(todolistSeq, todolistDto);
 	}
 	
@@ -59,6 +60,7 @@ public class TodolistController {
 	@DeleteMapping(value="todolist/{todolistSeq}")
 	public int deleteTodolist(@PathVariable(name="todolistSeq") Long todolistSeq) {
 		log.info("path 경로 확인 : " + todolistSeq);
+		//성공시 1, 실패하면 0, 백엔드 에러 발생시 -1 리턴
 		return todolistService.deleteTodolist(todolistSeq);
 	}
 	
@@ -71,7 +73,7 @@ public class TodolistController {
 	//해당 유저의 해당 체크리스트에 대하여 완료 여부 변경
 	@PutMapping(value="todolist/check")
 	public int isCheckedTodolist(@RequestBody IsCheckedTodolist isCheckedTodolist) {
-		//성공시 1, 실패시 0 리턴
+		//성공시 1, 실패시 0, 백엔드 에러 발생시 -1 리턴
 		return todolistService.isCheckedTodolist(isCheckedTodolist);
 	}
 }
