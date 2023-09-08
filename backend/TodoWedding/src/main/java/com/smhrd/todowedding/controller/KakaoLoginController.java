@@ -27,6 +27,7 @@ import com.smhrd.todowedding.service.KakaoLoginService;
  * 일자 : 2023.09.05
  */
 
+
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class KakaoLoginController {
@@ -38,13 +39,16 @@ public class KakaoLoginController {
 	public Map<String,Object> kakaoCallback(String code) { 
 		System.out.println("프론트에서 넘어온 카카오 코드값 : " + code);
 		
-		// 서비스에 코드값 전달
+
 		Map<String, Object> KakaoData = kakaoLoginService.getAccessToken(code);
 		
 		
 		return KakaoData;
 
 	}
+	
+	
+	
 	
 	
 	
