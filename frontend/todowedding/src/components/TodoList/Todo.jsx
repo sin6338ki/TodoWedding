@@ -3,7 +3,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 
 const style = {
-    li: `flex justify-between bg-slate-100 p-4 my-2 capitalize`,
+    li: `flex justify-between p-4 my-2 capitalize border-b`,
     liComplete: `flex justify-between bg-slate-400 p-4 my-2 capitalize`,
     row: `flex`,
     text: `ml-2 cursor-pointer`,
@@ -62,7 +62,7 @@ const Todo = ({ todolistContents, deleteTodo }) => {
                 </p>
                 <hr />
             </div>
-            <button onClick={() => deleteTodo(todolistContents.todolistSeq)}>{<FaRegTrashAlt />}</button>
+            <button onClick={() => deleteTodo(todolistContents.todolistSeq)} className="trashBtn">{<FaRegTrashAlt />}</button>
             <button></button>
         </li>
     );

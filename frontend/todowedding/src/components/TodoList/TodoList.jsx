@@ -62,7 +62,12 @@ const TodoList = () => {
 
     // 2.전체 투두리스트 조회
     useEffect(() => {
-        fetchData();
+        const fetchDataAndCount = async () => {
+            await fetchData();
+            cntTodoList();
+        }
+
+        fetchDataAndCount();
     }, []);
 
     // 3. 투두리스트 체크했을 때 실행되는 메서드 ---> (현재 Todo.jsx에 넣어둠)
@@ -81,23 +86,7 @@ const TodoList = () => {
         }
     };
 
-    //  4. const deleteTodo = async (id) =>{
-    //    await deleteDoc(doc(db, 'todos', id))
-    //  }
-
-    // 4. 투두리스트 삭제 실행 메서드
-    //  const deleteTodo = async (id) => {                      //
-    //   try {
-    //     const data = await axios.delete(`http://localhost:8085/todolist/123456789/100345720715870279`)     //`http://localhost:8085/todolist/${memberSeq}/${todolistSeq}`
-    //     .then((res) =>{
-    //        console.log("deleteTodolist 삭제성공 response : ", res.data);
-    //     }).catch((err) =>{
-    //       console.log("delete 삭제 error : ", err)
-    //     })
-    //   } catch (err) {
-    //     console.error("deleteTodolist: ", err);
-    //   }
-    // }
+    
 
     // 삭제 실행 메서드 변경 코드
     const deleteTodo = async (todolistSeq) => {
@@ -130,6 +119,25 @@ const TodoList = () => {
         }
     };
 
+    //완료, 미완료 건수 조회하기 
+
+    const [completedCnt, setCompletedCnt] = useState()
+
+    const cntTodoList = () => {
+        try{
+            axios.get(`http://localhost:8085/count-of-todolist/${memberSeq}`)
+            .then((res)=>{
+                console.log("cntTodoList response", res.data);
+                setCompletedCnt(res.data[1].count)
+            })
+            .catch((err)=>{
+                console.log("axios arr : ", err);
+            })
+        }catch(err){
+            console.log("cntTodoList err : ",  err);
+        }
+    }
+
     return (
         //html
         <div>
@@ -146,10 +154,15 @@ const TodoList = () => {
                     </Link>
                 </div>
 
-                {/* 투두리스트 갯수 (전체_진행_완료)  */}
-                {todos.length < 1 ? null : <p className={style.count}> {`전체 : ${todos.length}`}</p>}
+                {/* 투두리스트 조회 (전체_진행_완료)  */}
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                {todos.length < 1 ? null : <span className={style.count}> {`전체 : ${todos.length}`}</span>}
+                {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${todos.length}`}</span>}
+                {/* {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${todos.length}`}</span>} */}
+                {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
+                </div>
 
-                <h3 className={style.heading}>Todo List😎</h3>
+                <h3 className={style.heading}>Todo List</h3>
                 <form onSubmit={createTodo} className={style.form}>
                     <input
                         value={input}
@@ -168,7 +181,7 @@ const TodoList = () => {
                             key={index}
                             todolistContents={todolistContents}
                             toggleComplete={toggleComplete} // 투두체크 props처리 문제
-                            deleteTodo={deleteTodo} // 투두삭제 props처리 문제
+                            deleteTodo={deleteTodo} 
                         />
                     ))}
                 </ul>
