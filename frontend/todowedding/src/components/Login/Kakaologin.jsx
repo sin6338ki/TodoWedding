@@ -4,15 +4,10 @@ import kakao from "../../assets/snslogin/kakao.png";
 import Logo from "../../assets/images/todo_logo.png";
 
 /*
- * kakao 로그인 화면
- * 작성자 : 서유광
- * 작성일 : 2023.09.07
- */
-
-/*
  * kakaologin
  * 작성자 : 양수진
  * 작성일 : 2023.09.04
+ * 수정자 : 서유광 / 2023.09.07 - 백엔드 연동
  */
 
 const Kakaologin = () => {
@@ -41,7 +36,12 @@ const Kakaologin = () => {
             </a>
             <br />
             {/* 로그아웃을 하게 되면 다른 카카오 계정으로 로그인 가능 */}
-            <a href={logoutURL} onClick={() => { sessionStorage.clear()}}>
+            <a
+                href={logoutURL}
+                onClick={() => {
+                    sessionStorage.clear();
+                }}
+            >
                 <button>카카오 로그아웃</button>
             </a>
 

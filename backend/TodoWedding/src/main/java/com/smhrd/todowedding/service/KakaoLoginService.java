@@ -72,6 +72,7 @@ public class KakaoLoginService {
 		}
 
 		System.out.println("카카오 엑세스 토큰 : " + oauthToken.getAccess_token());
+		System.out.println("카카오 리프레스 토근 : " + oauthToken.getRefresh_token());
 
 		RestTemplate rt2 = new RestTemplate();
 

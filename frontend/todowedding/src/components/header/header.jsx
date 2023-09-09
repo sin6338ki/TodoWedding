@@ -8,12 +8,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
  * Header
  * 작성자 : 서현록
  * 작성일 : 2023.09.04
- */
-
-/*
- * 카카오 로그인 후 닉네임 적용 , 로그아웃 세션삭제 및 메인페이지경로수정
- * 작성자 : 양수진
- * 작성일 : 2023.09.08
+ * 수정 :
+ *  - 카카오 로그인 후 닉네임 적용, 로그아웃 세션 삭제 및 메인페이지 경로 수정 (양수진, 2023.09.08)
+ *  - redux값 사용 위해 로고 클릭시 메인페이지 이동 Link로 변경 (신지영, 2023.09.09)
  */
 
 const style = {
@@ -36,15 +33,9 @@ const Header = () => {
 
     return (
         <div className="header-bar">
-            <img
-                src={TodoLogo}
-                alt="ToDo"
-                width="90px"
-                onClick={() => {
-                    window.location.href = "/";
-                }}
-                style={{ cursor: "pointer" }}
-            />
+            <Link to="/">
+                <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} />
+            </Link>
 
             <div>
                 <div className="welcome-nick">
