@@ -1,4 +1,12 @@
 /* eslint-disable */
+
+/**
+ * 라우터 연결
+ * 작성자 : 서현록, 양수진
+ * 수정
+ *  - 업체 전용 페이지 추가 (신지영, 2023.09.10)
+ */
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
@@ -22,6 +30,11 @@ import "./index.css";
 import "./calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WebImage from "./assets/images/web_image.png";
+
+//업체 전용 관련
+import Partner from "./components/PartnerPage/Partner";
+import PartnerJoin from "./components/PartnerPage/PartnerJoin";
+import PartnerLogin from "./components/PartnerPage/PartnerLogin";
 
 function App() {
     return (
@@ -54,6 +67,11 @@ function App() {
 
                             {/*웨딩리포트 */}
                             <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
+
+                            {/* 업체 전용 페이지 */}
+                            <Route path="/todowedding/partner/login" element={<PartnerLogin />}></Route>
+                            <Route path="/todowedding/partner" element={<Partner />}></Route>
+                            <Route path="/todowedding/partner/join" element={<PartnerJoin />}></Route>
                         </Routes>
                     </div>
                     <BottomBar />

@@ -18,13 +18,17 @@ import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
 import com.smhrd.todowedding.service.PartnerService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /* 업체 및 관리자 관련 컨트롤러 
  * 작성 : 서유광
  * 일자 : 2023.09.08
  * 수정
  * 	- 업체 정보 불러오기, 업체 정보 조회 기능 추가 (신지영, 2023.09.10)
+ *  - 중복 아이디 확인 기능 추가 (신지영, 2023.09.10)
  */
 
+@Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class PartnerController {
@@ -33,8 +37,9 @@ public class PartnerController {
 	private PartnerService partnerService;
 
 	// 기업회원 로그인
-	@GetMapping("/partner/login")
+	@PostMapping("/partner/login")
 	public ResponseEntity<?> partnerLogin(@RequestBody PartnerDTO partner) {
+		log.info("requestDTO 확인.... : " + partner.getPartner_id());
 
 		Map<String, Object> loginResult = partnerService.partnerlogin(partner);
 
@@ -70,6 +75,12 @@ public class PartnerController {
 	@GetMapping(value="partner")
 	public List<PartnerResponseDto> findPatnerByCode(@RequestParam(value="partnerCode") String partnerCode){
 		return partnerService.findPatnerByCode(partnerCode);
+	}
+	
+	//중복 아이디 확인
+	@GetMapping(value="partner/join")
+	public int checkedSameId(@RequestParam(value="parnerId") String partnerId) {
+		return partnerService.checkedSameId(partnerId);
 	}
 
 }

@@ -46,7 +46,7 @@ const Kakaologin = () => {
             </a>
 
             <br />
-            <Link to="todowedding/login/test2222">
+            <Link to="../partner/login" relative="path">
                 <span>기업계정으로 시작하기</span>
             </Link>
             <br />

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.json.simple.JSONObject;
 
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
@@ -21,7 +22,7 @@ import com.smhrd.todowedding.model.PartnerResponseDto;
 public interface PartnerMapper {
 	
 	// 로그인
-    @Select("SELECT partner_seq, admin_yn FROM tw_partner WHERE partner_id = #{partnerId} AND partner_pw = #{partnerPw}")
+    @Select("SELECT partner_seq, admin_yn, partner_name FROM tw_partner WHERE partner_id = #{partnerId} AND partner_pw = #{partnerPw}")
     public PartnerDTO partnerLogin(String partnerId,String partnerPw);
     
     // 회원가입
@@ -39,4 +40,8 @@ public interface PartnerMapper {
     //업체 유형(parter_code)별 리스트 조회 
     @Select("select partner_seq, partner_name, partner_address, partner_tel, partner_link from tw_partner where partner_code=#{parnterCode}")
     public List<PartnerResponseDto> findPatnerByCode(String partnerCode);
+    
+    //중보 아이디 조회 
+    @Select("select * from tw_partner where partner_id=#{partnerId}")
+    public JSONObject checkedSameId(String partnerId);
 }

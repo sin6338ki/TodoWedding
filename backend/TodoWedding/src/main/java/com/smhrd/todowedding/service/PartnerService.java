@@ -20,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * 일자 : 2023.09.08
  * 수정 
  * 	- 전체 partner 불러오기, partnerInfo 조회 기능 추가 (신지영, 2023.09.10)
+ *  - 로그인시 조회 항목에 partner_name 추가 (신지영, 2023.09.10)
  */
 
 @Slf4j
@@ -50,6 +51,7 @@ public class PartnerService {
 		Map<String, Object> partnerInfo = new HashMap<>();
 		partnerInfo.put("partner_seq", String.valueOf(foundPartner.getPartner_seq()));
 		partnerInfo.put("admin_yn", foundPartner.getAdmin_yn());
+		partnerInfo.put("partner_name", foundPartner.getPartner_name());
 
 		return partnerInfo;
 
@@ -93,4 +95,22 @@ public class PartnerService {
 		}
 		return partnerList;
 	}
+	
+	//중복 아이디 확인
+	public int checkedSameId(String partnerId) {
+		int checkedSameIdResult = -1;
+		try {
+			
+			if(partnerMapper.checkedSameId(partnerId) == null) {
+				checkedSameIdResult = 1;
+			}else {
+				checkedSameIdResult = 0;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return checkedSameIdResult;
+	}
+	
 }

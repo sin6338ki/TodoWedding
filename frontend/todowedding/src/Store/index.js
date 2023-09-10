@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tokenReducer from "./Auth";
+import partnerReducer from "./PartnerLoginInfo";
 /**
  * reducr 사용하기 위한 configureStore 선언
  * 작성자 : 신지영
@@ -9,5 +10,6 @@ import tokenReducer from "./Auth";
 export default configureStore({
     reducer: {
         authToken: tokenReducer,
+        partnerLoginInfo: partnerReducer,
     },
 });

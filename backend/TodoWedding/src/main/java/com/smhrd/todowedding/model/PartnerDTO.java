@@ -1,6 +1,7 @@
 package com.smhrd.todowedding.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,9 +11,10 @@ import lombok.ToString;
  * 기업회원 정보
  * 작성자 : 서유광
  * 작성일 : 2023.09.08
+ * 수정 
+ * 	- 회원가입용, 회원확인용 Builder 추가
 */
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -31,5 +33,29 @@ public class PartnerDTO {
 	private String partner_registration_dt; // 업체 등록일
 	private String partner_code; // 구분코드
 	private String admin_yn; // 관리자 구분
+	
+	@Builder
+	PartnerDTO(String partner_id, String partner_pw){
+		this.partner_id = partner_id;
+		this.partner_pw = partner_pw;
+	}
+
+	@Builder
+	public PartnerDTO(String partner_id, String partner_pw, String partner_name, String partner_registration,
+			String partner_tel, String partner_link, String partner_manager, String partner_manager_tel,
+			String partner_address, String partner_code) {
+		this.partner_id = partner_id;
+		this.partner_pw = partner_pw;
+		this.partner_name = partner_name;
+		this.partner_registration = partner_registration;
+		this.partner_tel = partner_tel;
+		this.partner_link = partner_link;
+		this.partner_manager = partner_manager;
+		this.partner_manager_tel = partner_manager_tel;
+		this.partner_address = partner_address;
+		this.partner_code = partner_code;
+	}
+	
+	
 
 }
