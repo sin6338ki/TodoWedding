@@ -32,9 +32,6 @@ public class Member {
 		this.email = email;
 		this.gender = gender;
 		this.ageRange = ageRange;
-		this.memberKakaoId = memberKakaoId;
-		
+		this.memberKakaoId = memberKakaoId;	
 	}
-	
-	
 }

@@ -1,6 +1,7 @@
 package com.smhrd.todowedding.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.smhrd.todowedding.mapper.PartnerMapper;
 import com.smhrd.todowedding.model.PartnerDTO;
+import com.smhrd.todowedding.model.PartnerResponseDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,9 +18,9 @@ import lombok.extern.slf4j.Slf4j;
  * 업체 및 관리자 관련 컨트롤러 
  * 작성 : 서유광
  * 일자 : 2023.09.08
+ * 수정 
+ * 	- 전체 partner 불러오기, partnerInfo 조회 기능 추가 (신지영, 2023.09.10)
  */
-
-
 
 @Slf4j
 @Service
@@ -69,5 +71,26 @@ public class PartnerService {
 			return "FAILURE"; // 회원가입 실패
 		}
 	}
-
+	
+	//partenrSeq에 대한 partner 정보 조회 
+	public PartnerResponseDto findPartnerInfo(Long partnerSeq) {
+		PartnerResponseDto partnerInfo = null;
+		try {
+			partnerInfo = partnerMapper.findPartnerInfo(partnerSeq);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return partnerInfo;
+	}
+	
+	//partner code별 리스트 조회 
+	public List<PartnerResponseDto> findPatnerByCode(String partnerCode){
+		List<PartnerResponseDto> partnerList = null;
+		try {
+			partnerList = partnerMapper.findPatnerByCode(partnerCode);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return partnerList;
+	}
 }

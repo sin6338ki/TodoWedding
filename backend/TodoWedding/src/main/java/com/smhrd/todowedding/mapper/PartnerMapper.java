@@ -1,10 +1,13 @@
 package com.smhrd.todowedding.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.smhrd.todowedding.model.PartnerDTO;
+import com.smhrd.todowedding.model.PartnerResponseDto;
 
 
 
@@ -29,5 +32,11 @@ public interface PartnerMapper {
     @Select("SELECT partner_id FROM tw_partner WHERE partner_id = #{partner_id}")
     public String uniqueId(String partner_id);
   
+    //partner 정보 조회
+    @Select("select partner_seq, partner_name, partner_address, partner_tel, partner_link from tw_partner where partner_seq=#{partnerSeq}")
+    public PartnerResponseDto findPartnerInfo(Long partnerSeq);
     
+    //업체 유형(parter_code)별 리스트 조회 
+    @Select("select partner_seq, partner_name, partner_address, partner_tel, partner_link from tw_partner where partner_code=#{parnterCode}")
+    public List<PartnerResponseDto> findPatnerByCode(String partnerCode);
 }
