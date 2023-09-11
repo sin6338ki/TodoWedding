@@ -7,11 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -41,6 +45,8 @@ public class KakaoLoginController {
 	@Autowired
 	private KakaoLoginService kakaoLoginService;
 	
+
+	// 카카오 API 관련 서비스가 아니기 때문에 웹사이트 내에서 관리하는 MemberService 사용
 	@Autowired
 	private MemberService memberService;
 	
@@ -55,5 +61,19 @@ public class KakaoLoginController {
 	@GetMapping("/member")
 	public List<MemberResponseDto> findAllMember() {
 		return memberService.findAllMember();
+	}
+	
+	@GetMapping("/member/delete")
+	public int deleteMember(@RequestParam("member_seq") int member_seq) {
+		System.out.println(member_seq);
+		memberService.deleteMember(member_seq);
+	     
+		//String resultMessage = memberService.deleteMember(memberSeq);
+//		if(resultMessage.equals("SUCCESS")) { 
+//		    return ResponseEntity.ok("회원 정보 삭제 완료"); // 성공적으로 처리되면 200 OK 응답과 메시지 반환.
+//		} else {  
+//		    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 정보 삭제 실패: " + resultMessage); // 실패하면 에러 메시지와 함께 500 Internal Server Error 응답 반환.
+//	   }
+		return 0;
 	}
 }
