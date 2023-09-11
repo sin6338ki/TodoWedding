@@ -13,7 +13,6 @@ import axios from "axios";
  * redux 실행관련
  */
 import { useDispatch } from "react-redux"; //redux 액션 실행
-import { SET_PARTNER_INFO } from "../../Store/PartnerLoginInfo";
 import { useSelector } from "react-redux";
 
 const PartnerLogin = () => {

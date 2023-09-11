@@ -19,10 +19,10 @@ const style = {
 };
 
 const Schedule = () => {
-    const { accessToken } = useSelector((state) => state.authToken);
+    const token = useSelector((state) => state.Auth.token);
 
     useEffect(() => {
-        console.log("accessToken : ", accessToken);
+        console.log("accessToken : ", token);
     }, []);
 
     const nav = useNavigate();
@@ -47,7 +47,6 @@ const Schedule = () => {
                 scheduleContents: title,
                 memberSeq: 123456789,
             };
-            // await addKakaoCal();
             await axios
                 .post("http://localhost:8085/schedule", data)
                 .then((res) => {
@@ -59,6 +58,8 @@ const Schedule = () => {
                 .catch((err) => {
                     console.log("error", err);
                 });
+            await getKakao();
+            // await addKakaoCal();
         }
     };
 
@@ -121,21 +122,47 @@ const Schedule = () => {
      * */
 
     const addKakaoURL = "https://kapi.kakao.com/v2/api/calendar/create/event";
+    const getKakaoCalURL = "https://kapi.kakao.com/v2/api/calendar/calendars";
 
-    const event = {
-        title: title,
-        time: {
-            start_at: startDate,
-            end_at: endDate,
-            time_zone: "Asia/Seoul",
-            all_day: true,
-            lunar: false,
-        },
+    const [event, setEvent] = useState();
+
+    useEffect(() => {
+        setEvent({
+            title: title,
+            time: {
+                start_at: startDate,
+                end_at: endDate,
+                time_zone: "Asia/Seoul",
+                all_day: true,
+                lunar: false,
+            },
+        });
+    }, [title, startDate, endDate]);
+
+    //사용자 캘린더 목록 불러오기
+    const getKakao = () => {
+        axios
+            .get(getKakaoCalURL, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                params: {
+                    filter: "USER",
+                },
+            })
+            .then((res) => {
+                console.log("캘린더 요청 : ", res.data);
+            })
+            .catch((err) => {
+                console.log("캘린더 요청 에러 : ", err);
+            });
     };
 
+    //일정추가하기
     const addKakaoCal = () => {
+        console.log("event 확인", event);
         axios
-            .post(addKakaoURL, event, { headers: { Authorization: `Bearer ${accessToken}` } })
+            .post(addKakaoURL, event, { headers: { Authorization: `Bearer ${token}` } })
             .then((res) => {
                 console.log("addKakaoCal : ", res.data);
             })

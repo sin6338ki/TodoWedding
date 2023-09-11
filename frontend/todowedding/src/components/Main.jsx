@@ -22,14 +22,12 @@ import { useSelector } from "react-redux";
  */
 
 const Main = () => {
-    const { accessToken } = useSelector((state) => state.authToken);
-
     useEffect(() => {
         //카카오 로그인 정보 가져오기 - 헤더에서 따서 쓰기
         const KakaoUserSeq = sessionStorage.getItem("KakaoUserSeq");
         const KakaoUserNick = sessionStorage.getItem("KakaoUserNick");
         console.log("카카오 로그인 정보 : ", KakaoUserNick, KakaoUserSeq);
-        console.log("토큰 : ", accessToken);
+        // console.log("토큰 : ", accessToken);
     }, []);
 
     return (

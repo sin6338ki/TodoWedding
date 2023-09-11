@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import TodoLogo from "../../assets/images/todo_logo.png";
 import { AiOutlineRadiusSetting } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useSelector } from "react-redux";
 
 /*
  * Header
@@ -12,7 +13,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
  *  - 카카오 로그인 후 닉네임 적용, 로그아웃 세션 삭제 및 메인페이지 경로 수정 (양수진, 2023.09.08)
  *  - redux값 사용 위해 로고 클릭시 메인페이지 이동 Link로 변경 (신지영, 2023.09.09)
  */
- 
+
 const style = {
     button: `border p-2 ml-2 bg-purple-500 text-slate-100`,
 };
@@ -48,9 +49,9 @@ const Header = () => {
                             </Link>
                         </p>
                     ) : (
-                        <a href="/todowedding/login" className="main-login">
+                        <Link to="/todowedding/login" className="main-login">
                             <span className="text-sm">로그인</span>
-                        </a>
+                        </Link>
                     )}
                 </div>
             </div>

@@ -5,28 +5,26 @@
  */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 const Partner = () => {
-    const { partnerLoginInfo } = useSelector((state) => state.partnerLoginInfo);
     const [partnerSeq, setPartnerSeq] = useState();
-    const [partnerName, setPartnerName] = useState();
     const [resultFindChatRoom, setResultFindChatRoom] = useState();
 
     //처음 화면 렌더링시 => 리덕스에서 값 (partner_seq) 가져오기
     useEffect(() => {
-        // console.log("partnerLoginInfo", partnerLoginInfo);
+        console.log("partnerLoginInfo", partnerLoginInfo);
         const load = async () => {
             await setPartnerSeq(partnerLoginInfo.partner_seq);
-            await setPartnerName(partnerLoginInfo.partner_name);
+            await findChatRoom();
         };
 
         load();
-        findChatRoom();
-    }, []);
+        // findChatRoom();
+    }, [partnerLoginInfo]);
 
     //채팅방 조회하기 이벤트
     const findChatRoom = () => {
+        console.log(">>>>>>>>> partnerSeq");
         axios
             .get(`http://localhost:8085/chat/${partnerSeq}`)
             .then((res) => {

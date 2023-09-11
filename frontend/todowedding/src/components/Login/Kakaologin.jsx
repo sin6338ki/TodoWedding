@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import kakao from "../../assets/snslogin/kakao.png";
 import Logo from "../../assets/images/todo_logo.png";
@@ -11,10 +11,15 @@ import Logo from "../../assets/images/todo_logo.png";
  */
 
 const Kakaologin = () => {
+    // const { accessToken } = useSelector((state) => state.authToken);
     // 사용자가 로그인 버튼 선택시 이동되는 URL
     const loginURL = `https://kauth.kakao.com/oauth/authorize?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`;
     const logoutURL =
         "https://kauth.kakao.com/oauth/logout?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&logout_redirect_uri=http://localhost:3000/auth/kakao/logout";
+
+    useEffect(() => {
+        // console.log("로그인 페이지 redux(accessToken) : ", accessToken);
+    }, []);
 
     return (
         <div>
@@ -31,19 +36,14 @@ const Kakaologin = () => {
                 ></img>
             </a> */}
 
-            <a href={loginURL}>
+            <Link to={loginURL}>
                 <button>카카오 로그인</button>
-            </a>
+            </Link>
             <br />
             {/* 로그아웃을 하게 되면 다른 카카오 계정으로 로그인 가능 */}
-            <a
-                href={logoutURL}
-                onClick={() => {
-                    sessionStorage.clear();
-                }}
-            >
+            <Link to={logoutURL}>
                 <button>카카오 로그아웃</button>
-            </a>
+            </Link>
 
             <br />
             <Link to="../partner/login" relative="path">

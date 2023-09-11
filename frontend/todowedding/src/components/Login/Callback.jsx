@@ -6,10 +6,9 @@ import axios from "axios";
  * redux 실행관련
  */
 import { useDispatch } from "react-redux"; //redux 액션 실행
-import { setRefreshToken } from "../../storage/Cookie";
-import { SET_TOKEN } from "../../Store/Auth";
-import { parseJSON } from "jquery";
+import { setToken } from "../../redux/reducers/AuthReducer";
 import { useSelector } from "react-redux";
+
 /*
  * KakaoCallback (사용자가 카카오 로그인을 하면 사용자입장에선 안보여지는 페이지)
  * 작성자 : 서유광
@@ -20,8 +19,8 @@ import { useSelector } from "react-redux";
 const Callback = () => {
     //redux 액션 실행을 위한 dispatch 선언
     const dispatch = useDispatch();
-    const { accessToken } = useSelector((state) => state.authToken);
     const navigate = useNavigate();
+    const token = useSelector((state) => state.Auth.token);
 
     // useSearchParams() : URL의 쿼리파라미터에 대한 접근과 조작을 할 수 있음
     const [searchParams] = useSearchParams();
@@ -35,12 +34,9 @@ const Callback = () => {
         axios
             .get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
             .then((res) => {
-                console.log("accesstoken 정보 : ", res.data.kakaoAccess);
-
-                const access_token = parseJSON(res.data.kakaoAccess).access_token;
-                const refresh_token = parseJSON(res.data.kakaoAccess).refresh_token;
-
-                // console.log("access_token : ", parseJSON(res.data.kakaoAccess).access_token);
+                // console.log("accesstoken 정보 : ", res.data.kakaoAccess);
+                console.log("access_token : ", JSON.parse(res.data.kakaoAccess).access_token);
+                const access_token = JSON.parse(res.data.kakaoAccess).access_token;
                 // console.log("사용자 닉네임: ", res.data.userNick);
                 // console.log("사용자 SEQ: ", res.data.userseq);
 
@@ -50,8 +46,7 @@ const Callback = () => {
                 sessionStorage.setItem("kakaoAccess", res.data.kakaoAccess);
 
                 //쿠키에 Refresh Token, storage에 Access Token 저장
-                dispatch(SET_TOKEN(access_token));
-                setRefreshToken(refresh_token);
+                dispatch(setToken(access_token));
             })
             .catch((error) => {
                 console.log("유저 정보를 가져오는데 실패 ", error);
@@ -59,11 +54,11 @@ const Callback = () => {
     }, [code]);
 
     useEffect(() => {
-        console.log("authToken : ", accessToken);
-        if (accessToken) {
+        console.log("token : ", token);
+        if (token) {
             navigate("/");
         }
-    }, [accessToken]);
+    }, [token]);
 
     return <div></div>;
 };
