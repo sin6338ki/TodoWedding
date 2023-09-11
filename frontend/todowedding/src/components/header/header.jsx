@@ -15,7 +15,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
  * 작성자 : 양수진
  * 작성일 : 2023.09.08
  */
-
+ 
 const style = {
     button: `border p-2 ml-2 bg-purple-500 text-slate-100`,
 };

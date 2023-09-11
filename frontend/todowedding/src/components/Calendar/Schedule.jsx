@@ -81,7 +81,7 @@ const Schedule = () => {
             });
         };
     }
-
+ 
     //전체 일정 조회 메서드
     const allSchedule = () => {
         try {

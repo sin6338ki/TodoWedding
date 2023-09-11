@@ -30,7 +30,7 @@ export default class MyCalendar extends Component {
                 { start: 'today', 
                   center: 'title',
                   end: 'prev,next'}
-              }
+              } 
               locale = 'ko' //한국어 설정
               height={"52vh"}
             //dateClick={this.dateClick}
