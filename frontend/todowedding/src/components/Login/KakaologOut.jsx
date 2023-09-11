@@ -11,6 +11,7 @@ const KakaologOut = () => {
     const token = useSelector((state) => state.Auth.token);
     const dispatch = useDispatch();
     useEffect(() => {
+        console.log("로그아웃 토근 ㅣ ", token);
         axios
             .post(
                 "https://kapi.kakao.com/v1/user/unlink",
@@ -41,7 +42,8 @@ const KakaologOut = () => {
 
     return (
         <div>
-            <Main />
+            {" "}
+            <Main />{" "}
         </div>
     );
 };

@@ -35,6 +35,7 @@ import WebImage from "./assets/images/web_image.png";
 import Partner from "./components/PartnerPage/Partner";
 import PartnerJoin from "./components/PartnerPage/PartnerJoin";
 import PartnerLogin from "./components/PartnerPage/PartnerLogin";
+import Kakao from "./components/Calendar/Kakao";
 
 function App() {
     return (
@@ -72,6 +73,9 @@ function App() {
                             <Route path="/todowedding/partner/login" element={<PartnerLogin />}></Route>
                             <Route path="/todowedding/partner" element={<Partner />}></Route>
                             <Route path="/todowedding/partner/join" element={<PartnerJoin />}></Route>
+
+                            {/* 카카오 테스트 */}
+                            <Route path="/kakao" element={<Kakao />}></Route>
                         </Routes>
                     </div>
                     <BottomBar />

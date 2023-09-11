@@ -129,8 +129,6 @@ public class KakaoLoginService {
 			kakaoLoginMapper.kakaoUserData(member);
 		}
 		
-
-		
 		
 		// 해당 사용자의 seq, nickname 보내기
 		Map<String, Object> KakaoData = new HashMap<>();

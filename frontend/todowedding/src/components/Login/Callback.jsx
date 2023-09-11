@@ -26,7 +26,7 @@ const Callback = () => {
     const [searchParams] = useSearchParams();
     // Callback 화면 URL에서 code값 가져오기
     const code = searchParams.get("code");
-    console.log("code :", code);
+    // console.log("code :", code);
 
     useEffect(() => {
         console.log("code :", code);
@@ -35,7 +35,7 @@ const Callback = () => {
             .get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
             .then((res) => {
                 // console.log("accesstoken 정보 : ", res.data.kakaoAccess);
-                console.log("access_token : ", JSON.parse(res.data.kakaoAccess).access_token);
+                console.log("accesstoken : ", JSON.parse(res.data.kakaoAccess).access_token);
                 const access_token = JSON.parse(res.data.kakaoAccess).access_token;
                 // console.log("사용자 닉네임: ", res.data.userNick);
                 // console.log("사용자 SEQ: ", res.data.userseq);
@@ -54,7 +54,7 @@ const Callback = () => {
     }, [code]);
 
     useEffect(() => {
-        console.log("token : ", token);
+        console.log("redux 저장 후 token : ", token);
         if (token) {
             navigate("/");
         }
