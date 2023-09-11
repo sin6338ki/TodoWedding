@@ -54,4 +54,23 @@ const Kakaologin = () => {
     );
 };
 
-export default Kakaologin;
+  return (
+  
+    <div>
+        <a className='kakao' href={URL}>
+            <em></em>
+            <img src={kakao} width={200} alt="Kakao Login" onClick={()=>{console.log("kakaologin 클릭!")}}></img>
+        </a>
+        <br/>
+        <Link to="todowedding/login/test">
+            <span>다른 카카오로 계정시작하기</span>
+        </Link>
+        <br/>
+        <Link to="todowedding/login/test2222">
+            <span>기업계정으로 시작하기</span>
+        </Link>
+        <br/>
+    </div>
+  )
+
+export default Kakaologin

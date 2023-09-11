@@ -56,7 +56,7 @@ const TodoList = () => {
         };
 
         //backend axios통신
-        await axios
+       await axios
             .post("http://localhost:8085/todolist", data)
             .then((res) => {
                 console.log("response : ", res);
@@ -196,6 +196,5 @@ const TodoList = () => {
             </div>
         </div>
     );
-};
 
 export default TodoList;
