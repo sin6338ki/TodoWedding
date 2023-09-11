@@ -10,7 +10,6 @@ import axios from "axios";
  * 작성일 : 2023.09.08
  */
 
-
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
     container: `max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
@@ -56,7 +55,7 @@ const TodoList = () => {
         };
 
         //backend axios통신
-       await axios
+        await axios
             .post("http://localhost:8085/todolist", data)
             .then((res) => {
                 console.log("response : ", res);
@@ -71,8 +70,8 @@ const TodoList = () => {
     useEffect(() => {
         const fetchDataAndCout = async () => {
             await fetchData();
-            cntTodoList();  //수정
-        }
+            cntTodoList(); //수정
+        };
 
         fetchDataAndCout();
     }, []);
@@ -92,8 +91,6 @@ const TodoList = () => {
             console.error("Error checked: ", err);
         }
     };
-
-    
 
     // 삭제 실행 메서드 변경 코드
     const deleteTodo = async (todolistSeq) => {
@@ -126,24 +123,25 @@ const TodoList = () => {
         }
     };
 
-    //완료, 미완료 건수 조회하기 
+    //완료, 미완료 건수 조회하기
 
-    const [completedCnt, setCompletedCnt] = useState()
+    const [completedCnt, setCompletedCnt] = useState();
 
     const cntTodoList = () => {
-        try{
-            axios.get(`http://localhost:8085/count-of-todolist/${memberSeq}`)
-            .then((res)=>{
-                console.log("cntTodoList response", res.data);
-                setCompletedCnt(res.data[1].count)
-            })
-            .catch((err)=>{
-                console.log("axios arr : ", err);
-            })
-        }catch(err){
-            console.log("cntTodoList err : ",  err);
+        try {
+            axios
+                .get(`http://localhost:8085/count-of-todolist/${memberSeq}`)
+                .then((res) => {
+                    console.log("cntTodoList response", res.data);
+                    setCompletedCnt(res.data[1].count);
+                })
+                .catch((err) => {
+                    console.log("axios arr : ", err);
+                });
+        } catch (err) {
+            console.log("cntTodoList err : ", err);
         }
-    }
+    };
 
     return (
         //html
@@ -163,11 +161,10 @@ const TodoList = () => {
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                {todos.length < 1 ? null : <span className={style.count}> {`전체 : ${todos.length}`}</span>}
-                {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${todos.length}`}</span>}
-                {/* {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${todos.length}`}</span>} */}
-                {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
-               
+                    {todos.length < 1 ? null : <span className={style.count}> {`전체 : ${todos.length}`}</span>}
+                    {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${todos.length}`}</span>}
+                    {/* {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${todos.length}`}</span>} */}
+                    {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
                 </div>
 
                 <h3 className={style.heading}>Todo List</h3>
@@ -189,12 +186,12 @@ const TodoList = () => {
                             key={index}
                             todolistContents={todolistContents}
                             toggleComplete={toggleComplete} // 투두체크 props처리 문제
-                            deleteTodo={deleteTodo} 
+                            deleteTodo={deleteTodo}
                         />
                     ))}
                 </ul>
             </div>
         </div>
     );
-
+};
 export default TodoList;
