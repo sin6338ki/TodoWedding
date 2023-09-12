@@ -33,9 +33,7 @@ public class MemberService {
 	
 	@Autowired
 	private MemberMapper mapper;
-//	public MemberService(MemberMapper mapper) {
-//		this.memberMapper = mapper;
-//	}
+
 	
 	public List<MemberResponseDto> findAllMember(){
 		List<MemberResponseDto> allMemberList = null;
@@ -47,18 +45,22 @@ public class MemberService {
 		return allMemberList;
 	}
 
-
-	public String deleteMember(String memberSeq) {
-		try {
-			mapper.deleteAllRelatedData(memberSeq);
-			return "SUCCESS"; // 성공적으로 처리되면 'SUCCESS' 반환.
-		} catch (Exception e) { 
-		    // 예외 처리: 실패하면 에러 메시지 반환.
-		    return e.getMessage(); 
-	   }
+	// 회원 정보 전체 삭제
+	public String deleteMember(int member_seq) {
+		
+		 try {	
+			 	mapper.deleteMember(member_seq);
+			 	mapper.deleteMarryDate(member_seq);
+			 	mapper.deleteBudget(member_seq);
+			 	mapper.deleteIncome(member_seq);
+			 	mapper.deleteSchedule(member_seq);
+	            mapper.deleteChatroom(member_seq);
+	            mapper.deleteTodolist(member_seq);
+	           
+	            return "회원 정보 삭제 완료";
+	        } catch (Exception e) { 
+	        	return "회원 정보 삭제 실패: " + e.getMessage();
+	        }
+		}
 	}
 
-	public void deleteMember(int member_seq) {
-		mapper.deleteMember(member_seq);
-	}
-}

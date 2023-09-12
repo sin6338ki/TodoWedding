@@ -1,6 +1,5 @@
 package com.smhrd.todowedding.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,27 +7,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.model.PartnerDTO;
-import com.smhrd.todowedding.model.PartnerResponseDto;
 import com.smhrd.todowedding.service.PartnerService;
 
-import lombok.extern.slf4j.Slf4j;
 
 /* 업체 및 관리자 관련 컨트롤러 
  * 작성 : 서유광
  * 일자 : 2023.09.08
- * 수정
- * 	- 업체 정보 불러오기, 업체 정보 조회 기능 추가 (신지영, 2023.09.10)
- *  - 중복 아이디 확인 기능 추가 (신지영, 2023.09.10)
  */
 
-@Slf4j
+
+
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class PartnerController {
@@ -37,9 +30,8 @@ public class PartnerController {
 	private PartnerService partnerService;
 
 	// 기업회원 로그인
-	@PostMapping("/partner/login")
+	@GetMapping("/partner/login")
 	public ResponseEntity<?> partnerLogin(@RequestBody PartnerDTO partner) {
-		log.info("requestDTO 확인.... : " + partner.getPartner_id());
 
 		Map<String, Object> loginResult = partnerService.partnerlogin(partner);
 
@@ -49,7 +41,9 @@ public class PartnerController {
 			return new ResponseEntity<>(loginResult, HttpStatus.OK);
 		}
 	}
-		
+	
+	
+	
 	// 기업회원 회원가입
 	@PostMapping("/partner/join")
 	public ResponseEntity<String> partnerJoin(@RequestBody PartnerDTO partner) {
@@ -63,24 +57,10 @@ public class PartnerController {
 		    } else {
 		      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원가입 실패");
 		   }
-	}
-	
-	// 선택한 업체 정보 불러오기 (partnerSeq)
-	@GetMapping(value="partner/info/{partnerSeq}")
-	public PartnerResponseDto findPartnerInfo(@PathVariable(name="partnerSeq") Long partnerSeq) {
-		return partnerService.findPartnerInfo(partnerSeq);
+		
 	}
 
-	//분류코드별 업체 정보 불러오기
-	@GetMapping(value="partner")
-	public List<PartnerResponseDto> findPatnerByCode(@RequestParam(value="partnerCode") String partnerCode){
-		return partnerService.findPatnerByCode(partnerCode);
-	}
 	
-	//중복 아이디 확인
-	@GetMapping(value="partner/join")
-	public int checkedSameId(@RequestParam(value="parnerId") String partnerId) {
-		return partnerService.checkedSameId(partnerId);
-	}
-
+	
+	
 }

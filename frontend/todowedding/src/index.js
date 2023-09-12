@@ -4,6 +4,7 @@ import App from "./App";
 import "./assets/scss/style.scss";
 import axios from "axios";
 
+
 //tailwindcss 적용
 import "./tailwind.css";
 
