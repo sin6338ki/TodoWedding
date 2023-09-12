@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -23,6 +24,7 @@ import com.smhrd.todowedding.model.Member;
 import com.smhrd.todowedding.model.OAuthToken;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * KakaoLogin 서비스
@@ -30,11 +32,14 @@ import jakarta.servlet.http.HttpSession;
  * 작성일 : 2023.09.06
  */
 
+@Slf4j
 @Service
 public class KakaoLoginService {
 
 	@Autowired
 	private KakaoLoginMapper kakaoLoginMapper;
+	
+	private static OAuthToken oauthToken = null;
 
 	public Map<String, Object> getAccessToken(String code) {
 		System.out.println("서비스에서 받은 카카오 코드값: " + code);
@@ -62,7 +67,7 @@ public class KakaoLoginService {
 		System.out.println("토큰 요청 완료" + response.getBody());
 
 		ObjectMapper objectMapper = new ObjectMapper();
-		OAuthToken oauthToken = null;
+//		OAuthToken oauthToken = null;
 		try {
 			oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
 		} catch (JsonMappingException e) {
@@ -141,8 +146,7 @@ public class KakaoLoginService {
 		KakaoData.put("kakaoAccess",response.getBody());
 		
 		return KakaoData; 
-
-	}
+	}	
 }
 
 
