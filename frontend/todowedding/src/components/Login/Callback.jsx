@@ -8,7 +8,6 @@ import axios from "axios";
 import { useDispatch } from "react-redux"; //redux 액션 실행
 import { setRefreshToken } from "../../storage/Cookie";
 import { SET_TOKEN } from "../../Store/Auth";
-import { parseJSON } from "jquery";
 import { useSelector } from "react-redux";
 /*
  * KakaoCallback (사용자가 카카오 로그인을 하면 사용자입장에선 안보여지는 페이지)

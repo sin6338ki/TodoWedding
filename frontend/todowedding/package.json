@@ -18,6 +18,7 @@
         "bootstrap": "^5.3.1",
         "classnames": "^2.3.2",
         "firebase": "^10.3.1",
+        "http-proxy-middleware": "^2.0.6",
         "i": "^0.3.7",
         "node-sass": "^9.0.0",
         "postcss": "^8.4.29",
@@ -70,4 +71,4 @@
         "style-loader": "^3.3.3",
         "tailwindcss": "^3.3.3"
     }
-}
+}           

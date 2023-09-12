@@ -41,7 +41,6 @@ const Schedule = () => {
         } else {
             console.log("일정추가 제목 -> ", title);
             const data = {
-                scheduleSeq: 1,
                 scheduleStartDt: startDate,
                 scheduleEndDt: endDate,
                 scheduleContents: title,
@@ -94,8 +93,8 @@ const Schedule = () => {
     const allSchedule = () => {
         try {
             axios
-                //.get(`http://localhost:8085/all-schedule/${memberSeq}`)
-                .get(`http://localhost:8085/all-schedule/123456789`)
+                .get(`http://localhost:8085/all-schedule/${memberSeq}`)
+                //.get(`http://localhost:8085/all-schedule/123456789`)
                 .then((res) => {
                     console.log("findAllSchedule 조회 response : ", res.data);
                     setSchedule(res.data);
@@ -107,6 +106,7 @@ const Schedule = () => {
             console.error("Error", error);
         }
     };
+
 
     /**
      * Kakao 톡캘린더 연동하기
