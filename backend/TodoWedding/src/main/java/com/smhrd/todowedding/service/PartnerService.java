@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * 작성 : 서유광
  * 일자 : 2023.09.08
  * 수정 
- * 	- 전체 partner 불러오기, partnerInfo 조회 기능 추가 (신지영, 2023.09.10)
+ * 	- 전체 partner 불러오기, partnerInfo 조회 기능 추가 (신지영, 2023.09.10, 12)
  *  - 로그인시 조회 항목에 partner_name 추가 (신지영, 2023.09.10)
  */
 
@@ -111,6 +112,17 @@ public class PartnerService {
 			e.printStackTrace();
 		}
 		return checkedSameIdResult;
+	}
+	
+	//전체 기업 조회 
+	public List<JSONObject> findAllPartner(){
+		List<JSONObject> partnerList = null;
+		try {
+			partnerList = partnerMapper.findAllPartner();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return partnerList;
 	}
 	
 }

@@ -16,6 +16,8 @@ import com.smhrd.todowedding.model.PartnerResponseDto;
  * 기업회원 매퍼
  * 작성 : 서유광
  * 일자 : 2023.09.08
+ * 수정
+ *  - 전체 기업 불러오기 추가 (신지영, 2023.09.12)
  */
 
 @Mapper
@@ -41,7 +43,11 @@ public interface PartnerMapper {
     @Select("select partner_seq, partner_name, partner_address, partner_tel, partner_link from tw_partner where partner_code=#{parnterCode}")
     public List<PartnerResponseDto> findPatnerByCode(String partnerCode);
     
-    //중보 아이디 조회 
+    //중복 아이디 조회 
     @Select("select * from tw_partner where partner_id=#{partnerId}")
     public JSONObject checkedSameId(String partnerId);
+    
+    //기업 전체 정보 조회 
+    @Select("select * from tw_partner")
+    public List<JSONObject> findAllPartner();
 }

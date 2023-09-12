@@ -6,9 +6,10 @@
  * 수정
  *  - 업체 전용 페이지 추가 (신지영, 2023.09.10)
  *  - 예산 관리 페이지 추가 (양수진, 2023.09.12)
+ *  - 관리자 페이지 추가 (신지영, 2023.09.12)
  */
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
 import Kakaologin from "./components/Login/Kakaologin";
@@ -38,16 +39,18 @@ import PartnerLogin from "./components/PartnerPage/PartnerLogin";
 import Kakao from "./components/Calendar/Kakao";
 
 // 예산관리 관련
-import Budget from "./components/Budget/Budget";
-import BudgetContainer from "./components/Budget/BudgetContainer";
 import BudgetApp from "./components/Budget/BudgetApp";
 
-function App() {
+//관리자 페이지
+import AdminIndex from "./components/AdminPage/Index";
+
+function AppContent() {
     return (
-        <BrowserRouter>
+        <div>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div>
                     <Header />
+
                     <div className="body" id="Pretendard-Regular">
                         <Routes>
                             <Route path="/" element={<Main />} />
@@ -83,16 +86,29 @@ function App() {
 
                             {/* 카카오 테스트 */}
                             <Route path="/kakao" element={<Kakao />}></Route>
+
+                            {/* 관리자 페이지 */}
+                            <Route path="/todowedding/admin" element={<AdminIndex />}></Route>
                         </Routes>
                     </div>
+
                     <BottomBar />
                 </div>
 
                 {/*웹 페이지 */}
+
                 <div style={{ height: "100%" }}>
                     <img src={WebImage} alt="web-image" />
                 </div>
             </div>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <BrowserRouter>
+            <AppContent />
         </BrowserRouter>
     );
 }

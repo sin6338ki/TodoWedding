@@ -18,8 +18,9 @@ module.exports = {
     parserOptions: {
         ecmaVersion: "latest",
     },
-    plugins: ["react"],
+    plugins: ["react", "react-hooks"],
     rules: {
         "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
     },
 };
