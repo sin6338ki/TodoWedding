@@ -3,6 +3,22 @@ import React, { useCallback, useState, useContext } from "react";
 import { ItemDispatchContext } from "./BudgetApp";
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
 import { StopEditContext } from "./NewItemContainer";
+import '../../assets/budget-css/NewItemForm.css'
+import axios from "axios";
+
+
+    // GET : axios.get(url)
+    // POST : axios.post(url, data)
+    // PUT : axios.put(url, data)
+    // DELETE : axios.delete(url)
+
+    // axios 구조 : axios.get('url')
+    // .then((res)=>{
+    //       console.log("response : ", res.data);
+    //       어떤식 데이터를 받는지 확인 후 내가 뭘 필요하는가를 생각해본 뒤 프론트(화면 혹은 변수로 지정)
+    // }).catch((err)=>{
+    //       console.log("error : ", err)
+    // })
 
 const NewItemForm = () => {
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
@@ -22,6 +38,9 @@ const NewItemForm = () => {
         return new Date().toISOString().substring(0, 10);
     }, []);
 
+    
+
+    // 날짜추가
     const dateChangeHandler = (event) => {
         setEnteredDate(event.target.value);
     };
@@ -33,6 +52,7 @@ const NewItemForm = () => {
         setEnteredTitle(event.target.value);
     };
 
+    // 금액
     const amountChangeHandler = (event) => {
         let isNotNumber = /^[^1-9][^0-9]{0,11}$/g.test(event.target.value) ? true : false;
         setIsEnteredWrongAmount(isNotNumber);
@@ -42,6 +62,7 @@ const NewItemForm = () => {
         setEnteredAmount(amount);
     };
 
+    // 수입 인지 지출인지 체크 
     const amountTypeChangeHandler = (event) => {
         setEnteredAmountType(event.target.value);
     };
@@ -58,6 +79,19 @@ const NewItemForm = () => {
             amountType: enteredAmountType,
         };
 
+    // backend 데이터 전송
+    axios.post('http://localhost:8085/budget/insert', enteredData)
+    .then(response => {
+        console.log("entered Data : ", enteredData);
+        console.log('지출날짜입력콘솔찍기',response);
+    })
+    .catch(error => {
+        console.error('budget error!', error);
+    });
+
+
+
+
         onAdd(enteredData); // 부모 컴포넌트로 enteredData 전달
 
         // 입력창 초기화
@@ -69,7 +103,14 @@ const NewItemForm = () => {
         stopEditingHandler();
     };
 
+
+
+
+
+  
+
     return (
+        //내역추가(날짜)
         <form className="new-item__form" onSubmit={submitHandler}>
             <div className="new-item__form-info">
                 <h2 className="fs-normal fw-regular">날짜</h2>

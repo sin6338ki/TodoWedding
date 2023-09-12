@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Budget from "./Budget";
 import BudgetList from "./BudgetList";
+import BudgetChart from "./BudgetChart";
 import "../../assets/budget-css/BudgetContainer.css";
 // import FilterContext from '../Budget/FilterContext'
 
@@ -53,6 +54,7 @@ const BudgetContainer = (props) => {
             <FilterContext.Provider value={memoizedFilter}>
                 <Budget />
                 <BudgetList />
+                <BudgetChart />
             </FilterContext.Provider>
         </div>
     );

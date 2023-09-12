@@ -1,10 +1,13 @@
 import React, { useCallback, useState } from "react";
 import DataLabel from "./DataLabel";
+import '../../assets/budget-css/Item.css'
+import { ItemDispatchContext } from './BudgetApp'
+import { addComma } from '.././utils/numberUtils'
 
 // 여기코드 변경 및 추가 하기
 // import { ItemDispatchContext } from "../../App.js";
 // import { addComma } from "../../utils/numberUtils.js";
-// import "./Item.css";
+
 
 const Item = (props) => {
     const [{ onRemove }] = useContext(ItemDispatchContext);

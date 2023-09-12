@@ -1,5 +1,6 @@
 import React from 'react'
 import NewItemForm from './NewItemForm'
+import '../../assets/budget-css/NewItem.css'
 
 
 const NewItem = () => {

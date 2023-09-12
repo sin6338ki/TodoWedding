@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import './BudgetChart.css'
+import '../../assets/budget-css/BudgetChart.css'
 import Chart from './Chart'
 import { FilterContext } from './BudgetContainer'
 
