@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 /**
  * 업체찾기 페이지 (1:1 채팅방 이동, Kakao Maps API 사용, place 서비스 객체 사용)
@@ -24,88 +25,123 @@ import React, { useEffect, useState } from "react";
 
 const Map = () => {
     
-    // 검색어 저장
-    const [searchPlace, setSearchPlace] = useState("");
-    
-    // 검색 결과를 저장
-    const [places, setPlaces] = useState([]);
+    const [dbPlaces, setDbPlaces] = useState([]); // DB에서 가져온 장소 정보를 저장
+    const [searchedPlaces, setSearchedPlaces] = useState([]); // 검색된 장소 정보를 저장
+    const [searchPlace, setSearchPlace] = useState(""); // 사용자가 입력한 검색어를 저장
 
-    const searchPlaces = () => {
-        // Places 서비스 객체 사용.
-        var places = new kakao.maps.services.Places();
+// DB에서 장소 정보 가져오기
+useEffect(() => {
+    axios.get('http://localhost:8085/kakaomaps')
+        .then(response => {
+            // 응답 데이터 설정 (위도와 경도 정보를 가진 배열)
+            console.log(response.data); // <-- 여기서 데이터 확인
+            setDbPlaces(response.data.map(item => ({
+                partner_seq: item.partner_seq,
+                place_name: item.partner_name,
+                address_name: item.partner_address,
+                y: item.partner_latitude,
+                x: item.partner_longitude,
+                
+            })));
+        })
+        .catch(error => {
+            console.error('위도 경도 데이터 가져오는중에 에러 : ', error);
+        });
+}, []);
 
-        // 키워드 검색의 결과를 처리할 콜백함수
-        var callback = function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                // 검색이 이루어지면 결과를 변수에 저장
-                setPlaces(result);
-            }
-        };
+const searchPlaces = () => {
+    // Places 서비스 객체 사용.
+    var places = new kakao.maps.services.Places();
 
-        places.keywordSearch(searchPlace, callback);
-    }
+    // 키워드 검색의 결과를 처리할 콜백함수
+    var callback = function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            // 검색이 이루어지면 결과를 변수에 저장
+            setSearchedPlaces(result);
+        }
+    };
 
-    useEffect(() => {
+    places.keywordSearch(searchPlace, callback);
+}
+
+// 지도 생성 및 마커 설정
+useEffect(() => {
         
-        const container = document.getElementById('KakaoMap'); // 지도를 담을 ID
-        const options = { 
-            center: new kakao.maps.LatLng(35.1595454, 126.8526012), // 광주 중심 좌표
-            level: 3 // Level이 낮을 수록 확대, 높을 수록 축소
-        };
-        
-        const map = new kakao.maps.Map(container, options); // 지도 생성
+    const container = document.getElementById('KakaoMap'); // 지도를 담을 ID
+    const options = { 
+        center: new kakao.maps.LatLng(35.1595454, 126.8526012), // 광주 중심 좌표
+        level: 8 // Level이 낮을 수록 확대, 높을 수록 축소
+    };
     
-       let currentInfowindow; // 마커 클릭시 정보 창이 나오고, 한번더 클릭시 정보창을 닫게하기 위해 만든 변수
-    
-       for (let i=0; i<places.length; i++) {
-            // 각 장소에 대해 마커 위치 생성
-           let markerPosition  = new kakao.maps.LatLng(places[i].y, places[i].x);
+    const map = new kakao.maps.Map(container, options); // 지도 생성
 
-           // 마커 객체 생성, position설정 (문서)
-           let marker = new kakao.maps.Marker({
-               position : markerPosition
-           });
-    
-           // 마커가 지도 위에 표시되도록 설정
-           marker.setMap(map);
-    
-          // 장소에 대한 설명 표시 가져올수 있는 정보는 위 설명
-          var infowindowContent =
-              '<div style="padding:5px;">' +
-              `<h5>${places[i].place_name}</h5>` +
-              `<p>${places[i].address_name}</p>` +
-              `<p>Latitude: ${places[i].y}</p>`  +  // 위도
-              `<p>Longitude: ${places[i].x}</p>` +  // 경도
-              "</div>";
-            
-          var infowindow=new kakao.maps.InfoWindow({content:infowindowContent});
-    
-          // 마커에 클릭이벤트를 등록
-          kakao.maps.event.addListener(marker,'click', makeOverListener(map, marker, infowindow));
+   let currentInfowindow; // 마커 클릭시 정보 창이 나오고, 한번더 클릭시 정보창을 닫게하기 위해 만든 변수
+
+   const mapMarkers = placesArray =>
+    placesArray.forEach(place => {
+        // 각 장소에 대해 마커 위치 생성
+        let markerPosition  = new kakao.maps.LatLng(place.y, place.x);
+
+        // 마커 객체 생성, position설정 (문서)
+        let marker = new kakao.maps.Marker({
+            position : markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정
+        marker.setMap(map);
+
+       // 장소에 대한 설명 표시
+
+       var infowindowContent;
+       
+       if (placesArray === dbPlaces) { 
+           infowindowContent =
+           '<div style="overflow: auto;">' +
+               `<h5>${place.place_name}</h5>` +
+               `<p>${place.address_name}</p>` +
+               `<a href="http://localhost:3000/todowedding/chatting?partnerSeq=${place.partner_seq}" style="float: right; margin-right: 10px; display:inline-block;padding:1px;background-color:#007bff;color:white;text-decoration:none;">1:1 상담</a>
+            </div>`;
+       } else {
+           infowindowContent =
+           '<div style="overflow: auto;">' +
+               `<h5>${place.place_name}</h5>` +
+               `<p>${place.address_name}</p>`
+            '</div>';
        }
        
-       function makeOverListener(map, marker, infowindow) {
-         return function() {
-             if (currentInfowindow) { // 만약 이미 열려 있는 infowindow(정보창)이 있다면 닫기
-                currentInfowindow.close();
-             }
-             
-             if (currentInfowindow === infowindow) {  
-                currentInfowindow = null; // 마커가 클릭 이벤트 발생 시 그 정보창을 닫고 currentInfowindow 값 null로 설정
-             } else {
-                infowindow.open(map ,marker);  // 다른 마커를 클릭하면 해당 마커의 정보창 열고
-                currentInfowindow = infowindow;  // 현재 열린 정보창 갱신
-             }
-         };
-      }
-    
-    }, [places]);
+    var infowindow=new kakao.maps.InfoWindow({content:infowindowContent});
 
-   return (
+     // 마커에 클릭이벤트를 등록
+     kakao.maps.event.addListener(marker,'click', makeOverListener(map, marker, infowindow));
+
+  });
+      
+      function makeOverListener(map, marker, infowindow) {
+        return function() {
+          if (currentInfowindow) { 
+             currentInfowindow.close();
+          }
+          
+          if (currentInfowindow === infowindow) {  
+             currentInfowindow = null; 
+          } else {
+             infowindow.open(map ,marker);  
+             currentInfowindow = infowindow;
+          }
+       };
+    }
+
+     mapMarkers(dbPlaces);
+     mapMarkers(searchedPlaces);
+
+}, [dbPlaces, searchedPlaces]);
+
+
+return (
     <div>
         <input type="text" placeholder="장소 검색" onChange={(e)=>setSearchPlace(e.target.value)} />
         <button onClick={searchPlaces}>검색</button>
-        <div id="KakaoMap" style={{width: '500px', height: '400px'}}></div>
+        <div id="KakaoMap" style={{width: '500px', height: '700px'}}></div>
         <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a>
     </div>
 );

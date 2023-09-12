@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smhrd.todowedding.mapper.PartnerMapper;
+import com.smhrd.todowedding.model.KakaoMapsDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
 
@@ -112,5 +113,12 @@ public class PartnerService {
 		}
 		return checkedSameIdResult;
 	}
+	
+	
+	// DB정보 카카오맵 보내기
+	public List<KakaoMapsDto> getLocations() {
+        return partnerMapper.getLocations();
+    }
+	
 	
 }

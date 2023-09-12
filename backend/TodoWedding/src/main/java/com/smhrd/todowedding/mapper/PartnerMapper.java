@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.json.simple.JSONObject;
 
+import com.smhrd.todowedding.model.KakaoMapsDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
 
@@ -41,7 +42,11 @@ public interface PartnerMapper {
     @Select("select partner_seq, partner_name, partner_address, partner_tel, partner_link from tw_partner where partner_code=#{parnterCode}")
     public List<PartnerResponseDto> findPatnerByCode(String partnerCode);
     
-    //중보 아이디 조회 
+    //중복 아이디 조회 
     @Select("select * from tw_partner where partner_id=#{partnerId}")
     public JSONObject checkedSameId(String partnerId);
+    
+    //기업 정보 카카오맵 으로 보내기
+    @Select("SELECT partner_seq, partner_name, partner_address, partner_latitude, partner_longitude FROM tw_partner WHERE partner_latitude IS NOT NULL AND partner_longitude IS NOT NULL")
+    public List<KakaoMapsDto> getLocations();
 }
