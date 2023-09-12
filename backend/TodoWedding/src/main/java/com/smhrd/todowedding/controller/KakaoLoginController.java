@@ -28,7 +28,8 @@ import lombok.extern.slf4j.Slf4j;
  * 일자 : 2023.09.05
  * 수정
  * 	- 전체 회원 정보 불러오기 기능 추가 (신지영, 2023.09.10)
- *  - 카카오톡 나에게 보내기 (예약) 기능 추가 (신지영, 202.09.12)
+ *  - 카카오톡 나에게 보내기 (예약) 기능 추가 (신지영, 2023.09.12)
+ *  - D-day 메시지 보내기 기능 추가 (신지영, 2023.09.13)
  */
 
 @Slf4j
@@ -48,6 +49,7 @@ public class KakaoLoginController {
 	
 	//토큰 정보 저장
 	private static String accessToken = null;
+	private static Long loginMemberSeq = 0L;
 	
 	@GetMapping("/auth/kakao/callback")
 	public Map<String,Object> kakaoCallback(String code) throws NoSuchFieldException, SecurityException, IOException, JsonProcessingException { 
@@ -59,6 +61,7 @@ public class KakaoLoginController {
 		Object kakaoToken = KakaoData.get("kakaoAccess");
 		Map<String, Object> tokenMap = mapper.readValue((String) kakaoToken, Map.class);
 		accessToken = (String) tokenMap.get("access_token");
+		loginMemberSeq = (Long) KakaoData.get("userseq");
 		log.info("accessToken : " + accessToken);
 		return KakaoData;
 	}
@@ -83,15 +86,15 @@ public class KakaoLoginController {
 		}
 	}
 	
-	//예약 실행
-	@Scheduled(cron = "* 10 * * * *", zone = "Asia/Seoul")
+	//예약 메시지 보내기 - D-day 안내 메시지
+	@Scheduled(cron = "* * 10 * * *", zone = "Asia/Seoul")
 	public void run() {
 
 //		log.info("스케쥴러 실행 : " + accessToken);
 		
 		if(accessToken != null) {			
 			log.info("accessToken : " + accessToken);
-			kakaoMessageService.sendMessage(accessToken);
+			kakaoMessageService.sendMessage(accessToken, loginMemberSeq);
 		}
 	}
 
