@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { FilterContext } from '../Budget/BudgetContainer'
+import '../../assets/budget-css/Filter.css'
 
 const Filter = () => {
  

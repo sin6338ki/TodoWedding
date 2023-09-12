@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { addComma } from '../../utils/numberUtils';
+import { addComma } from '.././utils/numberUtils';
+import '../../assets/budget-css/ChartBar.css'
+
 
 const ChartBar = (props) => {
 
