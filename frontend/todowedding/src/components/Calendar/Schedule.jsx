@@ -42,7 +42,6 @@ const Schedule = () => {
         } else {
             console.log("일정추가 제목 -> ", title);
             const data = {
-                scheduleSeq: 1,
                 scheduleStartDt: startDate,
                 scheduleEndDt: endDate,
                 scheduleContents: title,
@@ -94,8 +93,8 @@ const Schedule = () => {
     const allSchedule = () => {
         try {
             axios
-                //.get(`http://localhost:8085/all-schedule/${memberSeq}`)
-                .get(`http://localhost:8085/all-schedule/123456789`)
+                .get(`http://localhost:8085/all-schedule/${memberSeq}`)
+                //.get(`http://localhost:8085/all-schedule/123456789`)
                 .then((res) => {
                     console.log("findAllSchedule 조회 response : ", res.data);
                     setSchedule(res.data);
@@ -112,6 +111,42 @@ const Schedule = () => {
     const REST_API_KEY = "05e6f6ac6b8cd6cf3b1ec2a9ca6542de";
     const REDIRECT_URI = "http://localhost:3000/auth/kakao/callback";
     const URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=talk_calendar`;
+
+    /**
+     * Kakao 톡캘린더 연동하기
+     * 일정 생성하기 (POST)
+     * URL : https://kapi.kakao.com/v2/api/calendar/create/event
+     * 파라미터 : 일정을 생성할 캘린더의 ID, 일정정보
+     *            (단, ID를 지정하지 않으면 기본 캘린더(ID : primary)에 일정 생성)
+     * EventCreate : 요청 body
+     *  - String title : 일정제목(최대 50자)
+     *  - Time time : 일정시간
+     * 응답 : event_id (String)
+     * */
+
+    const addKakaoURL = "https://kapi.kakao.com/v2/api/calendar/create/event";
+
+    const event = {
+        title: title,
+        time: {
+            start_at: startDate,
+            end_at: endDate,
+            time_zone: "Asia/Seoul",
+            all_day: true,
+            lunar: false,
+        },
+    };
+
+    const addKakaoCal = () => {
+        axios
+            .post(addKakaoURL, event, { headers: { Authorization: `Bearer ${accessToken}` } })
+            .then((res) => {
+                console.log("addKakaoCal : ", res.data);
+            })
+            .catch((err) => {
+                console.log("addKakaoCal error : ", err);
+            });
+    };
 
     return (
         <div>

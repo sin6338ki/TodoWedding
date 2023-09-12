@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./assets/scss/style.scss";
+import axios from "axios";
 
 //tailwindcss 적용
 import "./tailwind.css";
@@ -16,6 +17,7 @@ import { CookiesProvider } from "react-cookie";
 const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+// axios.defaults.withCredentials = true;
 root.render(
     <CookiesProvider>
         <Provider store={store}>

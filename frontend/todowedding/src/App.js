@@ -18,6 +18,7 @@ import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
 import MyCalendar from "./components/Calendar/MyCalendar";
+import UpdateSchedule from './components/Calendar/UpdateSchedule';
 import Schedule from "./components/Calendar/Schedule";
 import TodoList from "./components/TodoList/TodoList";
 import Budget from "./components/Budget/Budget";
@@ -55,6 +56,7 @@ function App() {
                             {/* MainMenu */}
                             <Route path="/todowedding/calendar" element={<Calendar />} />
                             <Route path="/todowedding/schedule" element={<Schedule />} />
+                            <Route path="/todowedding/schedule/:scheduleSeq" element={<UpdateSchedule />} />
                             <Route path="/todowedding/todolist" element={<TodoList />} />
                             <Route path="/todowedding/budget" element={<Budget />} />
 
