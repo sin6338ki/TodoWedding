@@ -39,7 +39,7 @@ const Kakaologin = () => {
             <a
                 href={logoutURL}
                 onClick={() => {
-                    sessionStorage.clear();
+                    // sessionStorage.clear();
                 }}
             >
                 <button>카카오 로그아웃</button>

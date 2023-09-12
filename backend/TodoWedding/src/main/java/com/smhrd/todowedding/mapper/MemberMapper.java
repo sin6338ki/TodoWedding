@@ -14,20 +14,27 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 	
-	// 사용자 정보 전체 삭제
-	
-    public void deleteAllRelatedData(String memberSeq);
-
-    @Delete(
-        "DELETE FROM tw_chatroom WHERE member_seq = #{member_seq}"  
-    )
-	public void deleteMember(int member_seq);
-//    
-//    "DELETE FROM tw_todolist WHERE member_seq = #{member_seq}",
-//    "DELETE FROM tw_schedule WHERE member_seq = #{member_seq}",
-//    "DELETE FROM tw_income WHERE member_seq = #{member_seq}",
-//    "DELETE FROM tw_budget WHERE member_seq = #{member_seq}",
-//    "DELETE FROM tw_marrydate WHERE member_seq = #{member_seq}",
-//    "DELETE FROM tw_member WHERE memberSeq = #{memberSeq}"  // 가장 마지막에 메인 회원 정보 삭제
-
+	// 해당 seq 회원 정보 삭제
+	@Delete("DELETE FROM tw_chatroom WHERE member_seq = #{member_seq}")
+    public void deleteChatroom(int member_seq);
+	// 해당 seq 회원 정보 삭제
+    @Delete("DELETE FROM tw_todolist WHERE member_seq = #{member_seq}")
+    public void deleteTodolist(int member_seq);
+    // 해당 seq 회원 정보 삭제
+    @Delete("DELETE FROM tw_schedule WHERE member_seq = #{member_seq}")
+    public void deleteSchedule(int member_seq);
+    // 해당 seq 회원 정보 삭제
+    @Delete("DELETE FROM tw_income WHERE member_seq = #{member_seq}")
+    public void deleteIncome(int member_seq);
+    // 해당 seq 회원 정보 삭제
+    @Delete("DELETE FROM tw_budget WHERE member_seq = #{member_seq}")
+    public void deleteBudget(int member_seq);
+    // 해당 seq 회원 정보 삭제
+    @Delete("DELETE FROM tw_marrydate WHERE member_seq = #{member_seq}")
+    public void deleteMarryDate(int member_seq);
+    // 해당 seq 회원 정보 삭제
+    @Delete("DELETE FROM tw_member WHERE member_seq = #{member_seq}")
+    public void deleteMember(int member_seq);
+    
+    
 }

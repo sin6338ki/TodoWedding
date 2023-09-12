@@ -57,23 +57,25 @@ public class KakaoLoginController {
 		return KakaoData;
 	}
 	
-	//전체 회원 조회 
+	// 전체 회원 조회 
 	@GetMapping("/member")
 	public List<MemberResponseDto> findAllMember() {
 		return memberService.findAllMember();
 	}
 	
+	
+	// 회원 정보 전부 삭제
 	@GetMapping("/member/delete")
-	public int deleteMember(@RequestParam("member_seq") int member_seq) {
+	public ResponseEntity<String> deleteMember(@RequestParam("member_seq") int member_seq) {
 		System.out.println(member_seq);
-		memberService.deleteMember(member_seq);
-	     
-		//String resultMessage = memberService.deleteMember(memberSeq);
-//		if(resultMessage.equals("SUCCESS")) { 
-//		    return ResponseEntity.ok("회원 정보 삭제 완료"); // 성공적으로 처리되면 200 OK 응답과 메시지 반환.
-//		} else {  
-//		    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 정보 삭제 실패: " + resultMessage); // 실패하면 에러 메시지와 함께 500 Internal Server Error 응답 반환.
-//	   }
-		return 0;
+		String resultMessage = memberService.deleteMember(member_seq);
+
+		if(resultMessage.equals("회원 정보 삭제 완료")) { 
+		    return ResponseEntity.ok(resultMessage);
+		} else {  
+		    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMessage); 
+		}
 	}
+	
+	
 }
