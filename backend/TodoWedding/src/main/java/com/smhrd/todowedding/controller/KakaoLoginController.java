@@ -84,10 +84,10 @@ public class KakaoLoginController {
 	}
 	
 	//예약 실행
-	@Scheduled(cron = "* * * * * *", zone = "Asia/Seoul")
+	@Scheduled(cron = "* 10 * * * *", zone = "Asia/Seoul")
 	public void run() {
 
-		log.info("스케쥴러 실행 : " + accessToken);
+//		log.info("스케쥴러 실행 : " + accessToken);
 		
 		if(accessToken != null) {			
 			log.info("accessToken : " + accessToken);
