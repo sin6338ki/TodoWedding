@@ -1,0 +1,14 @@
+import React from 'react'
+import NewItemForm from './NewItemForm'
+
+
+const NewItem = () => {
+  return (
+    <div className='new-item'>
+    <h1 className='fs-normal'>내역추가</h1>
+    <NewItemForm />
+    </div>
+  )
+}
+
+export default NewItem

@@ -5,6 +5,7 @@
  * 작성자 : 서현록, 양수진
  * 수정
  *  - 업체 전용 페이지 추가 (신지영, 2023.09.10)
+ *  - 예산 관리 페이지 추가 (양수진, 2023.09.12)
  */
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -17,11 +18,9 @@ import Join from "./components/Member/Join";
 import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
-import MyCalendar from "./components/Calendar/MyCalendar";
-import UpdateSchedule from './components/Calendar/UpdateSchedule';
+import UpdateSchedule from "./components/Calendar/UpdateSchedule";
 import Schedule from "./components/Calendar/Schedule";
 import TodoList from "./components/TodoList/TodoList";
-import Budget from "./components/Budget/Budget";
 import Map from "./components/Map";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Chatting from "./components/FindPartner/Chatting";
@@ -37,6 +36,11 @@ import Partner from "./components/PartnerPage/Partner";
 import PartnerJoin from "./components/PartnerPage/PartnerJoin";
 import PartnerLogin from "./components/PartnerPage/PartnerLogin";
 import Kakao from "./components/Calendar/Kakao";
+
+// 예산관리 관련
+import Budget from "./components/Budget/Budget";
+import BudgetContainer from "./components/Budget/BudgetContainer";
+import BudgetApp from "./components/Budget/BudgetApp";
 
 function App() {
     return (
@@ -58,13 +62,14 @@ function App() {
                             <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/schedule/:scheduleSeq" element={<UpdateSchedule />} />
                             <Route path="/todowedding/todolist" element={<TodoList />} />
-                            <Route path="/todowedding/budget" element={<Budget />} />
+                            <Route path="/todowedding/budget" element={<BudgetApp />} />
 
                             {/* 업체찾기 */}
                             <Route path="/todowedding/map" element={<Map />} />
 
                             {/* 채팅목록 */}
                             <Route path="/todowedding/chatting" element={<Chatting />}></Route>
+
                             {/* 실제 채팅방 */}
                             <Route path="todowedding/chat-room/:chatRoomSeq" element={<ChattingRoom />}></Route>
 
