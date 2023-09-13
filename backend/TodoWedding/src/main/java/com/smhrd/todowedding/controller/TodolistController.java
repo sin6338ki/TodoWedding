@@ -2,6 +2,7 @@ package com.smhrd.todowedding.controller;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -66,7 +67,7 @@ public class TodolistController {
 	
 	//해당 유저의 총 투두리스트 개수, 완료 건수, 미완료 건수 불러오기
 	@GetMapping(value="count-of-todolist/{memberSeq}")
-	public List<CountTodolist> allCountTodolist(@PathVariable(name="memberSeq") Long memberSeq){
+	public List<JSONObject> allCountTodolist(@PathVariable(name="memberSeq") Long memberSeq){
 		return todolistService.allCountTodolist(memberSeq);
 	}
 	

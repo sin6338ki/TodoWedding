@@ -91,8 +91,8 @@ public class TodolistService {
 	}
 	
 	//해당 유저의 투두리스트 총 개수, 완료 개수, 미완료 개수 불러오기
-	public List<CountTodolist> allCountTodolist(Long memberSeq){
-		List<CountTodolist> allCntTodoResult = null;
+	public List<JSONObject> allCountTodolist(Long memberSeq){
+		List<JSONObject> allCntTodoResult = null;
 		try {
 			todolistMapper.allCountTodolist(memberSeq);
 		}catch(Exception e) {
