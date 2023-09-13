@@ -19,7 +19,6 @@ import Join from "./components/Member/Join";
 import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
-import UpdateSchedule from "./components/Calendar/UpdateSchedule";
 import CheckItemList from "./components/CheckList/CheckItemList";
 import CheckItemSeq from "./components/CheckList/CheckItemSeq";
 import DayCheckList from "./components/CheckList/DayCheckList";
