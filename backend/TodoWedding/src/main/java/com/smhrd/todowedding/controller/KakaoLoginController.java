@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * 수정
  * 	- 전체 회원 정보 불러오기 기능 추가 (신지영, 2023.09.10)
  *  - 카카오톡 나에게 보내기 (예약) 기능 추가 (신지영, 2023.09.12)
- *  - D-day 메시지 보내기 기능 추가 (신지영, 2023.09.13)
+ *  - D-day, 일정 알람 메시지 보내기 기능 추가 (신지영, 2023.09.13)
  */
 
 @Slf4j
@@ -87,14 +87,25 @@ public class KakaoLoginController {
 	}
 	
 	//예약 메시지 보내기 - D-day 안내 메시지
-	@Scheduled(cron = "* * 10 * * *", zone = "Asia/Seoul")
-	public void run() {
+	@Scheduled(cron = "0 0 10 * * *", zone = "Asia/Seoul")
+	public void dDayMessageSendRun() throws Exception {
 
-//		log.info("스케쥴러 실행 : " + accessToken);
+		log.info("d-day 메시지 보내기 스케쥴러 실행 : {}", accessToken);
 		
 		if(accessToken != null) {			
-			log.info("accessToken : " + accessToken);
-			kakaoMessageService.sendMessage(accessToken, loginMemberSeq);
+			log.info("accessToken : {}", accessToken);
+			kakaoMessageService.senddDayMessage(accessToken, loginMemberSeq);
+		}
+	}
+	
+	//예약 메시지 보내기 - 하루 남은 일정 안내 메시지
+	@Scheduled(cron = "30 0 10 * * *", zone = "Asia/Seoul")
+	public void ScheduleMessageSendRun() throws Exception {
+		log.info("하루 남은 일정 알림 메시지 보내기 스케쥴러 실행 : {}", accessToken);
+		
+		if(accessToken != null) {			
+			log.info("accessToken : {}", accessToken);
+			kakaoMessageService.sendScheduleMessage(accessToken, loginMemberSeq);
 		}
 	}
 

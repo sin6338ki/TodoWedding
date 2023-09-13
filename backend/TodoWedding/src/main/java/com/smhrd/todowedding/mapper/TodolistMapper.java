@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.json.simple.JSONObject;
 
-import com.smhrd.todowedding.model.CountTodolist;
 import com.smhrd.todowedding.model.IsCheckedTodolist;
 import com.smhrd.todowedding.model.Todolist;
 import com.smhrd.todowedding.model.TodolistDto;
