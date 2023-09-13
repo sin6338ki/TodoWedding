@@ -5,7 +5,17 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import MyTodo from './MyTodo';
+
+import MyTodoList from './MyTodoList';
+import add_schedule from "../../assets/images/add_schedule.png"
+import item_checklist from "../../assets/images/item_checklist.png"
+import dday_checklist from "../../assets/images/dday_checklist.png"
+
+/*
+ * FullCalendar 라이브러리 렌더링 페이지
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.07
+ */
 
 const MyCalendar = () => {
   const nav = useNavigate();
@@ -60,7 +70,11 @@ const MyCalendar = () => {
       endDate.setDate(endDate.getDate() - 1);
 
       nav(`/todowedding/schedule/${info.event.id}`, 
-      { state: { title: info.event.title, start: info.event.startStr, end: endDate.toISOString().split('T')[0] } });
+      { state: { 
+        title: info.event.title, 
+        start: info.event.startStr, 
+        end: endDate.toISOString().split('T')[0] 
+      } });
 
       setSelectedEvent(info.event); // 선택된 이벤트 저장
   }
@@ -78,6 +92,22 @@ const MyCalendar = () => {
       })
   })
 
+  //일정추가 버튼 클릭 시 이동
+  const addSchedule = (() => {
+    nav('/todowedding/schedule');
+  })
+
+  //항목별 체크리스트 클릭 시 이동
+  const itemCheckList = (() => {
+    nav('/checkitem');
+  })
+
+  //D-Day 체크리스트 클릭 시 이동
+  const dDayCheckList = (() => {
+    nav('/daychecklist')
+  })
+
+
   return (
     <div style={{ margin:30 }}>
       <FullCalendar 
@@ -89,18 +119,33 @@ const MyCalendar = () => {
           //dayGridMonth, dayGridWeek
           center:'title',
           right:'prev,next'
-        }} 
+        }}
         locale='ko' //한국어 설정
         height={"54vh"} //54
         events={events}
         dateClick={handleDateClick}
         eventClick={handleEventClick}
       />
+      <div style={{ display: "flex"}}>
+        <p className="TodoList-Title">최근 TodoList 3가지</p>
       <div>
-        <MyTodo/>
-        <button>일정추가</button>
-        <button>항목별 체크리스트</button>
-        <button>D-Day 체크리스트</button>
+            <button>
+                <img className='calendarBtn' src={add_schedule} 
+                alt="일정추가" width="56px" onClick={addSchedule}/>
+            </button>
+            <button>
+                <img className='calendarBtn' src={item_checklist} 
+                alt="항목별체크리스트" width="55px" onClick={itemCheckList}/>
+                </button>
+            <button>
+                <img className='calendarBtn' src={dday_checklist} 
+                alt="D-Day체크리스트" width="60px" onClick={dDayCheckList}/>
+            </button>
+        </div>
+        </div>
+      <div style={{ display: "flex" }}>
+        <MyTodoList className="My-TodoList"/>
+        
       </div>
     </div>
   );

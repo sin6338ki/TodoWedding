@@ -36,6 +36,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @CrossOrigin("http://localhost:3000")
+//@CrossOrigin
 @RestController
 public class ScheduleController {
 	

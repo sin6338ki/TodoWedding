@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.service.ChecklistService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * 체크리스트 관련 컨트롤러
@@ -22,8 +25,9 @@ import com.smhrd.todowedding.service.ChecklistService;
  * 작성자 : 신지영
  * 작성일 : 2023.09.08
  */
-
+@Slf4j
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class ChecklistController {
 	
 	@Autowired
@@ -33,6 +37,7 @@ public class ChecklistController {
 	//1. 항목별 체크리스트 전체 항목 조회 
 	@GetMapping(value="checkitem")
 	public List<JSONObject> findCheckItem(){
+		log.info("checkitem 조회 확인");
 		return checklistService.findCheckItem();
 	}
 	

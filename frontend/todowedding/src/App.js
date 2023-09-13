@@ -20,6 +20,11 @@ import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
 import UpdateSchedule from "./components/Calendar/UpdateSchedule";
+import CheckItemList from "./components/CheckList/CheckItemList";
+import CheckItemSeq from "./components/CheckList/CheckItemSeq";
+import DayCheckList from "./components/CheckList/DayCheckList";
+import DayCheckSeq from "./components/CheckList/DayCheckSeq";
+import UpdateSchedule from "./components/Calendar/UpdateSchedule";
 import Schedule from "./components/Calendar/Schedule";
 import TodoList from "./components/TodoList/TodoList";
 import Map from "./components/Map";
@@ -60,25 +65,33 @@ function AppContent() {
                             <Route path="/auth/kakao/logout" element={<KakaologOut />} />
                             <Route path="/todowedding/join" element={<Join />} />
                             <Route path="/todowedding/delete" element={<Delete />} />
-                            {/* MainMenu */}
+
+                            {/* 일정관리 */}
                             <Route path="/todowedding/calendar" element={<Calendar />} />
                             <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/schedule/:scheduleSeq" element={<UpdateSchedule />} />
+                            {/* 체크리스트 */}
+                            <Route path="/checkitem" element={<CheckItemList />} />
+                            <Route path="/checkitem/:checkItemSeq" element={<CheckItemSeq />} />
+                            <Route path="/daychecklist" element={<DayCheckList />} />
+                            <Route path="/daychecklist:checkdaySeq" element={<DayCheckSeq />} />
+
+                            {/* Todo List */}
                             <Route path="/todowedding/todolist" element={<TodoList />} />
+
+                            {/* 예산관리 */}
                             <Route path="/todowedding/budget" element={<BudgetApp />} />
+
+                            {/*웨딩리포트 */}
+                            <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
 
                             {/* 업체찾기 */}
                             <Route path="/todowedding/map" element={<Map />} />
-
                             {/* 채팅목록 */}
                             <Route path="/todowedding/chatting" element={<Chatting />}></Route>
 
                             {/* 실제 채팅방 */}
                             <Route path="todowedding/chat-room/:chatRoomSeq" element={<ChattingRoom />}></Route>
-
-                            {/*웨딩리포트 */}
-                            <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
-
                             {/* 업체 전용 페이지 */}
                             <Route path="/todowedding/partner/login" element={<PartnerLogin />}></Route>
                             <Route path="/todowedding/partner" element={<Partner />}></Route>
