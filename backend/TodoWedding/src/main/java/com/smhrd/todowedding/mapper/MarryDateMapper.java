@@ -19,6 +19,6 @@ public interface MarryDateMapper {
 	public int addMarryDate(MarryDateDto marryDateDto);
 	
 	//memberSeq에 대한 marryDate 조회하기
-	@Select("select * from tw_marrydate where member_seq=#{memberSeq}")
-	public MarryDate findMarryDate(Long memberSeq);
+	@Select("select marry_dt from tw_marrydate where member_seq=#{memberSeq}")
+	public String findMarryDate(Long memberSeq);
 }

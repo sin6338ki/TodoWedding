@@ -189,7 +189,7 @@ public class KakaoMessageService {
 	
 	//D-day 계산 메서드 (출처 https://jamesdreaming.tistory.com/116)
 	public Long dayCalculator(Long loginMemberSeq) throws Exception {
-		String marryDate = marryDateMapper.findMarryDate(loginMemberSeq).getMarryDt();
+		String marryDate = marryDateMapper.findMarryDate(loginMemberSeq);
 		Date now = new Date();
 		Long diffDate = null;
 		//D-day 계산
