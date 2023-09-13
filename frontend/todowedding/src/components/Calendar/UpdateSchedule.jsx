@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
+/*
+ * 일정 수정 / 삭제
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.12
+ */
 
 const UpdateSchedule = () => {
   const location = useLocation();
