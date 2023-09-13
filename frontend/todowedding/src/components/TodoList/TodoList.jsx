@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Todo from "./Todo";
-import { Link,} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 /*
@@ -24,7 +24,7 @@ const TodoList = () => {
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
     const [isChecked, setIsChecked] = useState("");
-    const memberSeq = 123456789;
+    const memberSeq = 100;
 
     // GET : axios.get(url)
     // POST : axios.post(url, data)
@@ -51,7 +51,7 @@ const TodoList = () => {
         // boot에서 쓰는 dto참조해서 가져오기
         const data = {
             todolistContents: input,
-            memberSeq: 123456789,
+            memberSeq: memberSeq,
         };
 
         //backend axios통신
@@ -70,7 +70,7 @@ const TodoList = () => {
     useEffect(() => {
         const fetchDataAndCout = async () => {
             await fetchData();
-            cntTodoList(); //수정
+            await cntTodoList(); //수정
         };
 
         fetchDataAndCout();
@@ -126,6 +126,7 @@ const TodoList = () => {
     //완료, 미완료 건수 조회하기
 
     const [completedCnt, setCompletedCnt] = useState();
+    const [unCompletedCnt, setUnCompletedCnt] = useState();
 
     const cntTodoList = () => {
         try {
@@ -134,6 +135,7 @@ const TodoList = () => {
                 .then((res) => {
                     console.log("cntTodoList response", res.data);
                     setCompletedCnt(res.data[1].count);
+                    setUnCompletedCnt(res.data[0].count);
                 })
                 .catch((err) => {
                     console.log("axios arr : ", err);
@@ -161,8 +163,10 @@ const TodoList = () => {
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    {todos.length < 1 ? null : <span className={style.count}> {`전체 : ${todos.length}`}</span>}
-                    {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${todos.length}`}</span>}
+                    {todos.length < 1 ? null : (
+                        <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}`}</span>
+                    )}
+                    {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${unCompletedCnt}`}</span>}
                     {/* {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${todos.length}`}</span>} */}
                     {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
                 </div>

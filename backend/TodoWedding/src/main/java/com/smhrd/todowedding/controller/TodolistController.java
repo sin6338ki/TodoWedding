@@ -68,6 +68,7 @@ public class TodolistController {
 	//해당 유저의 총 투두리스트 개수, 완료 건수, 미완료 건수 불러오기
 	@GetMapping(value="count-of-todolist/{memberSeq}")
 	public List<JSONObject> allCountTodolist(@PathVariable(name="memberSeq") Long memberSeq){
+		log.info("todolist 호출 : " + memberSeq);
 		return todolistService.allCountTodolist(memberSeq);
 	}
 	

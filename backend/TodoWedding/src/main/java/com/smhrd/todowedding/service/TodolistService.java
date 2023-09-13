@@ -94,7 +94,7 @@ public class TodolistService {
 	public List<JSONObject> allCountTodolist(Long memberSeq){
 		List<JSONObject> allCntTodoResult = null;
 		try {
-			todolistMapper.allCountTodolist(memberSeq);
+			allCntTodoResult = todolistMapper.allCountTodolist(memberSeq);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
