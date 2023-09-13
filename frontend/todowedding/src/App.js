@@ -91,6 +91,7 @@ function AppContent() {
 
                             {/* 실제 채팅방 */}
                             <Route path="todowedding/chat-room/:chatRoomSeq" element={<ChattingRoom />}></Route>
+
                             {/* 업체 전용 페이지 */}
                             <Route path="/todowedding/partner/login" element={<PartnerLogin />}></Route>
                             <Route path="/todowedding/partner" element={<Partner />}></Route>

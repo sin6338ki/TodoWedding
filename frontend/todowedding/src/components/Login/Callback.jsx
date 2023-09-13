@@ -46,7 +46,14 @@ const Callback = () => {
                 sessionStorage.setItem("kakaoAccess", res.data.kakaoAccess);
 
                 //쿠키에 Refresh Token, storage에 Access Token 저장
-                dispatch(setToken(access_token));
+                dispatch(
+                    setToken({
+                        type: "M",
+                        userSeq: res.data.userseq,
+                        userNick: res.data.userNick,
+                        accessToken: access_token,
+                    })
+                );
             })
             .catch((error) => {
                 console.log("유저 정보를 가져오는데 실패 ", error);

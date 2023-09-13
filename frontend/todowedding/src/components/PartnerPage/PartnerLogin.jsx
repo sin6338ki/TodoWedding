@@ -1,25 +1,25 @@
 /**
  * 기업 전용 로그인 페이지
  * 작성자 : 신지영
- * 작성일 : 2023.09.10
+ * 작성일 : 2023.09.10, 13
  */
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import TodoLogo from "../../assets/images/todo_logo.png";
 import axios from "axios";
+import { setToken } from "../../redux/reducers/AuthReducer";
 
 /**
  * redux 실행관련
  */
-import { useDispatch } from "react-redux"; //redux 액션 실행
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; //redux 액션 실행
 
 const PartnerLogin = () => {
     const navigate = useNavigate();
     //redux 액션 실행을 위한 dispatch 선언
     const dispatch = useDispatch();
-    const { partnerLoginInfo } = useSelector((state) => state.partnerLoginInfo);
+    const token = useSelector((state) => state.Auth.token);
 
     //아이디, 비밀번호 입력값 가져오기
     const [id, setId] = useState();
@@ -35,24 +35,31 @@ const PartnerLogin = () => {
 
     //redux 저장 확인
     useEffect(() => {
-        console.log("partnerInfo redux 저장 확인 : ", partnerLoginInfo);
-        if (partnerLoginInfo) {
-            navigate("/todowedding/partner");
+        console.log("partnerInfo redux 저장 확인 : ", token);
+        if (token != null) {
         }
-    }, [partnerLoginInfo]);
+    }, [token]);
 
     //로그인 버튼 클릭했을 때 이벤트
-    const login = () => {
-        axios
+    const login = async () => {
+        await axios
             .post("http://localhost:8085/partner/login", {
                 partner_id: id,
                 partner_pw: pw,
             })
-            .then((res) => {
+            .then(async (res) => {
                 console.log("login response : ", res.data);
 
-                //쿠키에 Refresh Token, storage에 Access Token 저장
-                dispatch(SET_PARTNER_INFO(res.data));
+                //redux에 로그인 정보 저장
+                await dispatch(
+                    setToken({
+                        type: "P",
+                        userSeq: res.data.partner_seq,
+                        userNick: res.data.partner_name,
+                        accessToken: "",
+                    })
+                );
+                await navigate("/todowedding/partner");
             })
             .catch((err) => {
                 console.log("login fail : ", err);

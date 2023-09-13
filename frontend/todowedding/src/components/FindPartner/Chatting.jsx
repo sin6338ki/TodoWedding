@@ -12,7 +12,7 @@ const Chatting = () => {
     const navigate = useNavigate();
 
     const memberSeq = 101;
-    const partnerSeq = 11111;
+    const partnerSeq = 100;
     const [chatRoomSeq, setChatRoomSeq] = useState();
 
     //request 데이터 - 업체 고유번호, 멤버 고유번호

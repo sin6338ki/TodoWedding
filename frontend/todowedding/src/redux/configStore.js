@@ -3,6 +3,7 @@ import { AuthReducer } from "./reducers/AuthReducer";
 import { createStore, combineReducers } from "redux";
 // local storage 사용
 import storage from "redux-persist/lib/storage";
+import { PartnerAuthReducer } from "./reducers/PartnerAuthReducer";
 
 const persistConfig = {
     key: "root",
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const allReducers = combineReducers({
     Auth: AuthReducer,
+    PartnerAuth: PartnerAuthReducer,
 });
 
 const store = createStore(

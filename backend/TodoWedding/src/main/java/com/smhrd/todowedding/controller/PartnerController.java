@@ -33,7 +33,7 @@ public class PartnerController {
 	private PartnerService partnerService;
 
 	// 기업회원 로그인
-	@GetMapping("/partner/login")
+	@PostMapping("/partner/login")
 	public ResponseEntity<?> partnerLogin(@RequestBody PartnerDTO partner) {
 
 		Map<String, Object> loginResult = partnerService.partnerlogin(partner);
@@ -44,8 +44,6 @@ public class PartnerController {
 			return new ResponseEntity<>(loginResult, HttpStatus.OK);
 		}
 	}
-	
-	
 	
 	// 기업회원 회원가입
 	@PostMapping("/partner/join")

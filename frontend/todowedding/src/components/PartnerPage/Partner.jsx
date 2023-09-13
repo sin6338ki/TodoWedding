@@ -5,26 +5,29 @@
  */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Partner = () => {
-    const [partnerSeq, setPartnerSeq] = useState();
+    const navigate = useNavigate();
+    const partnerAuth = useSelector((state) => state.PartnerAuth.partnerAuth);
+    const partnerSeq = partnerAuth.partner_seq;
     const [resultFindChatRoom, setResultFindChatRoom] = useState();
+    const [resultFindChatRoomSeq, setResultFindChatRoomSeq] = useState();
 
     //처음 화면 렌더링시 => 리덕스에서 값 (partner_seq) 가져오기
     useEffect(() => {
-        console.log("partnerLoginInfo", partnerLoginInfo);
+        console.log("화면 렌더링 partnerLoginInfo : ", partnerAuth);
         const load = async () => {
-            await setPartnerSeq(partnerLoginInfo.partner_seq);
-            await findChatRoom();
+            await findChatRoom(partnerSeq);
         };
 
         load();
-        // findChatRoom();
-    }, [partnerLoginInfo]);
+    }, []);
 
     //채팅방 조회하기 이벤트
-    const findChatRoom = () => {
-        console.log(">>>>>>>>> partnerSeq");
+    const findChatRoom = (partnerSeq) => {
+        console.log("findChatRoom partnerSeq : ", partnerSeq);
         axios
             .get(`http://localhost:8085/chat/${partnerSeq}`)
             .then((res) => {
@@ -36,6 +39,14 @@ const Partner = () => {
             });
     };
 
+    //입장 버튼 클릭시 발생 이벤트
+    const enterToChat = (chatRoomSeq, partnerSeq, memberSeq) => {
+        console.log("enterToChat chatRoomSeq : ", chatRoomSeq);
+        navigate(`/todowedding/chat-room/${chatRoomSeq}`, {
+            state: { partnerSeq: partnerSeq, memberSeq: memberSeq },
+        });
+    };
+
     return (
         <div>
             <div>채팅방 리스트</div>
@@ -45,16 +56,23 @@ const Partner = () => {
                 <span>마지막 대화 날짜</span>
                 <span>입장</span>
             </div>
-            {resultFindChatRoom.map((chatRoom, idx) => {
-                return (
-                    <div key={idx}>
-                        <span>{idx + 1}</span>
-                        <span>{chatRoom.nickname}</span>
-                        <span>{chatRoom.chat_room_create_dt}</span>
-                        <button>입장</button>
-                    </div>
-                );
-            })}
+            {resultFindChatRoom &&
+                resultFindChatRoom.map((chatRoom, idx) => {
+                    return (
+                        <div key={idx}>
+                            <span>{idx + 1}</span>
+                            <span>{chatRoom.nickname}</span>
+                            <span>{chatRoom.chat_room_create_dt}</span>
+                            <button
+                                onClick={() => {
+                                    enterToChat(chatRoom.chat_room_seq, chatRoom.partner_seq, chatRoom.member_seq);
+                                }}
+                            >
+                                입장
+                            </button>
+                        </div>
+                    );
+                })}
         </div>
     );
 };

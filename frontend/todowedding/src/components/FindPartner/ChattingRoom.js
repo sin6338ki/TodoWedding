@@ -2,29 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as StompJs from "@stomp/stompjs";
 import "../../tailwind.css";
+import { useSelector } from "react-redux"; //redux 액션 실행
 /*
  * 실제 채팅방 - 채팅목록 및 채팅 보낼 수 있는 창
  * 작성자 : 신지영
- * 작성일 : 2023.09.05
+ * 작성일 : 2023.09.05, 13
  */
 
 const ChattingRoom = () => {
-    //스타일
-    const style = {
-        bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-        container: `m-auto p-4`,
-        containerDate: `bg-slate-100 m-auto p-5`,
-        input: `p-3 w-full text-lg`,
-    };
-
     //useNavigate 활용하여 가져온 데이터 불러오기
     //- 채팅방 고유번호, 회원 고유번호, 업체 고유번호
     const location = useLocation();
     const locationData = location.state;
     const chatRoomSeq = location.pathname.split("/")[3];
     const [content, setContent] = useState("");
-    const memberSeq = 101;
     const [chatList, setChatList] = useState([]); // 채팅 기록
+
+    //로그인 유저 확인
+    const token = useSelector((state) => state.Auth.token);
 
     // 클라이언트 상태 추가
     const [stompClient, setStompClient] = useState(null);
@@ -42,6 +37,7 @@ const ChattingRoom = () => {
     //웹소켓 연결
     const connect = () => {
         try {
+            console.log("로그인 접속자 확인", token.type, token.userNick);
             const newClient = new StompJs.Client({
                 brokerURL: "ws://localhost:8085/stomp-chat",
                 connectHeaders: {
@@ -98,14 +94,15 @@ const ChattingRoom = () => {
             return;
         }
 
-        console.log("propertied : ", chatRoomSeq, memberSeq, content);
+        console.log("propertied : ", chatRoomSeq, token.userSeq, content, token.type, token.userNick);
+
         stompClient.publish({
             destination: "/pub/chat/" + chatRoomSeq,
             body: JSON.stringify({
                 chattingCreateDt: new Date().toString(),
-                chattingSender: memberSeq,
+                chattingSender: token.userNick,
                 chattingContents: content,
-                chattingSenderType: "N",
+                chattingSenderType: token.type,
             }),
         });
         setContent("");
@@ -115,7 +112,7 @@ const ChattingRoom = () => {
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
     const msgBox = () => {
         return chatList.map((item, idx) => {
-            if (item.chattingSenderType != "N") {
+            if (item.chattingSenderType != "member") {
                 return (
                     <div key={idx}>
                         <div className="mt-3">
