@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.json.simple.JSONObject;
 
+import com.smhrd.todowedding.model.KakaoMapsDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
 
@@ -50,4 +51,9 @@ public interface PartnerMapper {
     //기업 전체 정보 조회 
     @Select("select * from tw_partner")
     public List<JSONObject> findAllPartner();
+
+    //기업 정보 카카오맵 으로 보내기
+    @Select("SELECT partner_seq, partner_name, partner_address, partner_latitude, partner_longitude FROM tw_partner WHERE partner_latitude IS NOT NULL AND partner_longitude IS NOT NULL")
+    public List<KakaoMapsDto> getLocations();
+
 }

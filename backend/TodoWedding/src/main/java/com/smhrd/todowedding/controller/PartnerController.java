@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smhrd.todowedding.model.KakaoMapsDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.service.PartnerService;
 
@@ -66,4 +67,12 @@ public class PartnerController {
 	public List<JSONObject> findAllPartner(){
 		return partnerService.findAllPartner();
 	}
+
+	
+	// 카카오맵에 표시할 업체 데이터 프론트로 보내기 (위치 정보)
+    @GetMapping("/kakaomaps")
+    public ResponseEntity<List<KakaoMapsDto>> getLocations() {
+        List<KakaoMapsDto> locations = partnerService.getLocations();
+        return new ResponseEntity<>(locations, HttpStatus.OK);
+   }
 }

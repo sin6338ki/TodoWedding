@@ -33,6 +33,8 @@ public class PartnerDTO {
 	private String partner_registration_dt; // 업체 등록일
 	private String partner_code; // 구분코드
 	private String admin_yn; // 관리자 구분
+	private String partner_latitude; // 업체 위도
+	private String partner_longitude; // 업체 경도
 	
 	@Builder
 	PartnerDTO(String partner_id, String partner_pw){
