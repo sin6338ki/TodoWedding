@@ -23,7 +23,6 @@ import CheckItemList from "./components/CheckList/CheckItemList";
 import CheckItemSeq from "./components/CheckList/CheckItemSeq";
 import DayCheckList from "./components/CheckList/DayCheckList";
 import DayCheckSeq from "./components/CheckList/DayCheckSeq";
-import UpdateSchedule from "./components/Calendar/UpdateSchedule";
 import Schedule from "./components/Calendar/Schedule";
 import TodoList from "./components/TodoList/TodoList";
 import Map from "./components/Map";

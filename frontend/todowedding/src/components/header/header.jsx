@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
  * 수정 :
  *  - 카카오 로그인 후 닉네임 적용, 로그아웃 세션 삭제 및 메인페이지 경로 수정 (양수진, 2023.09.08)
  *  - redux값 사용 위해 로고 클릭시 메인페이지 이동 Link로 변경 (신지영, 2023.09.09)
+ *  - 카카오 로그인 후 바로 닉네임 렌더링 redux dispatch로 적용 (양수진, 2023.09.13)
  */
 
 const style = {
@@ -19,8 +20,8 @@ const style = {
 };
 
 const Header = () => {
-    const [kakaoUserNick, setKakaoUserNick] = useState(""); // 로그인된 닉네임 상태
-
+        const kakaoUserNick = useSelector(state => state.User.kakaoUserNick); // 로그인된 닉네임 상태 (수정_09.13)
+        // const [kakaoUserNick, setKakaoUserNick] = useState(""); // 로그인된 닉네임 상태
     useEffect(() => {
         //카카오 로그인 정보 가져오기 - 헤더에서 따서 쓰기
         const KakaoUserSeq = sessionStorage.getItem("KakaoUserSeq");
@@ -41,13 +42,16 @@ const Header = () => {
             <div>
                 <div className="welcome-nick">
                     {kakaoUserNick ? ( // kakaoUserNick 값이 존재하면 로그인된 닉네임으로 표시
-                        <p className="text-sj">
+                    <>
+                            <p className="text-sj">
                             {" "}
                             {kakaoUserNick}님 환영합니다
+                            </p>
                             <Link to="/todowedding/login" id="login-btn">
                                 <button className={style.button}>{<GiHamburgerMenu />}</button>
                             </Link>
-                        </p>
+                            </>
+                        
                     ) : (
                         <Link to="/todowedding/login" className="main-login">
                             <span className="text-sm">로그인</span>

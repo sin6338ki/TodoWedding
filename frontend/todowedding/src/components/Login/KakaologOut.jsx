@@ -7,6 +7,7 @@ import { deleteToken } from "../../redux/reducers/AuthReducer";
 
 /*
  * 사용자가 로그아웃 버튼을 클릭하고 이 사이트에서만 로그아웃 클릭시 나오는 화면 (사용자가 카카오 로그인을 하면 사용자입장에선 안보여지는 페이지)
+ * 수정 : 로그아웃 버튼 클릭시 dispatch 초기화하여 초기화면 렌더링 (양수진, 2023.09.13)
  * 작성 : 서유광
  * 일자 : 2023.09.11
  */
@@ -38,6 +39,7 @@ const KakaologOut = () => {
                 // 성공적으로 로그아웃 처리가 되었다면 세션 스토리지의 토큰 정보 제거
                 // sessionStorage.removeItem('kakaoAccess');
                 dispatch(deleteToken(accessToken));
+                dispatch({ type: 'LOGOUT' }); // Logout 시 dispatch 초기화
                 sessionStorage.clear();
                 // 성공적으로 로그아웃 처리가 되었다면 세션 스토리지의 토큰 정보 제거
             })

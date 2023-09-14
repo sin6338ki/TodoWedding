@@ -18,9 +18,14 @@ const BudgetContainer = (props) => {
         if (props.isAddItem) {
             let lastedItemId = Math.max(...props.items.map((item) => item.id));
             let lastedItem = props.items.filter((item) => item.id === lastedItemId);
-            let lastedFilterBaseYear = lastedItem[0].date.getFullYear().toString();
+            // let lastedFilterBaseYear = lastedItem[0].date.getFullYear().toString();
+            // setFilterBaseYear(lastedFilterBaseYear);
+            // 날짜를 String 타입으로 바꾸면서 코드 수정 중
+        if (lastedItem.length > 0 && 'date' in lastedItem[0]) {
+            let lastedFilterBaseYear = new Date(lastedItem[0].date).getFullYear().toString();
             setFilterBaseYear(lastedFilterBaseYear);
         }
+    }
     }, [props.items]);
 
     if (Array.isArray(filteredItems) && filteredItems.length > 0) {
