@@ -1,0 +1,81 @@
+/**************************************************************************** FullCalendar
+FullCalendar 관련
+*******************/
+
+/* 일요일 날짜 빨간색 */
+.fc-day-sun a {
+    color: red !important;
+    text-decoration: none;
+  }
+  
+/* 전체 날짜 검정 */
+.fc-day a {
+    color: black;
+    text-decoration: none;
+    
+  }
+
+/* 이전 달 / 다음 달로 이동 버튼 */
+.fc-prev-button, .fc-next-button {
+    background-color:rgb(202, 181, 223) !important;
+    border-radius: 20px !important;
+    border-color: rgb(156, 117, 196) !important;
+    width: 50px;
+    height: 35px;
+    font-size: small !important;
+    margin-right: 5px !important;
+    align-items: center !important;
+    font-family: 'Pretendard-Regular' !important;
+   }
+
+/* today 버튼 */
+.fc-today-button {
+  background-color:rgb(182, 148, 216) !important;
+  border-radius: 10px !important;
+  border-color: rgb(156, 117, 196) !important;
+  width: 55px;
+  height: 35px;
+  font-size: small !important;
+  margin-right: 5px !important;
+  align-items: center !important;
+  font-family: 'Pretendard-Regular' !important;
+}
+
+/* month, week 버튼 */
+.fc-dayGridMonth-button, .fc-dayGridWeek-button {
+  background-color:rgb(182, 148, 216) !important;
+  border-radius: 10px !important;
+  border-color: rgb(156, 117, 196) !important;
+  width: 55px;
+  height: 35px;
+  font-size: small !important;
+  margin-right: 5px !important;
+  align-items: center !important;
+  font-family: 'Pretendard-Regular' !important;
+}
+
+/* 년도, 월 타이틀 */
+.fc-toolbar-title {
+  font-family: 'Pretendard-Regular';
+  font-size: x-large !important;
+}
+
+/* 주, 일 폰트 사이즈 */
+.fc-col-header-cell-cushion, .fc-daygrid-day-number {
+  font-size: small !important;
+  font-family: 'Pretendard-Regular';
+}
+
+/* 이벤트 표시 container */
+.fc-event-title-container {
+  height: 20px;
+  font-size: small ;
+  color:rgb(45, 36, 49) ;
+  font-family: 'Pretendard-Regular';
+  text-align: center;
+  cursor: pointer;
+}
+
+.fc-border-bg-color {
+  z-index: -2 !important;
+}

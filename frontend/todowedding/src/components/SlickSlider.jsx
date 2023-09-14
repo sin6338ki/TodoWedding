@@ -1,42 +1,42 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from 'react-router-dom';
+
 //React-Slick 라이브러리
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default class SlickSlider extends Component {
-  render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
-    return (
-      <div>
-        <h2> Single Item</h2>
-        <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-        </Slider>
-      </div>
-    );
-  }
+const SlickSlider = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
+  return (
+<div>
+      <h2> Simple Slider </h2>
+      <Slider {...settings}>
+        <div>
+          <Link to="/page1">
+            <img src="img1.jpg" alt="Image1"/>
+          </Link>
+        </div>
+        <div>
+          <Link to="/page2">
+            <img src="img2.jpg" alt="Image2"/>
+          </Link>
+        </div>
+        <div>
+          <Link to="/page3">
+            <img src="img3.jpg" alt="Image3"/>
+          </Link>  
+        </div>
+      </Slider>
+    </div>
+  );
 }
+
+export default SlickSlider;
