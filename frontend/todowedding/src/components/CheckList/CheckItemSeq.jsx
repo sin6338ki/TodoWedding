@@ -70,18 +70,8 @@ const addToDo = async (item) => {
     }
 };
 
-//     //checkbox에 체크하면 우측 +버튼 숨기기
-//    const handleCheckChange = (itemId, isChecked) => {
-//      setCheckedItems(prevCheckedItems => {
-//       if (isChecked) {
-//         return [...prevCheckedItems, itemId];
-//       } else {
-//         return prevCheckedItems.filter(id => id !== itemId);
-//       }
-//     });
-//   };
 
-// Todo List 페이지로 이동하는 함수
+// Todo List 페이지로 이동 
 const goToTodoListPage = () => {
     navigate('/todowedding/todolist');
   };

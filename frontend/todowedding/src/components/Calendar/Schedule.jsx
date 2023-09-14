@@ -13,10 +13,7 @@ import { Link } from "react-router-dom";
  */
 
 const style = {
-    bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-    container: `m-auto p-4`,
-    containerDate: `bg-slate-100 m-auto p-5`,
-    input: `p-3 w-full text-lg`,
+    input: `p-3 w-full text-lg`
 };
 
 const Schedule = () => {
@@ -151,12 +148,10 @@ const Schedule = () => {
     return (
         <div>
             <div className="add-container">
-                <form
+                <div
                     action="/schedule"
                     method="post"
-                    style={{ width: "480px" }}
-                    className={style.container}
-                    id="schedule-add-form"
+                    className="add-schedule-header"
                 >
                     <input
                         value={title}
@@ -166,8 +161,8 @@ const Schedule = () => {
                         style={{ textAlign: "center", border: "none", background: "transparent", outline: "none" }}
                         placeholder="일정 제목을 입력하세요"
                     />
-                </form>
-                <form style={{ width: "480px" }} className={style.containerDate} id="schedule-date">
+                </div>
+                <div className="add-schedule-date">
                     <h5>
                         일정 시작
                         <input
@@ -186,7 +181,7 @@ const Schedule = () => {
                             className="add-date"
                         />
                     </h5>
-                </form>
+                </div>
             </div>
             <button className="Add-Schedule-btn" onClick={createSchedule}>
                 캘린더 일정 추가하기

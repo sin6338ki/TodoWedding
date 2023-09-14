@@ -19,7 +19,6 @@ import Join from "./components/Member/Join";
 import Delete from "./components/Member/Delete";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
-import UpdateSchedule from "./components/Calendar/UpdateSchedule";
 import CheckItemList from "./components/CheckList/CheckItemList";
 import CheckItemSeq from "./components/CheckList/CheckItemSeq";
 import DayCheckList from "./components/CheckList/DayCheckList";
@@ -31,9 +30,10 @@ import Map from "./components/Map";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
+
 import "./tailwind.css";
 import "./index.css";
-import "./calendar.css";
+import "./FullCalendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WebImage from "./assets/images/web_image.png";
 
@@ -52,7 +52,7 @@ import AdminIndex from "./components/AdminPage/Index";
 function AppContent() {
     return (
         <div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center"}}>
                 <div>
                     <Header />
 
@@ -110,7 +110,7 @@ function AppContent() {
 
                 {/*웹 페이지 */}
 
-                <div style={{ height: "100%" }}>
+                <div style={{ height: "100%"}}>
                     <img src={WebImage} alt="web-image" />
                 </div>
             </div>

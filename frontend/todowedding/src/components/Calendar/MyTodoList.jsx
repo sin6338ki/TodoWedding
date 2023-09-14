@@ -27,13 +27,12 @@ const fetchData = () => {
     try {
         axios
             .get(`http://localhost:8085/todolist/123456789`) 
-            //`http://localhost:8085/todolist/${memberSeq}`
+            //.get(`http://localhost:8085/todolist/${memberSeq}`)
             .then((res) => {
-                console.log("findallTodolist 조회 response : ", res.data);
+                //console.log("findallTodolist 조회 response : ", res.data);
                 
                 // 최근 투두리스트 3개만 가져오기
                 const firstThreeItems = res.data.slice(0, 3);
-                
                 setTodos(firstThreeItems);
             })
             .catch((err) => {
