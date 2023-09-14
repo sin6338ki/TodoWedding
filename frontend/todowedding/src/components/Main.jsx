@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Guide from "../../src/assets/images/todo_main.png";
 
 //메인 메뉴 아이콘
 import Calendar from "../../src/assets/images/icon/calendar_bg.png";
@@ -9,9 +8,9 @@ import Budget from "../../src/assets/images/icon/budget_bg.png";
 import Map from "../../src/assets/images/icon/map_bg.png";
 
 //React-Slick 라이브러리
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SlickSlider from "./SlickSlider";
 
 import { useSelector } from "react-redux";
 
@@ -19,6 +18,8 @@ import { useSelector } from "react-redux";
  * 메인페이지
  * 작성자 : 서현록
  * 작성일 : 2023.09.05
+ * 수정 : 
+ *  - Slick-Slider로 웨딩 가이드 연결 (서현록, 2023.09.14)
  */
 
 const Main = () => {
@@ -36,7 +37,7 @@ const Main = () => {
     return (
         <div>
             <div>
-                <img src={Guide} alt="Guide" />
+                <SlickSlider />
             </div>
             <div style={{ display: "flex" }}>
                 <Link to="todowedding/calendar" className="main-menu">

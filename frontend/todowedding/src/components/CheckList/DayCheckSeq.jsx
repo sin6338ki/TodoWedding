@@ -8,7 +8,7 @@ import axios from 'axios';
  */
 
 const DayCheckSeq = ({ checkdaySeq }) => { 
-    const [contents, setContents] = useState([]);
+  const [contents, setContents] = useState([]);
 
   useEffect(() => {
     getDayCheckContents(checkdaySeq);

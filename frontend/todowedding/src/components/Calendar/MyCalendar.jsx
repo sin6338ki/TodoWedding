@@ -5,6 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 /*
  * FullCalendar 라이브러리 렌더링 페이지
@@ -18,19 +19,23 @@ const MyCalendar = () => {
   const [events,setEvents] = useState([]);
   const [selectedEvent,setSelectedEvent] = useState(null);
 
+  //userSeq 받아오기
+  const token = useSelector((state) => state.Auth.token);
+  const userSeq = token.userSeq;
+
   //전체 일정 불러오기
   useEffect(() =>{
-      axios.get(`http://localhost:8085/all-schedule/123456789`)
+      axios.get(`http://localhost:8085/all-schedule/${userSeq}`)
           .then((res) => {
            
-      // 이벤트 컬러 화사한 색상으로만 뽑기
+      // 이벤트 컬러 화사한 색상으로만 뽑기------------------------------------------------------
             const fetchedEvents = res.data.map((event, idx) => {
               const endDate = new Date(event.schedule_end_dt);
               endDate.setDate(endDate.getDate()+1);
             
               const hue = Math.round(Math.random() * 360); // 전체 hue 범위 내에서 랜덤한 값 생성
-              const saturation =80;
-              const lightness=60;
+              const saturation =80; // 채도
+              const lightness=60; // 밝기
               const alpha=0.5; // 투명도 설정
             
             return {
@@ -40,7 +45,7 @@ const MyCalendar = () => {
                 title: event.schedule_contents,
                 color : `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha})`
             }});
-      // end
+      // end----------------------------------------------------------------------------------
               setEvents(fetchedEvents);
           })
           .catch((err) => {

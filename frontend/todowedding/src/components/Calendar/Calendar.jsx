@@ -1,5 +1,4 @@
-import React, { useState, useEffect} from 'react';
-import axios from "axios";
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MyCalendar from './MyCalendar'
@@ -15,22 +14,9 @@ import dday_checklist from "../../assets/images/dday_checklist.png"
  * 작성일 : 2023.09.14
  */
 
-
 const Calendar = () => {
   const nav = useNavigate();
 
-  // 캘린더 하단 투두리스트
-    useEffect(() => {
-      //axios.get(`http://localhost:8085/todolist/${memberSeq}`)
-      axios.get(`http://localhost:8085/todolist/123456789`)
-        .then((res) => {
-          const fetchDataAndCout = async () => {
-              await fetchData();
-              cntTodoList(); //수정
-          };
-        })
-    })
-  
     //일정추가 버튼 클릭 시 이동
     const addSchedule = (() => {
       nav('/todowedding/schedule');

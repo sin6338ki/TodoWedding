@@ -21,7 +21,7 @@ const style = {
 
 const Header = () => {
         const kakaoUserNick = useSelector(state => state.User.kakaoUserNick); // 로그인된 닉네임 상태 (수정_09.13)
-        // const [kakaoUserNick, setKakaoUserNick] = useState(""); // 로그인된 닉네임 상태
+        //const [kakaoUserNick, setKakaoUserNick] = useState(""); // 로그인된 닉네임 상태
     useEffect(() => {
         //카카오 로그인 정보 가져오기 - 헤더에서 따서 쓰기
         const KakaoUserSeq = sessionStorage.getItem("KakaoUserSeq");

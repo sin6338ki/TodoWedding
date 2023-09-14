@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MyTodo from "./MyTodo"
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 /*
  * 일정관리 페이지 하단 - 최근 TodoList 3가지 불러오기
@@ -9,6 +10,9 @@ import axios from "axios";
  */
 
 const MyTodoList = () => {
+  //userSeq 받아오기
+  const token = useSelector((state) => state.Auth.token);
+  const userSeq = token.userSeq;
 
   const [todos, setTodos] = useState([]);
 
@@ -26,11 +30,9 @@ const MyTodoList = () => {
 const fetchData = () => {
     try {
         axios
-            .get(`http://localhost:8085/todolist/123456789`) 
-            //.get(`http://localhost:8085/todolist/${memberSeq}`)
+            .get(`http://localhost:8085/todolist/${userSeq}`)
             .then((res) => {
-                //console.log("findallTodolist 조회 response : ", res.data);
-                
+
                 // 최근 투두리스트 3개만 가져오기
                 const firstThreeItems = res.data.slice(0, 3);
                 setTodos(firstThreeItems);

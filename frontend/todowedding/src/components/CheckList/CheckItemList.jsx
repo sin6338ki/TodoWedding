@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const CheckItemList = () => {
   const [checkItems, setCheckItems] = useState([]);
   const nav = useNavigate();
-
+  
   useEffect(() => {
     fetchCheckItems();
   }, []);
@@ -31,8 +31,8 @@ const CheckItemList = () => {
   //항목 클릭하면 해당 체크리스트로 이동
   const handleClick = (item) => {
     nav(`/checkitem/${item.check_item_seq}`, { state: item });
+    console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq)
   }
-
 
   return (
     <div>
