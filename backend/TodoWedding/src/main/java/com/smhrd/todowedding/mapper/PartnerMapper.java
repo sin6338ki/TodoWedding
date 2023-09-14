@@ -53,7 +53,7 @@ public interface PartnerMapper {
     public List<JSONObject> findAllPartner();
 
     //기업 정보 카카오맵 으로 보내기
-    @Select("SELECT partner_seq, partner_name, partner_address, partner_latitude, partner_longitude FROM tw_partner WHERE partner_latitude IS NOT NULL AND partner_longitude IS NOT NULL")
+    @Select("SELECT partner_seq, partner_name, partner_address, partner_latitude, partner_longitude , partner_tel, partner_link, partner_code FROM tw_partner WHERE partner_latitude IS NOT NULL AND partner_longitude IS NOT NULL")
     public List<KakaoMapsDto> getLocations();
 
 }

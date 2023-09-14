@@ -21,4 +21,7 @@ public class KakaoMapsDto {
 	private String partner_address; // 업체 주소
 	private String partner_latitude; // 업체 위도
 	private String partner_longitude; // 업체 경도
+	private String partner_link; // 업체 홈페이지
+	private String partner_tel; // 업체 전화번호
+	private String partner_code; // 업체 구분코드 ex) 위딩홀, 스튜디오
 }

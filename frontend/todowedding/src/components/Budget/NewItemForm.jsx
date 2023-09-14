@@ -79,6 +79,8 @@ const NewItemForm = () => {
             amountType: enteredAmountType,
         };
 
+        console.log("백엔드에 보낼 데이터 확인",enteredData);
+        
     // backend 데이터 전송
     axios.post('http://localhost:8085/budget/insert', enteredData)
     .then(response => {

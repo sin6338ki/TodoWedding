@@ -42,7 +42,7 @@ public class KakaoLoginService {
 	private static OAuthToken oauthToken = null;
 
 	public Map<String, Object> getAccessToken(String code) {
-		System.out.println("서비스에서 받은 카카오 코드값: " + code);
+		log.info("서비스에서 받은 카카오 코드값: " + code);
 
 		RestTemplate rt = new RestTemplate();
 
@@ -64,7 +64,7 @@ public class KakaoLoginService {
 		// Http 요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음.
 		ResponseEntity<String> response = rt.exchange("https://kauth.kakao.com/oauth/token", HttpMethod.POST,
 				kakaoTokenRequest, String.class);
-		System.out.println("토큰 요청 완료" + response.getBody());
+		log.info("토큰 요청 완료" + response.getBody());
 
 		ObjectMapper objectMapper = new ObjectMapper();
 //		OAuthToken oauthToken = null;
@@ -76,8 +76,8 @@ public class KakaoLoginService {
 			e.printStackTrace();
 		}
 
-		System.out.println("카카오 엑세스 토큰 : " + oauthToken.getAccess_token());
-		System.out.println("카카오 리프레스 토근 : " + oauthToken.getRefresh_token());
+		log.info("카카오 엑세스 토큰 : " + oauthToken.getAccess_token());
+		log.info("카카오 리프레스 토근 : " + oauthToken.getRefresh_token());
 
 		RestTemplate rt2 = new RestTemplate();
 
@@ -93,7 +93,7 @@ public class KakaoLoginService {
 		ResponseEntity<String> response2 = rt2.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST,
 				kakaoProfileRequest2, String.class);
 
-		System.out.println("회원정보 조회" + response2.getBody());
+		log.info("회원정보 조회" + response2.getBody());
 
 		ObjectMapper objectMapper2 = new ObjectMapper();
 		KakaoProfile kakaoProfile = null;
@@ -109,11 +109,11 @@ public class KakaoLoginService {
 		}
 		
 		
-		System.out.println("닉네임 : " + kakaoProfile.getProperties().nickname);
-		System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().email);
-		System.out.println("성별 : " + kakaoProfile.getKakao_account().getGender());
-		System.out.println("나이 : " + kakaoProfile.getKakao_account().age_range);
-		System.out.println("카카오 아이디(번호) : " + kakaoProfile.getId());
+		log.info("닉네임 : " + kakaoProfile.getProperties().nickname);
+		log.info("카카오 이메일 : " + kakaoProfile.getKakao_account().email);
+		log.info("성별 : " + kakaoProfile.getKakao_account().getGender());
+		log.info("나이 : " + kakaoProfile.getKakao_account().age_range);
+		log.info("카카오 아이디(번호) : " + kakaoProfile.getId());
 		
 		String nickname = kakaoProfile.getProperties().nickname;
 		String email = kakaoProfile.getKakao_account().email;
@@ -122,13 +122,13 @@ public class KakaoLoginService {
 		Long memberKakaoId = kakaoProfile.getId();
 		
 		int idCheck = kakaoLoginMapper.kakaoIdCheck(memberKakaoId);
-		System.out.println("아이디 중복 리턴"+idCheck);
+		log.info("아이디 중복 리턴"+idCheck);
 		
 		// memberKakaoId 중복 확인후 DB 저장
 		if(idCheck > 0) {
-			System.out.println(" db저장 안함 "+idCheck);
+			log.info(" db저장 안함 "+idCheck);
 		}else {
-			System.out.println("새로운 카카오 정보-> db저장 ");
+			log.info("새로운 카카오 정보-> db저장 ");
 			Member member = new Member(nickname, email, gender, ageRange, memberKakaoId);
 			 // DB에 저장하기 위해 매퍼 메서드 호출
 			kakaoLoginMapper.kakaoUserData(member);
