@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import * as StompJs from "@stomp/stompjs";
 import "../../tailwind.css";
 import { useSelector } from "react-redux"; //redux 액션 실행
+import axios from "axios";
 /*
  * 실제 채팅방 - 채팅목록 및 채팅 보낼 수 있는 창
  * 작성자 : 신지영
@@ -29,10 +30,41 @@ const ChattingRoom = () => {
     //없다면 새로운 채팅방 생성 및 구독
 
     useEffect(() => {
+        //이전 채팅 내역 불러오기
+        axios
+            .get(`http://localhost:8085/chat/message/${chatRoomSeq}`)
+            .then((res) => {
+                console.log("채팅 내역 불러오기", res.data);
+                res.data.forEach((element) => {
+                    const chatting = {
+                        chatRoomSeq: element.chat_room_seq,
+                        chattingContents: element.chatting_contents,
+                        chattingCreateDt: element.chatting_create_dt,
+                        chattingSender: element.chatting_sender,
+                        chattingSenderType: element.chatting_sender_type,
+                        chattingSeq: element.chatting_seq,
+                    };
+                    setChatList((chats) => [...chats, chatting]);
+                });
+            })
+            .catch((err) => {
+                console.log("채팅 내역 불러오기 error", err);
+            });
         //최초 렌더링시 웹소켓 연결
         connect();
         return () => disConnect();
     }, [location]);
+
+    //스크롤 적용
+    useEffect(() => {
+        // 채팅 메시지가 출력되는 컨테이너 가져오기
+        const chatContainer = document.getElementById("chatting-contents-container");
+
+        // 스크롤 위치를 가장 아래쪽으로 설정
+        // 'scrollTop' 속성은 요소의 상단 가장자리와 그 요소의 콘텐츠 뷰포트의 상단 가장자리 사이의 거리
+        // 'scrollHeight' 속성은 padding을 포함하지만 margin과 border를 포함하지 않는 이 요소의 전체 내용 높이
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }, [chatList]); //메시지가 추가될 때마가 높이 조정
 
     //웹소켓 연결
     const connect = () => {
@@ -96,10 +128,19 @@ const ChattingRoom = () => {
 
         console.log("propertied : ", chatRoomSeq, token.userSeq, content, token.type, token.userNick);
 
+        let sendTime = new Date();
+        let year = sendTime.getFullYear();
+        let month = ("0" + (sendTime.getMonth() + 1)).slice(-2);
+        let day = ("0" + sendTime.getDate()).slice(-2);
+        let hours = ("0" + sendTime.getHours()).slice(-2);
+        let minutes = ("0" + sendTime.getMinutes()).slice(-2);
+        let seconds = ("0" + sendTime.getSeconds()).slice(-2);
+        let dateString = month + "/" + day + " " + hours + ":" + minutes;
+
         stompClient.publish({
             destination: "/pub/chat/" + chatRoomSeq,
             body: JSON.stringify({
-                chattingCreateDt: new Date().toString(),
+                chattingCreateDt: dateString,
                 chattingSender: token.userNick,
                 chattingContents: content,
                 chattingSenderType: token.type,
@@ -112,32 +153,30 @@ const ChattingRoom = () => {
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
     const msgBox = () => {
         return chatList.map((item, idx) => {
-            if (item.chattingSenderType != "member") {
+            if (item.chattingSenderType != "M") {
                 return (
-                    <div key={idx}>
-                        <div className="mt-3">
-                            <span>{item.chattingContents}</span>
-                        </div>
-                        <span>{item.chattingCreateDt}</span>
-                        <div>
+                    <div key={idx} className="snap-center mr-3 my-2 text-xs w-[400px] ml-3">
+                        <div className="my-1 text-left px-2 py-1 rounded-full bg-[#FFD7A9] border-none w-fit">
                             <span>{item.chattingSender}</span>
+                        </div>
+                        <div className="flex flex-row">
+                            <div className="py-2 mr-1 text-left shadow-md border rounded-md border-pink-300 shadow-white-300 min-w-[150px]  max-w-[220px]">
+                                <span className="px-2">{item.chattingContents}</span>
+                            </div>
+                            <div className="mt-1 text-left text-[8px]">
+                                <span>{item.chattingCreateDt}</span>
+                            </div>
                         </div>
                     </div>
                 );
             } else {
                 return (
-                    <div
-                        key={idx}
-                        className="shadow-md shadow-gray-400 border rounded-xl border-black mr-3 my-2 text-xs w-max"
-                    >
-                        <div className="mt-3 mr-5 text-right">
-                            <span>{item.chattingContents}</span>
-                        </div>
-                        <div className="mt-1 mr-5 text-right">
+                    <div key={idx} className="flex flex-row snap-center self-end my-2 text-xs mr-3">
+                        <div className="mr-1 text-right text-[8px] align-self-end">
                             <span>{item.chattingCreateDt}</span>
                         </div>
-                        <div className="mt-1 mr-5 text-right">
-                            <span>{item.chattingSender}</span>
+                        <div className="py-2 shadow-md shadow-gray-300 border rounded-md border-black mt-3 text-right min-w-[150px] max-w-[220px]">
+                            <span className="px-2">{item.chattingContents}</span>
                         </div>
                     </div>
                 );
@@ -149,7 +188,7 @@ const ChattingRoom = () => {
         <div>
             <div
                 id="chatting-container"
-                className="mx-auto mt-10 flex flex-col border rounded-2xl border-black w-5/6 h-full"
+                className="h-[608px] mx-auto mt-10 flex flex-col border rounded-2xl border-black w-5/6"
             >
                 <div
                     id="chatting-banner"
@@ -157,7 +196,10 @@ const ChattingRoom = () => {
                 >
                     <p className="text-left ml-9 mt-2">1:1 상담하기</p>
                 </div>
-                <div id="chatting-contents-container" className="flex flex-col h-[430px]">
+                <div
+                    id="chatting-contents-container"
+                    className="scrollbar-hide snap-y flex flex-col h-[430px] overflow-y-auto"
+                >
                     {msgBox()}
                 </div>
                 <div id="chatting-input-container" className="flex flex-row bg-[#F4F4F4] h-32 rounded-b-2xl">

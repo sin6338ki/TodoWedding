@@ -41,7 +41,7 @@ public interface ChatMapper {
 	public int deleteChatroom(Long chatRoomSeq);
 	
 	//chatRoomSeq에 따른 전체 메세지 조회 
-	@Select("select chatting_create_dt, chatting_contents, chatting_sender_type from tw_chatting where chat_room_seq=#{chatRoomSeq}")
+	@Select("select * from tw_chatting where chat_room_seq=#{chatRoomSeq}")
 	public List<JSONObject> findChatMessage(Long chatRoomSeq);
 	
 }
