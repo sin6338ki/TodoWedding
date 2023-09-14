@@ -17,7 +17,9 @@ const style = {
 };
 
 const Schedule = () => {
-    const token = useSelector((state) => state.Auth.token);
+  //userSeq 받아오기
+  const token = useSelector((state) => state.Auth.token);
+  const userSeq = token.userSeq;
 
     useEffect(() => {
         console.log("accessToken : ", token);
@@ -42,7 +44,7 @@ const Schedule = () => {
                 scheduleStartDt: startDate,
                 scheduleEndDt: endDate,
                 scheduleContents: title,
-                memberSeq: 123456789,
+                memberSeq: userSeq,
             };
             await axios
                 .post("http://localhost:8085/schedule", data)
@@ -68,7 +70,7 @@ const Schedule = () => {
             // boot에서 쓰는 dto참조해서 가져오기
             const data = {
                 todolistContents: title,
-                memberSeq: 123456789,
+                memberSeq: userSeq,
             };
 
             //backend axios통신
@@ -90,14 +92,13 @@ const Schedule = () => {
     const allSchedule = () => {
         try {
             axios
-                .get(`http://localhost:8085/all-schedule/${memberSeq}`)
-                //.get(`http://localhost:8085/all-schedule/123456789`)
+                .get(`http://localhost:8085/all-schedule/${userSeq}`)
                 .then((res) => {
-                    console.log("findAllSchedule 조회 response : ", res.data);
+                    console.log("전체 일정 조회 response : ", res.data);
                     setSchedule(res.data);
                 })
                 .catch((err) => {
-                    console.log("findAllSchedule 조회 error : ", err);
+                    console.log("전체 일정 조회 error : ", err);
                 });
         } catch (error) {
             console.error("Error", error);

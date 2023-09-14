@@ -54,7 +54,7 @@ const DayCheckList = () => {
         }
     };
 
-    // react-select 컴포넌트 선택 전 / 후 스타일 적용
+    // react-select 컴포넌트 선택 전 / 후 스타일 적용------------------------------------------
     const styles = {
         control: (provided) => ({
             ...provided,

@@ -18,17 +18,6 @@ import dday_checklist from "../../assets/images/dday_checklist.png";
 const Calendar = () => {
     const nav = useNavigate();
 
-    // 캘린더 하단 투두리스트
-    useEffect(() => {
-        //axios.get(`http://localhost:8085/todolist/${memberSeq}`)
-        axios.get(`http://localhost:8085/todolist/101`).then((res) => {
-            const fetchDataAndCout = async () => {
-                await fetchData();
-                cntTodoList(); //수정
-            };
-        });
-    });
-
     //일정추가 버튼 클릭 시 이동
     const addSchedule = () => {
         nav("/todowedding/schedule");

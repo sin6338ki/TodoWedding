@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import addTodo from '../../assets/images/icon/plus (1).png'
+import { useSelector } from "react-redux";
 
 // React-Toastify 알림창
 import { toast, ToastContainer } from 'react-toastify';
@@ -20,6 +21,10 @@ const CheckItemSeq = () => {
   const [checkedItems, setCheckedItems] = useState([]);
   const navigate = useNavigate();
  
+  //userSeq 받아오기
+  const token = useSelector((state) => state.Auth.token);
+  const userSeq = token.userSeq;
+
   useEffect(() => {
     console.log(location.state);
     fetchItems();
@@ -38,11 +43,11 @@ const CheckItemSeq = () => {
   };
 
   //+ 버튼 누르면 Todo List에 추가
-const addToDo = async (item) => {
-    console.log("Adding to ToDo List: ", item.checkitem_list_contents);
+  const addToDo = async (item) => {
+    console.log("Todo List에 추가 내용 : ", item.checkitem_list_contents);
     const data = {
         todolistContents: item.checkitem_list_contents,
-        memberSeq: 123456789, // 실제 멤버 ID로 교체
+        memberSeq: userSeq,
     };
     try {
         const response = await axios.post('http://localhost:8085/todolist', data);
@@ -90,9 +95,7 @@ const goToTodoListPage = () => {
         <div className='checkitemseq-item'>
             {items.map((item, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
-                    <input type="checkbox"
-                        // onChange={(e) => handleCheckChange(item.checkitem_list_seq, e.target.checked)}
-                    />
+                    <input type="checkbox"/>
                     <p className='checkitemseq-content'>{item.checkitem_list_contents}</p>
                     {!checkedItems.includes(item.checkitem_list_seq) && (
                         <button className='checkitemseq-plus'>

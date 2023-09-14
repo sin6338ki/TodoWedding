@@ -11,7 +11,6 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 const UpdateSchedule = () => {
   const location = useLocation();
   const nav = useNavigate();
-
   const { scheduleSeq } = useParams();
 
   const [title, setTitle] = useState(location.state.title);
@@ -20,7 +19,7 @@ const UpdateSchedule = () => {
 
   const style = {
     input: `p-3 w-full text-lg`
-};
+  };
 
   // 일정 수정 함수
   const updateSchedule = async (e) => {
