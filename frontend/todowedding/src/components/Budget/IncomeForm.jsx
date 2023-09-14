@@ -1,5 +1,3 @@
-
-
 import React, { useCallback, useState, useContext, useEffect } from "react";
 import { ItemDispatchContext } from "./BudgetApp";
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
@@ -14,7 +12,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
     // const [incomeDt, setIncomeDt] = useState("");
     // const [incomeContents, setIncomeContents] = useState("");
     // const [incomeCost, setIncomeCost] = useState("");
-    const [enteredAmountType, setEnteredAmountType] = useState("income");
+    // const [enteredAmountType, setEnteredAmountType] = useState("income");
 
     const [isTitleSizeOver, setIsTitleSizeOver] = useState(false);
     const [isEnteredWrongAmount, setIsEnteredWrongAmount] = useState(false);
@@ -31,7 +29,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
 
     // 제목
     const titleChangeHandler = (event) => {
-        console.log("제목 입력 :" , event.target.value);
+        // console.log("제목 입력 :" , event.target.value);
         let isSizeOver = event.target.value.length > TITLE_SIZE ? true : false;
         setIsTitleSizeOver(isSizeOver);
 
@@ -40,6 +38,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
 
     // 금액
     const amountChangeHandler = (event) => {
+        console.log("금액 입력 :" , event.target.value);
         let isNotNumber = /^[^1-9][^0-9]{0,11}$/g.test(event.target.value) ? true : false;
         setIsEnteredWrongAmount(isNotNumber);
         if (isNotNumber) return;
@@ -59,11 +58,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
 
     setIncomeData(incomeData);
 
-// 입력창 초기화
-// setIncomeDt("");
-// setIncomeContents("");
-// setIncomeCost("");
-// setEnteredAmountType("income");
+
 
 // stopEditingHandler();
   }, [incomeDt, incomeCost, incomeContents]);
@@ -112,7 +107,6 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
                         10억 미만의 정수만 입력할 수 있어요.
                     </span>
                 </div>
-
                 <input
                     type="text"
                     value={incomeCost}

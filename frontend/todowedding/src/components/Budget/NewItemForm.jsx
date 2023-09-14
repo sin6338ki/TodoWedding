@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useContext } from "react";
-// import코드 (ItemDispatchContext)app.js 추가 입력 하기
 import { ItemDispatchContext } from "./BudgetApp";
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
 import { StopEditContext } from "./NewItemContainer";
@@ -13,15 +12,15 @@ const NewItemForm = () => {
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
 
-    //props 
+    //props - 수입
     const [incomeDt, setIncomeDt] = useState("");
     const [incomeContents, setIncomeContents] = useState("");
     const [incomeCost, setIncomeCost] = useState("");
 
     const TITLE_SIZE = 35;
 
-    const [enteredDate, setEnteredDate] = useState("");
-    const [enteredTitle, setEnteredTitle] = useState("");
+    const [budgetDate, setBudgetDate] = useState("");
+    const [budgetTitle, setBudgetTitle] = useState("");
     const [budgetCost, setBudgetCost] = useState("");
     const [enteredAmountType, setEnteredAmountType] = useState("income");
 
@@ -29,6 +28,10 @@ const NewItemForm = () => {
     const [budgetRole, setBudgetRole] = useState("");
     const [budgetMemo, setBudgetMemo] = useState("");
     const [budgetExpenseCost,setBudgetExpenseCost] = useState("")
+
+    const [enteredDate, setEnteredDate] = useState("");
+   
+    
 
     // 날짜를 문자열로 변환하는 함수
         const formatDate = (date) => {
@@ -53,16 +56,22 @@ const NewItemForm = () => {
     };
 
       // back에서 BudgetDto에 맞춰 값 넣어주기 -->9/13 수정 
-      const enteredData = {     
-        id: nextItemId,
-        budget_expense_dt: formatDate(new Date(enteredDate)),  //new Date(enteredDate)
-        budget_item: enteredTitle,
-        budget_cost: deleteComma(budgetCost),
-        amountType: enteredAmountType, //수입인지 지출인지 구분 type
-       };
+    //   const enteredData = {     
+    //     id: nextItemId,
+    //     budget_expense_dt: formatDate(new Date(enteredDate)), 
+    //     budget_item: enteredTitle,
+    //     budget_cost: deleteComma(budgetCost),
+    //     amountType: enteredAmountType, //수입인지 지출인지 구분 type
+    //    };
 
     // 수입 데이터 보내줄 때
       const [incomeData, setIncomeData] = useState({});
+
+
+
+     // 지출 데이터 보내줄 때 (09.14)
+      const [newBudgetData, setNewBudgetData] = useState({});
+
 
     // 수입 데이터 입력 + 지출 데이터 DB입력 (insert) 
     const submitHandler = (event) => {
@@ -71,7 +80,7 @@ const NewItemForm = () => {
         if(enteredAmountType === 'income'){
             console.log("수입 선택", incomeData);
             axios.post(`http://localhost:8085/income/insert`,
-            incomeData,
+            incomeData // useState 훅으로 생성된 상태 사용
           )
 
             .then(response => {
@@ -79,7 +88,7 @@ const NewItemForm = () => {
                 console.log('수입날짜입력콘솔찍기', response);
 
                 if(response.status == 200){
-                    // 입력창 초기화
+                    // 수입 입력창 초기화
                     setIncomeDt("");
                     setIncomeContents("");
                     setIncomeCost("");
@@ -90,12 +99,24 @@ const NewItemForm = () => {
             .catch(error => {
                 console.error('지출 budget error!', error);
             })
-        }else{
-            console.log("지출 선택");
-            axios.post(`http://localhost:8085/budget/insert`,budgetData )
+        } else {
+            console.log("지출 선택", newBudgetData);
+            axios.post(`http://localhost:8085/budget/insert`,
+            newBudgetData // useState 훅으로 생성된 상태 사용
+          )
             .then(response => {
-                console.log("Data insert 확인 : ", budgetData);
+                console.log("Data insert 확인 : ", newBudgetData);
                 console.log('지출날짜입력콘솔찍기', response);
+
+                if(response.status == 200) {
+                    // 지출 입력창 초기화
+                    setBudgetDate("");
+                    setBudgetTitle("")
+                    setBudgetCost("");
+                    setBudgetExpenseCost("");
+                    setBudgetRole("");
+                    setBudgetMemo("");
+                }
             })
             .catch(error => {
                 console.error('지출 budget error!', error);
@@ -140,7 +161,7 @@ const NewItemForm = () => {
                 
                 {/* 무한루프 */}
                 {enteredAmountType === 'income' && <IncomeForm enteredDate={enteredDate}  
-                        enteredTitle={enteredTitle} 
+                        // enteredTitle={enteredTitle} 
                         budgetCost={budgetCost} 
                         setIncomeData={setIncomeData} 
                         incomeDt={incomeDt} 
@@ -149,7 +170,23 @@ const NewItemForm = () => {
                         setIncomeContents={setIncomeContents}
                         incomeCost={incomeCost}
                         setIncomeCost={setIncomeCost} />}
-                {enteredAmountType === 'expense' && <ExpenseForm enteredDate={enteredDate}  />}
+                {enteredAmountType === 'expense' && <ExpenseForm enteredDate={enteredDate} 
+                        // enteredTitle={enteredTitle} 
+                        budgetCost={budgetCost} 
+                        setNewBudgetData={setNewBudgetData} 
+                        budgetDate={budgetDate}
+                        setBudgetDate={setBudgetDate}
+                        budgetTitle={budgetTitle}
+                        setBudgetTitle={setBudgetTitle}
+                        setBudgetCost={setBudgetCost}
+                        budgetExpenseCost={budgetExpenseCost}
+                        setBudgetExpenseCost={setBudgetExpenseCost}
+                        budgetRole={budgetRole}
+                        setBudgetRole={setBudgetRole}
+                        budgetMemo={budgetMemo}
+                        setBudgetMemo={setBudgetMemo} 
+                        newBudgetData={newBudgetData}    
+                />}
 
 
             {/* 등록_취소 */}
