@@ -25,7 +25,6 @@ import DayCheckList from "./components/CheckList/DayCheckList";
 import DayCheckSeq from "./components/CheckList/DayCheckSeq";
 import Schedule from "./components/Calendar/Schedule";
 import TodoList from "./components/TodoList/TodoList";
-import Map from "./components/Map";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
@@ -48,6 +47,9 @@ import BudgetApp from "./components/Budget/BudgetApp";
 
 //관리자 페이지
 import AdminIndex from "./components/AdminPage/Index";
+
+//카카오 맵 관련
+import Map from "./components/KakaoMaps/Map";
 
 function AppContent() {
     return (

@@ -41,7 +41,7 @@ public class PartnerService {
 
 		// 입력 받은 아이디로 데이터베이스에서 파트너 정보를 조회
 		PartnerDTO foundPartner = partnerMapper.partnerLogin(partnerId, partnerPw);
-		System.out.println("foundPartner " + foundPartner);
+		log.info("foundPartner " + foundPartner);
 
 		if (foundPartner == null) {
 			// 아이디가 일치하는 파트너가 없는 경우

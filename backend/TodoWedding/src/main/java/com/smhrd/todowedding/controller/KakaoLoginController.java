@@ -53,7 +53,7 @@ public class KakaoLoginController {
 	
 	@GetMapping("/auth/kakao/callback")
 	public Map<String,Object> kakaoCallback(String code) throws NoSuchFieldException, SecurityException, IOException, JsonProcessingException { 
-		System.out.println("프론트에서 넘어온 카카오 코드값 : " + code);
+		log.info("프론트에서 넘어온 카카오 코드값 : " + code);
 		Map<String, Object> KakaoData = kakaoLoginService.getAccessToken(code);
 		
 		//토큰 정보 저장
@@ -76,7 +76,7 @@ public class KakaoLoginController {
 	// 회원 정보 전부 삭제
 	@GetMapping("/member/delete")
 	public ResponseEntity<String> deleteMember(@RequestParam("member_seq") int member_seq) {
-		System.out.println(member_seq);
+		log.info("삭제할 회원 시퀀스 확인 "+member_seq);
 		String resultMessage = memberService.deleteMember(member_seq);
 
 		if(resultMessage.equals("회원 정보 삭제 완료")) { 

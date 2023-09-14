@@ -16,11 +16,14 @@ import com.smhrd.todowedding.model.IncomeDto;
 import com.smhrd.todowedding.service.BudgetService;
 import com.smhrd.todowedding.service.IncomeService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /* 예산관리 컨트롤러
  * 작성 : 서유광
  * 일자 : 2023.09.11
  */
 
+@Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class BudgetController {
@@ -47,6 +50,7 @@ public class BudgetController {
 	// 지출괸리 삽입 (insert)
 	@PostMapping("/budget/insert")
 	public ResponseEntity<String> insertBudget(@RequestBody BudgetDto budgetinsert) {
+		log.info("프론트에서 넘어온 데이터 값 "+budgetinsert);
 		try {
 			budgetService.budgetInsert(budgetinsert);
 			return new ResponseEntity<>("지출관리 입력 성공", HttpStatus.OK);
@@ -70,6 +74,7 @@ public class BudgetController {
 	// 수입관리 추가 (insert)
 	@PostMapping("/income/insert")
 	public ResponseEntity<String> insertIncome(@RequestBody IncomeDto incomeinsert) {
+	
 		try {
 			incomeService.incomeInsert(incomeinsert);
 			return new ResponseEntity<>("수입관리 입력 성공", HttpStatus.OK);
