@@ -16,17 +16,31 @@ const DayCheckList = () => {
     const [checklist, setChecklist] = useState([]);
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [contents, setContents] = useState([]);
+
+    //카카오톡 공유하기 관련
+    const script = document.createElement("script");
+    const [message, setMessage] = useState("");
+    const [kakaoMessage, setKakaoMessage] = useState();
 
     useEffect(() => {
-        getDayChecklist();
+        const fetch = async () => {
+            await getDayChecklist();
+            await addKakaoSDK();
+        };
 
+        fetch();
+    }, []);
+
+    const addKakaoSDK = () => {
         //카카오톡 sdk 추가
-        const script = document.createElement("script");
         script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+        script.type = "text/javascript";
         script.async = true;
         document.body.appendChild(script);
+
         return () => document.body.removeChild(script);
-    }, []);
+    };
 
     const getDayChecklist = async () => {
         try {
@@ -84,25 +98,43 @@ const DayCheckList = () => {
         },
     };
 
+    useEffect(() => {
+        if (contents.length > 0 && selectedOption) {
+            console.log("selectOptions : ", selectedOption.label);
+            //메시지 가공
+            console.log("message 원본 : ", contents);
+            let newMessage = "💑TodoWedding만의 서비스! \n";
+            newMessage += "💌 결혼 예정일 " + selectedOption.label + " 체크리스트 💌\n\n";
+            contents.forEach((element, idx) => (newMessage += idx + 1 + ". " + element + "\n"));
+
+            setMessage(newMessage);
+        }
+    }, [selectedOption, contents]);
+
+    useEffect(() => {
+        console.log("message : ", message);
+        setKakaoMessage(message);
+    }, [message]);
+
     //카카오톡 공유하기
     const shareToKatalk = () => {
-        // //카카오 sdk script 부른 후 window.Kako로 접근
-        // if (window.Kakao) {
-        //     const kakao = window.Kakao;
-        //     //중복 initialization 방지
-        //     //카카오에서 제공하는 javascript key를 이용하여 initialize
-        //     if (!kakao.isInitailized()) {
-        //         kakao.init("016e5a925c17a41e9f83e8760a16fa80");
-        //     }
-        //     kakao.Link.sendDefault({
-        //         objectType: "text",
-        //         text: "기본 템플릿으로 제공되는 텍스트 템플릿은 텍스트를 최대 200자까지 표시할 수 있습니다. 텍스트 템플릿은 텍스트 영역과 하나의 기본 버튼을 가집니다. 임의의 버튼을 설정할 수도 있습니다. 여러 장의 이미지, 프로필 정보 등 보다 확장된 형태의 카카오톡 공유는 다른 템플릿을 이용해 보낼 수 있습니다.",
-        //         link: {
-        //             mobileWebUrl: "https://developers.kakao.com",
-        //             webUrl: "https://developers.kakao.com",
-        //         },
-        //     });
-        // }
+        //카카오 sdk script 부른 후 window.Kako로 접근
+        if (window.Kakao) {
+            const kakao = window.Kakao;
+            //중복 initialization 방지
+            //카카오에서 제공하는 javascript key를 이용하여 initialize
+            if (!kakao.isInitialized()) {
+                kakao.init("016e5a925c17a41e9f83e8760a16fa80");
+            }
+            kakao.Link.sendDefault({
+                objectType: "text",
+                text: kakaoMessage,
+                link: {
+                    mobileWebUrl: "https://developers.kakao.com",
+                    webUrl: "https://developers.kakao.com",
+                },
+            });
+        }
     };
 
     return (
@@ -127,7 +159,7 @@ const DayCheckList = () => {
                         <p>결혼예정일 {selectedOption.label} 체크리스트</p>
                     </div>
                     <div className="daychecklist-contents">
-                        <DayCheckSeq checkdaySeq={selectedOption.value} />
+                        <DayCheckSeq checkdaySeq={selectedOption.value} setContents={setContents} contents={contents} />
                     </div>
                     <div>
                         <button
@@ -136,7 +168,7 @@ const DayCheckList = () => {
                                 shareToKatalk();
                             }}
                         >
-                            <p>내 카카오톡으로 보내기</p>
+                            <p>카카오톡 공유하기</p>
                         </button>
                     </div>
                 </>
