@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Select from "react-select";
 import DayCheckSeq from "./DayCheckSeq";
+import { useSelector } from "react-redux";
 
 /*
  * D-Day 체크리스트
  * 작성자 : 서현록
  * 작성일 : 2023.09.13
+ * 수정
+ *  - 카카오톡 공유하기 api 연동 기능 추가 (신지영, 2023.09.14)
  */
 
 const DayCheckList = () => {
@@ -16,6 +19,13 @@ const DayCheckList = () => {
 
     useEffect(() => {
         getDayChecklist();
+
+        //카카오톡 sdk 추가
+        const script = document.createElement("script");
+        script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+        script.async = true;
+        document.body.appendChild(script);
+        return () => document.body.removeChild(script);
     }, []);
 
     const getDayChecklist = async () => {
@@ -74,6 +84,27 @@ const DayCheckList = () => {
         },
     };
 
+    //카카오톡 공유하기
+    const shareToKatalk = () => {
+        // //카카오 sdk script 부른 후 window.Kako로 접근
+        // if (window.Kakao) {
+        //     const kakao = window.Kakao;
+        //     //중복 initialization 방지
+        //     //카카오에서 제공하는 javascript key를 이용하여 initialize
+        //     if (!kakao.isInitailized()) {
+        //         kakao.init("016e5a925c17a41e9f83e8760a16fa80");
+        //     }
+        //     kakao.Link.sendDefault({
+        //         objectType: "text",
+        //         text: "기본 템플릿으로 제공되는 텍스트 템플릿은 텍스트를 최대 200자까지 표시할 수 있습니다. 텍스트 템플릿은 텍스트 영역과 하나의 기본 버튼을 가집니다. 임의의 버튼을 설정할 수도 있습니다. 여러 장의 이미지, 프로필 정보 등 보다 확장된 형태의 카카오톡 공유는 다른 템플릿을 이용해 보낼 수 있습니다.",
+        //         link: {
+        //             mobileWebUrl: "https://developers.kakao.com",
+        //             webUrl: "https://developers.kakao.com",
+        //         },
+        //     });
+        // }
+    };
+
     return (
         <div>
             <div className="checkitem-intro">
@@ -99,7 +130,12 @@ const DayCheckList = () => {
                         <DayCheckSeq checkdaySeq={selectedOption.value} />
                     </div>
                     <div>
-                        <button className="daychecklist-btn">
+                        <button
+                            className="daychecklist-btn"
+                            onClick={() => {
+                                shareToKatalk();
+                            }}
+                        >
                             <p>내 카카오톡으로 보내기</p>
                         </button>
                     </div>
