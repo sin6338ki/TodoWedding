@@ -58,8 +58,8 @@ const BudgetApp = () => {
     return (
         <>
             <ItemDispatchContext.Provider value={[memoizedDispatches, memoizedNextItemId]}>
-                <BudgetContainer items={items} isAddItem={isAddItem} />
                 <NewItemContainer />
+                <BudgetContainer items={items} isAddItem={isAddItem} />
             </ItemDispatchContext.Provider>
         </>
     );

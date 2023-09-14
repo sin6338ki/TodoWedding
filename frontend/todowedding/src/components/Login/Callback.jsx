@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
  * 작성자 : 서유광
  * 작성일 : 2023.09.07
  * 수정일 : 2023.09.09 (신지영) - ACCESS_TOKEN 관리/저장(쿠키, 리덕스)
+ * 수정일 : 2023.09.13 (양수진) - 사용자 닉네임 dispatch 
  */
 
 const Callback = () => {
@@ -47,6 +48,9 @@ const Callback = () => {
 
                 //쿠키에 Refresh Token, storage에 Access Token 저장
                 dispatch(setToken(access_token));
+
+                // 로그인을 할 때 user nickname을 dispatch 화면 즉시 렌더링
+                dispatch({ type: 'LOGIN', kakaoUserNick: res.data.userNick });
             })
             .catch((error) => {
                 console.log("유저 정보를 가져오는데 실패 ", error);

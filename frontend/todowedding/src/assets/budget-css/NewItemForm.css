@@ -66,3 +66,8 @@
   .new-item__form-actions button:first-child {
     margin-right: 32px;
   }
+
+   /* income일때 숨기기 */
+  /* .income-form {
+    display: none;
+  } */

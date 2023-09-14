@@ -7,6 +7,7 @@ import axios from "axios";
  * Todo 
  * 작성자 : 양수진
  * 작성일 : 2023.09.04
+ * 수정 : checkbox 클릭시 textComplete style적용 수정 (09.13)
  */
 
 const style = {
@@ -19,14 +20,7 @@ const style = {
 };
 
 const Todo = ({ todolistContents, deleteTodo }) => {
-    // const [isChecked, setIsChecked] = useState(false);
-    // const [isCheckedValue, setIsCheckedValue] = useState("N");
-
-    // const completedTodolist = () => {
-    //     setIsChecked(!isChecked);
-    //     toggleComplete();
-
-
+  
     const [isChecked, setIsChecked] = useState(todolistContents.completed);
     const [isCheckedValue, setIsCheckedValue] = useState(todolistContents.completed ? "Y" : "N" );
   
@@ -37,22 +31,9 @@ const Todo = ({ todolistContents, deleteTodo }) => {
     };
 
 
-
     useEffect(() => {
         console.log("todolistContents", todolistContents.todolistSeq);
       }, []);
-
-    //여기까지 코드수정중  
-
-    // useEffect(() => {
-    //     setIsCheckedValue(isChecked === false ? "N" : "Y");
-    // }, [isChecked]);
-
-    // useEffect(() => {
-    //     console.log(isCheckedValue);
-    // }, [isCheckedValue]);
-
-
 
     
     // 3 Backend [check_Todolist]
@@ -60,7 +41,8 @@ const Todo = ({ todolistContents, deleteTodo }) => {
     const toggleComplete = async () => {
         console.log("check_실행");
         const data = {
-            todolistCompleted: isCheckedValue,
+            // todolistCompleted: isCheckedValue,
+            todolistCompleted: isChecked ? "Y" : "N", //checked 수정(09.13)
             todolistSeq: todolistContents.todolistSeq,
             memberSeq: todolistContents.memberSeq,
         };
@@ -82,8 +64,8 @@ const Todo = ({ todolistContents, deleteTodo }) => {
                 {/* <input onChange={() => toggleComplete(todolistContents)} type="checkbox" checked={todolistContents.completed ? 'checked' : ''} /> */}
                 <input onChange={completedTodolist} type="checkbox" checked={isChecked} />
                 <p
-                    onClick={() => toggleComplete(todolistContents)}
-                    className={todolistContents.completed ? style.textComplete : style.text}
+                    onClick={completedTodolist}  //toggleComplete(todolistContents)
+                    className={isChecked ? style.textComplete : style.text}
                 >
                     {todolistContents.todolistContents}
                 </p>
