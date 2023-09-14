@@ -29,6 +29,7 @@ import Map from "./components/Map";
 import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
+import UpdateSchedule from "./components/Calendar/UpdateSchedule";
 
 import "./tailwind.css";
 import "./index.css";
@@ -51,7 +52,7 @@ import AdminIndex from "./components/AdminPage/Index";
 function AppContent() {
     return (
         <div>
-            <div style={{ display: "flex", justifyContent: "center"}}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
                 <div>
                     <Header />
 
@@ -69,6 +70,7 @@ function AppContent() {
                             <Route path="/todowedding/calendar" element={<Calendar />} />
                             <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/schedule/:scheduleSeq" element={<UpdateSchedule />} />
+
                             {/* 체크리스트 */}
                             <Route path="/checkitem" element={<CheckItemList />} />
                             <Route path="/checkitem/:checkItemSeq" element={<CheckItemSeq />} />
@@ -110,7 +112,7 @@ function AppContent() {
 
                 {/*웹 페이지 */}
 
-                <div style={{ height: "100%"}}>
+                <div style={{ height: "100%" }}>
                     <img src={WebImage} alt="web-image" />
                 </div>
             </div>
