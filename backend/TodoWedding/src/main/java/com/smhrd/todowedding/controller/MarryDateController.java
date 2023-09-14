@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.smhrd.todowedding.model.MarryDateDto;
+import com.smhrd.todowedding.service.KakaoMessageService;
 import com.smhrd.todowedding.service.MarryDateService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +27,9 @@ public class MarryDateController {
 	@Autowired
 	private MarryDateService marryDateService;
 	
+	@Autowired
+	private KakaoMessageService kakaoMessageService;
+	
 	//memberSeq에 대한 marryDate 등록하기
 	@PostMapping(value="marrydate")
 	public int addMarryDate(@RequestBody MarryDateDto marryDateDto) {
@@ -41,5 +45,11 @@ public class MarryDateController {
 		log.info("findMarryDate - communication success..... : " + memberSeq);
 		//성공시 결혼식 날짜 String으로 return
 		return marryDateService.findMarryDate(memberSeq);
+	}
+	
+	//memberSeq에 대한 결혼식 D-day 조회하기 
+	@GetMapping(value="marry-d-day/{memberSeq}")
+	public Long findDday(@PathVariable(name="memberSeq") Long memberSeq) throws Exception {
+		return kakaoMessageService.dayCalculator(memberSeq);
 	}
 }

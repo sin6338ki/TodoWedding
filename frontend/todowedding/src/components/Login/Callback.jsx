@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
  * 작성일 : 2023.09.07
  * 수정일 : 2023.09.09 (신지영) - ACCESS_TOKEN 관리/저장(쿠키, 리덕스)
  * 수정일 : 2023.09.13 (양수진) - 사용자 닉네임 dispatch
+ * 수정일 : 2023.09.14 (신지영) - 리덕스 정리
  */
 
 const Callback = () => {
@@ -35,18 +36,9 @@ const Callback = () => {
         axios
             .get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
             .then((res) => {
-                // console.log("accesstoken 정보 : ", res.data.kakaoAccess);
-                console.log("accesstoken : ", JSON.parse(res.data.kakaoAccess).access_token);
                 const access_token = JSON.parse(res.data.kakaoAccess).access_token;
-                // console.log("사용자 닉네임: ", res.data.userNick);
-                // console.log("사용자 SEQ: ", res.data.userseq);
 
-                // 메인페이지로 이동, 세션에 사용자 닉네임 SEQ값 전달
-                sessionStorage.setItem("KakaoUserSeq", res.data.userseq);
-                sessionStorage.setItem("KakaoUserNick", res.data.userNick);
-                sessionStorage.setItem("kakaoAccess", res.data.kakaoAccess);
-
-                //쿠키에 Refresh Token, storage에 Access Token 저장
+                //리덕스에 사용자 정보 저장
                 dispatch(
                     setToken({
                         type: "M",
@@ -55,12 +47,10 @@ const Callback = () => {
                         accessToken: access_token,
                     })
                 );
-
-                // 로그인을 할 때 user nickname을 dispatch 화면 즉시 렌더링
-                dispatch({ type: "LOGIN", kakaoUserNick: res.data.userNick });
             })
             .catch((error) => {
                 console.log("유저 정보를 가져오는데 실패 ", error);
+                alert("로그인에 실패하였습니다.");
             });
     }, [code]);
 
