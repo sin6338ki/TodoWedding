@@ -50,6 +50,7 @@ import AdminIndex from "./components/AdminPage/Index";
 
 //카카오 맵 관련
 import Map from "./components/KakaoMaps/Map";
+import { useEffect } from "react";
 
 function AppContent() {
     return (

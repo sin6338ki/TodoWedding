@@ -10,14 +10,17 @@ import { useNavigate } from "react-router-dom";
 
 const Partner = () => {
     const navigate = useNavigate();
-    const partnerAuth = useSelector((state) => state.PartnerAuth.partnerAuth);
-    const partnerSeq = partnerAuth.partner_seq;
+    const token = useSelector((state) => state.Auth.token);
     const [resultFindChatRoom, setResultFindChatRoom] = useState();
-    const [resultFindChatRoomSeq, setResultFindChatRoomSeq] = useState();
+    const [partnerSeq, setPartnerSeq] = useState();
+    const [partnerName, setPartnerName] = useState();
 
     //처음 화면 렌더링시 => 리덕스에서 값 (partner_seq) 가져오기
     useEffect(() => {
-        console.log("화면 렌더링 partnerLoginInfo : ", partnerAuth);
+        console.log("화면 렌더링 partnerLoginInfo : ", token);
+        setPartnerName(token.userNick);
+        setPartnerSeq(token.userSeq);
+
         const load = async () => {
             await findChatRoom(partnerSeq);
         };

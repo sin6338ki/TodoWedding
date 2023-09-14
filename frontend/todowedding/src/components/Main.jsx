@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //메인 메뉴 아이콘
@@ -12,28 +12,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "./SlickSlider";
 
-import { useSelector } from "react-redux";
-
 /*
  * 메인페이지
  * 작성자 : 서현록
  * 작성일 : 2023.09.05
- * 수정 : 
+ * 수정 :
  *  - Slick-Slider로 웨딩 가이드 연결 (서현록, 2023.09.14)
  */
 
 const Main = () => {
-    const token = useSelector((state) => state.Auth.token);
-
-    useEffect(() => {
-        //카카오 로그인 정보 가져오기 - 헤더에서 따서 쓰기
-        const KakaoUserSeq = sessionStorage.getItem("KakaoUserSeq");
-        const KakaoUserNick = sessionStorage.getItem("KakaoUserNick");
-        console.log("카카오 로그인 정보 : ", KakaoUserNick, KakaoUserSeq);
-        // console.log("토큰 : ", accessToken);
-        console.log("메인 토큰 확인 : ", token);
-    }, []);
-
     return (
         <div>
             <div>
