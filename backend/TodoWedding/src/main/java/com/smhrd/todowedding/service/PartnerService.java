@@ -23,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  * 수정 
  * 	- 전체 partner 불러오기, partnerInfo 조회 기능 추가 (신지영, 2023.09.10, 12)
  *  - 로그인시 조회 항목에 partner_name 추가 (신지영, 2023.09.10)
+ *  - 로그아웃 기능 추가 (신지영, 2023.09.15)
  */
 
 @Slf4j

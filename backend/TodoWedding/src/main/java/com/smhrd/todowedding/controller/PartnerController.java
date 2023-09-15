@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +25,7 @@ import com.smhrd.todowedding.service.PartnerService;
  * 일자 : 2023.09.08
  * 수정 
  * 	- 기업 전체 조회 기능 추가 (신지영, 2023.09.12)
+ *  - 기업 로그아웃 기능 추가 (신지영, 2023.09.15)
  */
 
 @CrossOrigin("http://localhost:3000")
@@ -73,4 +76,5 @@ public class PartnerController {
         List<KakaoMapsDto> locations = partnerService.getLocations();
         return new ResponseEntity<>(locations, HttpStatus.OK);
    }
+    
 }

@@ -15,11 +15,8 @@ const PartnerHeader = ({ loginUserNickname }) => {
             <Link to="/todowedding/partner" className="flex-col">
                 <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} />
             </Link>
-            <div className="text-xs mt-1 self-center">
-                반가워요,
-                {loginUserNickname}님💜
-            </div>
-            <img src={bell} className="w-5 h-5 self-center mr-6 mt-1"></img>
+            <div className="text-xs self-center">반가워요, {loginUserNickname}님💜</div>
+            <img src={bell} className="w-7 h-7 self-center mr-7 mt-1"></img>
         </div>
     );
 };
