@@ -1,12 +1,6 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-//메인 메뉴 아이콘
-import Calendar from "../../src/assets/images/icon/calendar_bg.png";
-import TodoList from "../../src/assets/images/icon/todolist_bg.png";
-import Budget from "../../src/assets/images/icon/budget_bg.png";
-import Map from "../../src/assets/images/icon/map_bg.png";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 //React-Slick 라이브러리
 import "slick-carousel/slick/slick.css";
@@ -25,43 +19,88 @@ import SlickSlider from "./SlickSlider";
 const Main = () => {
     const nav = useNavigate();
 
-    //userSeq 받아오기
-    const token = useSelector((state) => state.Auth.token);
-    const userSeq = token ? token.userSeq : 0;
+    const [checkItems, setCheckItems] = useState([]);
+    const [checklist, setChecklist] = useState([]);
 
-    //메인에서 로그인 전/후 처리 로직
-    const handleButtonClick = () => {
-        if (!userSeq) {
-            alert("로그인 후 진행해 주세요");
-            nav("/");
-            return;
+    //웨딩 항목별 체크리스트 ----------------------------------------------------------------
+    useEffect(() => {
+        fetchCheckItems();
+    }, []);
+
+    // 항목별 체크리스트 전체 조회
+    const fetchCheckItems = async () => {
+        try {
+        const response = 
+        await axios.get('http://localhost:8085/checkitem');
+        setCheckItems(response.data);
+        console.log('항목별 체크리스트 : ', response.data)
+        } catch(error) {
+        console.error('checkitem 전체 불러오기 error : ', error);
         }
-        // userSeq가 있는 경우, 원하는 페이지로 이동
-        nav("/todowedding/weddingreport");
     };
 
+    //항목 클릭하면 해당 체크리스트로 이동
+    const handleClick = (item) => {
+        nav(`/checkitem/${item.check_item_seq}`, { state: item });
+        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq)
+    }
+    //--------------------------------------------------------------------------------------
+
+    //웨딩 D-Day 체크리스트------------------------------------------------------------------
+    useEffect(() => {
+        const fetch = async () => {
+            await getDayChecklist();
+        };
+
+        fetch();
+    }, []);
+
+    //D-Day 체크리스트 전체 조회
+    const getDayChecklist = async () => {
+        try {
+            const response = await axios.get("http://localhost:8085/daychecklist");
+            setChecklist(response.data);
+            console.log("D-Day 체크리스트 : ", response.data);
+        } catch (error) {
+            console.error("D-Day 리스트 error : ", error);
+        }
+    };
+
+    //항목 클릭하면 해당 체크리스트로 이동
+    const handleDdayClick = (item) => {
+        nav(`/daychecklist/${item.checkday_seq}`, { state: item });
+        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_seq)
+        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_contents)
+    }
+    //--------------------------------------------------------------------------------------
+    
     return (
         <div>
             <div>
                 <SlickSlider />
             </div>
-            <div style={{ display: "flex" }}>
-                <Link to="todowedding/calendar" className="main-menu" onClick={handleButtonClick}>
-                    <img src={Calendar} alt="Calender" width="70px" />
-                    <span className="menu text-sm">일정관리</span>
-                </Link>
-                <Link to="todowedding/todolist" className="main-menu" onClick={handleButtonClick}>
-                    <img src={TodoList} alt="TodoList" width="70px" />
-                    <span className="menu text-sm">TodoList</span>
-                </Link>
-                <Link to="todowedding/budget" className="main-menu" onClick={handleButtonClick}>
-                    <img src={Budget} alt="Budget" width="70px" />
-                    <span className="menu text-sm">예산관리</span>
-                </Link>
-                <Link to="todowedding/map" className="main-menu" onClick={handleButtonClick}>
-                    <img src={Map} alt="Map" width="70px" />
-                    <span className="menu text-sm">업체찾기</span>
-                </Link>
+            <div style={{display: "flex"}} >
+                <p className="main-itemchecklist">웨딩 항목별<br/>체크리스트</p>
+                <div className="main-itemchecklist-container">
+                    {checkItems.map((item, index) => (
+                    <button className='main-itemchecklist-item' 
+                            id='main-itemchecklist-item1' key={index} 
+                        onClick={() => handleClick(item)}>
+                        <p>{item.check_item_contents}</p>
+                    </button>
+                ))}
+                </div>
+            </div>
+            <div style={{display: "flex"}} >
+                <p className="main-ddaychecklist">웨딩 D-Day<br/>체크리스트</p>
+                <div className="main-ddaychecklist-container">
+                    {checklist.map((item, index) => (
+                    <button className='main-itemchecklist-item' key={index} 
+                        onClick={() => handleDdayClick(item)}>
+                        <p>{item.checkday_contents}</p>
+                    </button>
+                ))}
+                </div>
             </div>
         </div>
     );

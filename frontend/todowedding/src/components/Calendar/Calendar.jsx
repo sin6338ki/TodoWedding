@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import MyCalendar from "./MyCalendar";
 import MyTodoList from "./MyTodoList";
+import BudgetReport from "./BudgetReport";
+import TodoReport from "./TodoReport";
 import add_schedule from "../../assets/images/add_schedule.png";
 import item_checklist from "../../assets/images/item_checklist.png";
 import dday_checklist from "../../assets/images/dday_checklist.png";
@@ -36,39 +38,32 @@ const Calendar = () => {
     return (
         <div>
             <MyCalendar />
-            <div style={{ display: "flex" }}>
-                <p className="TodoList-Title">최근 TodoList 3가지</p>
-                <div>
+                <div style={{ display: "flex"}} className="Calendar-plusBtn">
                     <button>
-                        <img
-                            className="calendarBtn"
-                            src={add_schedule}
-                            alt="일정추가"
-                            width="56px"
-                            onClick={addSchedule}
-                        />
+                        <img className="calendarBtn" src={add_schedule}
+                            alt="일정추가"width="56px"onClick={addSchedule} />
                     </button>
                     <button>
-                        <img
-                            className="calendarBtn"
-                            src={item_checklist}
-                            alt="항목별체크리스트"
-                            width="55px"
-                            onClick={itemCheckList}
-                        />
+                        <img className="calendarBtn" src={item_checklist}
+                            alt="항목별체크리스트" width="55px" onClick={itemCheckList} />
                     </button>
                     <button>
-                        <img
-                            className="calendarBtn"
-                            src={dday_checklist}
-                            alt="D-Day체크리스트"
-                            width="60px"
-                            onClick={dDayCheckList}
-                        />
+                        <img className="calendarBtn" src={dday_checklist}
+                            alt="D-Day체크리스트" width="60px" onClick={dDayCheckList} />
                     </button>
                 </div>
-            </div>
-            <div style={{ display: "flex" }}>
+                <div style={{ display: "flex" }}>
+                    <div className='report-container'>
+                        <div className="report-header1">결혼 준비 진행도</div>
+                        <div className="report-content1"><TodoReport/></div>
+                    </div>
+                    <div className='report-container'>
+                        <p className="report-header2">예산 관리 그래프</p>
+                        <div className="report-content2"><BudgetReport/></div>
+                    </div>
+                </div>
+            <div>
+                <p className="TodoList-Title">최근 TodoList 3가지</p>
                 <MyTodoList />
             </div>
         </div>

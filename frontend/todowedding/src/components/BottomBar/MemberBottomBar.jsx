@@ -6,7 +6,6 @@ import Budget from "../../assets/images/icon/budget.png";
 import Home from "../../assets/images/icon/home.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import AddButton from "../../assets/images/icon/footer_plus.png";
 import ModalBtn from "../../assets/images/icon/plus (1).png";
 
 import Modal from "../../components/Modal";
@@ -33,7 +32,7 @@ const MemberBottomBar = () => {
             return;
         }
         // userSeq가 있는 경우, 원하는 페이지로 이동
-        nav("/todowedding/weddingreport");
+        nav("/todowedding/calendar");
     };
     return (
         <div className="bottom-bar">

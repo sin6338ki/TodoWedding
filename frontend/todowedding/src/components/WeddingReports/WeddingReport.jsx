@@ -1,7 +1,7 @@
 import React from 'react'
 import MyCalendar from '../Calendar/MyCalendar'
-import TodoReport from './TodoReport'
-import BudgetReport from './BudgetReport'
+import TodoReport from '../Calendar/TodoReport'
+import BudgetReport from '../Calendar/BudgetReport'
 
 const WeddingReport = () => {
   return (
