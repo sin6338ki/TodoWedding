@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 /*
@@ -15,11 +17,27 @@ const style = {
     liComplete: `flex justify-between bg-slate-400 p-4 my-2 capitalize`,
     row: `flex`,
     text: `ml-2 cursor-pointer`,
-    textComplete: `ml-2 cursor-pointer line-through`,
+    textComplete: `ml-2 cursor-pointer line-through text-gray-200`,
     button: `cursor-pointer flex items-center`,
 };
 
 const Todo = ({ todolistContents, deleteTodo }) => {
+
+   const navigate = useNavigate();   // 투두 캘린더 추가 함수
+
+   const handleCalendarButtonClick = () => {
+    navigate('/todowedding/schedule', { 
+      state: { 
+        title: todolistContents.todolistContents,
+        todolistSeq: todolistContents.todolistSeq
+      }  
+    });
+}
+
+
+    //userSeq 받아오기
+  const token = useSelector((state) => state.Auth.token);
+  const memberSeq = token.userSeq;
   
     const [isChecked, setIsChecked] = useState(todolistContents.completed);
     const [isCheckedValue, setIsCheckedValue] = useState(todolistContents.completed ? "Y" : "N" );
@@ -72,7 +90,7 @@ const Todo = ({ todolistContents, deleteTodo }) => {
                 <hr />
             </div>
             <button onClick={() => deleteTodo(todolistContents.todolistSeq)} className="trashBtn">{<FaRegTrashAlt />}</button>
-            <button></button>
+            <button className={style.row} style={{ marginRight: "50px"}} onClick={handleCalendarButtonClick}>➕캘린더</button>
         </li>
     );
 };

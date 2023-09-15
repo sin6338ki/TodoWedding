@@ -3,7 +3,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Todo from "./Todo";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 /*
  * Todolist (추가/삭제/전체조회:완료), (완료-미완료 개수조회 /수정 :기능수정)
  * 작성자 : 양수진
@@ -12,7 +13,7 @@ import axios from "axios";
 
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-    container: `max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
+    container: `max-w-[500px] w-full m-auto rounded-md  p-4`,
     heading: `text-3xl font-bold text-center text-greay-800 p-2`,
     form: `flex justify-between`,
     input: `border p-2 w-full text-xl`,
@@ -21,10 +22,31 @@ const style = {
 };
 
 const TodoList = () => {
+
+    //userSeq 받아오기
+    const token = useSelector((state) => state.Auth.token);
+    const memberSeq = token.userSeq;
+
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
     const [isChecked, setIsChecked] = useState("");
-    const memberSeq = 100;
+
+     //캘린더 버튼 클릭 시 이동
+     const nav = useNavigate();
+     const calendarOnclick = () => {
+        nav("/todowedding/calendar");
+    };
+
+    //투두리스트 클릭 시 이동
+    const todoOnclick = () => {
+        nav("/todowedding/todolist");
+    };
+
+    //예산관리 클릭 시 이동
+    const budgetOnclick = () => {
+        nav("/todowedding/budget");
+    };
+   
 
     // GET : axios.get(url)
     // POST : axios.post(url, data)
@@ -150,15 +172,18 @@ const TodoList = () => {
         <div>
             <div className={style.container}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Link to="todowedding/calendar" style={{ marginRight: "30px" }}>
-                        <span>Calendar</span>
-                    </Link>
-                    <Link to="todowedding/todolist" style={{ marginRight: "30px" }}>
-                        <span>TodoList</span>
-                    </Link>
-                    <Link to="todowedding/budget" style={{ marginRight: "30px" }}>
-                        <span>Budget</span>
-                    </Link>
+                    
+                    <button onClick={calendarOnclick} style={{ marginRight: "30px" }}>
+                       Calendar
+                    </button>
+                    <button onClick={todoOnclick} style={{ marginRight: "30px" }}>
+                       Todolist
+                    </button>
+                    <button onClick={budgetOnclick} style={{ marginRight: "30px" }}>
+                       Budget
+                    </button>
+
+                 
                 </div>
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
