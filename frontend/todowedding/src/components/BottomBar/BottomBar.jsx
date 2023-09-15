@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PartnerBottomBar from "./PartnerBottomBar";
 import MemberBottomBar from "./MemberBottomBar";
@@ -13,11 +13,15 @@ import MemberBottomBar from "./MemberBottomBar";
 function BottomBar() {
     const token = useSelector((state) => state.Auth.token);
 
+    useEffect(() => {
+        console.log("bottom bar : ", token);
+    }, []);
+
     return (
         <>
-            {token.type == "P" && <PartnerBottomBar />}
+            {/* {token.type == "P" && <PartnerBottomBar />} */}
             {token == null && <MemberBottomBar />}
-            {token.type == "N" && <MemberBottomBar />}
+            {/* {token.type == "N" && <MemberBottomBar />} */}
         </>
     );
 }

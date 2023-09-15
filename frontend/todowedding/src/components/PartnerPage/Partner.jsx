@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux"; //redux 액션 실행
 
 const Partner = () => {
     const navigate = useNavigate();

@@ -7,8 +7,10 @@ import Withdrawal from "../../assets/images/icon/trash.png";
 import { deleteToken } from "../../redux/reducers/AuthReducer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux"; //redux 액션 실행
 
 const PartnerBottomBar = () => {
+    const dispatch = useDispatch();
     const token = useSelector((state) => state.Auth.token);
     const navigate = useNavigate();
 
