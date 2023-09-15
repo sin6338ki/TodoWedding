@@ -113,8 +113,7 @@ function AppContent() {
                     <BottomBar />
                 </div>
 
-                {/*웹 페이지 */}
-
+                {/*웹 이미지 */}
                 <div style={{ height: "100%" }}>
                     <img src={WebImage} alt="web-image" />
                 </div>

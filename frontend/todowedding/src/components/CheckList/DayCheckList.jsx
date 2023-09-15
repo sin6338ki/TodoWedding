@@ -97,6 +97,7 @@ const DayCheckList = () => {
             };
         },
     };
+    //end -----------------------------------------------------------------------------------
 
     useEffect(() => {
         if (contents.length > 0 && selectedOption) {

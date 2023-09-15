@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MyTodo from "./MyTodo"
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 /*
  * 일정관리 페이지 하단 - 최근 TodoList 3가지 불러오기
@@ -10,18 +11,26 @@ import { useSelector } from "react-redux";
  */
 
 const MyTodoList = () => {
+  const nav = useNavigate();
+
   //userSeq 받아오기
   const token = useSelector((state) => state.Auth.token);
-  const userSeq = token.userSeq;
+  const userSeq = token ? token.userSeq : 0;
 
   const [todos, setTodos] = useState([]);
+
+  //로그인 전/후 로직 처리
+  useEffect(() => {
+    if (!userSeq) {
+      nav('/');
+    }
+  }, [userSeq, nav]);
 
   // 전체 투두리스트 조회
   useEffect(() => {
     const fetchDataAndCout = async () => {
         await fetchData();
     };
-
     fetchDataAndCout();
 }, []);
 
