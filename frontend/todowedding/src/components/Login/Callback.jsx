@@ -58,8 +58,8 @@ const Callback = () => {
     useEffect(() => {
         console.log("redux 저장 후 token : ", token);
         if (token) {
-            if (token.type == "N") {
-                navigate("/");
+            if (token.type == "M") {
+                navigate("/todowedding/calendar");
             } else {
                 navigate("/todowedding/partner");
             }

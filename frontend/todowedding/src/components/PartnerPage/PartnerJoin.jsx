@@ -53,8 +53,9 @@ const PartnerJoin = () => {
 
     //아이디 중복 체크
     const checkSameId = () => {
+        console.log("중복체크 아이디 : ", partnerId);
         axios
-            .get(`http://localhost:8085/partner/join?parnerId=${partnerId}`)
+            .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
             .then((res) => {
                 if (res.data == 1) {
                     alert("사용 가능한 아이디입니다. ");

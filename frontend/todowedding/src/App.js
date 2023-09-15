@@ -51,6 +51,7 @@ import AdminIndex from "./components/AdminPage/Index";
 //카카오 맵 관련
 import Map from "./components/KakaoMaps/Map";
 import { useEffect } from "react";
+import PartnerInfo from "./components/PartnerPage/PartnerInfo";
 
 function AppContent() {
     return (
@@ -91,16 +92,18 @@ function AppContent() {
 
                             {/* 업체찾기 */}
                             <Route path="/todowedding/map" element={<Map />} />
+
                             {/* 채팅목록 */}
-                            <Route path="/todowedding/chatting" element={<Chatting />}></Route>
+                            <Route path="/todowedding/chatting/:partnerSeq" element={<Chatting />}></Route>
 
                             {/* 실제 채팅방 */}
-                            <Route path="todowedding/chat-room/:chatRoomSeq" element={<ChattingRoom />}></Route>
+                            <Route path="/todowedding/chat-room/:chatRoomSeq" element={<ChattingRoom />}></Route>
 
                             {/* 업체 전용 페이지 */}
                             <Route path="/todowedding/partner/login" element={<PartnerLogin />}></Route>
                             <Route path="/todowedding/partner" element={<Partner />}></Route>
                             <Route path="/todowedding/partner/join" element={<PartnerJoin />}></Route>
+                            <Route path="todowedding/partner/info" element={<PartnerInfo />}></Route>
 
                             {/* 카카오 테스트 */}
                             <Route path="/kakao" element={<Kakao />}></Route>

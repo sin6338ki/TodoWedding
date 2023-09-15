@@ -7,40 +7,29 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux"; //redux 액션 실행
 
 const Partner = () => {
     const navigate = useNavigate();
     const token = useSelector((state) => state.Auth.token);
     const [resultFindChatRoom, setResultFindChatRoom] = useState();
-    const [partnerSeq, setPartnerSeq] = useState();
-    const [partnerName, setPartnerName] = useState();
 
     //처음 화면 렌더링시 => 리덕스에서 값 (partner_seq) 가져오기
     useEffect(() => {
-        console.log("화면 렌더링 partnerLoginInfo : ", token);
-        setPartnerName(token.userNick);
-        setPartnerSeq(token.userSeq);
-
-        const load = async () => {
-            await findChatRoom(partnerSeq);
-        };
-
-        load();
-    }, []);
+        findChatRoom();
+    }, [token]);
 
     //채팅방 조회하기 이벤트
-    const findChatRoom = (partnerSeq) => {
-        console.log("findChatRoom partnerSeq : ", partnerSeq);
-        axios
-            .get(`http://localhost:8085/chat/${partnerSeq}`)
-            .then((res) => {
-                console.log("채팅방 조회 response : ", res.data);
-                setResultFindChatRoom(res.data);
-            })
-            .catch((err) => {
-                console.log("채팅방 조회 error : ", err);
-            });
+    const findChatRoom = () => {
+        token &&
+            axios
+                .get(`http://localhost:8085/chat/${token.userSeq}`)
+                .then((res) => {
+                    console.log("채팅방 조회 response : ", res.data);
+                    setResultFindChatRoom(res.data);
+                })
+                .catch((err) => {
+                    console.log("채팅방 조회 error : ", err);
+                });
     };
 
     //입장 버튼 클릭시 발생 이벤트

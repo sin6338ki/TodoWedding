@@ -27,8 +27,7 @@ const Header = () => {
     const [loginUserNickname, setLoginUserNickname] = useState();
     //d-day 정보
     const [marryDt, setMarryDt] = useState();
-    //최근 일정 정보
-    const [latestSchedule, setLatestSchedule] = useState({});
+
     //헤더 상태 변수
     const [headerType, setHeaderType] = useState(null);
 
@@ -45,28 +44,6 @@ const Header = () => {
             });
     };
 
-    //최근 일정 조회
-    const findLatestSchedule = () => {
-        axios
-            .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
-            .then((res) => {
-                console.log("최근 일정 조회 결과 : ", res.data);
-                if (res.data != null) {
-                    //최신 일정 날짜 표시 변환
-                    const dateData = res.data.schedule_start_dt.split("-");
-                    const contents = res.data.schedule_contents;
-
-                    setLatestSchedule({
-                        schedule_contents: contents,
-                        schedule_start_dt: dateData[0] + "년 " + dateData[1] + "월 " + dateData[2] + "일",
-                    });
-                }
-            })
-            .catch((err) => {
-                console.log("최근 일정 조회 error 발생 : ", err);
-            });
-    };
-
     //토큰 정보 확인 후 헤더 결정
     useEffect(() => {
         if (token != null) {
@@ -76,7 +53,6 @@ const Header = () => {
                     await setHeaderType("member");
                     await setLoginUserNickname(token.userNick);
                     await findMarryDt();
-                    await findLatestSchedule();
                 };
 
                 selectUserInfo();
@@ -91,9 +67,7 @@ const Header = () => {
 
     return (
         <>
-            {headerType === "member" && (
-                <MemberHeader marryDt={marryDt} loginUserNickname={loginUserNickname} latestSchedule={latestSchedule} />
-            )}
+            {headerType === "member" && <MemberHeader marryDt={marryDt} loginUserNickname={loginUserNickname} />}
             {headerType === "partner" && <PartnerHeader loginUserNickname={loginUserNickname} />}
             {headerType === "notLogined" && <NotLoginedHeader />}
         </>

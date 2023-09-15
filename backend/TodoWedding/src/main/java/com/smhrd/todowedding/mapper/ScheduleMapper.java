@@ -47,7 +47,7 @@ public interface ScheduleMapper {
 	public List<JSONObject> findScheduleByMonth(Long memberSeq, int month);
 	
 	//특정 유저의 가장 최근 스케쥴 조회 
-	@Select("select * from tw_schedule where (DATE_FORMAT(STR_TO_DATE(schedule_end_dt, '%Y-%m-%d'), '%Y-%m-%d') > sysdate() and member_seq=#{memberSeq}) order by schedule_start_dt limit 1")
+	@Select("select * from tw_schedule where (DATE_FORMAT(STR_TO_DATE(schedule_end_dt, '%Y-%m-%d'), '%Y-%m-%d') >= DATE(sysdate()) and member_seq=#{memberSeq}) order by schedule_start_dt limit 1")
 	public JSONObject findLatestSchedule(Long memberSeq);
 	
 }

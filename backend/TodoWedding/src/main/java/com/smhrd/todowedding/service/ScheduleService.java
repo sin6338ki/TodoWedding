@@ -76,8 +76,7 @@ public class ScheduleService {
 	public JSONObject findScheduleBySeq(Long scheduleSeq) {
 		JSONObject schedule = null;
 		try {
-			schedule = scheduleMapper.findScheduleBySeq(scheduleSeq);
-			log.info("mapper 결과 : " + schedule.toString());
+			schedule = scheduleMapper.findScheduleBySeq(scheduleSeq);	
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -111,7 +110,6 @@ public class ScheduleService {
 		JSONObject latestSchedule = null;
 		try {
 			latestSchedule = scheduleMapper.findLatestSchedule(memberSeq);
-			log.info("mapper 결과 : " + latestSchedule.toString());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

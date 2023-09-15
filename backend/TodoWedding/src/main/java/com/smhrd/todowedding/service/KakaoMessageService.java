@@ -62,8 +62,8 @@ public class KakaoMessageService {
 
 		// HttpBody 오브젝트 생성
 		JSONObject linkObj = new JSONObject();
-        linkObj.put("web_url", "http://localhost:3000");
-        linkObj.put("mobile_web_url", "http://localhost:3000");
+        linkObj.put("web_url", "http://172.30.1.42:3000");
+        linkObj.put("mobile_web_url", "http://172.30.1.42:3000");
 		
         //로그인 멤버 닉네임 조회
         String loginNickname = findNickname(loginMemberSeq);
@@ -115,38 +115,38 @@ public class KakaoMessageService {
 		switch(dDay.toString()) {
 		case "365":
 			message = findMessage(100L);
-//			sendDdayMessage(accessToken, loginMemberSeq, message, dDay);
+			sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
 			break;
 		case "300":
 			message = findMessage(101L);
-//			sendDdayMessage(accessToken, loginMemberSeq, message, dDay);
+			sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
 			break;
 		case "180":
 			message = findMessage(102L);
-//			sendDdayMessage(accessToken, loginMemberSeq, message, dDay);
+			sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
 			break;
 		case "90":
 			message = findMessage(103L);
-//			sendDdayMessage(accessToken, loginMemberSeq, message, dDay);
+			sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
 			break;
 		case "30":
 			message = findMessage(104L);
-//			sendDdayMessage(accessToken, loginMemberSeq, message, dDay);
+			sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
 			break;
 		case "7":
 			message = findMessage(105L);
-//			sendDdayMessage(accessToken, loginMemberSeq, message, dDay);
+			sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
 			break;
 		case "0":
 			message.add("결혼식을 진심으로 축하드립니다!");
 			message.add("평생 기억에 남을 멋진 결혼식이 되길 바라며,");
 			message.add("따뜻한 마음으로 세월이 흘러도 서로를 더 아끼고 존중하면서 사랑하는 부부의 인연이 되기를 기원합니다.");
-//			sendDdayMessage(accessToken, loginMemberSeq, message, dDay);
+			sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
 			break;
 		default:
 			break;
 		}
-		sendMessage(accessToken, loginMemberSeq, message, dDay, "dDay");
+		;
 		return message;
 	}
 	

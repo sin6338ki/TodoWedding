@@ -129,12 +129,10 @@ const ChattingRoom = () => {
         console.log("propertied : ", chatRoomSeq, token.userSeq, content, token.type, token.userNick);
 
         let sendTime = new Date();
-        let year = sendTime.getFullYear();
         let month = ("0" + (sendTime.getMonth() + 1)).slice(-2);
         let day = ("0" + sendTime.getDate()).slice(-2);
         let hours = ("0" + sendTime.getHours()).slice(-2);
         let minutes = ("0" + sendTime.getMinutes()).slice(-2);
-        let seconds = ("0" + sendTime.getSeconds()).slice(-2);
         let dateString = month + "/" + day + " " + hours + ":" + minutes;
 
         stompClient.publish({

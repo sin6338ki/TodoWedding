@@ -2,6 +2,7 @@ package com.smhrd.todowedding.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -19,6 +20,7 @@ import com.smhrd.todowedding.model.PartnerResponseDto;
  * 일자 : 2023.09.08
  * 수정
  *  - 전체 기업 불러오기 추가 (신지영, 2023.09.12)
+ *  - 기업 회원 탈퇴 기능 추가 (신지영, 2023.09.15)
  */
 
 @Mapper
@@ -55,5 +57,9 @@ public interface PartnerMapper {
     //기업 정보 카카오맵 으로 보내기
     @Select("SELECT partner_seq, partner_name, partner_address, partner_latitude, partner_longitude , partner_tel, partner_link, partner_code FROM tw_partner WHERE partner_latitude IS NOT NULL AND partner_longitude IS NOT NULL")
     public List<KakaoMapsDto> getLocations();
+    
+    //기업 회원 탈퇴 
+    @Delete("delete from tw_partner where partner_seq=#{partnerSeq}")
+    public int deletePartner(Long partnerSeq);
 
 }

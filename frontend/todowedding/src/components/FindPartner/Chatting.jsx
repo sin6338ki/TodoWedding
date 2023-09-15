@@ -1,71 +1,73 @@
-import axios from "axios";
+import axios, { AxiosHeaders } from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 /**
- * 채팅 테스트 페이지
+ * 채팅방 생성 및 기존 채팅방 확인 (채팅방 들어가기 전 거쳐가는 페이지)
  * 작성자 : 신지영
  * 작성일 : 2023.09.05
  */
 const Chatting = () => {
-    //페이지 이동시 데이터 함께 전달하기 위해 사용
     const navigate = useNavigate();
-
-    const memberSeq = 101;
-    const partnerSeq = 100;
+    const { partnerSeq } = useParams();
+    const token = useSelector((state) => state.Auth.token);
+    const [data, setData] = useState();
     const [chatRoomSeq, setChatRoomSeq] = useState();
 
-    //request 데이터 - 업체 고유번호, 멤버 고유번호
-    const data = {
-        memberSeq: memberSeq,
-        chatRoomCreateDt: new Date(),
-        partnerSeq: partnerSeq,
-    };
+    useEffect(() => {
+        //request 데이터 - 업체 고유번호, 멤버 고유번호
+        setData({
+            memberSeq: token.userSeq,
+            chatRoomCreateDt: new Date(),
+            partnerSeq: parseInt(partnerSeq),
+        });
+    }, [token]);
 
-    let isChatroom = "";
+    //data 정보가 변경되면 채팅방 입장
+    useEffect(() => {
+        console.log("data, ", data);
+        enterChat();
+    }, [data]);
 
     //상담 시작 클릭시 발생하는 이벤트
     const enterChat = async () => {
         //기존 연결되어 있는 채팅방 유무 확인
-        isChatroom = await isAlivedChat();
-
-        if (isChatroom === "none") {
-            const chatRoomSeq = await createChat();
-            isChatroom = await isAlivedchat();
-        }
-
-        if (isChatroom !== "none") {
-            moveToChat(isChatroom); // 생성된 채팅방 번호를 인자로 전달합니다.
-        }
+        await isAlivedChat();
+        //채팅방 이동
+        await moveToChat(chatRoomSeq);
     };
 
+    useEffect(() => {
+        console.log("chatRoomSeq 변화 확인 : ", chatRoomSeq);
+    }, [chatRoomSeq]);
+
     //채팅방 만드는 이벤트
-    const createChat = async () => {
-        console.log("createChat 실행 : ", isChatroom);
-        try {
-            const res = await axios.post("http://localhost:8085/chat", data);
-            console.log("createChat response : ", res.data);
-            setChatRoomSeq(res.data);
-            return res.data;
-        } catch (err) {
-            console.log("createChat err : ", err);
-        }
+    const createChat = () => {
+        console.log("createChat 실행!");
+        axios
+            .post("http://localhost:8085/chat", data)
+            .then((res) => {
+                let result = res.data;
+                result === 1 && isAlivedChat();
+            })
+            .catch((err) => {
+                console.log("createChat axios error : ", err);
+            });
     };
 
     //채팅방 유무 확인 이벤트
-    const isAlivedChat = async () => {
-        try {
-            const res = await axios.get(`http://localhost:8085/chat/${memberSeq}/${partnerSeq}`);
-            console.log("isAlivedChat 채팅방 유무 : ", res.data);
-
-            // 채팅방이 없으면 "none"을 반환하도록 가정합니다.
-            return res.data === "none" ? "none" : res.data;
-        } catch (err) {
-            console.log("채팅방 유무 확인 error : ", err);
-
-            // 에러 발생 시 "none"을 반환합니다.
-            return "err";
-        }
+    const isAlivedChat = () => {
+        axios
+            .get(`http://localhost:8085/chat/${token.userSeq}/${partnerSeq}`)
+            .then((res) => {
+                console.log("isAlivedChat result : ", res.data);
+                let result = res.data;
+                result != "none" ? setChatRoomSeq(res.data) : createChat();
+            })
+            .catch((err) => {
+                console.log("isAlivedChat error : ", err);
+            });
     };
 
     //채팅방으로 이동하는 이벤트
@@ -73,16 +75,11 @@ const Chatting = () => {
         //response 되면 실제 채팅 상담 페이지로 이동
         //페이지 이동시 data 함께 보낼 예정
         navigate(`/todowedding/chat-room/${chatRoomSeq}`, {
-            state: { partnerSeq: partnerSeq, memberSeq: memberSeq },
+            state: { partnerSeq: partnerSeq, memberSeq: token.userSeq },
         });
     };
 
-    return (
-        <div>
-            <input placeholder="상담을 시작하세요"></input>
-            <button onClick={enterChat}>상담시작</button>
-        </div>
-    );
+    return <div></div>;
 };
 
 export default Chatting;

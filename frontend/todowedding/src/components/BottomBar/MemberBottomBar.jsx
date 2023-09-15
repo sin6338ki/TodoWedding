@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import WeddingReport from "../../assets/images/icon/footer_weddingreport.png";
+import Todolist from "../../assets/images/icon/to-do-list.png";
+import Partner from "../../assets/images/icon/map.png";
 import Calendar from "../../assets/images/icon/calendar.png";
 import Budget from "../../assets/images/icon/budget.png";
 import Home from "../../assets/images/icon/home.png";
+import PlusBtn from "../../assets/images/icon/dance.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import AddButton from "../../assets/images/icon/footer_plus.png";
-import ModalBtn from "../../assets/images/icon/plus (1).png";
-
 import Modal from "../../components/Modal";
 
 /*
@@ -36,36 +35,51 @@ const MemberBottomBar = () => {
         nav("/todowedding/weddingreport");
     };
     return (
-        <div className="bottom-bar">
-            <Link to="todowedding/weddingreport" className="footer-menu-left" onClick={handleButtonClick}>
-                <img className="bottom-bar-hover" src={WeddingReport} alt="WeddingReport" width="30px" />
-                <span className="text-xs">웨딩리포트</span>
-            </Link>
-            <Link to="todowedding/calendar" className="footer-menu-right" onClick={handleButtonClick}>
-                <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="30px" />
-                <span className="text-xs"> 일정관리</span>
-            </Link>
-
+        <div className=" flex flex-col">
             {/* AddButton */}
             {/* Modal 설정 */}
-            <img
-                className="footer-add"
-                src={ModalBtn}
-                alt="AddButton"
-                width="55px"
-                type="button"
-                onClick={() => setAdd(!add)}
-            />
-            {add && <Modal closeModal={() => setAdd(!add)} />}
+            {token.type != "P" && (
+                <>
+                    <button
+                        className="plus-btn flex flex-row rounded-full border mx-3"
+                        type="button"
+                        onClick={() => setAdd(!add)}
+                    >
+                        <img src={PlusBtn} className="ml-5 w-[30px]" alt="AddButton" />
+                        <span className="ml-2 text-white font-bold">추가하기</span>
+                    </button>
+                    {add && <Modal closeModal={() => setAdd(!add)} />}
+                </>
+            )}
 
-            <Link to="todowedding/budget" className="footer-menu-left" onClick={handleButtonClick}>
-                <img className="bottom-bar-hover" src={Budget} alt="Budget" width="32px" />
-                <span className="text-xs"> 예산관리</span>
-            </Link>
-            <Link to="/" className="footer-menu-right">
-                <img className="bottom-bar-hover" src={Home} alt="Home" width="30px" />
-                <span className="text-xs"> Home</span>
-            </Link>
+            <div className="bottom-bar">
+                <Link to="/" className="footer-menu-right" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
+                    <span className="text-[6px] mt-1">HOME</span>
+                </Link>
+                <Link to="todowedding/calendar" className="footer-menu-right" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="20px" />
+                    <span className="text-[6px] mt-1">CALENDAR</span>
+                </Link>
+                <Link to="todowedding/todolist" className="footer-menu-right" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Todolist} alt="Todolist" width="20px" />
+                    <span className="text-[6px] mt-1">TODO</span>
+                </Link>
+
+                <Link
+                    to="todowedding/map"
+                    className="
+            footer-menu-right"
+                    onClick={handleButtonClick}
+                >
+                    <img className="bottom-bar-hover" src={Partner} alt="Partner" width="20px" />
+                    <span className="text-[6px] mt-1">STORE</span>
+                </Link>
+                <Link to="/todowedding/budget" className="footer-menu-right">
+                    <img className="bottom-bar-hover" src={Budget} alt="Budget" width="20px" />
+                    <span className="text-[6px] mt-1"> BUDGET</span>
+                </Link>
+            </div>
         </div>
     );
 };

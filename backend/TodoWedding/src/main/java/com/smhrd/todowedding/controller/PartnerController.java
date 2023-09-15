@@ -3,20 +3,24 @@ package com.smhrd.todowedding.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.model.KakaoMapsDto;
 import com.smhrd.todowedding.model.PartnerDTO;
+import com.smhrd.todowedding.model.PartnerResponseDto;
 import com.smhrd.todowedding.service.PartnerService;
 
 
@@ -25,7 +29,7 @@ import com.smhrd.todowedding.service.PartnerService;
  * 일자 : 2023.09.08
  * 수정 
  * 	- 기업 전체 조회 기능 추가 (신지영, 2023.09.12)
- *  - 기업 로그아웃 기능 추가 (신지영, 2023.09.15)
+ *  - 기업 회웥탈퇴, 중복 아이디 체크, 1개 업체 정보 조회 기능 추가 (신지영, 2023.09.15)
  */
 
 @CrossOrigin("http://localhost:3000")
@@ -68,7 +72,14 @@ public class PartnerController {
 	public List<JSONObject> findAllPartner(){
 		return partnerService.findAllPartner();
 	}
-
+	
+	//기업 회원 탈퇴 
+	@DeleteMapping(value="partner/{partnerSeq}")
+	public ResponseEntity<?> deletePartner(@PathVariable Long partnerSeq){
+		String deletePartnerResult = partnerService.deletePartner(partnerSeq);
+		return new ResponseEntity<>(deletePartnerResult, HttpStatus.OK);
+		
+	}
 	
 	// 카카오맵에 표시할 업체 데이터 프론트로 보내기 (위치 정보)
     @GetMapping("/kakaomaps")
@@ -76,5 +87,19 @@ public class PartnerController {
         List<KakaoMapsDto> locations = partnerService.getLocations();
         return new ResponseEntity<>(locations, HttpStatus.OK);
    }
+    
+    //중복 아이디 체크 
+    @GetMapping(value="partner/check-id")
+    public ResponseEntity<?> checkId(@RequestParam("partnerId") String partnerId){
+    	int checkIDResult = partnerService.checkedSameId(partnerId);
+    	return new ResponseEntity<>(checkIDResult, HttpStatus.OK);
+    }
+    
+    //업체 정보 조회 
+    @GetMapping(value="partner/{partnerSeq}")
+    public ResponseEntity<?> findPartnerInfo(@PathVariable(name="partnerSeq") Long partnerSeq){
+    	PartnerResponseDto partnerInfo = partnerService.findPartnerInfo(partnerSeq);
+    	return new ResponseEntity<PartnerResponseDto>(partnerInfo, HttpStatus.OK);
+    }
     
 }

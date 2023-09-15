@@ -4,153 +4,159 @@ Header 관련
 
 //header
 .header-bar {
-  display: flex;
-  height: 70px;
-  width: 560px;
-  background-color: rgb(255, 255, 255);
-  padding-top: 18px;
-  padding-left: 25px;
-  padding-bottom: 18px;
-  a {
-         color: dark;
-  }
+    display: flex;
+    height: 70px;
+    width: 560px;
+    background-color: rgb(255, 255, 255);
+    padding-top: 18px;
+    padding-left: 25px;
+    padding-bottom: 18px;
+    a {
+        color: dark;
+    }
 }
 
 //로그인 하면 header에 나타나는 닉네임, 버튼
 //header-nickname  --> 현록 사이즈 물어보기
 .text-sj {
-  display: flex;
-  margin: 5px 0 0 20px;
-  height: 70px;
-  width: 300px;
+    display: flex;
+    margin: 5px 0 0 20px;
+    height: 70px;
+    width: 300px;
 }
 
 .welcome-nick {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 #login-btn {
-  position: fixed;
-  margin-left: 350px;
+    position: fixed;
+    margin-left: 350px;
 }
 
 // .main-login{
 //   color: black;
 //   text-decoration: none;
-//   margin-left: 350px;  // nickname 로그인 이후 넣어야 되어서 사이즈 수정함  
+//   margin-left: 350px;  // nickname 로그인 이후 넣어야 되어서 사이즈 수정함
 //   margin-top: 4px;
 //   font-family: 'Pretendard-Regular';
 //   align-items: center;
 //   text-align: center;
 // }
 
-
 /**************************************************************************** Body
 Body 관련
 *******************/
 
 //body
-.body{
-  width: 560px;
-  padding-bottom: 100px;
-//  background-color: #fff;
+.body {
+    width: 560px;
+    padding-bottom: 100px;
+    //  background-color: #fff;
 }
-
 
 /**************************************************************************** BottomBar
 BottomBar 관련
 *******************/
 
 //BottomBar
+.plus-btn {
+    position: fixed;
+    display: flex;
+    bottom: 80px;
+    height: 50px;
+    width: 160px;
+    align-items: center;
+    background-color: #9f7ffc;
+    transform: translate(230%, -5%);
+}
+
 .bottom-bar {
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  bottom : 0px;
-  height: 70px;
-  width: 560px;
-  // background-color: rgba(249, 245, 255, 0.788);
-  background-color: rgba(252, 248, 255, 1);
-  margin-top: 0px;
-  align-items: center;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    bottom: 0px;
+    height: 70px;
+    width: 560px;
+    // background-color: rgba(249, 245, 255, 0.788);
+    background-color: rgba(252, 248, 255, 1);
+    margin-top: 0px;
+    align-items: center;
 }
 
 //BottomBar 메뉴 아이콘
 .footer-menu-left {
-  color: black;
-  text-decoration: none;
-  padding: 32px;
-  margin: 10px;
-  align-items: center;
-  text-align: center;
-  font-family: 'Pretendard-Regular';
-  display: flex;
-  flex-direction: column;
+    color: black;
+    text-decoration: none;
+    padding: 32px;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    display: flex;
+    flex-direction: column;
 }
 
 .bottom-bar-hover:hover {
-  border-radius: 10%;
-  box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
+    border-radius: 10%;
+    box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
 }
 
 .footer-menu-right {
-  color: black;
-  text-decoration: none;
-  padding: 3% 3% 3% 2%;
-  margin: 10px;
-  align-items: center;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+    color: black;
+    text-decoration: none;
+    padding: 3% 5% 3% 5%;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-add {
-  width: 55px;
-  color: black;
-  text-decoration: none;
-  margin: 10px 20px 75px 20px;
-  align-items: center;
+    width: 55px;
+    color: black;
+    text-decoration: none;
+    margin: 10px 20px 75px 20px;
+    align-items: center;
 }
 
 .footer-add:hover {
-  border-radius: 100%;
-  box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
+    border-radius: 100%;
+    box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
 }
 
-//BottomBar 가운데 +버튼 
+//BottomBar 가운데 +버튼
 .add-link {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
-
 
 /**************************************************************************** 메인 페이지
 메인 페이지
 *******************/
 
 //메인페이지 아이콘
-.main-menu{
-  color:black;
-  align-items: center;
-  text-align: center;
-  padding: 10% 0 0 10%;
-  text-decoration: none;
-  font-family: 'Pretendard-Regular';
+.main-menu {
+    color: black;
+    align-items: center;
+    text-align: center;
+    padding: 10% 0 0 10%;
+    text-decoration: none;
+    font-family: "Pretendard-Regular";
 }
 
 //메인페이지 로그인
-.main-login{
-  color: black;
-  text-decoration: none;
-  margin-left: 350px;  // nickname 로그인 이후 넣어야 되어서 사이즈 수정함  
-  margin-top: 4px;
-  font-family: 'Pretendard-Regular';
-  align-items: center;
-  text-align: center;
-
+.main-login {
+    color: black;
+    text-decoration: none;
+    margin-left: 350px; // nickname 로그인 이후 넣어야 되어서 사이즈 수정함
+    margin-top: 4px;
+    font-family: "Pretendard-Regular";
+    align-items: center;
+    text-align: center;
 }
-
 
 /**************************************************************************** Modal
 Modal 관련
@@ -158,130 +164,129 @@ Modal 관련
 
 /* modal창 외부화면 */
 .Modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
- 
-/* modal창 */
-.modalBody {
-  position: absolute;
-  z-index: 999 !important;
-  width: 300px;
-  height: 400px;
-  padding: 40px;
-  text-align: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-}
- 
-#modalCloseBtn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  border: none;
-  color: rgba(0, 0, 0, 0.7);
-  background-color: transparent;
-  font-size: 15px;
-}
- 
-#modalCloseBtn:hover {
-  cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* modal창 */
+.modalBody {
+    position: absolute;
+    z-index: 999 !important;
+    width: 300px;
+    height: 400px;
+    padding: 40px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+}
+
+#modalCloseBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    font-size: 15px;
+}
+
+#modalCloseBtn:hover {
+    cursor: pointer;
+}
 
 /**************************************************************************** 일정추가 페이지
 일정추가 페이지
 *******************/
 
 .add-content {
-  padding-top: 35px;
-  color: black;
-  font-size: 15px;
-  text-decoration: none;
-  font-family: 'Pretendard-Regular';
+    padding-top: 35px;
+    color: black;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: "Pretendard-Regular";
 }
 
 //
 .add-container {
-  margin: 30px 0 30px 0;
+    margin: 30px 0 30px 0;
 }
 
 //
-.add-date{
-  margin: 20px 0 30px 80px;
-  font-family: 'Pretendard-Regular';
+.add-date {
+    margin: 20px 0 30px 80px;
+    font-family: "Pretendard-Regular";
 }
 
 // 일정추가-제목-container
-.add-schedule-header{
-  box-sizing: border-box;
-  width: 440px;
-  height: 80px;
-  border: 1px solid #8483C9;
-  border-radius: 10px 10px 0 0;
-  margin: 60px 59px 0 59px;
-  padding-top: 10px;
-  background-color: #bebee6;
-  font-family: 'Pretendard-Regular';
-  text-align: center;
+.add-schedule-header {
+    box-sizing: border-box;
+    width: 440px;
+    height: 80px;
+    border: 1px solid #8483c9;
+    border-radius: 10px 10px 0 0;
+    margin: 60px 59px 0 59px;
+    padding-top: 10px;
+    background-color: #bebee6;
+    font-family: "Pretendard-Regular";
+    text-align: center;
 }
 
 // 일정추가-일정시작,종료-container
-.add-schedule-date{
-  box-sizing: border-box;
-  width: 440px;
-  border: 1px solid #8483C9;
-  border-radius: 0 0 10px 10px;
-  margin: 0 59px 40px 59px;
-  padding: 35px 0 20px 0;
-  font-family: 'Pretendard-Regular';
-  text-align: center;
+.add-schedule-date {
+    box-sizing: border-box;
+    width: 440px;
+    border: 1px solid #8483c9;
+    border-radius: 0 0 10px 10px;
+    margin: 0 59px 40px 59px;
+    padding: 35px 0 20px 0;
+    font-family: "Pretendard-Regular";
+    text-align: center;
 }
 
 // 캘린더 일정 추가하기 버튼
 .Add-Schedule-btn {
-  width: 180px;
-  height: 55px;
-  margin: 20px 0 0 80px;
-  border-radius: 10px;
-  color: #ffffff;
-  background-color: #8668e0;
-  display: table-row;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Pretendard-Regular';
+    width: 180px;
+    height: 55px;
+    margin: 20px 0 0 80px;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #8668e0;
+    display: table-row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pretendard-Regular";
 }
 // Todo List 추가하기 버튼
 .Add-TodoList-btn {
-  width: 180px;
-  height: 55px;
-  margin: 20px 20px 0 40px;
-  border-radius: 10px;
-  color: #ffffff;
-  background-color: #8668e0;
-  display: table-row;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Pretendard-Regular';
+    width: 180px;
+    height: 55px;
+    margin: 20px 20px 0 40px;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #8668e0;
+    display: table-row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pretendard-Regular";
 }
 
 //일정관리 페이지 - 일정추가,체크리스트 버튼
 .calendarBtn {
-  color: black;
-  text-decoration: none;
-  margin : 6px 1px 0 1px;
-  align-items: center;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+    color: black;
+    text-decoration: none;
+    margin: 6px 1px 0 1px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 // .calendarBtn:hover {
@@ -291,16 +296,16 @@ Modal 관련
 
 //일정관리 페이지 - 최근 TodoList 앞에 Check Icon
 .MyTodo-Icon {
-  width: 20px;
-  height: 20px;
-  margin: 2px 15px 0 15px;
+    width: 20px;
+    height: 20px;
+    margin: 2px 15px 0 15px;
 }
 
-//일정관리 페이지 - 최근 TodoList 3가지 
+//일정관리 페이지 - 최근 TodoList 3가지
 .TodoList-Title {
-  font-family: 'Pretendard-Regular';
-  margin : 40px 125px 20px 70px;
-  font-size: large;
+    font-family: "Pretendard-Regular";
+    margin: 40px 125px 20px 70px;
+    font-size: large;
 }
 
 /**************************************************************************** TodoList 관련
@@ -308,26 +313,25 @@ TodoList 관련
 *******************/
 
 .trashBtn {
-  position: absolute;
-  margin-left: 340px;
+    position: absolute;
+    margin-left: 340px;
 }
-
 
 /**************************************************************************** FullCalendar 관련
 FullCalendar 관련
 *******************/
 
-.calendar-font-container{
-  z-index: -1;
+.calendar-font-container {
+    z-index: -1;
 }
 
 .my-fullcalendar {
-  margin: 30px 30px 0 30px;
+    margin: 30px 30px 0 30px;
 }
 
 .fc-today-button {
-  background-color: #ff0000; /* 배경색 */
-  color: #ffffff; /* 글자색 */
+    background-color: #ff0000; /* 배경색 */
+    color: #ffffff; /* 글자색 */
 }
 
 /**************************************************************************** 항목별 CheckList 관련
@@ -335,102 +339,101 @@ FullCalendar 관련
 *******************/
 
 //항목별 체크리스트 - 소개글
-.checkitem-intro{
-  box-sizing: border-box;
-  position: relative;
-  width: 440px;
-  height: 100px;
-  left: 59px;
-  top: 60px;
-  background: #F5F1FF;
-  border: 1px solid #8483C9;
-  border-radius: 10px;
-  padding: 25px 0 0 0;
-  font-family: 'Pretendard-Regular';
-  text-align: center;
+.checkitem-intro {
+    box-sizing: border-box;
+    position: relative;
+    width: 440px;
+    height: 100px;
+    left: 59px;
+    top: 60px;
+    background: #f5f1ff;
+    border: 1px solid #8483c9;
+    border-radius: 10px;
+    padding: 25px 0 0 0;
+    font-family: "Pretendard-Regular";
+    text-align: center;
 }
 
 //항목별 체크리스트 - 아이템
 .checkitem-item {
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  position: relative;
-  width: 440px;
-  height: 50px;
-  left: 59px;
-  top: 110px;
-  margin-bottom: 15px;
+    position: relative;
+    width: 440px;
+    height: 50px;
+    left: 59px;
+    top: 110px;
+    margin-bottom: 15px;
 
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  border-radius: 15px;
+    background: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 15px;
 
-  padding-top: 13px;
+    padding-top: 13px;
 
-  font-family: 'Pretendard-Regular';
+    font-family: "Pretendard-Regular";
 }
 
 //항목별 체크리스트 - 아이템
 .checkitem-item:hover {
-  background-color: #d5caf3;
+    background-color: #d5caf3;
 }
 
 //항목별 체크리스트 Seq - 소개글
-.checkitemseq-intro{
-  box-sizing: border-box;
-  position: relative;
-  width: 450px;
-  height: 100px;
-  left: 55px;
-  top: 50px;
-  background: #F5F1FF;
-  border: 1px solid #8483C9;
-  border-radius: 10px;
-  padding-top: 26px;
-  text-align: center;
-  font-family: 'Pretendard-Regular';
+.checkitemseq-intro {
+    box-sizing: border-box;
+    position: relative;
+    width: 450px;
+    height: 100px;
+    left: 55px;
+    top: 50px;
+    background: #f5f1ff;
+    border: 1px solid #8483c9;
+    border-radius: 10px;
+    padding-top: 26px;
+    text-align: center;
+    font-family: "Pretendard-Regular";
 }
 
 //항목별 체크리스트 Seq - 일정리스트
 .checkitemseq-item {
-  box-sizing: border-box;
-  width: 450px;
-  border: 1px solid #8483C9;
-  border-radius: 10px;
-  margin: 80px 0 30px 55px;
-  padding: 20px 0 20px 40px;
+    box-sizing: border-box;
+    width: 450px;
+    border: 1px solid #8483c9;
+    border-radius: 10px;
+    margin: 80px 0 30px 55px;
+    padding: 20px 0 20px 40px;
 }
 
 //
 .checkitemseq-content {
-  margin: 16px 0 15px 20px;
-  font-family: 'Pretendard-Regular';
+    margin: 16px 0 15px 20px;
+    font-family: "Pretendard-Regular";
 }
 
 //항목별 체크리스트 Seq - CheckBox 클릭시 밑줄
 .line-through {
-  text-decoration: line-through;
+    text-decoration: line-through;
 }
 
-//항목별 체크리스트 Seq - +버튼 
+//항목별 체크리스트 Seq - +버튼
 .checkitemseq-plus {
-  position: absolute;
-  margin: 9px 0 10px 350px;
+    position: absolute;
+    margin: 9px 0 10px 350px;
 }
 
 //항목별 체크리스트 Seq - Todo List 보러가기 버튼
 .checkitemseq-todo {
-  position: relative;
-  width: 160px;
-  height: 47px;
-  margin: 0 0 50px 195px;
+    position: relative;
+    width: 160px;
+    height: 47px;
+    margin: 0 0 50px 195px;
 
-  color: #ffffff;
-  background-color: #8668e0;
-  border-radius: 10px;
-  font-family: 'Pretendard-Regular';
+    color: #ffffff;
+    background-color: #8668e0;
+    border-radius: 10px;
+    font-family: "Pretendard-Regular";
 }
-
 
 /**************************************************************************** D-Day CheckList 관련
 D-Day CheckList 관련
@@ -438,49 +441,49 @@ D-Day CheckList 관련
 
 //D-Day 체크리스트 - selectBox
 .daychecklist-selectbox {
-  margin: 90px 59px 40px 59px;
-  font-family: 'Pretendard-Regular';
-  text-align: center;
+    margin: 90px 59px 40px 59px;
+    font-family: "Pretendard-Regular";
+    text-align: center;
 }
 
 //D-Day 체크리스트 - 체크리스트 헤더
 .daychecklist-header {
-  box-sizing: border-box;
-  width: 440px;
-  height: 75px;
-  border: 1px solid #8483C9;
-  border-radius: 10px 10px 0 0;
-  margin: 40px 59px 0 59px;
-  padding-top: 25px;
-  background-color: #a5a4dd;
-  font-family: 'Pretendard-Regular';
-  color: #ffffff;
-  text-align: center;
+    box-sizing: border-box;
+    width: 440px;
+    height: 75px;
+    border: 1px solid #8483c9;
+    border-radius: 10px 10px 0 0;
+    margin: 40px 59px 0 59px;
+    padding-top: 25px;
+    background-color: #a5a4dd;
+    font-family: "Pretendard-Regular";
+    color: #ffffff;
+    text-align: center;
 }
 
 //D-Day 체크리스트 - 체크리스트 내용
 .daychecklist-contents {
-  box-sizing: border-box;
-  width: 440px;
-  border: 1px solid #8483C9;
-  border-radius: 0 0 10px 10px;
-  margin: 0 59px 40px 59px;
-  padding: 35px 0 20px 0;
-  font-family: 'Pretendard-Regular';
-  text-align: center;
+    box-sizing: border-box;
+    width: 440px;
+    border: 1px solid #8483c9;
+    border-radius: 0 0 10px 10px;
+    margin: 0 59px 40px 59px;
+    padding: 35px 0 20px 0;
+    font-family: "Pretendard-Regular";
+    text-align: center;
 }
 
 //D-Day 체크리스트 - 내 카카오톡으로 보내기 버튼
 .daychecklist-btn {
-  position: relative;
-  width: 200px;
-  height: 60px;
-  margin: 0 0 60px 178px;
-  padding-top: 16px;
-  color: #ffffff;
-  background-color: #8668e0;
-  border-radius: 10px;
-  font-family: 'Pretendard-Regular';
+    position: relative;
+    width: 200px;
+    height: 60px;
+    margin: 0 0 60px 178px;
+    padding-top: 16px;
+    color: #ffffff;
+    background-color: #8668e0;
+    border-radius: 10px;
+    font-family: "Pretendard-Regular";
 }
 
 /**************************************************************************** 웨딩 리포트 관련
@@ -489,20 +492,20 @@ D-Day CheckList 관련
 
 //결혼준비진행도
 .todo-report-container {
-  box-sizing: border-box;
-  background-color: #e2dafa;
-  border-radius: 20px;
-  padding: 40px 50px 40px 50px;
-  margin: 40px 20px 40px 55px;
-  font-family: 'Pretendard-Regular';
+    box-sizing: border-box;
+    background-color: #e2dafa;
+    border-radius: 20px;
+    padding: 40px 50px 40px 50px;
+    margin: 40px 20px 40px 55px;
+    font-family: "Pretendard-Regular";
 }
 
 //예산관리 그래프
 .budget-report-contanier {
-  box-sizing: border-box;
-  background-color: #e2dafa;
-  border-radius: 20px;
-  padding: 40px 50px 40px 50px;
-  margin: 40px 30px 40px 20px;
-  font-family: 'Pretendard-Regular';
+    box-sizing: border-box;
+    background-color: #e2dafa;
+    border-radius: 20px;
+    padding: 40px 50px 40px 50px;
+    margin: 40px 30px 40px 20px;
+    font-family: "Pretendard-Regular";
 }
