@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -27,7 +27,10 @@ const Schedule = () => {
 
     const nav = useNavigate();
 
-    const [title, setTitle] = useState("");
+    const location = useLocation();
+    const [title, setTitle] = useState(location.state ? location.state.title : ""); //(09.14수진추가)
+
+    // const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [schedule, setSchedule] = useState([]);
