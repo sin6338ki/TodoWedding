@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
  * 수정일 : 2023.09.09 (신지영) - ACCESS_TOKEN 관리/저장(쿠키, 리덕스)
  * 수정일 : 2023.09.13 (양수진) - 사용자 닉네임 dispatch
  * 수정일 : 2023.09.14 (신지영) - 리덕스 정리
+ * 수정일 : 2023.09.14 (서현록) - 로그인 후 웨딩리포트로 이동
  */
 
 const Callback = () => {
@@ -57,7 +58,7 @@ const Callback = () => {
     useEffect(() => {
         console.log("redux 저장 후 token : ", token);
         if (token) {
-            navigate("/");
+            navigate("/todowedding/weddingreport");
         }
     }, [token]);
 

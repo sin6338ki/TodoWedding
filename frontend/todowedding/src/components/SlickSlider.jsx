@@ -13,6 +13,12 @@ import Main3 from "../assets/images/slick/Slick_Img3.png"
 import Main4 from "../assets/images/slick/Slick_Img4.png"
 import Main5 from "../assets/images/slick/Slick_Img5.png"
 
+/*
+ * react-slick 라이브러리 구성
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.14
+ */
+
 const SlickSlider = () => {
   const settings = {
     dots: true,
@@ -21,7 +27,7 @@ const SlickSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true, 
-    autoplaySpeed: 2500,
+    autoplaySpeed: 2300,
   };
 
   return (

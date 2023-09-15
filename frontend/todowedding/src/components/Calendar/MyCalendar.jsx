@@ -21,7 +21,14 @@ const MyCalendar = () => {
 
   //userSeq 받아오기
   const token = useSelector((state) => state.Auth.token);
-  const userSeq = token.userSeq;
+  const userSeq = token ? token.userSeq : 0;
+
+  //로그인 전이면(userSeq가 0일 때) 다시 메인페이지로
+  useEffect(() => {
+    if (!userSeq) {
+      nav('/');
+    }
+  }, [userSeq, nav]);
 
   //전체 일정 불러오기
   useEffect(() =>{
@@ -49,7 +56,7 @@ const MyCalendar = () => {
               setEvents(fetchedEvents);
           })
           .catch((err) => {
-              console.log("findAllSchedule 조회 error : ", err);
+              console.log("전체 일정 조회 error : ", err);
           });
 
   },[])

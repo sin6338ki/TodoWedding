@@ -378,19 +378,16 @@ FullCalendar 관련
 //항목별 체크리스트 Seq - 소개글
 .checkitemseq-intro{
   box-sizing: border-box;
-
   position: relative;
   width: 450px;
   height: 100px;
   left: 55px;
   top: 50px;
-
   background: #F5F1FF;
   border: 1px solid #8483C9;
   border-radius: 10px;
-
-  padding: 26px 0 0 20px;
-
+  padding-top: 26px;
+  text-align: center;
   font-family: 'Pretendard-Regular';
 }
 
@@ -410,6 +407,11 @@ FullCalendar 관련
   font-family: 'Pretendard-Regular';
 }
 
+//항목별 체크리스트 Seq - CheckBox 클릭시 밑줄
+.line-through {
+  text-decoration: line-through;
+}
+
 //항목별 체크리스트 Seq - +버튼 
 .checkitemseq-plus {
   position: absolute;
@@ -421,7 +423,7 @@ FullCalendar 관련
   position: relative;
   width: 160px;
   height: 47px;
-  margin-left: 195px;
+  margin: 0 0 50px 195px;
 
   color: #ffffff;
   background-color: #8668e0;
@@ -478,5 +480,29 @@ D-Day CheckList 관련
   color: #ffffff;
   background-color: #8668e0;
   border-radius: 10px;
+  font-family: 'Pretendard-Regular';
+}
+
+/**************************************************************************** 웨딩 리포트 관련
+웨딩 리포트 관련
+*******************/
+
+//결혼준비진행도
+.todo-report-container {
+  box-sizing: border-box;
+  background-color: #e2dafa;
+  border-radius: 20px;
+  padding: 40px 50px 40px 50px;
+  margin: 40px 20px 40px 55px;
+  font-family: 'Pretendard-Regular';
+}
+
+//예산관리 그래프
+.budget-report-contanier {
+  box-sizing: border-box;
+  background-color: #e2dafa;
+  border-radius: 20px;
+  padding: 40px 50px 40px 50px;
+  margin: 40px 30px 40px 20px;
   font-family: 'Pretendard-Regular';
 }
