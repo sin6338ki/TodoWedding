@@ -6,11 +6,13 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.json.simple.JSONObject;
 
 import com.smhrd.todowedding.model.KakaoMapsDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
+import com.smhrd.todowedding.model.PartnerUpdateDto;
 
 
 
@@ -21,6 +23,7 @@ import com.smhrd.todowedding.model.PartnerResponseDto;
  * 수정
  *  - 전체 기업 불러오기 추가 (신지영, 2023.09.12)
  *  - 기업 회원 탈퇴 기능 추가 (신지영, 2023.09.15)
+ *  - 기업 회원 정보 수정 기능 추가 (신지영, 2023.09.16)
  */
 
 @Mapper
@@ -62,4 +65,7 @@ public interface PartnerMapper {
     @Delete("delete from tw_partner where partner_seq=#{partnerSeq}")
     public int deletePartner(Long partnerSeq);
 
+    //기업 회원 정보 수정
+    @Update("update tw_partner set partner_pw=#{partnerPw}, partner_name=#{partnerName}, partner_registration=#{partnerRegistration}, partner_tel=#{partnerTel}, partner_link=#{partnerLink}, partner_manager=#{partnerManager}, partner_manager_tel=#{partnerManagerTel}, partner_address=#{partnerAddress} where partner_seq=#{partnerSeq}")
+    public Long updatePartnerInfo(PartnerUpdateDto partnerUpdateDto);
 }

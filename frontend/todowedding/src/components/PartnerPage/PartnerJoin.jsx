@@ -82,7 +82,7 @@ const PartnerJoin = () => {
     return (
         <div className="ml-10 mt-10 w-[480px] flex flex-col">
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">아이디</p>
+                <p className="mb-2 text-left ">아이디</p>
                 <div className="flex flex-row">
                     <input
                         onChange={(e) => {

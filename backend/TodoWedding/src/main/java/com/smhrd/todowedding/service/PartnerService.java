@@ -12,6 +12,7 @@ import com.smhrd.todowedding.mapper.PartnerMapper;
 import com.smhrd.todowedding.model.KakaoMapsDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
+import com.smhrd.todowedding.model.PartnerUpdateDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
  * 	- 전체 partner 불러오기, partnerInfo 조회 기능 추가 (신지영, 2023.09.10, 12)
  *  - 로그인시 조회 항목에 partner_name 추가 (신지영, 2023.09.10)
  *  - 기업 회원 삭제 기능 추가 (신지영, 2023.09.15)
+ *  - partner info 수정 기능 추가 (신지영, 2023.09.16)
  */
 
 @Slf4j
@@ -148,4 +150,19 @@ public class PartnerService {
 		return deletePartnerResult;
 	}
 	
+	//기업 회원 정보 수정 
+	public Long updatePartnerInfo(PartnerUpdateDto partnerUpdateDto) {
+		Long updatePartnerResult = -1L;
+		try {
+			if(partnerMapper.updatePartnerInfo(partnerUpdateDto) > 0) {				
+				updatePartnerResult = 1L;
+			}else {
+				updatePartnerResult = 0L;
+			}
+		}catch(Exception e) {
+			updatePartnerResult = -1L;
+			e.printStackTrace();
+		}
+		return updatePartnerResult;
+	}
 }
