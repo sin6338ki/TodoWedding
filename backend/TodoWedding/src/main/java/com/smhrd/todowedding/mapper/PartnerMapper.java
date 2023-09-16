@@ -68,4 +68,8 @@ public interface PartnerMapper {
     //기업 회원 정보 수정
     @Update("update tw_partner set partner_pw=#{partnerPw}, partner_name=#{partnerName}, partner_registration=#{partnerRegistration}, partner_tel=#{partnerTel}, partner_link=#{partnerLink}, partner_manager=#{partnerManager}, partner_manager_tel=#{partnerManagerTel}, partner_address=#{partnerAddress} where partner_seq=#{partnerSeq}")
     public Long updatePartnerInfo(PartnerUpdateDto partnerUpdateDto);
+    
+  //partner 정보 조회 (업체 페이지 전용)
+    @Select("select partner_seq, partner_id, partner_pw, partner_name, partner_registration, partner_tel, partner_link, partner_manager, partner_manager_tel, partner_address from tw_partner where partner_seq=#{partnerSeq}")
+    public PartnerResponseDto findPartnerInfoMore(Long partnerSeq);
 }

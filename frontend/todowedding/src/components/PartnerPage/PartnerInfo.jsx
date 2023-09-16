@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import TodoBg from "../../assets/images/Todo_BG.png";
 
 const PartnerInfo = () => {
     const token = useSelector((state) => state.Auth.token);
+    const navigate = useNavigate();
     const [partnerInfo, setPartnerInfo] = useState({});
 
     const [partnerPw, setPartnerPw] = useState();
@@ -21,8 +23,14 @@ const PartnerInfo = () => {
 
     useEffect(() => {
         //업체 정보 조회
+        findPartnerInfo();
+        console.log("partnerUpdateDto", partnerUpdateDto);
+    }, [partnerUpdateDto]);
+
+    //업체 정보 조회 메서드
+    const findPartnerInfo = () => {
         axios
-            .get(`http://localhost:8085/partner/${token.userSeq}`)
+            .get(`http://localhost:8085/partner/info/${token.userSeq}`)
             .then((res) => {
                 console.log("업체 정보 조회 result : ", res.data);
                 setPartnerInfo(res.data);
@@ -30,11 +38,7 @@ const PartnerInfo = () => {
             .catch((err) => {
                 console.log("업체 정보 조회 err : ", err);
             });
-    }, []);
-
-    useEffect(() => {
-        console.log("partnerUpdateDto", partnerUpdateDto);
-    }, [partnerUpdateDto]);
+    };
 
     //비밀번호 확인
     useEffect(() => {
@@ -47,8 +51,8 @@ const PartnerInfo = () => {
         }
     }, [checkPartnerPw]);
 
-    //회원 정보 업데이트
-    const updatePartnerInfo = () => {
+    //업체 정보 변경
+    useEffect(() => {
         setPartnerUpdateDto({
             partnerSeq: token.userSeq,
             partnerPw: partnerPw,
@@ -60,11 +64,26 @@ const PartnerInfo = () => {
             partnerManagerTel: partnerManagerTel,
             partnerAddress: partnerAddress,
         });
+    }, [
+        token,
+        partnerPw,
+        partnerName,
+        partnerRegistration,
+        partnerTel,
+        partnerLink,
+        partnerManager,
+        partnerManagerTel,
+        partnerAddress,
+    ]);
 
+    //회원 정보 업데이트
+    const updatePartnerInfo = () => {
         axios
-            .put(`http://localhost:8085/partner/${token.userSeq}`, partnerUpdateDto)
+            .put(`http://localhost:8085/partner`, partnerUpdateDto)
             .then((res) => {
                 console.log("기업 회원 정보 update response", res.data);
+                alert("회원 정보 수정이 완료되었습니다.!");
+                navigate("/todowedding/partner");
             })
             .catch((err) => {
                 console.log("기업 회원 정보 update error", err);
@@ -80,7 +99,7 @@ const PartnerInfo = () => {
             </div>
             <div className="ml-10 mt-10 w-[480px] flex flex-col">
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">아이디</p>
+                    <p className="mb-2 text-left text-gray-500">아이디</p>
                     <input
                         value={partnerInfo.partner_id}
                         disabled
@@ -89,8 +108,9 @@ const PartnerInfo = () => {
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">비밀번호</p>
+                    <p className="mb-2 text-left text-gray-500">비밀번호</p>
                     <input
+                        defaultValue={partnerInfo.partner_pw}
                         onChange={(e) => {
                             setPartnerPw(e.target.value);
                         }}
@@ -99,9 +119,10 @@ const PartnerInfo = () => {
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">비밀번호 확인</p>
+                    <p className="mb-2 text-left text-gray-500">비밀번호 확인</p>
                     <p id="checkPw"></p>
                     <input
+                        defaultValue={partnerInfo.partner_pw}
                         onChange={(e) => {
                             setCheckPartnerPw(e.target.value);
                         }}
@@ -110,7 +131,7 @@ const PartnerInfo = () => {
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">기업명</p>
+                    <p className="mb-2 text-left text-gray-500">기업명</p>
                     <input
                         defaultValue={partnerInfo.partner_name}
                         onChange={(e) => {
@@ -121,7 +142,7 @@ const PartnerInfo = () => {
                     />
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">사업자등록번호</p>
+                    <p className="mb-2 text-left text-gray-500">사업자등록번호</p>
                     <input
                         defaultValue={partnerInfo.partner_registration}
                         onChange={(e) => {
@@ -132,7 +153,7 @@ const PartnerInfo = () => {
                     />
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">전화번호</p>
+                    <p className="mb-2 text-left text-gray-500">전화번호</p>
                     <input
                         defaultValue={partnerInfo.partner_tel}
                         onChange={(e) => {
@@ -143,7 +164,7 @@ const PartnerInfo = () => {
                     />
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">홈페이지</p>
+                    <p className="mb-2 text-left text-gray-500">홈페이지</p>
                     <input
                         placeholder="http://"
                         defaultValue={partnerInfo.partner_link}
@@ -155,7 +176,7 @@ const PartnerInfo = () => {
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">담당자</p>
+                    <p className="mb-2 text-left text-gray-500">담당자</p>
                     <input
                         defaultValue={partnerInfo.partner_manager}
                         onChange={(e) => {
@@ -166,7 +187,7 @@ const PartnerInfo = () => {
                     />
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">담당자 연락처</p>
+                    <p className="mb-2 text-left text-gray-500">담당자 연락처</p>
                     <input
                         defaultValue={partnerInfo.partner_manager_tel}
                         onChange={(e) => {
@@ -177,7 +198,7 @@ const PartnerInfo = () => {
                     />
                 </div>
                 <div className="mb-3 self-center w-[480px]">
-                    <p className="mb-2 text-left text-gray-400">업체 주소</p>
+                    <p className="mb-2 text-left text-gray-500">업체 주소</p>
                     <input
                         defaultValue={partnerInfo.partner_address}
                         onChange={(e) => {
@@ -190,7 +211,7 @@ const PartnerInfo = () => {
                 <div>
                     <input
                         type="button"
-                        value="SUBMIT"
+                        value="제출하기"
                         onClick={() => {
                             updatePartnerInfo();
                         }}

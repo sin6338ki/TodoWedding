@@ -26,6 +26,8 @@ import com.smhrd.todowedding.model.PartnerResponseDto;
 import com.smhrd.todowedding.model.PartnerUpdateDto;
 import com.smhrd.todowedding.service.PartnerService;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 /* 업체 및 관리자 관련 컨트롤러 
  * 작성 : 서유광
@@ -36,6 +38,7 @@ import com.smhrd.todowedding.service.PartnerService;
  *  - 기업 회원 정보 수정 기능 추가 (신지영, 2023.09.16)
  */
 
+@Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class PartnerController {
@@ -111,5 +114,12 @@ public class PartnerController {
     public ResponseEntity<?> updatePartnerInfo(@RequestBody PartnerUpdateDto partnerUpdateDto){
     	Long updatePartnerInfo = partnerService.updatePartnerInfo(partnerUpdateDto);
     	return new ResponseEntity<Long>(updatePartnerInfo, HttpStatus.OK);
+    }
+    
+    //전체 업체 정보 조회 (파트너 전용 페이지)
+    @GetMapping(value="partner/info/{partnerSeq}")
+    public PartnerResponseDto findPartnerInfoMore(@PathVariable(name="partnerSeq") Long partnerSeq) {
+    	log.info("전체 업체 정보 조회 실행.....");
+    	return partnerService.findPartnerInfoMore(partnerSeq);
     }
 }

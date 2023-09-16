@@ -165,4 +165,15 @@ public class PartnerService {
 		}
 		return updatePartnerResult;
 	}
+	
+	//업체 전용 페이지용 업체 정보 조회 
+	public PartnerResponseDto findPartnerInfoMore(Long partnerSeq) {
+		PartnerResponseDto partnerInfo = null;
+		try {
+			partnerInfo = partnerMapper.findPartnerInfoMore(partnerSeq);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return partnerInfo;
+	}
 }

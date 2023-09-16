@@ -82,14 +82,14 @@ const PartnerJoin = () => {
     return (
         <div className="ml-10 mt-10 w-[480px] flex flex-col">
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left ">아이디</p>
+                <p className="mb-2 text-left text-gray-500">아이디</p>
                 <div className="flex flex-row">
                     <input
                         onChange={(e) => {
                             setPartnerId(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2"
+                        className="w-[380px] border h-8 p-2 text-[#A383FF]"
                     ></input>
                     <button
                         onClick={() => {
@@ -102,99 +102,99 @@ const PartnerJoin = () => {
                 </div>
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">비밀번호</p>
+                <p className="mb-2 text-left text-gray-500">비밀번호</p>
                 <input
                     onChange={(e) => {
                         setPartnerPw(e.target.value);
                     }}
                     type="password"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 ></input>
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">비밀번호 확인</p>
+                <p className="mb-2 text-left text-gray-500">비밀번호 확인</p>
                 <p id="checkPw"></p>
                 <input
                     onChange={(e) => {
                         setCheckPartnerPw(e.target.value);
                     }}
                     type="password"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 ></input>
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">기업명</p>
+                <p className="mb-2 text-left text-gray-500">기업명</p>
                 <input
                     onChange={(e) => {
                         setPartnerName(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">사업자등록번호</p>
+                <p className="mb-2 text-left text-gray-500">사업자등록번호</p>
                 <input
                     onChange={(e) => {
                         setPartnerRegistration(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">전화번호</p>
+                <p className="mb-2 text-left text-gray-500">전화번호</p>
                 <input
                     onChange={(e) => {
                         setPartnerTel(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">홈페이지</p>
+                <p className="mb-2 text-left text-gray-500">홈페이지</p>
                 <input
                     onChange={(e) => {
                         setPartnerLink(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 ></input>
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">담당자</p>
+                <p className="mb-2 text-left text-gray-500">담당자</p>
                 <input
                     onChange={(e) => {
                         setPartnerManager(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">담당자 연락처</p>
+                <p className="mb-2 text-left text-gray-500">담당자 연락처</p>
                 <input
                     onChange={(e) => {
                         setPartnerManagerTel(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
             <div className="mb-3 self-center w-[480px]">
-                <p className="mb-2 text-left">업체 주소</p>
+                <p className="mb-2 text-left text-gray-500">업체 주소</p>
                 <input
                     onChange={(e) => {
                         setPartnerAddress(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2"
+                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
             <div className="flex flex-row">
                 <div className="flex flex-col mb-3 self-center w-[480px]">
-                    <label htmlFor="email" className="mb-2 text-left">
+                    <label htmlFor="email" className="mb-2 text-left text-gray-500">
                         마케팅 활용 동의
                     </label>
                     <div>
@@ -212,7 +212,7 @@ const PartnerJoin = () => {
                     onClick={() => {
                         applyJoin();
                     }}
-                    className="self-center h-[56px] w-[110px] rounded-md bg-gray-300"
+                    className="self-center h-[56px] w-[110px] rounded-md bg-gray-300 "
                 />
             </div>
         </div>

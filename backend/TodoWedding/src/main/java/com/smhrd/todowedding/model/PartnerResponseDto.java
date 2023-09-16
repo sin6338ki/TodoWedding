@@ -16,6 +16,7 @@ public class PartnerResponseDto {
 
 	private Long partner_seq;
 	private String partner_id;
+	private String partner_pw;
 	private String partner_name;
 	private String partner_registration;
 	private String partner_address;
@@ -35,11 +36,12 @@ public class PartnerResponseDto {
 	}
 	
 	@Builder
-	public PartnerResponseDto(Long partner_seq, String partner_id, String partner_name, String partner_registration,
+	public PartnerResponseDto(Long partner_seq, String partner_id, String partner_pw, String partner_name, String partner_registration,
 			String partner_address, String partner_tel, String partner_link, String partner_manager,
 			String partner_manager_tel) {
 		this.partner_seq = partner_seq;
 		this.partner_id = partner_id;
+		this.partner_pw = partner_pw;
 		this.partner_name = partner_name;
 		this.partner_registration = partner_registration;
 		this.partner_address = partner_address;
