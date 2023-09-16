@@ -7,6 +7,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
 
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
+    const roles =["신랑", "신부", "공동", "기타"]; 
 
     const TITLE_SIZE = 35;
 
@@ -169,26 +170,32 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
 
 
                   {/* 분담 */}
-             <div className="new-item__form-info">
-                           <div className="new-item__form-info--title">
-                                <h3 className="fs-normal fw-regular">분담</h3>
-                                    <span
-                                        className="fs-tiny ft-alert"
-                                        style={{ display: isEnteredWrongAmount ? "inline-block" : "none" }}
-                                    >
-                                        비용분담한 사람을 적어주세요.
-                                    </span>
-                            </div>
-                            <input
-                            type="text"
-                            value={budgetRole}
-                            name='budget_role'
-                            onChange={budgetRoleChangeHandler}
-                            placeholder="비용분담자를 입력해주세요 (ex.신부)"
-                            maxLength={TITLE_SIZE}
-                            required
-                            />
-            </div>
+            
+     {/* <div className="new-item__form-info" >
+        <div className="new-item__form-info--title">
+            <h3 className="fs-normal fw-regular">분담</h3>
+        </div>
+        <select value={budgetRole} onChange={budgetRoleChangeHandler} style={{ border: "1px solid #D9D9D9;" ,padding: '6px , 9px' ,borderRadius:'5px' }}>
+             {roles.map((role, index) => (
+           <option key={index} value={role}>{role}</option>
+            ))}
+        </select>
+      </div> */}
+
+<div className="new-item__form-info">
+  <div className="new-item__form-info--title">
+    <h3 className="fs-normal fw-regular">분담</h3>
+  </div>
+  <select 
+    value={budgetRole} 
+    onChange={budgetRoleChangeHandler} 
+    style={{ border: "1px solid #D9D9D9", padding: '6px 9px', borderRadius:'5px' }}
+  >
+    {roles.map((role, index) => (
+      <option key={index} value={role}>{role}</option>
+    ))}
+  </select>
+</div>
                   
                    {/* 비고 */}
              <div className="new-item__form-info">
