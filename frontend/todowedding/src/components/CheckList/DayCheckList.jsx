@@ -101,7 +101,8 @@ const DayCheckList = () => {
     //end -----------------------------------------------------------------------------------
 
     useEffect(() => {
-        if (contents.length > 0 && selectedOption) {
+        console.log("selectOption 변경");
+        if (selectedOption) {
             console.log("selectOptions : ", selectedOption.label);
             //메시지 가공
             console.log("message 원본 : ", contents);
@@ -112,6 +113,10 @@ const DayCheckList = () => {
             setMessage(newMessage);
         }
     }, [selectedOption, contents]);
+
+    useEffect(() => {
+        console.log("contents 변경 : ", contents);
+    }, [contents]);
 
     useEffect(() => {
         console.log("message : ", message);
