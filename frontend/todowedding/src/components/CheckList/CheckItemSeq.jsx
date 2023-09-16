@@ -20,10 +20,10 @@ const CheckItemSeq = () => {
   let location = useLocation();
   const [checkedItems, setCheckedItems] = useState([]);
   const navigate = useNavigate();
- 
+
   //userSeq 받아오기
   const token = useSelector((state) => state.Auth.token);
-  const userSeq = token.userSeq;
+  const userSeq = token ? token.userSeq : 0;
 
   useEffect(() => {
     console.log(location.state);
@@ -44,6 +44,11 @@ const CheckItemSeq = () => {
 
   //+ 버튼 누르면 Todo List에 추가
   const addToDo = async (item) => {
+    // userSeq가 없으면 알림창 띄우고 함수 종료
+    if (!userSeq) {
+      alert("로그인 이후 서비스를 이용해주세요");
+      return;
+    }
     console.log("Todo List에 추가 내용 : ", item.checkitem_list_contents);
     const data = {
         todolistContents: item.checkitem_list_contents,
@@ -78,7 +83,13 @@ const CheckItemSeq = () => {
 
 // Todo List 페이지로 이동 
 const goToTodoListPage = () => {
-    navigate('/todowedding/todolist');
+    // userSeq가 없으면 알림창 띄우고 함수 종료
+    if (!userSeq) {
+      alert("로그인 이후 서비스를 이용해주세요");
+      return;
+    }else {
+      navigate('/todowedding/todolist');
+    }
   };
 
 

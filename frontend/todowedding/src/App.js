@@ -79,7 +79,7 @@ function AppContent() {
                             <Route path="/checkitem" element={<CheckItemList />} />
                             <Route path="/checkitem/:checkItemSeq" element={<CheckItemSeq />} />
                             <Route path="/daychecklist" element={<DayCheckList />} />
-                            <Route path="/daychecklist:checkdaySeq" element={<DayCheckSeq />} />
+                            <Route path="/daychecklist/:checkdaySeqParams" element={<DayCheckSeq />} />
 
                             {/* Todo List */}
                             <Route path="/todowedding/todolist" element={<TodoList />} />

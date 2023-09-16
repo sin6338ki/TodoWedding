@@ -32,7 +32,7 @@ const MemberBottomBar = () => {
             return;
         }
         // userSeq가 있는 경우, 원하는 페이지로 이동
-        nav("/todowedding/weddingreport");
+        nav("/todowedding/calendar");
     };
     return (
         <div className=" flex flex-col">

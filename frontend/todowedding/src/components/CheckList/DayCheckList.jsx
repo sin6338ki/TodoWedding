@@ -42,6 +42,7 @@ const DayCheckList = () => {
         return () => document.body.removeChild(script);
     };
 
+    // D-Day 체크리스트 전체 조회
     const getDayChecklist = async () => {
         try {
             const response = await axios.get("http://localhost:8085/daychecklist");
@@ -49,7 +50,7 @@ const DayCheckList = () => {
             console.log("D-Day 리스트 : ", response.data);
 
             let combinedContents = [];
-            response.data.forEach((item) => {
+                response.data.forEach((item) => {
                 if (Array.isArray(item.checkday_contents)) {
                     combinedContents.push(...item.checkday_contents);
                 } else if (item.checkday_contents) {
@@ -147,28 +148,32 @@ const DayCheckList = () => {
             </div>
             <div className="daychecklist-selectbox">
                 <Select
-                    options={options}
-                    onChange={setSelectedOption}
-                    isSearchable
-                    styles={styles}
-                    placeholder="D-Day를 선택해주세요"
-                />
+                    options={options} 
+                    onChange={(option) => {
+                    setSelectedOption(option);
+                }}
+                    isSearchable 
+                    styles={styles} 
+                    placeholder="D-Day를 선택해주세요" />
             </div>
             {selectedOption && (
                 <>
                     <div className="daychecklist-header">
                         <p>결혼예정일 {selectedOption.label} 체크리스트</p>
                     </div>
-                    <div className="daychecklist-contents">
-                        <DayCheckSeq checkdaySeq={selectedOption.value} setContents={setContents} contents={contents} />
+                    <div>
+                    <DayCheckSeq 
+                            checkdaySeq={selectedOption.value} 
+                            setContents={setContents} 
+                            shareToKatalk={shareToKatalk} 
+                        />
                     </div>
                     <div>
                         <button
                             className="daychecklist-btn"
                             onClick={() => {
                                 shareToKatalk();
-                            }}
-                        >
+                            }}>
                             <p>카카오톡 공유하기</p>
                         </button>
                     </div>
