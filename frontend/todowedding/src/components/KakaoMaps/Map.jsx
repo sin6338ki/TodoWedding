@@ -26,7 +26,7 @@ import WeddingHallMarker from "../../assets/images/icon/hollmaker.png";
 */
 
 const Map = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [dbPlaces, setDbPlaces] = useState([]); // DB에서 가져온 장소 정보를 저장
     const [searchedPlaces, setSearchedPlaces] = useState([]); // 검색된 장소 정보를 저장
