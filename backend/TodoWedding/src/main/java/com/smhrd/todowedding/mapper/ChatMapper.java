@@ -33,7 +33,7 @@ public interface ChatMapper {
 	public int saveChatMessage(Chatting chatting);
 	
 	//partnerSeq 에 대한 채팅방 목록 조회
-	@Select("select tc.chat_room_seq, tc.member_seq, tc.chat_room_create_dt, tc.partner_seq, tm.nickname from tw_chatroom tc inner join tw_member tm on tc.member_seq = tm.member_seq where tc.partner_seq=#{partnerSeq}")
+	@Select("SELECT tc.chat_room_seq, tc.member_seq, tc.partner_seq, tm.nickname,   tc2.chatting_create_dt FROM (SELECT chat_room_seq, member_seq, partner_seq FROM tw_chatroom WHERE partner_seq=124) AS tc INNER JOIN tw_member tm ON tc.member_seq = tm.member_seq INNER JOIN tw_chatting tc2 ON tc.chat_room_seq = tc2.chat_room_seq ORDER BY tc2.chatting_create_dt DESC LIMIT 1")
 	public List<JSONObject> findChatroom(Long partnerSeq);
 	
 	//chatRoomSeq 채팅방 삭제 

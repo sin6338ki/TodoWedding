@@ -3,10 +3,12 @@
  * 작성자 : 신지영
  * 작성일 : 2023.09.11
  */
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import TodoBg from "../../assets/images/Todo_BG.png";
 
 const Partner = () => {
     const navigate = useNavigate();
@@ -42,20 +44,23 @@ const Partner = () => {
 
     return (
         <div>
-            <div>채팅방 리스트</div>
-            <div>
-                <span>NO</span>
-                <span>1:1상담 신청 닉네임</span>
-                <span>마지막 대화 날짜</span>
-                <span>입장</span>
+            <div className="flex relative w-[180px] my-5 mx-auto">
+                <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
+                <div className="text-center font-bold absolute w-full h-full mt-2">채팅방 리스트</div>
+            </div>
+            <div className="flex flex-row m-10 justify-between">
+                <div>NO</div>
+                <div>닉네임</div>
+                <div>마지막 대화 날짜</div>
+                <div>입장</div>
             </div>
             {resultFindChatRoom &&
                 resultFindChatRoom.map((chatRoom, idx) => {
                     return (
-                        <div key={idx}>
-                            <span>{idx + 1}</span>
-                            <span>{chatRoom.nickname}</span>
-                            <span>{chatRoom.chat_room_create_dt}</span>
+                        <div key={idx} className="flex flex-row m-10 justify-between">
+                            <div>{idx + 1}</div>
+                            <div>{chatRoom.nickname}</div>
+                            <div>{chatRoom.chatting_create_dt}</div>
                             <button
                                 onClick={() => {
                                     enterToChat(chatRoom.chat_room_seq, chatRoom.partner_seq, chatRoom.member_seq);
