@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./assets/scss/style.scss";
+import "./index.css";
 
 //tailwindcss 적용
 import "./tailwind.css";

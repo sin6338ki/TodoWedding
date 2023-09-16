@@ -7,7 +7,7 @@ const BudgetReport = () => {
 
   //userSeq 받아오기
   const token = useSelector((state) => state.Auth.token);
-  const userSeq = token.userSeq;
+  const userSeq = token?.userSeq;
 
   useEffect(() => {
     const fetchTotalBudget = async () => {
@@ -27,10 +27,9 @@ const BudgetReport = () => {
     <div>
       { totalBudget && (
           <>
-            <p>Marry Total Budget: {totalBudget.marry_total_budget}</p>
-            <p>Income Total Cost: {totalBudget.income_total_cost}</p>
-            <p>Budget Total Expense Cost: {totalBudget.budget_total_expense_cost}</p>
-            <p>Budget Sum Cost: {totalBudget.budget_sum_cost}</p>
+            <p>총 예산 : {totalBudget.marry_total_budget}</p>
+            <p>총 수입 : {totalBudget.income_total_cost}</p>
+            <p>총 지출 : {totalBudget.budget_total_expense_cost}</p>
           </>
         )
       }

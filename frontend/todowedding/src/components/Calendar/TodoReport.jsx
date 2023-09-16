@@ -7,7 +7,7 @@ const TodoReport = () => {
 
   //userSeq 받아오기
   const token = useSelector((state) => state.Auth.token);
-  const userSeq = token.userSeq;
+  const userSeq = token?.userSeq;
 
   useEffect(() => {
     const fetchTodoListCount = async () => {

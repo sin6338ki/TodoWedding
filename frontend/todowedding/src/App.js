@@ -6,12 +6,14 @@
  * 수정
  *  - 업체 전용 페이지 추가 (신지영, 2023.09.10)
  *  - 예산 관리 페이지 추가 (양수진, 2023.09.12)
+ *  - 체크리스트 페이지 추가 (서현록, 2023.09.12)
  *  - 관리자 페이지 추가 (신지영, 2023.09.12)
  */
 
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
+import ADSlickSlider from "./components/ADSlickSlider";
 import Kakaologin from "./components/Login/Kakaologin";
 import KakaologOut from "./components/Login/KakaologOut";
 import Callback from "./components/Login/Callback";
@@ -25,7 +27,6 @@ import DayCheckList from "./components/CheckList/DayCheckList";
 import DayCheckSeq from "./components/CheckList/DayCheckSeq";
 import Schedule from "./components/Calendar/Schedule";
 import TodoList from "./components/TodoList/TodoList";
-import WeddingReport from "./components/WeddingReports/WeddingReport";
 import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
 import UpdateSchedule from "./components/Calendar/UpdateSchedule";
@@ -34,7 +35,7 @@ import "./tailwind.css";
 import "./index.css";
 import "./FullCalendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import WebImage from "./assets/images/web_image.png";
+import WebImage from "./assets/images/iwedding.png"
 
 //업체 전용 관련
 import Partner from "./components/PartnerPage/Partner";
@@ -50,7 +51,6 @@ import AdminIndex from "./components/AdminPage/Index";
 
 //카카오 맵 관련
 import Map from "./components/KakaoMaps/Map";
-import { useEffect } from "react";
 import PartnerInfo from "./components/PartnerPage/PartnerInfo";
 
 function AppContent() {
@@ -59,7 +59,6 @@ function AppContent() {
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div>
                     <Header />
-
                     <div className="body" id="Pretendard-Regular">
                         <Routes>
                             <Route path="/" element={<Main />} />
@@ -71,7 +70,7 @@ function AppContent() {
                             <Route path="/todowedding/delete" element={<Delete />} />
 
                             {/* 일정관리 */}
-                            <Route path="/todowedding/calendar" element={<Calendar />} />
+                            <Route path="/todowedding/calendar"  element={<Calendar />} />
                             <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/schedule/:scheduleSeq" element={<UpdateSchedule />} />
 
@@ -86,9 +85,6 @@ function AppContent() {
 
                             {/* 예산관리 */}
                             <Route path="/todowedding/budget" element={<BudgetApp />} />
-
-                            {/*웨딩리포트 */}
-                            <Route path="/todowedding/weddingreport" element={<WeddingReport />} />
 
                             {/* 업체찾기 */}
                             <Route path="/todowedding/map" element={<Map />} />
@@ -112,12 +108,14 @@ function AppContent() {
                             <Route path="/todowedding/admin" element={<AdminIndex />}></Route>
                         </Routes>
                     </div>
-
                     <BottomBar />
                 </div>
 
                 {/*웹 이미지 */}
-                <div style={{ height: "100%" }}>
+                <div style={{ width: " 350px", margin: "90px 0 20px 25px"}}>
+                    <div>
+                        <ADSlickSlider/>
+                    </div>
                     <img src={WebImage} alt="web-image" />
                 </div>
             </div>

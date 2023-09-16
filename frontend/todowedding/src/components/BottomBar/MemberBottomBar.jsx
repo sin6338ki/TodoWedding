@@ -34,6 +34,11 @@ const MemberBottomBar = () => {
         // userSeq가 있는 경우, 원하는 페이지로 이동
         nav("/todowedding/calendar");
     };
+
+    const handleHomeButtonClick = () => {
+        nav("/");
+    };
+
     return (
         // <div className="flex flex-col">
         <div>
@@ -55,7 +60,7 @@ const MemberBottomBar = () => {
                 ))}
 
             <div className="bottom-bar">
-                <Link to="/" className="footer-menu-right" onClick={handleButtonClick}>
+                <Link to="/" className="footer-menu-right" onClick={handleHomeButtonClick}>
                     <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
                     <span className="text-[6px] mt-1">HOME</span>
                 </Link>

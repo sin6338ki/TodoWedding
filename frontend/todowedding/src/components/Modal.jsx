@@ -10,33 +10,23 @@ import TodoLogo from "../assets/images/todo_logo.png";
  */
 
 function Modal(props) {
-    function closeModal() {
-        props.closeModal();
-    }
-
-    return (
-        <div className="Modal z-50 relative" onClick={closeModal}>
-            <div className="modalBody" onClick={(e) => e.stopPropagation()}>
-                <button id="modalCloseBtn" onClick={closeModal}>
-                    ✖
-                </button>
-                <img src={TodoLogo} width={"200px"} />
-                <div className="add-link" onClick={closeModal}>
-                    <Link to="todowedding/calendar" className="add-content">
-                        임시 리스트 입니다
-                    </Link>
-                    <Link to="todowedding/schedule" className="add-content">
-                        일정추가
-                    </Link>
-                    <Link to="checkitem" className="add-content">
-                        항목별 체크리스트
-                    </Link>
-                    <Link to="daychecklist" className="add-content">
-                        D-Day 체크리스트
-                    </Link>
-                </div>
-                {props.any}
-            </div>
+ 
+function closeModal() {
+    props.closeModal();
+  }
+ 
+  return (
+    <div className="Modal z-50 relative" onClick={closeModal}>
+      <div className="modalBody" onClick={(e) => e.stopPropagation()}>
+        <button id="modalCloseBtn" onClick={closeModal}>
+          ✖
+        </button>
+        <img src={TodoLogo} width={'200px'}/>
+        <div className='add-link' onClick={closeModal}>
+            <Link to="todowedding/calendar" className="add-content">임시 리스트 입니다</Link>
+            <Link to="todowedding/schedule" className="add-content">일정추가</Link>
+            <Link to="checkitem" className="add-content">항목별 체크리스트</Link>
+            <Link to="daychecklist" className="add-content">D-Day 체크리스트</Link>       
         </div>
     );
 }

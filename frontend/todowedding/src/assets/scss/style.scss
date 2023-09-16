@@ -423,25 +423,27 @@ Modal 관련
     text-align: center;
 }
 
-//일정관리 - 웨딩리포트 content
+//일정관리 - 웨딩리포트 content (결혼 준비 진행도)
 .report-content1 {
     box-sizing: border-box;
     width: 240px;
+    height: 145px;
     border: 1px solid #8483c9;
     border-radius: 0 0 10px 10px;
     margin: 0 5px 0 30px;
-    padding: 20px;
+    padding: 20px 0 5px 30px;
     font-family: "Pretendard-Regular";
 }
 
-//일정관리 - 웨딩리포트 content
+//일정관리 - 웨딩리포트 content (예산 관리 그래프)
 .report-content2 {
     box-sizing: border-box;
     width: 240px;
+    height: 145px;
     border: 1px solid #8483c9;
     border-radius: 0 0 10px 10px;
     margin: 0 59px 0 15px;
-    padding: 10px;
+    padding: 20px 0 5px 40px;
     font-family: "Pretendard-Regular";
 }
 /**************************************************************************** TodoList 관련
