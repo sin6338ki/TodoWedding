@@ -643,8 +643,12 @@ D-Day CheckList 관련
     box-sizing: border-box;
     background-color: #e2dafa;
     border-radius: 20px;
-    width: 250px;
     padding: 40px 50px 40px 50px;
-    margin: 20px 30px 20px 15px;
+    margin: 40px 30px 40px 20px;
     font-family: "Pretendard-Regular";
+}
+
+//마커
+.title-container {
+    border-radius: 10px;
 }
