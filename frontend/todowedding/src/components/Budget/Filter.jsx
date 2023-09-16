@@ -21,9 +21,9 @@ const Filter = () => {
       title="년도"
       aria-label="내역을 보고 싶은 년도를 선택하세요."
     >
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
       <option value="2022">2022</option>
-      <option value="2021">2021</option>
-      <option value="2020">2020</option>
     </select>
   )
 }

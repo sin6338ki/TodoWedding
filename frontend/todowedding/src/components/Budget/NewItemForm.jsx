@@ -8,6 +8,15 @@ import axios from "axios";
 import IncomeForm from "./IncomeForm";
 import ExpenseForm from "./ExpenseForm";
 
+
+
+/*
+ * 예산관리 페이지 (DB-insert)
+ * - 수입 , 지출 입력 form 컴포넌트 분리 
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.14
+ */
+
 const NewItemForm = () => {
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);

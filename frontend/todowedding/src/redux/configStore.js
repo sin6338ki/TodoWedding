@@ -33,6 +33,15 @@ const allReducers = combineReducers({
     User: userReducer, //새로 추가한 리듀서 (09.13)
 });
 
+//todo-redux(09.15)
+const TOGGLE_CHECKED = 'TOGGLE_CHECKED'
+const toggleChecked = (todolistSeq) =>{
+    return {
+        type:TOGGLE_CHECKED,
+        payload:todolistSeq
+    }
+}
+
 const store = createStore(
     persistReducer(persistConfig, allReducers),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
