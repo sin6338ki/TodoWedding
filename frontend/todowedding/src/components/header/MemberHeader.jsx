@@ -46,40 +46,36 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
 
     return (
         <div className="flex flex-row h-[90px] pl-2 pr-4 pb-1 bg-gradient-to-r from-[#D0CFFA] to-white">
-            <div className="flex flex-col self-center">
-                {marryDt ? (
-                    <Link to="/" className="self-center text-3xl text-[#9F7FFC] font-bold">
-                        D-{marryDt}
-                    </Link>
-                ) : (
-                    <Link to="/">
-                        <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} />
-                    </Link>
-                )}
+            {marryDt ? (
+                <Link to="/" className="self-center text-4xl mx-3 text-[#9F7FFC] font-bold">
+                    D-{marryDt}
+                </Link>
+            ) : (
+                <Link to="/">
+                    <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} />
+                </Link>
+            )}
 
-                <div className="text-[8px] mt-1 w-[99px] text-center">
-                    반가워요, <br></br>
-                    {loginUserNickname}님💜
+            <div className="flex flex-col ml-5 self-center w-[350px]">
+                <div className="text-[8px] mt-1 text-start">반가워요, {loginUserNickname}님💜</div>
+                <div className="flex-auto  text-[14px] pt-1">
+                    {latestSchedule != "none" ? (
+                        <>
+                            <span className="font-bold">{latestSchedule.schedule_start_dt}</span>에 <br></br>
+                            <span className="font-extrabold text-[#9F7FFC] text-[16px]">
+                                {latestSchedule.schedule_contents}
+                            </span>
+                            <br></br>일정이 기다리고 있어요!
+                        </>
+                    ) : (
+                        <div>
+                            <span>
+                                <span className="font-bold text-[#9F7FFC] ">TodoWedding</span>과 함께 쉽고 <br></br>
+                                편하게 결혼을 준비해보세요!
+                            </span>
+                        </div>
+                    )}
                 </div>
-            </div>
-
-            <div className="flex-auto ml-5 text-[14px] self-center pt-1">
-                {latestSchedule != "none" ? (
-                    <>
-                        <span className="font-bold">{latestSchedule.schedule_start_dt}</span>에 <br></br>
-                        <span className="font-extrabold text-[#9F7FFC] text-[16px]">
-                            {latestSchedule.schedule_contents}
-                        </span>
-                        <br></br>일정이 기다리고 있어요!
-                    </>
-                ) : (
-                    <div>
-                        <span>
-                            <span className="font-bold text-[#9F7FFC]">TodoWedding</span>과 함께 쉽고 <br></br>편하게
-                            결혼을 준비해보세요!
-                        </span>
-                    </div>
-                )}
             </div>
             <Link to="/todowedding/login" className="border p-2 bg-[#9F7FFC] self-center text-slate-100 h-[34px]">
                 {<GiHamburgerMenu />}

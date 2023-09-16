@@ -35,7 +35,8 @@ const MemberBottomBar = () => {
         nav("/todowedding/calendar");
     };
     return (
-        <div className=" flex flex-col">
+        // <div className="flex flex-col">
+        <div>
             {/* AddButton */}
             {/* Modal 설정 */}
             {token === null ||
