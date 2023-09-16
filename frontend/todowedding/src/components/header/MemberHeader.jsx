@@ -64,8 +64,8 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                             <span className="font-bold">{latestSchedule.schedule_start_dt}</span>에 <br></br>
                             <span className="font-extrabold text-[#9F7FFC] text-[16px]">
                                 {latestSchedule.schedule_contents}
-                            </span>
-                            <br></br>일정이 기다리고 있어요!
+                            </span>{" "}
+                            <span className="text-xs">일정이 기다리고 있어요!</span>
                         </>
                     ) : (
                         <div>

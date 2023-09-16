@@ -103,7 +103,7 @@ function AppContent() {
                             <Route path="/todowedding/partner/login" element={<PartnerLogin />}></Route>
                             <Route path="/todowedding/partner" element={<Partner />}></Route>
                             <Route path="/todowedding/partner/join" element={<PartnerJoin />}></Route>
-                            <Route path="todowedding/partner/info" element={<PartnerInfo />}></Route>
+                            <Route path="/todowedding/partner/info" element={<PartnerInfo />}></Route>
 
                             {/* 카카오 테스트 */}
                             <Route path="/kakao" element={<Kakao />}></Route>
