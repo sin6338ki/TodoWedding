@@ -38,19 +38,20 @@ const MemberBottomBar = () => {
         <div className=" flex flex-col">
             {/* AddButton */}
             {/* Modal 설정 */}
-            {token.type != "P" && (
-                <>
-                    <button
-                        className="plus-btn flex flex-row rounded-full border mx-3"
-                        type="button"
-                        onClick={() => setAdd(!add)}
-                    >
-                        <img src={PlusBtn} className="ml-5 w-[30px]" alt="AddButton" />
-                        <span className="ml-2 text-white font-bold">추가하기</span>
-                    </button>
-                    {add && <Modal closeModal={() => setAdd(!add)} />}
-                </>
-            )}
+            {token === null ||
+                (token.type != "P" && (
+                    <>
+                        <button
+                            className="plus-btn flex flex-row rounded-full border mx-3"
+                            type="button"
+                            onClick={() => setAdd(!add)}
+                        >
+                            <img src={PlusBtn} className="ml-5 w-[30px]" alt="AddButton" />
+                            <span className="ml-2 text-white font-bold">추가하기</span>
+                        </button>
+                        {add && <Modal closeModal={() => setAdd(!add)} />}
+                    </>
+                ))}
 
             <div className="bottom-bar">
                 <Link to="/" className="footer-menu-right" onClick={handleButtonClick}>
