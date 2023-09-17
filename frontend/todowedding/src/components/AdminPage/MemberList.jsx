@@ -19,9 +19,7 @@ const MemberList = ({ members }) => {
                 <div className="text-center font-bold col-span-1 ">NO</div>
                 <div className="text-center font-bold col-span-3 ">닉네임</div>
                 <div className="text-center font-bold col-span-4 ">email</div>
-                {/* email 추가 */}
                 <div className="text-center font-bold col-span-2">연령대</div>
-                {/* 연령대 추가 */}
                 <div className="text-center font-bold col-span-2">성별 </div>
                 {members.map((member, idx) => {
                     return (
