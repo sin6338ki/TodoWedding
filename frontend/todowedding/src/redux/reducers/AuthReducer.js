@@ -3,6 +3,7 @@ const DELETE_TOKEN = "delete_token";
 
 const AuthInitialState = {
     token: null,
+    userSeq: null,
 };
 
 export const setToken = (token) => ({
