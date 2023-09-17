@@ -36,35 +36,37 @@ const memberSeq = token.userSeq;
 
 const [todos, setTodos] = useState([]);
 const [input, setInput] = useState("");
-const [isChecked, setIsChecked] = useState("");
+const [isChecked, setIsChecked] = useState();
 
 
 // useEffect를 사용하여 컴포넌트가 마운트 됐을 때 API 호출 실행
-useEffect(() => {
-    // 비동기 함수 선언
-    const fetchTodos = async () => {
-      try {
-        // API 호출 
-        const response = await axios.get(`http://localhost:8085/todolist/${memberSeq}`);        // 이렇게 적는게 맞는지 확인 
+// useEffect(() => {
+//     // 비동기 함수 선언
+//     const fetchTodos = async () => {
+//       try {
+//         // API 호출 
+//         const response = await axios.get(`http://localhost:8085/todolist/${memberSeq}`);        // 이렇게 적는게 맞는지 확인 
         
-        // API 응답에서 투두리스트 데이터 추출 및 상태 설정
-        setTodos(response.data);
-      } catch (error) {
-        console.error('Failed to fetch todos', error);
-      }
+//         // API 응답에서 투두리스트 데이터 추출 및 상태 설정
+//         setTodos(response.data);
+//       } catch (error) {
+//         console.error('Failed to fetch todos', error);
+//       }
+//     };
+
+//     // 비동기 함수 실행
+//     fetchTodos();
+//   }, []);  // 빈 배열([])은 컴포넌트가 마운트 됐을 때만 실행하라는 의미
+
+// 2.전체 투두리스트 조회
+useEffect(() => {
+    const fetchDataAndCout = async () => {
+        await fetchData();
+        await cntTodoList(); //수정
     };
 
-    // 비동기 함수 실행
-    fetchTodos();
-  }, []);  // 빈 배열([])은 컴포넌트가 마운트 됐을 때만 실행하라는 의미
-
-
-
-
-
-
-
-
+    fetchDataAndCout();
+}, [input]);
 
 
 // 버튼 활성화 
@@ -182,24 +184,6 @@ const deleteTodo = async (todolistSeq) => {
 };
 
 //전체 투두리스트 조회 메서드
-// const fetchData = () => {
-//     try {
-//         axios
-//             .get(`http://localhost:8085/todolist/${memberSeq}`) //`http://localhost:8085/todolist/${memberSeq}`
-//             .then((res) => {
-//                 console.log("findallTodolist 조회 response : ", res.data);
-//                 setTodos(res.data);
-//             })
-//             .catch((err) => {
-//                 console.log("findallTodolist 조회 error : ", err);
-//             });
-//     } catch (error) {
-//         console.error("Error", error);
-//     }
-// };
-
-
-
 const fetchData = async () => { // fetchData 수정(09.15)
     try {
         const res = await axios.get(`http://localhost:8085/todolist/${memberSeq}`); 
@@ -215,43 +199,47 @@ const fetchData = async () => { // fetchData 수정(09.15)
 const [completedCnt, setCompletedCnt] = useState();
 const [unCompletedCnt, setUnCompletedCnt] = useState();
 
-// const cntTodoList = () => {
-//     try {
-//         axios
-//             .get(`http://localhost:8085/count-of-todolist/${memberSeq}`)
-//             .then((res) => {
-//                 console.log("cntTodoList response", res.data);
-//                 setCompletedCnt(res.data[1].count);
-//                 setUnCompletedCnt(res.data[0].count);
-//             })
-//             .catch((err) => {
-//                 console.log("axios arr : ", err);
-//             });
-//     } catch (err) {
-//         console.log("cntTodoList err : ", err);
-//     }
-// };
 
-const cntTodoList = async () => { // 코드수정(09.15)
+const cntTodoList = async () => { 
     try {
         const res = await axios.get(`http://localhost:8085/count-of-todolist/${memberSeq}`);
         console.log("cntTodoList response", res.data);
-        setCompletedCnt(res.data[1].count);
-        setUnCompletedCnt(res.data[0].count);
+        console.log("cntTodoList response length", res.data.length);
+        // setUnCompletedCnt(res.data[0].count)
+        // setCompletedCnt(res.data[1].count) 
+
+        /**
+         * count를 불러왔을 때 배열의 크기가 1인 경우 => 전체가 진행이거나 전체가 완료인 상태
+         * => 첫번째 값(0번 인덱스)가 N ==> 모두 진행인 상태 ==> 완료를 0, 진행을 배열[0] 값으로
+         * => 첫번째 값(0번 인덱스)가 Y ==> 모두 완료인 상태 ==> 진행을 0, 완료를 배열[0] 값으로
+         * 
+         * count를 불러왔을 때 배열의 크기가 2인경우 => 진행, 완료 둘다 있는 상태 
+         * 기존 대로 
+         */
+        if(res.data.length == 1){
+            if(res.data[0].todolist_completed === "N"){
+                setCompletedCnt(0)
+                setUnCompletedCnt(res.data[0].count)
+            }else if(res.data[0].todolist_completed === "Y"){
+                setUnCompletedCnt(0)
+                setCompletedCnt(res.data[0].count)
+            }
+        }else{
+            setUnCompletedCnt(res.data[0].count)
+            setCompletedCnt(res.data[1].count)
+        }
+
     } catch (err) {
         console.log("cntTodoList err : ", err);
     }
 };
 
-// 2.전체 투두리스트 조회
-useEffect(() => {
-    const fetchDataAndCout = async () => {
-        await fetchData();
-        await cntTodoList(); //수정
-    };
-
-    fetchDataAndCout();
-}, []);
+//하나의 투두리스트 항목에 대하여 변화가 있을 때 (체크하거나 미체크했을 때) 
+//count 조회 메서드 실행
+const [changeCheck, setChangeCheck] = useState(false)
+useEffect(()=>{
+    cntTodoList();
+}, [changeCheck])
 
 
 return (
@@ -286,7 +274,6 @@ return (
                     <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}`}</span>
                 )}
                 {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${unCompletedCnt}`}</span>}
-                {/* {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${todos.length}`}</span>} */}
                 {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
             </div>
 
@@ -307,6 +294,8 @@ return (
                 {todos.map((todolistContents, index) => (
                     <Todo
                         key={index}
+                        setChangeCheck={setChangeCheck}
+                        changeCheck={changeCheck}
                         todolistContents={todolistContents}
                         toggleComplete={() => toggleComplete(todolistContents)}
                         deleteTodo={() => deleteTodo(todolistContents.todolistSeq)}
