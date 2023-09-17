@@ -10,7 +10,7 @@ import { useParams, useLocation } from "react-router-dom";
  *  - 카카오톡 공유하기 기능 추가 (신지영, 2023.09.16)
  */
 
-const DayCheckSeq = ({ checkdaySeq, setContents }) => {
+const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
     let { checkdaySeqParams } = useParams();
     let location = useLocation();
     const script = document.createElement("script");
@@ -43,7 +43,7 @@ const DayCheckSeq = ({ checkdaySeq, setContents }) => {
 
             setMessage(newMessage);
         }
-        setContents(contentsLocal);
+        contents && setContents(contentsLocal);
     }, [checkDayContents, contentsLocal]);
 
     useEffect(() => {

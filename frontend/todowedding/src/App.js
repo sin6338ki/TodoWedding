@@ -10,15 +10,17 @@
  *  - 관리자 페이지 추가 (신지영, 2023.09.12)
  */
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from 'react-redux';
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
 import ADSlickSlider from "./components/ADSlickSlider";
 import Kakaologin from "./components/Login/Kakaologin";
 import KakaologOut from "./components/Login/KakaologOut";
+import KakaoDelete from "./components/Login/KakaoDelete"
 import Callback from "./components/Login/Callback";
-import Join from "./components/Member/Join";
-import Delete from "./components/Member/Delete";
+import Mypage from "./components/Login/Mypage";
 import Main from "./components/Main";
 import Calendar from "./components/Calendar/Calendar";
 import CheckItemList from "./components/CheckList/CheckItemList";
@@ -54,6 +56,10 @@ import Map from "./components/KakaoMaps/Map";
 import PartnerInfo from "./components/PartnerPage/PartnerInfo";
 
 function AppContent() {
+    //userSeq 받아오기
+    const token = useSelector((state) => state.Auth.token);
+    const userSeq = token?.userSeq;
+  
     return (
         <div>
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -66,8 +72,8 @@ function AppContent() {
                             <Route path="/todowedding/login" element={<Kakaologin />} />
                             <Route path="/auth/kakao/callback" element={<Callback />} />
                             <Route path="/auth/kakao/logout" element={<KakaologOut />} />
-                            <Route path="/todowedding/join" element={<Join />} />
-                            <Route path="/todowedding/delete" element={<Delete />} />
+                            <Route path="/member/delete" element={<KakaoDelete />} />
+                            <Route path="/todowedding/mypage" element={<Mypage />} />
 
                             {/* 일정관리 */}
                             <Route path="/todowedding/calendar"  element={<Calendar />} />

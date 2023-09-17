@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -74,16 +75,16 @@ public class KakaoLoginController {
 	
 	
 	// 회원 정보 전부 삭제
-	@GetMapping("/member/delete")
+	@DeleteMapping("/member/delete")
 	public ResponseEntity<String> deleteMember(@RequestParam("member_seq") int member_seq) {
-		log.info("삭제할 회원 시퀀스 확인 "+member_seq);
-		String resultMessage = memberService.deleteMember(member_seq);
+	    log.info("삭제할 회원 시퀀스 확인 "+member_seq);
+	    String resultMessage = memberService.deleteMember(member_seq);
 
-		if(resultMessage.equals("회원 정보 삭제 완료")) { 
-		    return ResponseEntity.ok(resultMessage);
-		} else {  
-		    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMessage); 
-		}
+	    if(resultMessage.equals("회원 정보 삭제 완료")) { 
+	        return ResponseEntity.ok(resultMessage);
+	    } else {  
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMessage); 
+	    }
 	}
 	
 	//예약 메시지 보내기 - D-day 안내 메시지

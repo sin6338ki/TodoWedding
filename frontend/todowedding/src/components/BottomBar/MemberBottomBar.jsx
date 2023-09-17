@@ -5,7 +5,7 @@ import Partner from "../../assets/images/icon/map.png";
 import Calendar from "../../assets/images/icon/calendar.png";
 import Budget from "../../assets/images/icon/budget.png";
 import Home from "../../assets/images/icon/home.png";
-import PlusBtn from "../../assets/images/icon/dance.png";
+import ModalBtn from "../../assets/images/TodoModal_bg.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Modal from "../../components/Modal";
@@ -48,12 +48,11 @@ const MemberBottomBar = () => {
                 (token.type != "P" && (
                     <>
                         <button
-                            className="plus-btn flex flex-row rounded-full border mx-3"
+                            className="ModalBtn"
                             type="button"
                             onClick={() => setAdd(!add)}
-                        >
-                            <img src={PlusBtn} className="ml-5 w-[30px]" alt="AddButton" />
-                            <span className="ml-2 text-white font-bold">추가하기</span>
+                            title="클릭 후 일정을 추가해보세요">
+                            <img src={ModalBtn} className="ModalImage" alt="AddButton" />
                         </button>
                         {add && <Modal closeModal={() => setAdd(!add)} />}
                     </>

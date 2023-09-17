@@ -27,8 +27,8 @@ const TodoReport = () => {
     <div>
     {todoListCount !== null ? (
       <>
-        <p>총 투두리스트 개수 : {todoListCount[0].count} 개</p>
-        <p>완료 개수 : {todoListCount[0].todolist_completed}</p>
+        <p>총 투두리스트 개수 : {todoListCount.count} 개</p>
+        <p>완료 개수 : {todoListCount.todolist_completed}</p>
       </>
     ) : (
       <p>Loading...</p>
