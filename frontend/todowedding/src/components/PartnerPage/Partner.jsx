@@ -48,29 +48,32 @@ const Partner = () => {
                 <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
                 <div className="text-center font-bold absolute w-full h-full mt-2">채팅방 리스트</div>
             </div>
-            <div className="flex flex-row m-10 justify-between">
-                <div>NO</div>
-                <div>닉네임</div>
-                <div>마지막 대화 날짜</div>
-                <div>입장</div>
+
+            <div className="grid grid-cols-4 gap-3 mx-10 pt-5 border-t-2 border-[#ECECEC]">
+                <div className="text-center font-bold">NO</div>
+                <div className="text-center font-bold">닉네임</div>
+                <div className="text-center font-bold">마지막 대화일</div>
+                <div className="text-center font-bold">입장</div>
+
+                {resultFindChatRoom &&
+                    resultFindChatRoom.map((chatRoom, idx) => {
+                        return (
+                            <>
+                                <div className="text-center">{idx + 1}</div>
+                                <div className="text-center">{chatRoom.nickname}</div>
+                                <div className="text-center">{chatRoom.chatting_create_dt}</div>
+                                <button
+                                    className="text-[#B4B4B4]"
+                                    onClick={() => {
+                                        enterToChat(chatRoom.chat_room_seq, chatRoom.partner_seq, chatRoom.member_seq);
+                                    }}
+                                >
+                                    입장
+                                </button>
+                            </>
+                        );
+                    })}
             </div>
-            {resultFindChatRoom &&
-                resultFindChatRoom.map((chatRoom, idx) => {
-                    return (
-                        <div key={idx} className="flex flex-row m-10 justify-between">
-                            <div>{idx + 1}</div>
-                            <div>{chatRoom.nickname}</div>
-                            <div>{chatRoom.chatting_create_dt}</div>
-                            <button
-                                onClick={() => {
-                                    enterToChat(chatRoom.chat_room_seq, chatRoom.partner_seq, chatRoom.member_seq);
-                                }}
-                            >
-                                입장
-                            </button>
-                        </div>
-                    );
-                })}
         </div>
     );
 };

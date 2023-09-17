@@ -4,6 +4,7 @@ import * as StompJs from "@stomp/stompjs";
 import "../../tailwind.css";
 import { useSelector } from "react-redux"; //redux 액션 실행
 import axios from "axios";
+
 /*
  * 실제 채팅방 - 채팅목록 및 채팅 보낼 수 있는 창
  * 작성자 : 신지영
@@ -151,7 +152,7 @@ const ChattingRoom = () => {
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
     const msgBox = () => {
         return chatList.map((item, idx) => {
-            if (item.chattingSenderType != "M") {
+            if (item.chattingSenderType != token.type) {
                 return (
                     <div key={idx} className="snap-center mr-3 my-2 text-xs w-[400px] ml-3">
                         <div className="my-1 text-left px-2 py-1 rounded-full bg-[#FFD7A9] border-none w-fit">
@@ -186,7 +187,7 @@ const ChattingRoom = () => {
         <div>
             <div
                 id="chatting-container"
-                className="h-[608px] mx-auto mt-10 flex flex-col border rounded-2xl border-black w-5/6"
+                className="h-[680px] mx-auto mt-10 flex flex-col border rounded-2xl border-black w-5/6"
             >
                 <div
                     id="chatting-banner"
@@ -196,9 +197,9 @@ const ChattingRoom = () => {
                 </div>
                 <div
                     id="chatting-contents-container"
-                    className="scrollbar-hide snap-y flex flex-col h-[430px] overflow-y-auto"
+                    className="scrollbar-hide snap-y flex flex-col h-[520px] overflow-y-auto"
                 >
-                    {msgBox()}
+                    {token && msgBox()}
                 </div>
                 <div id="chatting-input-container" className="flex flex-row bg-[#F4F4F4] h-32 rounded-b-2xl">
                     <div className="flex flex-col-reverse border-b border-black ml-5 mb-3 align-bottom basis-4/5">

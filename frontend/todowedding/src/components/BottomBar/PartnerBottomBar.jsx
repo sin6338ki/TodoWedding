@@ -69,7 +69,7 @@ const PartnerBottomBar = () => {
         <div className="pl-5 bottom-bar">
             <Link to="todowedding/partner/info" className="footer-menu-left">
                 <img className="bottom-bar-hover" src={Info} alt="Info" width="20px" />
-                <span className="text-xs mt-1">정보수정</span>
+                <span className="text-xs mt-2">정보수정</span>
             </Link>
             <button
                 onClick={() => {
@@ -78,7 +78,7 @@ const PartnerBottomBar = () => {
                 className="footer-menu-left"
             >
                 <img className="bottom-bar-hover" src={Logout} alt="Logout" width="20px" />
-                <span className="text-xs mt-1"> 로그아웃</span>
+                <span className="text-xs mt-2"> 로그아웃</span>
             </button>
             <div
                 onClick={() => {
@@ -87,11 +87,11 @@ const PartnerBottomBar = () => {
                 className="footer-menu-left"
             >
                 <img className="bottom-bar-hover" src={Withdrawal} alt="Withdrawal" width="20px" />
-                <span className="text-xs mt-1"> 회원탈퇴</span>
+                <span className="text-xs mt-2"> 회원탈퇴</span>
             </div>
             <Link to="/todowedding/partner" className="footer-menu-left">
                 <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
-                <span className="text-xs mt-1"> Home</span>
+                <span className="text-xs mt-2"> Home</span>
             </Link>
 
             <Modal show={show} onHide={handleClose}>

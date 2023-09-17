@@ -4,46 +4,40 @@
  * 작성일 : 2023.09.12
  */
 
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const MemberList = () => {
-    const [members, setMembers] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get("http://localhost:8085/member")
-            .then((res) => {
-                console.log("전체 멤버 조회", res.data);
-                setMembers(res.data);
-            })
-            .catch((err) => {
-                console.log("전체 멤버 조회 에러", err);
-            });
-    }, []);
-
+const MemberList = ({ members }) => {
     return (
         <div>
-            <h3>회원 리스트</h3>
-            <h5>회원 검색</h5>
-            <button>?</button>
-            <div>
-                <div>
-                    <span>NO</span>
-                    <span>닉네임</span>
-                    <span>email</span>
-                    <span>연령대</span>
-                    <span>성별</span>
-                </div>
+            <div className="text-left text-2xl font-bold w-full mt-2 p-3 border-b">회원 리스트</div>
+            <div className="flex flex-row p-3 mt-2">
+                <h5 className="align-middle pt-2 text-xs">회원 검색</h5>
+                <input type="text" className="border border-[#9F7FFC] ml-3 align-middle text-xs"></input>
+                <button className="bg-[#9F7FFC] w-10 text-white text-xs">검색</button>
+            </div>
+            <div className="grid grid-cols-12 ml-3 pt-3 mb-5">
+                <div className="text-center font-bold col-span-1 ">NO</div>
+                <div className="text-center font-bold col-span-3 ">닉네임</div>
+                <div className="text-center font-bold col-span-4 ">email</div>
+                {/* email 추가 */}
+                <div className="text-center font-bold col-span-2">연령대</div>
+                {/* 연령대 추가 */}
+                <div className="text-center font-bold col-span-2">성별 </div>
                 {members.map((member, idx) => {
                     return (
-                        <div key={idx}>
-                            <span>{idx + 1}</span>
-                            <span>{member.nickname}</span>
-                            <span>{member.e_mail}</span>
-                            <span>{member.age_range}</span>
-                            <span>{member.gender}</span>
-                        </div>
+                        <>
+                            <div className="text-center col-span-1 mt-1">{idx + 1}</div>
+                            <div className="text-center col-span-3 mt-1">{member.nickname}</div>
+                            <div className="text-center col-span-4 mt-1">
+                                {member.e_mail ? member.e_mail : "동의안함"}
+                            </div>
+                            <div className="text-center col-span-2 mt-1">
+                                {member.age_range ? member.age_range : "동의안함"}
+                            </div>
+                            <div className="text-center col-span-2 mt-1">
+                                {member.gender ? member.gender : "동의안함"}
+                            </div>
+                        </>
                     );
                 })}
             </div>

@@ -47,7 +47,10 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     return (
         <div className="flex flex-row h-[90px] pl-2 pr-4 pb-1 bg-gradient-to-r from-[#D0CFFA] to-white">
             {marryDt ? (
-                <Link to="/" className="self-center text-4xl mx-3 text-[#9F7FFC] font-bold">
+                <Link
+                    to="/"
+                    className="decoration-transparent self-cente pt-3 text-[44px] mx-3 text-[#9F7FFC] font-extrabold font-serif"
+                >
                     D-{marryDt}
                 </Link>
             ) : (
@@ -70,8 +73,8 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                     ) : (
                         <div>
                             <span>
-                                <span className="font-bold text-[#9F7FFC] ">TodoWedding</span>과 함께 쉽고 <br></br>
-                                편하게 결혼을 준비해보세요!
+                                <span className="font-bold text-[#9F7FFC] ">TodoWedding</span>과 함께 <br></br>
+                                쉽고 편하게 결혼을 준비해보세요!
                             </span>
                         </div>
                     )}

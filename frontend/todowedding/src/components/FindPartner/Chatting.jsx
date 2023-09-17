@@ -34,8 +34,6 @@ const Chatting = () => {
     const enterChat = async () => {
         //기존 연결되어 있는 채팅방 유무 확인
         await isAlivedChat();
-        //채팅방 이동
-        await moveToChat(chatRoomSeq);
     };
 
     useEffect(() => {
@@ -57,17 +55,20 @@ const Chatting = () => {
     };
 
     //채팅방 유무 확인 이벤트
-    const isAlivedChat = () => {
-        axios
-            .get(`http://localhost:8085/chat/${token.userSeq}/${partnerSeq}`)
-            .then((res) => {
-                console.log("isAlivedChat result : ", res.data);
-                let result = res.data;
-                result != "none" ? setChatRoomSeq(res.data) : createChat();
-            })
-            .catch((err) => {
-                console.log("isAlivedChat error : ", err);
-            });
+    const isAlivedChat = async () => {
+        try {
+            const res = await axios.get(`http://localhost:8085/chat/${token.userSeq}/${partnerSeq}`);
+            console.log("isAlivedChat result : ", res.data);
+            let result = res.data;
+            if (result != "none") {
+                setChatRoomSeq(res.data);
+                moveToChat(res.data); // 직접 chat room seq 값을 넘겨주는 것을 추가하였습니다.
+            } else {
+                createChat();
+            }
+        } catch (err) {
+            console.log("isAlivedChat error : ", err);
+        }
     };
 
     //채팅방으로 이동하는 이벤트
@@ -79,7 +80,7 @@ const Chatting = () => {
         });
     };
 
-    return <div></div>;
+    return <div>채팅방 연결중입니다...</div>;
 };
 
 export default Chatting;

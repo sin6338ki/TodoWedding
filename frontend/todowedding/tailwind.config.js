@@ -4,7 +4,16 @@ const { defaultTheme } = require("react-select");
 module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                MapoFlowerIsland: ["MapoFlowerIsland"],
+                LOTTERIADDAG: ["LOTTERIADDAG"],
+                GangwonEdu_OTFBoldA: ["GangwonEdu_OTFBoldA"],
+                Hahmlet_Regular: ["Hahmlet-Regular"],
+                SDSamliphopangche_Outline: ["SDSamliphopangche_Outline"],
+                KCCChassam: ["KCCChassam"],
+            },
+        },
     },
     plugins: [require("tailwind-scrollbar-hide")],
 };

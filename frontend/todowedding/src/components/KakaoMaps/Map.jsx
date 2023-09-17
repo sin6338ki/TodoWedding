@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import StudioMarker from "../../assets/images/icon/studiomaker.png";
 import WeddingHallMarker from "../../assets/images/icon/hollmaker.png";
+import { Link } from "react-router-dom";
 
 /**
  * 업체찾기 페이지 (1:1 채팅방 이동, Kakao Maps API 사용, place 서비스 객체 사용)
@@ -216,7 +217,7 @@ const Map = () => {
             <input type="text" placeholder="장소 검색" onChange={(e) => setSearchPlace(e.target.value)} />
             <button onClick={searchPlaces}>검색</button>
             <div id="KakaoMap" style={{ width: "500px", height: "700px" }}></div>
-            {/* <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a> */}
+            <Link to="/todowedding/chatting/124">채팅방 이동</Link>
         </div>
     );
 };
