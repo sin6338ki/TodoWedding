@@ -3,7 +3,7 @@
  * 작성자 : 신지영
  * 작성일 : 2023.09.15
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +25,7 @@ const PartnerBottomBar = () => {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.Auth.token);
     const navigate = useNavigate();
+    const [isAdminCk, setIsAdminCk] = useState("N");
 
     //회원탈퇴 동의 모달
     const [show, setShow] = useState(false);
@@ -65,12 +66,33 @@ const PartnerBottomBar = () => {
             });
     };
 
+    //Admin 계정 여부 확인
+    const isAdmin = () => {
+        axios
+            .get(`http://localhost:8085/admin/${token.userSeq}`)
+            .then((res) => {
+                console.log("isAdmin response : ", res.data);
+                setIsAdminCk(res.data);
+            })
+            .catch((err) => {
+                console.log("isAdmin error : ", err);
+            });
+    };
+
+    useEffect(() => {
+        isAdmin();
+    }, [token]);
+
     return (
         <div className="pl-5 bottom-bar">
-            <Link to="todowedding/partner/info" className="footer-menu-left">
-                <img className="bottom-bar-hover" src={Info} alt="Info" width="20px" />
-                <span className="text-xs mt-2">정보수정</span>
-            </Link>
+            {isAdminCk != "Y" ? (
+                <Link to="todowedding/partner/info" className="footer-menu-left" id="infoBtn">
+                    <img className="bottom-bar-hover" src={Info} alt="Info" width="20px" />
+                    <span className="text-xs mt-2">정보수정</span>
+                </Link>
+            ) : (
+                <div className="ml-16"></div>
+            )}
             <button
                 onClick={() => {
                     partnerLogout();

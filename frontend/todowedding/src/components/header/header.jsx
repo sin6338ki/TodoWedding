@@ -8,6 +8,7 @@ import axios from "axios";
 import PartnerHeader from "./PartnerHeader";
 import MemberHeader from "./MemberHeader";
 import NotLoginedHeader from "./NotLoginedHeader";
+import AdminHeader from "./Admin";
 
 /*
  * Header
@@ -44,6 +45,19 @@ const Header = () => {
             });
     };
 
+    //Admin 계정 여부 확인
+    const isAdmin = () => {
+        axios.get(`http://localhost:8085/admin/${token.userSeq}`).then((res) => {
+            if (res.data === "Y") {
+                setLoginUserNickname(token.userNick);
+                setHeaderType("admin");
+            } else {
+                setLoginUserNickname(token.userNick);
+                setHeaderType("partner");
+            }
+        });
+    };
+
     //토큰 정보 확인 후 헤더 결정
     useEffect(() => {
         if (token != null) {
@@ -54,11 +68,10 @@ const Header = () => {
                     await setLoginUserNickname(token.userNick);
                     await findMarryDt();
                 };
-
+                setLoginUserNickname(token.userNick);
                 selectUserInfo();
             } else {
-                setHeaderType("partner");
-                setLoginUserNickname(token.userNick);
+                isAdmin();
             }
         } else {
             setHeaderType("notLogined");
@@ -69,6 +82,7 @@ const Header = () => {
         <>
             {headerType === "member" && <MemberHeader marryDt={marryDt} loginUserNickname={loginUserNickname} />}
             {headerType === "partner" && <PartnerHeader loginUserNickname={loginUserNickname} />}
+            {headerType === "admin" && <AdminHeader loginUserNickname={loginUserNickname} />}
             {headerType === "notLogined" && <NotLoginedHeader />}
         </>
     );

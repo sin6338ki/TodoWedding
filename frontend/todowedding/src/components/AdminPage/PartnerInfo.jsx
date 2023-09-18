@@ -82,6 +82,22 @@ const PartnerInfo = () => {
                 alert("회원 정보 수정에 실패했습니다.");
             });
     };
+
+    //업체 정보 삭제
+    const deletePartner = () => {
+        axios
+            .delete(`http://localhost:8085/partner/${partnerSeq}`)
+            .then((res) => {
+                console.log("deletepartner response", res.data);
+                if (res.data === "success") {
+                    navigate("/todowedding/admin");
+                }
+            })
+            .catch((err) => {
+                console.log("deletePartner error", err);
+            });
+    };
+
     return (
         <div>
             <div>
@@ -194,6 +210,14 @@ const PartnerInfo = () => {
                                 updatePartnerInfo();
                             }}
                             className="self-center h-[40px] w-full rounded-md bg-[#A383FF] text-white mt-2"
+                        />
+                        <input
+                            type="button"
+                            value="삭제하기"
+                            onClick={() => {
+                                deletePartner();
+                            }}
+                            className="self-center h-[40px] w-full rounded-md bg-gray-400 text-white mt-2"
                         />
                     </div>
                 </div>
