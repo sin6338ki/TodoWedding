@@ -2,8 +2,23 @@ import React, { useContext, useState, useCallback, useEffect } from 'react';
 import { ItemDispatchContext } from '../Budget/BudgetApp';
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
 import { StopEditContext } from '../Budget/NewItemContainer';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 
 const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, setBudgetTitle, budgetCost, setBudgetCost, budgetRole, setBudgetRole, budgetMemo, setBudgetMemo, budgetExpenseCost,setBudgetExpenseCost,  setNewBudgetData}) => {
+
+
+    const token = useSelector((state) => state.Auth.token);
+    let memberSeq;
+        if (token && token.userSeq) {
+            memberSeq = token.userSeq;
+        } else {
+            console.error('Token or user sequence is not defined.');
+            memberSeq = 0; // or set it to a fallback value if necessary
+        }
+
+
 
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
@@ -66,6 +81,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
     };
 
 
+    
 
 
       // 지출 데이터 보내줄 때 (동기,비동기통신)
@@ -77,11 +93,11 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
             budget_role : budgetRole,
             budget_memo : budgetMemo,
             budget_expense_cost : deleteComma(budgetExpenseCost).toString(),
-            member_seq : 101
+            member_seq : memberSeq // 여기부분 수정하기 
           });
 
     // stopEditingHandler();   
-      },[budgetDate,budgetCost,budgetTitle,budgetRole,budgetMemo,budgetExpenseCost]);
+      },[budgetDate,budgetCost,budgetTitle,budgetRole,budgetMemo,budgetExpenseCost,memberSeq]); // memberSeq추가
     
 
 
@@ -89,7 +105,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
   return (
     <div>
 
-          {/* 내역추가(날짜) */}
+          {/* 날짜 */}
              <div className="new-item__form-info">
                 <h2 className="fs-normal fw-regular">날짜</h2>
                 <input
@@ -170,18 +186,6 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
 
 
                   {/* 분담 */}
-            
-     {/* <div className="new-item__form-info" >
-        <div className="new-item__form-info--title">
-            <h3 className="fs-normal fw-regular">분담</h3>
-        </div>
-        <select value={budgetRole} onChange={budgetRoleChangeHandler} style={{ border: "1px solid #D9D9D9;" ,padding: '6px , 9px' ,borderRadius:'5px' }}>
-             {roles.map((role, index) => (
-           <option key={index} value={role}>{role}</option>
-            ))}
-        </select>
-      </div> */}
-
 <div className="new-item__form-info">
   <div className="new-item__form-info--title">
     <h3 className="fs-normal fw-regular">분담</h3>

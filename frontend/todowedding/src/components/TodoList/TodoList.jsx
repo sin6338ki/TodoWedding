@@ -29,10 +29,19 @@ const style = {
 //  const [unCompletedCnt, setUnCompletedCnt] = useState();
 
 const TodoList = () => {
+    
+    //userSeq 받아오기 (로그인이전 일때 추가 코드1 +import 2줄 포함 useNavi , useSelector)
+  const nav = useNavigate();
+  const token = useSelector((state) => state.Auth.token);
+  const memberSeq = token ? token.userSeq : 0;
 
-//userSeq 받아오기
-const token = useSelector((state) => state.Auth.token);
-const memberSeq = token.userSeq;
+  //로그인 전이면(userSeq가 0일 때) 다시 메인페이지로  (로그인이전 일때 추가 코드2)
+  useEffect(() => {
+    if (!memberSeq) {
+      nav('/');
+    }
+  }, [memberSeq, nav]);
+  // 여기까지 코드작성해줘야댐
 
 const [todos, setTodos] = useState([]);
 const [input, setInput] = useState("");
@@ -73,7 +82,6 @@ useEffect(() => {
 const [activeButton, setActiveButton] = useState("")     
 
  //캘린더 버튼 클릭 시 이동
- const nav = useNavigate();
  const calendarOnclick = () => {
     nav("/todowedding/calendar");
     setActiveButton("Calendar")
@@ -137,18 +145,7 @@ const createTodo = async (e) => {
           console.log("error", err);
       }
 
-    
 
-    //backend axios통신
-    // await axios
-    //     .post("http://localhost:8085/todolist", data)
-    //     .then((res) => {
-    //         console.log("response : ", res);
-    //         fetchData();
-    //     })
-    //     .catch((err) => {
-    //         console.log("error", err);
-    //     });
 };
 
 
@@ -299,8 +296,7 @@ return (
                         todolistContents={todolistContents}
                         toggleComplete={() => toggleComplete(todolistContents)}
                         deleteTodo={() => deleteTodo(todolistContents.todolistSeq)}
-                        // toggleComplete={toggleComplete} 
-                        // deleteTodo={deleteTodo}
+                       
                     />
                 ))}
             </ul>

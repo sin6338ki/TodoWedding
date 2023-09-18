@@ -2,7 +2,27 @@ import React, { useCallback, useState, useContext, useEffect } from "react";
 import { ItemDispatchContext } from "./BudgetApp";
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
 import { StopEditContext } from "./NewItemContainer";
-const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, incomeDt, setIncomeDt, incomeContents, setIncomeContents, incomeCost, setIncomeCost }) => {
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
+
+const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, incomeDt, setIncomeDt, incomeContents, setIncomeContents, incomeCost, setIncomeCost  }) => {
+
+
+
+    
+    // const token = useSelector((state) => state.Auth.token);  // 여기로 이동
+    // const memberSeq = token ? token.userSeq : 0;  
+
+    const token = useSelector((state) => state.Auth.token);
+    let memberSeq;
+        if (token && token.userSeq) {
+            memberSeq = token.userSeq;
+        } else {
+            console.error('Token or user sequence is not defined.');
+            memberSeq = 0; // or set it to a fallback value if necessary
+        }
 
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
@@ -53,15 +73,24 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
         income_dt : incomeDt,
         income_cost :deleteComma(incomeCost).toString() ,
         income_contents : incomeContents,
-        member_seq : 101
+        member_seq : memberSeq // 여기부분 수정하기 
       }
 
     setIncomeData(incomeData);
 
-
-
 // stopEditingHandler();
   }, [incomeDt, incomeCost, incomeContents]);
+
+
+
+
+
+
+
+
+
+
+  
 
   return (
     <div>

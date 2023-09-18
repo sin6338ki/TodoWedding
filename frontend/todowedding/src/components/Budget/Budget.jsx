@@ -3,68 +3,72 @@ import axios from "axios";
 import { addComma } from "../utils/numberUtils";
 import { FilterContext } from "./BudgetContainer";
 import "../../assets/budget-css/Budget.css";
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 /* Budget 예산관리
  * 작성자 : 양수진
  * 작성일 : 2023.09.12
+ * 로그인이전 home 으로 이동 (09.18)
  */
 
-//PocketStatus
+//PocketStatus (상위컴포넌트) --> 입력하면 바로렌더링 하는 부분 수정필요
 const Budget = (props) => {
-
-  //userSeq 받아오기
-const token = useSelector((state) => state.Auth.token);
-const memberSeq = token.userSeq;
-
-
     const { filteredItems, filterBaseYear } = useContext(FilterContext);
-
     const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산 --> 어디서 가져와야할까 ? 
     const [totalIncome, setTotalIncome] = useState(0);   // 총수입
     const [totalExpense, setTotalExpense] = useState(0); // 총지출
     const twoDigitYear = filterBaseYear.slice(-2);
 
-    // useEffect(() => { // 기존코드 참고용 --> 삭제 X 
-    //     let total = { balance: 0, income: 0, expense: 0 };
 
-    //     if (filteredItems.length > 0) {
-    //         // 자산, 수입, 지출 합계 계산
-    //         filteredItems.forEach((item) => {
-    //             if (item.type === "income") {
-                   
-    //                 total.balance += +item.amount;
-    //                 total.income += +item.amount;
-    //             } else if (item.type === "expense") {
-                   
-    //                 total.balance -= +item.amount;
-    //                 total.expense += +item.amount; 
-    //             }
-    //         });
 
-    //         setTotalBalance(total.balance);
-    //         setTotalIncome(total.income);
-    //         setTotalExpense(total.expense);
-    //     }
-    // }, [filteredItems]);
+// 로그인 이전 Home 으로이동
+const nav = useNavigate();
+const token = useSelector((state) => state.Auth.token);
+let memberSeq;
 
-    // 총예산 - 총수입 - 총지출 불러오기 
-    useEffect (()=>{
-        const memberSeq = {
-            "member_seq" : 101 // kakao-seq 로 바꿔주기 ! -->${memberSeq}로 바꾸기
-        };
+if (token && token.userSeq) {
+    memberSeq = token.userSeq;
+} else {
+    console.error('Token or user sequence is not defined.');
+    memberSeq = 0; // or set it to a fallback value if necessary
+}
 
-        axios.post(`http://localhost:8085/member/total`,memberSeq)
-        .then(response => {
-            console.log("222",response);
-            setTotalExpense(response.data.budget_sum_cost);
-            setTotalIncome(response.data.income_total_cost);
-            setTotalBalance(response.data.marry_total_budget);
-        })
-        .catch(error => console.error('Error:', error));  
-    },[])
+useEffect(() => {
+  if (!memberSeq) {
+    alert("로그인 후 진행해 주세요")
+    nav('/');
+  }
+  else{
+      const memberSeqObj = {
+          "member_seq" : memberSeq  
+      };
 
+      axios.post(`http://localhost:8085/member/total`,memberSeqObj)
+      .then(response => {
+          console.log("222",response);
+          setTotalExpense(response.data.budget_sum_cost);
+          setTotalIncome(response.data.income_total_cost);
+          setTotalBalance(response.data.marry_total_budget);
+      })
+      .catch(error => console.error('Error:', error));
+  }
+    
+},[memberSeq])
+
+
+
+
+//전체 총수입 총지출 조회 메서드 (postman에서 selectTotal참고)
+// const fetchData = async () => { 
+//     try {
+//         const res = await axios.get(`http://localhost:8085/member/total`); 
+//         console.log("budget 조회 response : ", res.data.income_total_cost);
+//         setTotalIncome(res.data);
+//     } catch (error) {
+//         console.error("Error", error);
+//     }
+// };
 
 
 

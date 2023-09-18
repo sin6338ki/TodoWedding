@@ -12,7 +12,7 @@ Todo
 작성일 : 2023.09.04
 수정 : checkbox 클릭시 textComplete style적용 수정 (09.13)
 수정 : check시 text style 변경(9.14) 
-수정 : todolist 전체 - 완료 -미완료
+수정 : todolist 전체 - 완료 - 미완료조회
 */
 const style = {
     li: `flex justify-between p-4 my-2 capitalize border-b`,
@@ -84,10 +84,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         console.log("todolistContents", todolistContents.todolistSeq);
     }, [isChecked]);
 
-    // useEffect(() => {
-    //     toggleComplete
-    //     console.log("todolistContents", todolistContents.todolistSeq);
-    // }, [isChecked]);
+   
 
     return (
         <li className={todolistContents.completed ? style.liComplete : style.li}>
@@ -103,9 +100,6 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
             </div>
             <button onClick={() => deleteTodo(todolistContents.todolistSeq)} className="trashBtn">
                 {<FaRegTrashAlt />}
-            </button>
-            <button className={style.row} style={{ marginRight: "50px" }} onClick={handleCalendarButtonClick}>
-                <img className="calendarIcon" src={Todo_calendaricon} alt="일정추가" width="20px" />
             </button>
             <button className={style.row} style={{ marginRight: "50px" }} onClick={handleCalendarButtonClick}>
                 <img className="calendarIcon" src={Todo_calendaricon} alt="일정추가" width="20px" />
