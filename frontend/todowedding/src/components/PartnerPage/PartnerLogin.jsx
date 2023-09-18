@@ -33,24 +33,6 @@ const PartnerLogin = () => {
         setPw(e.target.value);
     };
 
-    //redux 저장 확인
-    useEffect(() => {
-        console.log("partnerInfo redux 저장 확인 : ", token);
-        if (token != null) {
-        }
-    }, [token]);
-
-    //관리자 여부 판단
-    const isAdmin = () => {
-        axios.get(`http://localhost:8085/admin/${token.userSeq}`).then((res) => {
-            if (res.data === "Y") {
-                navigate("/todowedding/admin");
-            } else {
-                navigate("/todowedding/partner");
-            }
-        });
-    };
-
     //로그인 버튼 클릭했을 때 이벤트
     const login = async () => {
         await axios
@@ -60,7 +42,6 @@ const PartnerLogin = () => {
             })
             .then(async (res) => {
                 console.log("login response : ", res.data);
-
                 //redux에 로그인 정보 저장
                 await dispatch(
                     setToken({
@@ -71,8 +52,11 @@ const PartnerLogin = () => {
                     })
                 );
 
-                //관리자 여부 판단
-                await isAdmin();
+                if (res.data.admin_yn === "N") {
+                    navigate("/todowedding/partner");
+                } else {
+                    navigate("/todowedding/admin");
+                }
             })
             .catch((err) => {
                 console.log("login fail : ", err);
