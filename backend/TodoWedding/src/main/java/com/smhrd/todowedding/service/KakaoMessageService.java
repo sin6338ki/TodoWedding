@@ -170,9 +170,9 @@ public class KakaoMessageService {
 			
 			if(diffDate == 1) {
 				message.add((String)scheduleItem.get("schedule_contents"));
+				sendMessage(accessToken, loginMemberSeq, message, dDay, "schedule");
 			}
 			
-			sendMessage(accessToken, loginMemberSeq, message, dDay, "schedule");
 		}
 		return message;
 	}

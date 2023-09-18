@@ -72,4 +72,8 @@ public interface PartnerMapper {
   //partner 정보 조회 (업체 페이지 전용)
     @Select("select partner_seq, partner_id, partner_pw, partner_name, partner_registration, partner_tel, partner_link, partner_manager, partner_manager_tel, partner_address from tw_partner where partner_seq=#{partnerSeq}")
     public PartnerResponseDto findPartnerInfoMore(Long partnerSeq);
+    
+    //Admin 계정 여부 판단 
+    @Select("select * from tw_partner where partner_seq=#{partnerSeq} and admin_yn='Y'")
+    public int isAdmin(Long partnerSeq);
 }

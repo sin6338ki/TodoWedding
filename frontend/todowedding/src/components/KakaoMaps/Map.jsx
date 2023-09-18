@@ -280,7 +280,7 @@ const Map = () => {
             <input type="text" placeholder="장소 검색" onChange={(e) => setSearchPlace(e.target.value)} />
             <button onClick={searchPlaces}>검색</button>
             <div id="KakaoMap" style={{ width: "560px", height: "680px" }}></div>
-            <Link to="/todowedding/chatting/124">채팅방 이동</Link>
+            <Link to="/todowedding/chatting/${partnerSeq}">채팅방 이동</Link>
         </div>
     );
 };

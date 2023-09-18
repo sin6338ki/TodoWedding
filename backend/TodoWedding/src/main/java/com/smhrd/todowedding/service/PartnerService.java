@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
  *  - 로그인시 조회 항목에 partner_name 추가 (신지영, 2023.09.10)
  *  - 기업 회원 삭제 기능 추가 (신지영, 2023.09.15)
  *  - partner info 수정 기능 추가 (신지영, 2023.09.16)
+ *  - admin 여부 판단 기능 추가 (신지영, 2023.09.18)
  */
 
 @Slf4j
@@ -175,5 +176,20 @@ public class PartnerService {
 			e.printStackTrace();
 		}
 		return partnerInfo;
+	}
+	
+	//Admin 계정 여부 판단
+	public String isAdmin(Long partnerSeq) {
+		String isAdminResult = "";
+		try {
+			if(partnerMapper.isAdmin(partnerSeq) > 0) {
+				isAdminResult = "Y";
+			}else{
+				isAdminResult = "N";
+			};
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return isAdminResult;
 	}
 }

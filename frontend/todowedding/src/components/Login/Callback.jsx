@@ -61,7 +61,7 @@ const Callback = () => {
             if (token.type == "M") {
                 navigate("/todowedding/calendar");
             } else {
-                navigate("/todowedding/partner");
+                navigate("/");
             }
         }
     }, [token]);

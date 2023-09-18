@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  * 	- 기업 전체 조회 기능 추가 (신지영, 2023.09.12)
  *  - 기업 회웥탈퇴, 중복 아이디 체크, 1개 업체 정보 조회 기능 추가 (신지영, 2023.09.15)
  *  - 기업 회원 정보 수정 기능 추가 (신지영, 2023.09.16)
+ *  - 관리자 여부 판단 조회 기능 추가 (신지영, 2023.09.18)
  */
 
 @Slf4j
@@ -118,5 +119,11 @@ public class PartnerController {
     public PartnerResponseDto findPartnerInfoMore(@PathVariable(name="partnerSeq") Long partnerSeq) {
     	log.info("전체 업체 정보 조회 실행.....");
     	return partnerService.findPartnerInfoMore(partnerSeq);
+    }
+    
+    //관리자 여부 판단 - admin 계정이 맞으면 Y, 아니면 N return
+    @GetMapping(value="admin/{partnerSeq}")
+    public String isAdmin(@PathVariable(name="partnerSeq") Long partnerSeq) {
+    	return partnerService.isAdmin(partnerSeq);
     }
 }

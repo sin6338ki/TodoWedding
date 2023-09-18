@@ -40,6 +40,17 @@ const PartnerLogin = () => {
         }
     }, [token]);
 
+    //관리자 여부 판단
+    const isAdmin = () => {
+        axios.get(`http://localhost:8085/admin/${token.userSeq}`).then((res) => {
+            if (res.data === "Y") {
+                navigate("/todowedding/admin");
+            } else {
+                navigate("/todowedding/partner");
+            }
+        });
+    };
+
     //로그인 버튼 클릭했을 때 이벤트
     const login = async () => {
         await axios
@@ -59,7 +70,9 @@ const PartnerLogin = () => {
                         accessToken: "",
                     })
                 );
-                await navigate("/todowedding/partner");
+
+                //관리자 여부 판단
+                await isAdmin();
             })
             .catch((err) => {
                 console.log("login fail : ", err);
