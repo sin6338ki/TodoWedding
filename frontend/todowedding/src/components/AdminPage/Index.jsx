@@ -21,6 +21,7 @@ const Index = () => {
     const token = useSelector((state) => state.Auth.token);
     const [partners, setPartners] = useState([]);
     const [members, setMembers] = useState([]);
+    const [total, setTotal] = useState();
 
     //chart 정보
     const [maleCnt, setMaleCnt] = useState(0);
@@ -78,10 +79,13 @@ const Index = () => {
             .then((res) => {
                 console.log("전체 업체 조회", res.data);
                 setPartners(res.data);
+                setTotal(res.data.length);
             })
             .catch((err) => {
                 console.log("전체 업체 조회 에러", err);
             });
+
+        console.log("total : ", total);
     };
 
     //User 성별 조회
@@ -165,7 +169,12 @@ const Index = () => {
                     <MemberList members={members} setMembers={setMembers} findAllMember={findAllMember} />
                 </Tab>
                 <Tab eventKey="contact" title="제휴 업체 리스트">
-                    <PartnerList partners={partners} setPartners={setPartners} findAllPartner={findAllPartner} />
+                    <PartnerList
+                        partners={partners}
+                        setPartners={setPartners}
+                        findAllPartner={findAllPartner}
+                        total={total}
+                    />
                 </Tab>
             </Tabs>
         </div>
