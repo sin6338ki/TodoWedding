@@ -49,7 +49,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
             {marryDt ? (
                 <Link
                     to="/"
-                    className="decoration-transparent self-cente pt-3 text-[44px] mx-3 text-[#9F7FFC] font-extrabold font-serif"
+                    className="decoration-transparent self-cente pt-3 text-[40px] mx-3 text-[#9F7FFC] font-extrabold font-serif"
                 >
                     D-{marryDt}
                 </Link>
