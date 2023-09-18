@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import StudioMarker from "../../assets/images/icon/studiomaker.png";
-import WeddingHallMarker from "../../assets/images/icon/hollmaker.png";
+import WeddingHallMarker from "../../assets/images/icon/studiomaker.png";
+import StudioMarker from "../../assets/images/icon/hollmaker.png";
 import { Link } from "react-router-dom";
 
 /**
@@ -33,8 +33,6 @@ const Map = () => {
     const [searchedPlaces, setSearchedPlaces] = useState([]); // 검색된 장소 정보를 저장
     const [searchPlace, setSearchPlace] = useState(""); // 사용자가 입력한 검색어를 저장
     const [currentCategory, setCurrentCategory] = useState("웨딩홀_스튜디오"); // 선택된 카테고리 상태 관리
-    const [isModalOpen, setIsModalOpen] = useState(false); // 모달의 열림/닫힘 상태
-    const [selectedPlace, setSelectedPlace] = useState(null); // 선택된 장소 정보
 
     const changeMarker = (type) => {
         setCurrentCategory(type);
@@ -87,6 +85,15 @@ const Map = () => {
             if (status === kakao.maps.services.Status.OK) {
                 // 검색이 이루어지면 결과를 변수에 저장
                 setSearchedPlaces(result);
+            } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+                // 검색 결과가 없는 경우
+                alert("입력하신 검색어가 존재하지 않습니다.");
+            } else if (searchPlace.trim() === "") {
+                // 빈 문자열을 입력한 경우
+                alert("검색어를 입력해 주세요.");
+            } else {
+                // 그 외의 오류 상황
+                alert("검색 중 오류가 발생했습니다.");
             }
         };
 
@@ -120,7 +127,7 @@ const Map = () => {
                     markerImageSrc = "";
                 }
 
-                let imageSize = new kakao.maps.Size(64, 69);
+                let imageSize = new kakao.maps.Size(52, 50);
                 let imageOption = { offset: new kakao.maps.Point(27, 69) };
 
                 // 마커 이미지 설정 (빈 문자열이 아닌 경우에만 사용)
@@ -136,34 +143,81 @@ const Map = () => {
 
                 marker.setMap(map);
 
+                var phone = place.phone ? place.phone : "전화번호 없음";
+
                 // 커스텀 오버레이에 표출될 내용
-                var content = `
-        <div class="map_wrap">
-            <div class="map_info">
-                <div class="map_title">
-                    ${place.place_name}
-                    <button id="map_closeBtn">✖</button>
-                </div>
-                <div class="map_body">
-                    <div class="map_desc">
-                        <div class="map_ellipsis">${place.address_name}</div>
-                        <div class="map_jibun ellipsis">${place.partner_tel}</div>
-                        <div><a href="${place.partner_link}" target="_blank"class="map_link">홈페이지</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+                var content;
+                if (place.partner_code === "웨딩홀") {
+                    content = `
+                    <div class="map_wrap">
+                        <div class="map_info">
+                            <div class="map_weddinghall">
+                                ${place.place_name}
+                                <button id="map_closeBtn">✖</button>
+                            </div>
+                            <div class="map_body">
+                                <div class="map_desc">
+                                    <div class="map_ellipsis">${place.address_name}</div>
+                                    <div class="map_jibun ellipsis">${place.partner_tel}</div>
+                                    <div><a href="${place.partner_link}" target="_blank"class="map_link">홈페이지</a>
+                                    <a href="/todowedding/chatting?partner_seq=${place.partner_seq}">
+                                        <button>1:1 상담</button>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                } else if (place.partner_code === "스튜디오") {
+                    content = `
+                    <div class="map_wrap">
+                        <div class="map_info">
+                            <div class="map_studio">
+                                ${place.place_name}
+                                <button id="map_closeBtn">✖</button>
+                            </div>
+                            <div class="map_body">
+                                <div class="map_desc">
+                                    <div class="map_ellipsis">${place.address_name}</div>
+                                    <div class="map_jibun ellipsis">${place.partner_tel}</div>
+                                    <div><a href="${place.partner_link}" target="_blank"class="map_link">홈페이지</a>
+                                    <a href="/todowedding/chatting?partner_seq=${place.partner_seq}">
+                                        <button>1:1 상담</button>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                } else {
+                    content = `
+                    <div class="map_wrap_default">
+                        <div class="map_info">
+                            <div class="map_default">
+                                ${place.place_name}
+                                <button id="map_closeBtn">✖</button>
+                            </div>
+                            <div class="map_body">
+                                <div class="map_desc">
+                                    <div class="map_ellipsis">${place.address_name}</div>
+                                    <div class="map_jibun ellipsis">${phone}</div>
+                                    <div><a href="${place.place_url}" target="_blank"class="map_link">홈페이지</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                }
 
                 // yAnchor 값 조정: 기본 마커일 경우와 그렇지 않은 경우를 분리해서 처리
                 let yAnchorValue;
                 if (!markerImageSrc) {
-                    yAnchorValue = 0.5;
+                    yAnchorValue = 2;
                 } else {
                     yAnchorValue = 1;
                 }
 
                 var customOverlay = new kakao.maps.CustomOverlay({
-                    map: map,
+                    map: place.partner_seq === 101 ? map : null, // partner_seq가 101인 경우에만 초기에 오버레이를 보여줌
                     position: markerPosition,
                     content: content,
                     yAnchor: yAnchorValue,
@@ -185,6 +239,15 @@ const Map = () => {
                             return;
                         }
                     }
+
+                    // 'afterdraw' 이벤트 내부에서 닫기 버튼에 클릭 이벤트 리스너 추가
+                    kakao.maps.event.addListener(customOverlay, "afterdraw", function () {
+                        const closeBtn = document.getElementById(yougwang); // 해당 ID로 닫기 버튼 찾기
+
+                        if (closeBtn) {
+                            closeBtn.addEventListener("click", () => customOverlay.setMap(null));
+                        }
+                    });
 
                     // 새롭게 클릭한 경우 overlay 표시 및 현재 사용중인 marker와 overlay 갱신
                     customOverlay.setMap(map);
@@ -216,7 +279,7 @@ const Map = () => {
             </div>
             <input type="text" placeholder="장소 검색" onChange={(e) => setSearchPlace(e.target.value)} />
             <button onClick={searchPlaces}>검색</button>
-            <div id="KakaoMap" style={{ width: "500px", height: "700px" }}></div>
+            <div id="KakaoMap" style={{ width: "560px", height: "680px" }}></div>
             <Link to="/todowedding/chatting/124">채팅방 이동</Link>
         </div>
     );

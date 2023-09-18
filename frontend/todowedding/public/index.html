@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <!--
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Web site created using create-react-app" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -22,15 +21,17 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React App</title>
-  <!-- 카카오 SDK추가코드  -->
-  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <title>React App</title>
+        <!-- 카카오 SDK추가코드  -->
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-  <!-- 카카오 맵 API 추가 -->
-  <script type="text/javascript"
-    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=016e5a925c17a41e9f83e8760a16fa80&libraries=services,clusterer">
-    </script>
-  <!-- <style>
+        <!-- 카카오 맵 API 추가 -->
+        <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=016e5a925c17a41e9f83e8760a16fa80&libraries=services,clusterer"
+        ></script>
+
+        <!-- <style>
       /* 카카오 정보 설명창 커스텀  */
       .customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
       .customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
@@ -39,43 +40,79 @@
       .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     </style> -->
 
-  <title>닫기가 가능한 커스텀 오버레이</title>
-  <style>
-    .map_wrap {
-      position: absolute;
-      left: 0;
-      bottom: 50px;
-      width: fit-content;
-      height: 132px;
-      margin-left: -144px;
-      text-align: left;
-      overflow: hidden;
-      font-size: 12px;
-      font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-      line-height: 1.5;
-    }
+        <!-- <title>닫기가 가능한 커스텀 오버레이</title> -->
+        <style>
+            .map_wrap {
+                position: absolute;
+                left: 0;
+                bottom: 50px;
+                width: fit-content;
+                height: 132px;
+                margin-left: -144px;
+                text-align: left;
+                overflow: hidden;
+                font-size: 12px;
+                font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+                line-height: 1.5;
+            }
+            /* 기본 검색 css */
+            .map_wrap_default {
+                position: absolute;
+                left: 0;
+                bottom: 20px;
+                width: fit-content;
+                height: 132px;
+                margin-left: -144px;
+                text-align: left;
+                overflow: hidden;
+                font-size: 12px;
+                font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+                line-height: 1.5;
+            }
 
-    .map_wrap * {
-      padding: 0;
-      margin: 0;
-    }
+            .map_wrap_default * {
+                padding: 0;
+                margin: 0;
+            }
 
-    .map_wrap .map_info {
-      width: fit-content;
-      height: 105px;
-      border-radius: 5px;
-      border-bottom: 2px solid #ccc;
-      border-right: 1px solid #ccc;
-      overflow: hidden;
-      background: #fff;
-    }
+            .map_wrap_default .map_info {
+                width: fit-content;
+                height: 105px;
+                border-radius: 5px;
+                border-bottom: 2px solid #ccc;
+                border-right: 1px solid #ccc;
+                overflow: hidden;
+                background: #fff;
+            }
 
-    .map_wrap .map_info:nth-child(1) {
-      border: 0;
-      box-shadow: 0px 1px 2px #888;
-    }
+            .map_wrap_default .map_info:nth-child(1) {
+                border: 0;
+                box-shadow: 0px 1px 2px #888;
+            }
 
-    .map_info .map_title {
+            /* 여기 까지 기본 */
+
+            .map_wrap * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .map_wrap .map_info {
+                width: fit-content;
+                height: 105px;
+                border-radius: 5px;
+                border-bottom: 2px solid #ccc;
+                border-right: 1px solid #ccc;
+                overflow: hidden;
+                background: #fff;
+            }
+
+            .map_wrap .map_info:nth-child(1) {
+                border: 0;
+                box-shadow: 0px 1px 2px #888;
+            }
+
+            /* .map_info .map_title {
       width: initial;
       padding: 5px 50px 15px 10px;
       height: 30px;
@@ -85,87 +122,123 @@
       font-weight: bold;
       display: flex;
       flex-direction: column;
-    }
+    } */
 
-    .map_info .map_close {
-      position: absolute;
-      top: 0px;
-      right: 10px;
-      bottom: 10px;
-      color: #888;
-      width: 17px;
-      height: 17px;
-      background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
-    }
+            /*  카테고리에 따른 색변경 */
 
-    .map_info .map_close:hover {
-      cursor: pointer;
-    }
+            .map_info .map_weddinghall {
+                width: initial;
+                padding: 5px 50px 15px 10px;
+                height: 30px;
+                background: #cca5ff;
+                border-bottom: 1px solid #ddd;
+                font-size: 14px;
+                font-weight: bold;
+                display: flex;
+                flex-direction: column;
+            }
 
-    .map_info .map_body {
-      position: relative;
-      overflow: hidden;
-    }
+            .map_info .map_studio {
+                width: initial;
+                padding: 5px 50px 15px 10px;
+                height: 30px;
+                background: #ffd18b;
+                border-bottom: 1px solid #ddd;
+                font-size: 14px;
+                font-weight: bold;
+                display: flex;
+                flex-direction: column;
+            }
 
-    .map_info .map_desc {
-      position: relative;
-      height: 75px;
-      width: 250px;
-      margin: 0 25px 0 25px;
-      padding: 10px 0 10px 0;
-      text-align: center;
-      align-items: center;
-    }
+            .map_info .map_default {
+                width: initial;
+                padding: 5px 50px 15px 10px;
+                height: 30px;
+                background: #90cbfb;
+                border-bottom: 1px solid #ddd;
+                font-size: 14px;
+                font-weight: bold;
+                display: flex;
+                flex-direction: column;
+            }
 
-    .map_desc .map_ellipsis {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+            .map_info .map_close {
+                position: absolute;
+                top: 0px;
+                right: 10px;
+                bottom: 10px;
+                color: #888;
+                width: 17px;
+                height: 17px;
+                background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
+            }
 
-    .map_desc .map_jibun {
-      font-size: 11px;
-      color: #888;
-      margin-top: -2px;
-    }
+            .map_info .map_close:hover {
+                cursor: pointer;
+            }
 
-    .map_info:after {
-      content: '';
-      position: absolute;
-      margin-left: -12px;
-      left: 50%;
-      bottom: 0;
-      width: 22px;
-      height: 12px;
-      background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-    }
+            .map_info .map_body {
+                position: relative;
+                overflow: hidden;
+            }
 
-    .map_info .map_link {
-      color: #5085BB;
-    }
+            .map_info .map_desc {
+                position: relative;
+                height: 75px;
+                width: 250px;
+                margin: 0 25px 0 25px;
+                padding: 10px 0 10px 0;
+                text-align: center;
+                align-items: center;
+            }
 
-    .map_body div {
-      width: fit-content;
-      
-    }
+            .map_desc .map_ellipsis {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
 
-    #map_closeBtn {
-      position: absolute;
-      top: 5px;
-      right: 15px;
-      border: none;
-      color: rgba(0, 0, 0, 0.7);
-      background-color: transparent;
-      font-size: 15px;
-    }
-  </style>
+            .map_desc .map_jibun {
+                font-size: 11px;
+                color: #888;
+                margin-top: -2px;
+            }
 
-</head>
+            .map_info:after {
+                content: "";
+                position: absolute;
+                margin-left: -12px;
+                left: 50%;
+                bottom: 0;
+                width: 22px;
+                height: 12px;
+                /* background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png') */
+            }
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <!--
+            .map_info .map_link {
+                color: #5085bb;
+            }
+
+            .map_body div {
+                width: fit-content;
+            }
+
+            #map_closeBtn {
+                position: absolute;
+                top: 5px;
+                right: 15px;
+                border: none;
+                color: rgba(0, 0, 0, 0.7);
+                background-color: transparent;
+                font-size: 15px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -174,7 +247,5 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-</body>
-
+    --></body>
 </html>
