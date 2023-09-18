@@ -12,13 +12,13 @@
 
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
 import ADSlickSlider from "./components/ADSlickSlider";
 import Kakaologin from "./components/Login/Kakaologin";
 import KakaologOut from "./components/Login/KakaologOut";
-import KakaoDelete from "./components/Login/KakaoDelete"
+import KakaoDelete from "./components/Login/KakaoDelete";
 import Callback from "./components/Login/Callback";
 import Mypage from "./components/Login/Mypage";
 import Main from "./components/Main";
@@ -37,7 +37,7 @@ import "./tailwind.css";
 import "./index.css";
 import "./FullCalendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import WebImage from "./assets/images/iwedding.png"
+import WebImage from "./assets/images/iwedding.png";
 
 //업체 전용 관련
 import Partner from "./components/PartnerPage/Partner";
@@ -55,11 +55,14 @@ import AdminIndex from "./components/AdminPage/Index";
 import Map from "./components/KakaoMaps/Map";
 import PartnerInfo from "./components/PartnerPage/PartnerInfo";
 
+//Admin
+import AdminPartnerInfo from "./components/AdminPage/PartnerInfo";
+
 function AppContent() {
     //userSeq 받아오기
     const token = useSelector((state) => state.Auth.token);
     const userSeq = token?.userSeq;
-  
+
     return (
         <div>
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -76,7 +79,7 @@ function AppContent() {
                             <Route path="/todowedding/mypage" element={<Mypage />} />
 
                             {/* 일정관리 */}
-                            <Route path="/todowedding/calendar"  element={<Calendar />} />
+                            <Route path="/todowedding/calendar" element={<Calendar />} />
                             <Route path="/todowedding/schedule" element={<Schedule />} />
                             <Route path="/todowedding/schedule/:scheduleSeq" element={<UpdateSchedule />} />
 
@@ -112,15 +115,16 @@ function AppContent() {
 
                             {/* 관리자 페이지 */}
                             <Route path="/todowedding/admin" element={<AdminIndex />}></Route>
+                            <Route path="/todowedding/admin/partner" element={<AdminPartnerInfo />}></Route>
                         </Routes>
                     </div>
                     <BottomBar />
                 </div>
 
                 {/*웹 이미지 */}
-                <div style={{ width: " 350px", margin: "90px 0 20px 25px"}}>
+                <div style={{ width: " 350px", margin: "90px 0 20px 25px" }}>
                     <div>
-                        <ADSlickSlider/>
+                        <ADSlickSlider />
                     </div>
                     <img src={WebImage} alt="web-image" />
                 </div>

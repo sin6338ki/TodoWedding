@@ -17,6 +17,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
             .then((res) => {
                 console.log("회원 검색 response : ", res.data);
                 setMembers(res.data);
+                document.getElementById("searchMemberInput").value = "";
             })
             .catch((err) => {
                 console.log("회원 검색 error : ", err);
