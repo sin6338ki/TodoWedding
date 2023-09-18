@@ -10,7 +10,7 @@ import TodoLogo from "../../assets/images/todo_logo.png";
 
 const NotLoginedHeader = () => {
     return (
-        <div className="header-bar  bg-gradient-to-r from-[#9e59ff] to-[#ebd6ff]">
+        <div className="header-bar bg-gradient-to-r to-white from-[#ebd6ff]">
             <div className="welcome-nick">
                 <Link to="/">
                     <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} />

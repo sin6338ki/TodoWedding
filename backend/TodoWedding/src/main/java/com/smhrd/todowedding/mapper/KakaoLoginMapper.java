@@ -17,6 +17,7 @@ import com.smhrd.todowedding.model.MemberResponseDto;
  * 일자 : 2023.09.06
  * 수정
  * 	- 전체 회원 정보 조회 추가 (신지영, 2023.09.10)
+ *  - 회원 검색 기능 추가 (신지영, 2023.09.18)
  */
 
 @Mapper
@@ -37,4 +38,8 @@ public interface KakaoLoginMapper {
 	//전체 회원정보 조회 
 	@Select("select member_seq, nickname, e_mail, gender, age_range from tw_member")
 	public List<MemberResponseDto> findAllMember();
+	
+	//검색 기능
+	@Select("select member_seq, nickname, e_mail, gender, age_range from tw_member where nickname like '%${keyword}%' or e_mail like '%${keyword}%'")
+	public List<MemberResponseDto> searchMember(String keyword);
 }

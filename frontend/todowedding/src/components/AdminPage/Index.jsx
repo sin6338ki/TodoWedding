@@ -21,8 +21,17 @@ const Index = () => {
     const token = useSelector((state) => state.Auth.token);
     const [partners, setPartners] = useState([]);
     const [members, setMembers] = useState([]);
-    //Admin 계정이 아닐 경우 main 페이지로 이동
 
+    //chart 정보
+    const [maleCnt, setMaleCnt] = useState(0);
+    const [femaleCnt, setFemaleCnt] = useState(0);
+    const [hallCnt, setHallCnt] = useState(0);
+    const [studioCnt, setStudioCnt] = useState(0);
+    const [twentyCnt, setTwentyCnt] = useState(0);
+    const [thirtyCnt, setThirtyCnt] = useState(0);
+    const [fourtyCnt, setFourtyCnt] = useState(0);
+
+    //Admin 계정이 아닐 경우 main 페이지로 이동
     useEffect(() => {
         const load = async () => {
             if (token) {
@@ -75,17 +84,88 @@ const Index = () => {
             });
     };
 
+    //User 성별 조회
+    const chartMember = () => {
+        let genderMale = 0;
+        let genderFemail = 0;
+        members.forEach((member) => {
+            if (member.gender === "male") {
+                genderMale++;
+            } else {
+                genderFemail++;
+            }
+            setMaleCnt(genderMale);
+            setFemaleCnt(genderFemail);
+        });
+    };
+
+    //User 연령대 조회
+    const chartAgeMember = () => {
+        let twenties = 0;
+        let thirty = 0;
+        let fourty = 0;
+
+        members.forEach((age) => {
+            if (age.age_range === "20~29") {
+                twenties++;
+            } else if (age.age_range === "30~39") {
+                thirty++;
+            } else {
+                fourty++;
+            }
+        });
+
+        setTwentyCnt(twenties);
+        setThirtyCnt(thirty);
+        setFourtyCnt(fourty);
+    };
+
+    //Partner 유형 조회
+    const chartPartner = () => {
+        let hall = 0;
+        let studio = 0;
+        partners.forEach((partner) => {
+            if (partner.partner_code === "웨딩홀") {
+                hall++;
+            } else {
+                studio++;
+            }
+
+            setHallCnt(hall);
+            setStudioCnt(studio);
+        });
+    };
+
+    //파트너 정보, 유저 정보 불러왔을 때 chart 정보 이벤트 실행
+    useEffect(() => {
+        chartMember();
+        console.log("Member Chart Cnt (male, female) : ", maleCnt, femaleCnt);
+        chartPartner();
+        console.log("Partner Chart Cnt (hall, studio) : ", hallCnt, studioCnt);
+        chartAgeMember();
+    }, [partners, members]);
+
     return (
         <div>
-            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 mt-1 text-[#A383FF]">
+            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 mt-3 text-[#A383FF]">
                 <Tab eventKey="home" title="통계">
-                    <Dashboard partners={partners} members={members} />
+                    <Dashboard
+                        partners={partners}
+                        members={members}
+                        maleCnt={maleCnt}
+                        femaleCnt={femaleCnt}
+                        twentyCnt={twentyCnt}
+                        thirtyCnt={thirtyCnt}
+                        fourtyCnt={fourtyCnt}
+                        hallCnt={hallCnt}
+                        studioCnt={studioCnt}
+                    />
                 </Tab>
                 <Tab eventKey="profile" title="회원 리스트">
-                    <MemberList members={members} />
+                    <MemberList members={members} setMembers={setMembers} findAllMember={findAllMember} />
                 </Tab>
                 <Tab eventKey="contact" title="제휴 업체 리스트">
-                    <PartnerList partners={partners} />
+                    <PartnerList partners={partners} setPartners={setPartners} findAllPartner={findAllPartner} />
                 </Tab>
             </Tabs>
         </div>

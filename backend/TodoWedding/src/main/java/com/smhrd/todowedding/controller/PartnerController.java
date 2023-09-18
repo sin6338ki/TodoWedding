@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.model.KakaoMapsDto;
+import com.smhrd.todowedding.model.MemberResponseDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
 import com.smhrd.todowedding.model.PartnerUpdateDto;
@@ -33,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  * 	- 기업 전체 조회 기능 추가 (신지영, 2023.09.12)
  *  - 기업 회웥탈퇴, 중복 아이디 체크, 1개 업체 정보 조회 기능 추가 (신지영, 2023.09.15)
  *  - 기업 회원 정보 수정 기능 추가 (신지영, 2023.09.16)
- *  - 관리자 여부 판단 조회 기능 추가 (신지영, 2023.09.18)
+ *  - 관리자 여부 판단 조회 기능, 검색 기능 추가 (신지영, 2023.09.18)
  */
 
 @Slf4j
@@ -126,4 +127,11 @@ public class PartnerController {
     public String isAdmin(@PathVariable(name="partnerSeq") Long partnerSeq) {
     	return partnerService.isAdmin(partnerSeq);
     }
+    
+	//회원 검색
+	@GetMapping(value="admin/partner")
+	public List<PartnerResponseDto> searchPartner(@RequestParam("keyword") String keyword){
+		log.info("keyword : {}", keyword);
+		return partnerService.searchPartner(keyword);
+	}
 }

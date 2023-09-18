@@ -42,6 +42,4 @@ public interface MemberMapper {
     //Seq로 닉네임 조회
     @Select("select nickname from tw_member where member_seq=#{memberSeq}")
     public String findNickname(Long member_seq);
-    
-    
 }

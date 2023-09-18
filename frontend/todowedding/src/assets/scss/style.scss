@@ -4,7 +4,6 @@
  * 작성일 : 2023.09.05
  */
 
-
 // 폰트 적용 (신지영, 2023.09.16)
 @font-face {
     font-family: "Pretendard-Regular";
@@ -61,7 +60,7 @@ Login 관련
 .Login-Page {
     margin: 90px 80px 100px 55px;
     padding: 100px 70px 0 73px;
-    font-size:small;
+    font-size: small;
     box-sizing: border-box;
     border: 1px solid #8483c9;
     border-radius: 10px;
@@ -78,7 +77,7 @@ Login 관련
 
 //기업 계정으로 시작하기 버튼
 .Partner-Login {
-    margin-top: 30px;  
+    margin-top: 30px;
 }
 
 //기업 링크로 이동
@@ -92,7 +91,7 @@ Login 관련
 .kakao-logout {
     color: black;
     box-sizing: border-box;
-    background-color: #FEE500;
+    background-color: #fee500;
     border-radius: 10px;
     width: 200px;
     height: 45px;
@@ -119,7 +118,6 @@ Login 관련
     flex-direction: column;
     font-size: medium;
 }
-
 
 // .main-login{
 //   color: black;
@@ -159,7 +157,7 @@ BottomBar 관련
     height: 65px;
     width: 65px;
     align-items: center;
-    background-color:  rgb(233, 216, 247);
+    background-color: rgb(233, 216, 247);
     transform: translate(230%, -5%);
 }
 

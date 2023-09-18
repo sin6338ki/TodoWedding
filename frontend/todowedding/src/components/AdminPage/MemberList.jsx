@@ -4,35 +4,70 @@
  * 작성일 : 2023.09.12
  */
 
+import axios from "axios";
 import React from "react";
 
-const MemberList = ({ members }) => {
+const MemberList = ({ members, setMembers, findAllMember }) => {
+    //회원 검색
+    const searchMember = () => {
+        const input = document.getElementById("searchMemberInput").value;
+        console.log("input : ", input);
+        axios
+            .get(`http://localhost:8085/admin/member?keyword=${input}`)
+            .then((res) => {
+                console.log("회원 검색 response : ", res.data);
+                setMembers(res.data);
+            })
+            .catch((err) => {
+                console.log("회원 검색 error : ", err);
+            });
+    };
+
     return (
         <div>
             <div className="text-left text-2xl font-bold w-full mt-2 p-3 border-b">회원 리스트</div>
             <div className="flex flex-row p-3 mt-2">
                 <h5 className="align-middle pt-2 text-xs">회원 검색</h5>
-                <input type="text" className="border border-[#9F7FFC] ml-3 align-middle text-xs"></input>
-                <button className="bg-[#9F7FFC] w-10 text-white text-xs">검색</button>
+                <input
+                    type="text"
+                    id="searchMemberInput"
+                    className="border border-[#9F7FFC] ml-3 align-middle text-xs"
+                ></input>
+                <button
+                    className="bg-[#9F7FFC] w-10 text-white text-xs"
+                    onClick={() => {
+                        searchMember();
+                    }}
+                >
+                    검색
+                </button>
+                <button
+                    className="ml-3 text-xs text-gray-400"
+                    onClick={() => {
+                        findAllMember();
+                    }}
+                >
+                    전체 회원
+                </button>
             </div>
             <div className="grid grid-cols-12 ml-3 pt-3 mb-5">
-                <div className="text-center font-bold col-span-1 ">NO</div>
-                <div className="text-center font-bold col-span-3 ">닉네임</div>
-                <div className="text-center font-bold col-span-4 ">email</div>
-                <div className="text-center font-bold col-span-2">연령대</div>
-                <div className="text-center font-bold col-span-2">성별 </div>
+                <div className="text-center font-bold col-span-1 text-xs">NO</div>
+                <div className="text-center font-bold col-span-3 text-xs">닉네임</div>
+                <div className="text-center font-bold col-span-4 text-xs">email</div>
+                <div className="text-center font-bold col-span-2 text-xs">연령대</div>
+                <div className="text-center font-bold col-span-2 text-xs">성별 </div>
                 {members.map((member, idx) => {
                     return (
                         <>
-                            <div className="text-center col-span-1 mt-1">{idx + 1}</div>
-                            <div className="text-center col-span-3 mt-1">{member.nickname}</div>
-                            <div className="text-center col-span-4 mt-1">
+                            <div className="text-center col-span-1 mt-2 text-xs">{idx + 1}</div>
+                            <div className="text-center col-span-3 mt-2 text-xs">{member.nickname}</div>
+                            <div className="text-center col-span-4 mt-2 text-xs">
                                 {member.e_mail ? member.e_mail : "동의안함"}
                             </div>
-                            <div className="text-center col-span-2 mt-1">
+                            <div className="text-center col-span-2 mt-2 text-xs">
                                 {member.age_range ? member.age_range : "동의안함"}
                             </div>
-                            <div className="text-center col-span-2 mt-1">
+                            <div className="text-center col-span-2 mt-2 text-xs">
                                 {member.gender ? member.gender : "동의안함"}
                             </div>
                         </>
