@@ -3,7 +3,7 @@ import axios from "axios";
 import { addComma } from "../utils/numberUtils";
 import { FilterContext } from "./BudgetContainer";
 import "../../assets/budget-css/Budget.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 /* Budget 예산관리
@@ -15,64 +15,57 @@ import { useSelector } from "react-redux";
 //PocketStatus (상위컴포넌트) --> 입력하면 바로렌더링 하는 부분 수정필요
 const Budget = (props) => {
     const { filteredItems, filterBaseYear } = useContext(FilterContext);
-    const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산 --> 어디서 가져와야할까 ? 
-    const [totalIncome, setTotalIncome] = useState(0);   // 총수입
+    const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산 --> 어디서 가져와야할까 ?
+    const [totalIncome, setTotalIncome] = useState(0); // 총수입
     const [totalExpense, setTotalExpense] = useState(0); // 총지출
     const twoDigitYear = filterBaseYear.slice(-2);
 
+    // 로그인 이전 Home 으로이동
+    const nav = useNavigate();
+    const token = useSelector((state) => state.Auth.token);
+    const [memberSeq, setMemberSeq] = useState();
 
+    useEffect(() => {
+        if (token && token.userSeq) {
+            console.log("token, ", token);
+            setMemberSeq(token.userSeq);
+        } else {
+            console.error("Token or user sequence is not defined.");
+            setMemberSeq(0); // or set it to a fallback value if necessary
+        }
+    }, [token]);
 
-// 로그인 이전 Home 으로이동
-const nav = useNavigate();
-const token = useSelector((state) => state.Auth.token);
-let memberSeq;
+    useEffect(() => {
+        if (!token) {
+            alert("로그인 후 진행해 주세요");
+            nav("/");
+        } else {
+            const memberSeqObj = {
+                member_seq: memberSeq,
+            };
 
-if (token && token.userSeq) {
-    memberSeq = token.userSeq;
-} else {
-    console.error('Token or user sequence is not defined.');
-    memberSeq = 0; // or set it to a fallback value if necessary
-}
+            axios
+                .post(`http://localhost:8085/member/total`, memberSeqObj)
+                .then((response) => {
+                    console.log("222", response);
+                    setTotalExpense(response.data.budget_sum_cost);
+                    setTotalIncome(response.data.income_total_cost);
+                    setTotalBalance(response.data.marry_total_budget);
+                })
+                .catch((error) => console.error("Error:", error));
+        }
+    }, [memberSeq]);
 
-useEffect(() => {
-  if (!memberSeq) {
-    alert("로그인 후 진행해 주세요")
-    nav('/');
-  }
-  else{
-      const memberSeqObj = {
-          "member_seq" : memberSeq  
-      };
-
-      axios.post(`http://localhost:8085/member/total`,memberSeqObj)
-      .then(response => {
-          console.log("222",response);
-          setTotalExpense(response.data.budget_sum_cost);
-          setTotalIncome(response.data.income_total_cost);
-          setTotalBalance(response.data.marry_total_budget);
-      })
-      .catch(error => console.error('Error:', error));
-  }
-    
-},[memberSeq])
-
-
-
-
-//전체 총수입 총지출 조회 메서드 (postman에서 selectTotal참고)
-// const fetchData = async () => { 
-//     try {
-//         const res = await axios.get(`http://localhost:8085/member/total`); 
-//         console.log("budget 조회 response : ", res.data.income_total_cost);
-//         setTotalIncome(res.data);
-//     } catch (error) {
-//         console.error("Error", error);
-//     }
-// };
-
-
-
-
+    //전체 총수입 총지출 조회 메서드 (postman에서 selectTotal참고)
+    // const fetchData = async () => {
+    //     try {
+    //         const res = await axios.get(`http://localhost:8085/member/total`);
+    //         console.log("budget 조회 response : ", res.data.income_total_cost);
+    //         setTotalIncome(res.data);
+    //     } catch (error) {
+    //         console.error("Error", error);
+    //     }
+    // };
 
     return (
         <div className="pocket__status">
