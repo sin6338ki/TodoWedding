@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.smhrd.todowedding.mapper.TotalMapper;
@@ -18,7 +20,10 @@ tw_budget 테이블에 budget_cost(예상 지출액) 총합 , budget_expense_cos
 tw_income 테이블에 income_cost(수입액)
 tw_marrydate 테이블에 total_budget(결혼 예상금액)
 작성자 : 서유광
-작성일 : 2023.09.13 */
+작성일 : 2023.09.13 
+
+* 09.19 유광 : 결혼 총 예상 비용 update,insert 추가
+*/
 
 @Slf4j
 @Service
@@ -63,17 +68,28 @@ public class TotalService {
 			result.put("income_total_cost", "오류: " + e.getMessage());
 		}
 
-		try {
-			Long marrytotalBudget = totalMapper.find_total_budget(member_seq);
-			if (marrytotalBudget == null) {
-				result.put("marry_total_budget", 0);
-			} else {
-				result.put("marry_total_budget", marrytotalBudget);
-			}
-		} catch (Exception e) {
-			result.put("marry_total_budget", "오류: " + e.getMessage());
-		}
 
 		return result;
 	}
+	
+	// 결혼 총 예상 비용 추가
+	public ResponseEntity<String> insertTotalBudget(TotalDto totalDto) {
+	    int result = totalMapper.insertTotalBudget(totalDto);
+	    
+	    if (result > 0) {
+	        return new ResponseEntity<>("Insert Success", HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>("Insert Fail", HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	}
+	// 결혼 총 예상 비용 수정
+	public ResponseEntity<String> updateTotalBudget(TotalDto totalDto) {
+        int result = totalMapper.updateTotalBudget(totalDto);
+        
+        if (result > 0) {
+            return new ResponseEntity<>("Update Success", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Update Fail", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

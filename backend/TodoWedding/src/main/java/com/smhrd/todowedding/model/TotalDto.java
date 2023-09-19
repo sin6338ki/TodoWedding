@@ -23,7 +23,6 @@ public class TotalDto {
 	private long budget_sum_cost; // 예상 지출액 총합
 	private long budget_total_expense_cost; // 지출액 총합
 	private long income_total_cost; // 수입액 총합
-	private long marry_total_budget; // 결혼 예상금액
 	private long member_seq; // 사용자 식별값
-	
+	private long total_budget; // 총 예상 비용
 }

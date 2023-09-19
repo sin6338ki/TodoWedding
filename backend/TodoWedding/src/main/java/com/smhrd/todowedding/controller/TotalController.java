@@ -23,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  *  - tw_marrydate 테이블에 total_budget(결혼 예상금액)
  *  작성자 : 서유광
  *  작성일 : 2023.09.13
+ *  09.19 유광 : 결혼 총 예상 비용 update,insert 추가
  */
 
 @Slf4j
@@ -32,13 +33,23 @@ public class TotalController {
     
     @Autowired
     private TotalService totalService;
-
+    
+    // budget_cost, budget_expense_cost 조회 
     @PostMapping("/member/total")
     public ResponseEntity<Map<String, Object>> findTotal (@RequestBody TotalDto totalDto){
         return ResponseEntity.ok(totalService.findTotal(totalDto.getMember_seq())); 
     }
 
-
-
+    // 결혼 총 예상 비용 추가
+    @PostMapping("/totalbudget/insert")
+    public ResponseEntity<String> insertTotalBudget(@RequestBody TotalDto totalDto) {
+        return totalService.insertTotalBudget(totalDto);
+    }
+    
+    // 결혼 총 예상 비용 수정
+    @PostMapping("/totalbudget/update")
+    public ResponseEntity<String> updateTotalBudget(@RequestBody TotalDto totalDto) {
+        return totalService.updateTotalBudget(totalDto);
+    }
 
 }
