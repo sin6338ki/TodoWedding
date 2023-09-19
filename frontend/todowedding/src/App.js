@@ -33,6 +33,8 @@ import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
 import UpdateSchedule from "./components/Calendar/UpdateSchedule";
 import CalCallback from "./components/Calendar/CalCallback";
+import MarryDate from "./components/AddInfo/MarryDate";
+import TotalBudget from "./components/AddInfo/TotalBudget";
 
 import "./tailwind.css";
 import "./index.css";
@@ -62,7 +64,7 @@ import AdminPartnerInfo from "./components/AdminPage/PartnerInfo";
 function AppContent() {
     //userSeq 받아오기
     const token = useSelector((state) => state.Auth.token);
-    const userSeq = token?.userSeq;
+    const userSeq = token ? token.userSeq : 0;
 
     return (
         <div>
@@ -78,6 +80,10 @@ function AppContent() {
                             <Route path="/auth/kakao/logout" element={<KakaologOut />} />
                             <Route path="/member/delete" element={<KakaoDelete />} />
                             <Route path="/todowedding/mypage" element={<Mypage />} />
+
+                            {/* 결혼예정일, 총 예산 추가 */}
+                            <Route path="/todowedding/marrydate" element={<MarryDate />} />
+                            <Route path="/todowedding/member/total" element={<TotalBudget />} />
 
                             {/* 일정관리 */}
                             <Route path="/todowedding/calendar" element={<Calendar />} />

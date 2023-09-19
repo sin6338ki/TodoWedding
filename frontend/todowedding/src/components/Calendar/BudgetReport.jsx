@@ -9,6 +9,7 @@ const BudgetReport = () => {
   const token = useSelector((state) => state.Auth.token);
   const userSeq = token?.userSeq;
 
+  // 총 예산, 총 수입, 총 지출 결과 불러오기
   useEffect(() => {
     const fetchTotalBudget = async () => {
       try {
@@ -27,9 +28,9 @@ const BudgetReport = () => {
     <div>
       { totalBudget && (
           <>
-            <p>총 예산 : {totalBudget.marry_total_budget}</p>
-            <p>총 수입 : {totalBudget.income_total_cost}</p>
-            <p>총 지출 : {totalBudget.budget_total_expense_cost}</p>
+            <p>총 예산 : {totalBudget.marry_total_budget}원</p>
+            <p>총 수입 : {totalBudget.income_total_cost}원</p>
+            <p>총 지출 : {totalBudget.budget_total_expense_cost}원</p>
           </>
         )
       }

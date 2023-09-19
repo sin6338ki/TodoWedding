@@ -20,17 +20,21 @@ function Modal(props) {
                 <button id="modalCloseBtn" onClick={closeModal}></button>
                 <img src={TodoLogo} width={"200px"} />
                 <div className="add-link" onClick={closeModal}>
+                    <button id="modalCloseBtn" onClick={closeModal}>
+                        ✖
+                    </button>
+                    {props.children}
                     <Link to="todowedding/calendar" className="add-content">
                         임시 리스트 입니다
                     </Link>
                     <Link to="todowedding/schedule" className="add-content">
                         일정추가
                     </Link>
-                    <Link to="checkitem" className="add-content">
-                        항목별 체크리스트
+                    <Link to="todowedding/marrydate" className="add-content">
+                        결혼예정일 추가
                     </Link>
-                    <Link to="daychecklist" className="add-content">
-                        D-Day 체크리스트
+                    <Link to="todowedding/member/total" className="add-content">
+                        웨딩 예산 추가
                     </Link>
                 </div>
             </div>
