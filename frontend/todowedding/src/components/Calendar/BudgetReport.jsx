@@ -13,7 +13,7 @@ const BudgetReport = () => {
     useEffect(() => {
         const fetchTotalBudget = async () => {
             try {
-                const response = await axios.post(`http://localhost:8085/member/total`, { userSeq });
+                const response = await axios.post(`http://172.30.1.7:8085/member/total`, { userSeq });
                 setTotalBudget(response.data);
                 console.log("BudgetReport 결과 : ", response.data);
             } catch (error) {

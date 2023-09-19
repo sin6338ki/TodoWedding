@@ -26,7 +26,7 @@ const UpdateSchedule = () => {
 
     //추가동의항목을 위한 token 재요청 페이지로 이동
     const REST_API_KEY = "05e6f6ac6b8cd6cf3b1ec2a9ca6542de";
-    const REDIRECT_URI = "http://localhost:3000/auth/kakaoCal/callback";
+    const REDIRECT_URI = "http://172.30.1.7:3000/auth/kakaoCal/callback";
     const URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=talk_calendar`;
 
     // 일정 수정 함수
@@ -37,7 +37,7 @@ const UpdateSchedule = () => {
             alert("일정 제목과 날짜를 입력해주세요!");
         } else {
             try {
-                await axios.put(`http://localhost:8085/schedule/${scheduleSeq}`, {
+                await axios.put(`http://172.30.1.7:8085/schedule/${scheduleSeq}`, {
                     scheduleStartDt: startDate,
                     scheduleEndDt: endDate,
                     scheduleContents: title,
@@ -54,7 +54,7 @@ const UpdateSchedule = () => {
     // 일정 삭제 함수
     const deleteSchedule = async () => {
         try {
-            await axios.delete(`http://localhost:8085/schedule/${scheduleSeq}`);
+            await axios.delete(`http://172.30.1.7:8085/schedule/${scheduleSeq}`);
 
             alert("일정이 성공적으로 삭제되었습니다.");
             nav("/todowedding/calendar");

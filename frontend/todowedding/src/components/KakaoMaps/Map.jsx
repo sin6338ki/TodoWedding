@@ -58,7 +58,7 @@ const Map = () => {
     // DB에서 장소 정보 가져오기
     useEffect(() => {
         axios
-            .get("http://localhost:8085/kakaomaps")
+            .get("http://172.30.1.7:8085/kakaomaps")
             .then((response) => {
                 // 응답 데이터 설정 (위도와 경도 정보를 가진 배열)
                 console.log("DB에서 가져온 데이터", response.data); // <-- 여기서 데이터 확인
@@ -246,15 +246,6 @@ const Map = () => {
                     yAnchor: yAnchorValue,
                 });
 
-                // 지도를 클릭하면 정보창 닫기
-                kakao.maps.event.addListener(map, "click", function () {
-                    if (markerInfo.currentOverlay) {
-                        markerInfo.currentOverlay.setMap(null);
-                        markerInfo.currentMarker = null;
-                        markerInfo.currentOverlay = null;
-                    }
-                });
-
                 // x버튼 클릭시 정보창 닫기
                 document.addEventListener("click", function (e) {
                     if (e.target.id === "map_closeBtn") {
@@ -318,6 +309,7 @@ const Map = () => {
                         type="text"
                         className="input_map_place"
                         placeholder="검색어 입력"
+                        value={searchPlace}
                         onChange={(e) => setSearchPlace(e.target.value)}
                     />
                     <button className="input_map_place_btn" onClick={searchPlaces}>

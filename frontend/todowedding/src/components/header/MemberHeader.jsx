@@ -19,7 +19,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     //최근 일정 조회
     const findLatestSchedule = () => {
         axios
-            .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
+            .get(`http://172.30.1.7:8085/latest-schedule/${token.userSeq}`)
             .then((res) => {
                 console.log("최근 일정 조회 결과 : ", res.data);
                 if (res.data != "") {
@@ -45,13 +45,10 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     }, []);
 
     return (
-        <div className="flex flex-row h-[90px] pl-2 pr-4 pb-1 bg-gradient-to-r to-white from-[#ebd6ff]">
+        <div className="fixed top-0 z-50 w-[424px] ml-4 flex flex-row h-[90px] pl-2 pr-4 pb-1 bg-gradient-to-r to-white from-[#ebd6ff]">
             {marryDt ? (
-                <Link
-                    to="/"
-                    className="decoration-transparent self-cente pt-3 text-[32px] mx-3 text-[#9F7FFC] font-extrabold font-serif"
-                >
-                    D{marryDt}
+                <Link to="/" className="decoration-transparent self-cente pt-4  mx-3 text-[#9F7FFC] font-bold ml-4 ">
+                    <div className="decoration-double underline underline-offset-8 text-[24px]">D{marryDt}</div>
                 </Link>
             ) : (
                 <Link to="/">
@@ -59,16 +56,18 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                 </Link>
             )}
 
-            <div className="flex flex-col ml-5 self-center w-[350px]">
-                <div className="text-[8px] mt-1 text-start">반가워요, {loginUserNickname}님💜</div>
-                <div className="flex-auto  text-[14px] pt-1">
+            <div className="flex flex-col ml-1 self-center w-[350px]">
+                <div className="text-sm mt-2 text-start">
+                    반가워요, <span className="font-bold">{loginUserNickname}</span>님
+                </div>
+                <div className="flex-auto text-xs pt-1">
                     {latestSchedule != "none" ? (
                         <>
                             <span className="font-bold">{latestSchedule.schedule_start_dt}</span>에 <br></br>
-                            <span className="font-extrabold text-[#9F7FFC] text-[16px]">
+                            <span className="font-extrabold text-[#9F7FFC] text-sm">
                                 {latestSchedule.schedule_contents}
                             </span>{" "}
-                            <span className="text-xs">일정이 기다리고 있어요!</span>
+                            <span className="text-xs">일정이 있어요!</span>
                         </>
                     ) : (
                         <div>
@@ -80,8 +79,8 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                     )}
                 </div>
             </div>
-            <Link to="/todowedding/login" className="border p-2 bg-[#9F7FFC] self-center text-slate-100 h-[34px]">
-                {<GiHamburgerMenu />}
+            <Link to="/todowedding/login" className="border p-2 bg-[#9F7FFC] self-center underline text-slate-100">
+                {<GiHamburgerMenu className="w-3 h-3" />}
             </Link>
         </div>
     );

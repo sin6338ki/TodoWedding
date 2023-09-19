@@ -50,7 +50,7 @@ const Schedule = () => {
                 memberSeq: userSeq,
             };
             await axios
-                .post("http://localhost:8085/schedule", data)
+                .post("http://172.30.1.7:8085/schedule", data)
                 .then((res) => {
                     console.log("스프링으로 넘기는 값 -> ", data);
                     //                fetchData();
@@ -78,7 +78,7 @@ const Schedule = () => {
 
             //backend axios통신
             await axios
-                .post("http://localhost:8085/todolist", data)
+                .post("http://172.30.1.7:8085/todolist", data)
                 .then((res) => {
                     console.log("스프링으로 넘기는 값 -> ", data);
                     //                fetchData();
@@ -95,7 +95,7 @@ const Schedule = () => {
     const allSchedule = () => {
         try {
             axios
-                .get(`http://localhost:8085/all-schedule/${userSeq}`)
+                .get(`http://172.30.1.7:8085/all-schedule/${userSeq}`)
                 .then((res) => {
                     console.log("전체 일정 조회 response : ", res.data);
                     setSchedule(res.data);

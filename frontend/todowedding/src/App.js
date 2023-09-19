@@ -58,6 +58,8 @@ import PartnerInfo from "./components/PartnerPage/PartnerInfo";
 
 //Admin
 import AdminPartnerInfo from "./components/AdminPage/PartnerInfo";
+import MarryDate from "./components/AddInfo/MarryDate";
+import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
     //userSeq 받아오기
@@ -78,6 +80,10 @@ function AppContent() {
                             <Route path="/auth/kakao/logout" element={<KakaologOut />} />
                             <Route path="/member/delete" element={<KakaoDelete />} />
                             <Route path="/todowedding/mypage" element={<Mypage />} />
+
+                            {/* 결혼예정일, 총 예산 추가 */}
+                            <Route path="/todowedding/marrydate" element={<MarryDate />} />
+                            <Route path="/todowedding/member/total" element={<TotalBudget />} />
 
                             {/* 일정관리 */}
                             <Route path="/todowedding/calendar" element={<Calendar />} />

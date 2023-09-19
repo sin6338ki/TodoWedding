@@ -12,6 +12,7 @@ module.exports = {
                 Hahmlet_Regular: ["Hahmlet-Regular"],
                 SDSamliphopangche_Outline: ["SDSamliphopangche_Outline"],
                 KCCChassam: ["KCCChassam"],
+                Alegreya: ["Alegreya Sans"],
             },
         },
     },

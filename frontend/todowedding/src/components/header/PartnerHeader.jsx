@@ -11,12 +11,13 @@ import bell from "../../assets/images/icon/bell.png";
 
 const PartnerHeader = ({ loginUserNickname }) => {
     return (
-        <div className="header-bar flex flex-row justify-between bg-gradient-to-r to-white from-[#ebd6ff]">
-            <Link to="/todowedding/partner" className="flex-col">
+        <div className="flex flex-row h-[70px] bg-gradient-to-r to-white from-[#ebd6ff]">
+            <Link to="/todowedding/partner" className="pt-3 ml-9">
                 <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} />
             </Link>
-            <div className="text-xs self-center">반가워요, {loginUserNickname}님💜</div>
-            <img src={bell} className="w-7 h-7 self-center mr-7 mt-1"></img>
+            <div className="text-xs ml-36 self-center text-center">
+                반가워요, <span className="text-bold text-[#9F7FFC]">{loginUserNickname}</span>님
+            </div>
         </div>
     );
 };

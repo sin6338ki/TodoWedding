@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = {"http://172.30.1.7:3000", "http://localhost:3000"})
 public class ChatController {
 
 	@Autowired
