@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from 'react'
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 /*
@@ -9,47 +9,46 @@ import { useNavigate } from "react-router-dom";
  */
 
 const CheckItemList = () => {
-  const [checkItems, setCheckItems] = useState([]);
-  const nav = useNavigate();
-  
-  useEffect(() => {
-    fetchCheckItems();
-  }, []);
+    const [checkItems, setCheckItems] = useState([]);
+    const nav = useNavigate();
 
-  // 항목별 체크리스트 전체 조회
-  const fetchCheckItems = async () => {
-    try {
-      const response = 
-      await axios.get('http://localhost:8085/checkitem');
-      setCheckItems(response.data);
-      console.log('response.data : ', response.data)
-    } catch(error) {
-      console.error('checkitem 전체 불러오기 error : ', error);
-    }
-  };
+    useEffect(() => {
+        fetchCheckItems();
+    }, []);
 
-  //항목 클릭하면 해당 체크리스트로 이동
-  const handleClick = (item) => {
-    nav(`/checkitem/${item.check_item_seq}`, { state: item });
-    console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq)
-  }
+    // 항목별 체크리스트 전체 조회
+    const fetchCheckItems = async () => {
+        try {
+            const response = await axios.get("http://localhost:8085/checkitem");
+            setCheckItems(response.data);
+            console.log("response.data : ", response.data);
+        } catch (error) {
+            console.error("checkitem 전체 불러오기 error : ", error);
+        }
+    };
 
-  return (
-    <div>
-      <div className='checkitem-intro'>
-        항목별 추천하는 웨딩 체크리스트를 조회하고<br/>
-        나만의 웨딩 투두리스트에 일정을 추가하세요!
-      </div>
-      <div>
-        {checkItems.map((item, index) => (
-          <button className='checkitem-item' key={index} 
-            onClick={() => handleClick(item)}>
-            <p>{item.check_item_contents}</p>
-          </button>
-      ))}
-      </div>
-    </div>
-  )
-}
+    //항목 클릭하면 해당 체크리스트로 이동
+    const handleClick = (item) => {
+        nav(`/checkitem/${item.check_item_seq}`, { state: item });
+        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq);
+    };
 
-export default CheckItemList
+    return (
+        <div>
+            <div className="checkitem-intro">
+                항목별 추천하는 웨딩 체크리스트를 조회하고
+                <br />
+                나만의 웨딩 투두리스트에 일정을 추가하세요!
+            </div>
+            <div>
+                {checkItems.map((item, index) => (
+                    <button className="checkitem-item" key={index} onClick={() => handleClick(item)}>
+                        <p>{item.check_item_contents}</p>
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default CheckItemList;

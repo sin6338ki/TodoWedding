@@ -168,8 +168,7 @@ const DayCheckList = () => {
                         <p>결혼예정일 {selectedOption.label} 체크리스트</p>
                     </div>
                     <div>
-                    <DayCheckSeq checkdaySeq={selectedOption.value} setContents={setContents} contents={contents}/>
-
+                        <DayCheckSeq checkdaySeq={selectedOption.value} setContents={setContents} contents={contents} />
                     </div>
                     <div>
                         <button

@@ -80,8 +80,6 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         console.log("todolistContents", todolistContents.todolistSeq);
     }, [isChecked]);
 
-   
-
     return (
         <li className={todolistContents.completed ? style.liComplete : style.li}>
             <div className={style.row}>

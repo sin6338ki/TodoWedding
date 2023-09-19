@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 //React-Slick 라이브러리
 import "slick-carousel/slick/slick.css";
@@ -30,20 +30,19 @@ const Main = () => {
     // 항목별 체크리스트 전체 조회
     const fetchCheckItems = async () => {
         try {
-        const response = 
-        await axios.get('http://localhost:8085/checkitem');
-        setCheckItems(response.data);
-        console.log('항목별 체크리스트 : ', response.data)
-        } catch(error) {
-        console.error('checkitem 전체 불러오기 error : ', error);
+            const response = await axios.get("http://localhost:8085/checkitem");
+            setCheckItems(response.data);
+            console.log("항목별 체크리스트 : ", response.data);
+        } catch (error) {
+            console.error("checkitem 전체 불러오기 error : ", error);
         }
     };
 
     //항목 클릭하면 해당 체크리스트로 이동
     const handleClick = (item) => {
         nav(`/checkitem/${item.check_item_seq}`, { state: item });
-        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq)
-    }
+        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq);
+    };
     //--------------------------------------------------------------------------------------
 
     //웨딩 D-Day 체크리스트------------------------------------------------------------------
@@ -69,37 +68,47 @@ const Main = () => {
     //항목 클릭하면 해당 체크리스트로 이동
     const handleDdayClick = (item) => {
         nav(`/daychecklist/${item.checkday_seq}`, { state: item });
-        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_seq)
-        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_contents)
-    }
+        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_seq);
+        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_contents);
+    };
     //--------------------------------------------------------------------------------------
-    
+
     return (
         <div>
             <div>
                 <SlickSlider />
             </div>
-            <div style={{display: "flex"}} >
-                <p className="main-itemchecklist">웨딩 항목별<br/>체크리스트</p>
+            <div style={{ display: "flex" }}>
+                <p className="main-itemchecklist">
+                    웨딩 항목별
+                    <br />
+                    체크리스트
+                </p>
                 <div className="main-itemchecklist-container">
                     {checkItems.map((item, index) => (
-                    <button className='main-itemchecklist-item' 
-                            id='main-itemchecklist-item1' key={index} 
-                        onClick={() => handleClick(item)}>
-                        <p>{item.check_item_contents}</p>
-                    </button>
-                ))}
+                        <button
+                            className="main-itemchecklist-item"
+                            id="main-itemchecklist-item1"
+                            key={index}
+                            onClick={() => handleClick(item)}
+                        >
+                            <p>{item.check_item_contents}</p>
+                        </button>
+                    ))}
                 </div>
             </div>
-            <div style={{display: "flex"}} >
-                <p className="main-ddaychecklist">웨딩 D-Day<br/>체크리스트</p>
+            <div style={{ display: "flex" }}>
+                <p className="main-ddaychecklist">
+                    웨딩 D-Day
+                    <br />
+                    체크리스트
+                </p>
                 <div className="main-ddaychecklist-container">
                     {checklist.map((item, index) => (
-                    <button className='main-itemchecklist-item' key={index} 
-                        onClick={() => handleDdayClick(item)}>
-                        <p>{item.checkday_contents}</p>
-                    </button>
-                ))}
+                        <button className="main-itemchecklist-item" key={index} onClick={() => handleDdayClick(item)}>
+                            <p>{item.checkday_contents}</p>
+                        </button>
+                    ))}
                 </div>
             </div>
         </div>
