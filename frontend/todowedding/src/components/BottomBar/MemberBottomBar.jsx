@@ -48,7 +48,7 @@ const MemberBottomBar = () => {
                 (token.type != "P" && (
                     <>
                         <button
-                            className="plus-btn flex flex-row rounded-full border mx-3"
+                            className="plus-btn flex flex-row rounded-full border mx-3 z-50 relative"
                             type="button"
                             onClick={() => setAdd(!add)}
                         >
