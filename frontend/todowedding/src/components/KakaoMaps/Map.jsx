@@ -315,7 +315,7 @@ const Map = () => {
             <div
                 id="KakaoMap"
                 className="Kakao_Conainer"
-                style={{ width: "560px", height: "730px", marginTop: "2px" }}
+                style={{ width: "560px", height: "732px", marginTop: "2px", position: "fixed"}}
             ></div>
             {/* <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a> */}
         </div>

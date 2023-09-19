@@ -24,11 +24,8 @@ function Modal(props) {
                         ✖
                     </button>
                     {props.children}
-                    <Link to="todowedding/calendar" className="add-content">
-                        임시 리스트 입니다
-                    </Link>
                     <Link to="todowedding/schedule" className="add-content">
-                        일정추가
+                        캘린더에 일정 추가
                     </Link>
                     <Link to="todowedding/marrydate" className="add-content">
                         결혼예정일 추가
