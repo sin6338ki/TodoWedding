@@ -54,11 +54,9 @@ const MyTodoList = () => {
 
     return (
         <div>
-            <ul>
-                {todos.map((todolistContents, index) => (
-                    <MyTodo key={index} todolistContents={todolistContents} />
-                ))}
-            </ul>
+            {todos.map((todolistContents, index) => (
+                <MyTodo key={index} todolistContents={todolistContents} />
+            ))}
         </div>
     );
 };

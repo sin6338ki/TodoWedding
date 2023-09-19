@@ -44,26 +44,26 @@ const Partner = () => {
 
     return (
         <div>
-            <div className="flex relative w-[180px] my-5 mx-auto">
+            <div className="flex relative w-[180px] mx-auto mt-[150px] mb-5">
                 <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
                 <div className="text-center font-bold absolute w-full h-full mt-2">채팅방 리스트</div>
             </div>
 
-            <div className="grid grid-cols-4 gap-3 mx-10 pt-5 border-t-2 border-[#ECECEC]">
-                <div className="text-center font-bold">NO</div>
-                <div className="text-center font-bold">닉네임</div>
-                <div className="text-center font-bold">마지막 대화일</div>
-                <div className="text-center font-bold">입장</div>
+            <div className="grid grid-cols-5 gap-3 mx-1 pt-5 border-t-2 border-[#ECECEC]">
+                <div className="text-center font-bold col-span-1">NO</div>
+                <div className="text-center font-bold col-span-1">닉네임</div>
+                <div className="text-center font-bold col-span-2">마지막 대화일</div>
+                <div className="text-center font-bold col-span-1">입장</div>
 
                 {resultFindChatRoom &&
                     resultFindChatRoom.map((chatRoom, idx) => {
                         return (
                             <>
-                                <div className="text-center">{idx + 1}</div>
-                                <div className="text-center">{chatRoom.nickname}</div>
-                                <div className="text-center">{chatRoom.chatting_create_dt}</div>
+                                <div className="text-center col-span-1">{idx + 1}</div>
+                                <div className="text-center col-span-1">{chatRoom.nickname}</div>
+                                <div className="text-center col-span-2">{chatRoom.chatting_create_dt}</div>
                                 <button
-                                    className="text-[#B4B4B4]"
+                                    className="text-[#B4B4B4] col-span-1"
                                     onClick={() => {
                                         enterToChat(chatRoom.chat_room_seq, chatRoom.partner_seq, chatRoom.member_seq);
                                     }}

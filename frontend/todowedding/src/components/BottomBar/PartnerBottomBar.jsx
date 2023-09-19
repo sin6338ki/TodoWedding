@@ -84,7 +84,7 @@ const PartnerBottomBar = () => {
     }, [token]);
 
     return (
-        <div className="pl-5 bottom-bar">
+        <div className="bottom-bar">
             {isAdminCk != "Y" ? (
                 <Link to="todowedding/partner/info" className="footer-menu-left" id="infoBtn">
                     <img className="bottom-bar-hover" src={Info} alt="Info" width="20px" />

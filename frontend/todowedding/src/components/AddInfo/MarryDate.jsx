@@ -73,7 +73,7 @@ const MarryDate = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div className="marrydate-header">결혼 예정일을 선택해주세요</div>
+                <div className="marrydate-header text-[#b4b4b4] pt-3">결혼 예정일을 선택해주세요</div>
                 <div className="marrydate-contents">
                     <input type="date" value={marryDate} onChange={(e) => setMarryDate(e.target.value)} />
                 </div>

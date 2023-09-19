@@ -35,7 +35,8 @@ const Kakaologin = () => {
             <p style={{ marginBottom: "30px" }}>
                 카카오 계정으로 간편하게 로그인하고
                 <br />
-                Todo Wedding의 다양한 서비스를 이용해보세요
+                TodoWedding의 다양한 서비스를
+                <br></br>이용해보세요
             </p>
             <a className="kakao" href={loginURL}>
                 <img

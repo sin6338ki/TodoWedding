@@ -31,9 +31,10 @@ const BudgetReport = () => {
 
     return (
         <div>
-            <p>총 예산 : {totalBudget}원</p>
-            <p>총 수입 : {totalIncome}원</p>
-            <p>총 지출 : {totalExpense}원</p>
+            <p className="mb-1">현재 잔액 : {totalBudget + totalIncome - totalExpense}원</p>
+            <p className="mb-1">- 총 예산 : {totalBudget}원</p>
+            <p className="mb-1">- 총 수입 : {totalIncome}원</p>
+            <p className="mb-1">- 총 지출 : {totalExpense}원</p>
         </div>
     );
 };

@@ -184,43 +184,41 @@ const ChattingRoom = () => {
     };
 
     return (
-        <div>
+        <div
+            id="chatting-container"
+            className="h-[680px] mx-[15px] mt-[120px] flex flex-col border rounded-2xl border-black w-5/6"
+        >
             <div
-                id="chatting-container"
-                className="h-[680px] mx-auto mt-10 flex flex-col border rounded-2xl border-black w-5/6"
+                id="chatting-banner"
+                className="flex flex-col bg-[#D0CFFA] text-lg font-bold h-12 border rounded-t-2xl"
             >
-                <div
-                    id="chatting-banner"
-                    className="flex flex-col bg-[#D0CFFA] text-lg font-bold h-12 border rounded-t-2xl"
-                >
-                    <p className="text-left ml-9 mt-2">1:1 상담하기</p>
-                </div>
-                <div
-                    id="chatting-contents-container"
-                    className="scrollbar-hide snap-y flex flex-col h-[520px] overflow-y-auto"
-                >
-                    {token && msgBox()}
-                </div>
-                <div id="chatting-input-container" className="flex flex-row bg-[#F4F4F4] h-32 rounded-b-2xl">
-                    <div className="flex flex-col-reverse border-b border-black ml-5 mb-3 align-bottom basis-4/5">
-                        <input
-                            onChange={(e) => {
-                                setContent(e.target.value);
-                            }}
-                            id="chatting-input-box"
-                            type="text"
-                            className="appearance-none bg-transparent border-noneh-9 w-80 ml-2 mb-2 focus:outline-none  text-gray-700 border-[#9F7FFC]-500"
-                        ></input>
-                    </div>
-                    <button
-                        onClick={() => {
-                            send();
+                <p className="text-left ml-4 mt-[10px]">1:1 상담하기</p>
+            </div>
+            <div
+                id="chatting-contents-container"
+                className="scrollbar-hide snap-y flex flex-col h-[520px] overflow-y-auto"
+            >
+                {token && msgBox()}
+            </div>
+            <div id="chatting-input-container" className="grid grid-cols-6 bg-[#F4F4F4] h-32 rounded-b-2xl">
+                <div className="col-span-5 flex flex-col-reverse border-b border-black mx-3 mb-3 align-bottom">
+                    <input
+                        onChange={(e) => {
+                            setContent(e.target.value);
                         }}
-                        className="bg-[#C8C8C8] basis-1/5 mt-20 mb-3 mx-3 align-bottom rounded-md h-9"
-                    >
-                        전송
-                    </button>
+                        id="chatting-input-box"
+                        type="text"
+                        className="appearance-none bg-transparent border-noneh-9 w-80 ml-2 mb-1 focus:outline-none  text-gray-700 border-[#9F7FFC]-500"
+                    ></input>
                 </div>
+                <button
+                    onClick={() => {
+                        send();
+                    }}
+                    className="bg-[#C8C8C8] mt-20 mb-3 align-bottom rounded-md h-9 mr-3"
+                >
+                    전송
+                </button>
             </div>
         </div>
     );

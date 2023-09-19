@@ -68,7 +68,7 @@ const PartnerLogin = () => {
     };
 
     return (
-        <div className="flex flex-col mx-auto mt-10">
+        <div className="flex flex-col mx-auto mt-[130px]">
             <img src={TodoLogo} className="w-72 self-center my-14"></img>
             <div className="self-center text-center">
                 <p id="login-info" className="mb-10">

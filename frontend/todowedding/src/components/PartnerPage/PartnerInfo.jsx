@@ -93,21 +93,21 @@ const PartnerInfo = () => {
 
     return (
         <div>
-            <div className="flex relative w-[180px] mt-5 mx-auto">
+            <div className="flex relative w-[180px] mt-[120px] mx-auto">
                 <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
                 <div className="text-center font-bold absolute w-full h-full mt-2">업체 정보 수정하기</div>
             </div>
-            <div className="ml-10 mt-10 w-[480px] flex flex-col">
-                <div className="mb-3 self-center w-[480px]">
+            <div className="ml-5 mt-10 w-[380px] flex flex-col">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">아이디</p>
                     <input
                         value={partnerInfo.partner_id}
                         disabled
                         type="text"
-                        className="w-[480px] border text-[#A383FF] h-8 p-2"
+                        className="w-[380px] border text-[#A383FF] h-8 p-2"
                     ></input>
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">비밀번호</p>
                     <input
                         defaultValue={partnerInfo.partner_pw}
@@ -115,10 +115,10 @@ const PartnerInfo = () => {
                             setPartnerPw(e.target.value);
                         }}
                         type="password"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     ></input>
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">비밀번호 확인</p>
                     <p id="checkPw"></p>
                     <input
@@ -127,10 +127,10 @@ const PartnerInfo = () => {
                             setCheckPartnerPw(e.target.value);
                         }}
                         type="password"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     ></input>
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">기업명</p>
                     <input
                         defaultValue={partnerInfo.partner_name}
@@ -138,10 +138,10 @@ const PartnerInfo = () => {
                             setPartnerName(e.target.value);
                         }}
                         type="text"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     />
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">사업자등록번호</p>
                     <input
                         defaultValue={partnerInfo.partner_registration}
@@ -149,10 +149,10 @@ const PartnerInfo = () => {
                             setPartnerRegistration(e.target.value);
                         }}
                         type="text"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     />
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">전화번호</p>
                     <input
                         defaultValue={partnerInfo.partner_tel}
@@ -160,10 +160,10 @@ const PartnerInfo = () => {
                             setPartnerTel(e.target.value);
                         }}
                         type="text"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     />
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">홈페이지</p>
                     <input
                         placeholder="http://"
@@ -172,10 +172,10 @@ const PartnerInfo = () => {
                             setPartnerLink(e.target.value);
                         }}
                         type="text"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     ></input>
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">담당자</p>
                     <input
                         defaultValue={partnerInfo.partner_manager}
@@ -183,10 +183,10 @@ const PartnerInfo = () => {
                             setPartnerManager(e.target.value);
                         }}
                         type="text"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     />
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">담당자 연락처</p>
                     <input
                         defaultValue={partnerInfo.partner_manager_tel}
@@ -194,10 +194,10 @@ const PartnerInfo = () => {
                             setPartnerManagerTel(e.target.value);
                         }}
                         type="text"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     />
                 </div>
-                <div className="mb-3 self-center w-[480px]">
+                <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">업체 주소</p>
                     <input
                         defaultValue={partnerInfo.partner_address}
@@ -205,7 +205,7 @@ const PartnerInfo = () => {
                             setPartnerAddress(e.target.value);
                         }}
                         type="text"
-                        className="w-[480px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
                     />
                 </div>
                 <div>

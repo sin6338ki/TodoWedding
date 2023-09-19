@@ -14,11 +14,11 @@ Todolist (추가/삭제/전체조회:완료), (완료-미완료 개수조회 /�
 
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-    container: `max-w-[500px] w-full m-auto rounded-md  p-4`,
+    container: `max-w-[500px] w-full m-auto rounded-md  p-4 mt-100`,
     heading: `text-3xl font-bold text-center text-greay-800 p-2`,
-    form: `flex justify-between`,
-    input: `border p-2 w-full text-xl`,
-    button: `border p-4 ml-2 bg-purple-500 text-slate-100`,
+    form: `flex justify-between mt-[20px] mx-[15px] h-[40px]`,
+    input: `border p-2 w-full text-sm`,
+    button: `border p-1 ml-2 bg-[#9F7FFC] text-slate-100`,
     count: `text-center p-2`,
 };
 
@@ -230,18 +230,18 @@ const TodoList = () => {
     return (
         //html
         <div>
-            <div className={style.container}>
-                <div style={{ display: "flex", justifyContent: "center" }}>
+            <div>
+                {/* <div className="mt-[110px] flex flex-row mx-[15px]">
                     <button
                         onClick={calendarOnclick}
-                        style={{ marginRight: "30px", fontWeight: activeButton === "Calendar" ? "700" : "normal" }}
+                        style={{ marginRight: "100px", fontWeight: activeButton === "Calendar" ? "700" : "normal" }}
                     >
                         Calendar
                         {activeButton === "Calendar" && <line y1="0.5" x2={74} y2="0.5" stroke="black" />}
                     </button>
                     <button
                         onClick={todoOnclick}
-                        style={{ marginRight: "30px", fontWeight: activeButton === "Todolist" ? "700" : "normal" }}
+                        style={{ marginRight: "100px", fontWeight: activeButton === "Todolist" ? "700" : "normal" }}
                     >
                         Todolist
                         {activeButton === "Todolist" && (
@@ -252,15 +252,15 @@ const TodoList = () => {
                     </button>
                     <button
                         onClick={budgetOnclick}
-                        style={{ marginRight: "30px", fontWeight: activeButton === "Budget" ? "700" : "normal" }}
+                        style={{ marginRight: "100px", fontWeight: activeButton === "Budget" ? "700" : "normal" }}
                     >
                         Budget
                         {activeButton === "Budget" && <line y1="0.5" x2={74} y2="0.5" stroke="black" />}
                     </button>
-                </div>
+                </div> */}
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
-                <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[120px] mx-[15px]">
                     {todos.length < 1 ? null : (
                         <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}`}</span>
                     )}
@@ -268,7 +268,7 @@ const TodoList = () => {
                     {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
                 </div>
 
-                <h3 className={style.heading}>Todo List</h3>
+                {/* <h3 className={style.heading}>Todo List</h3> */}
                 <form onSubmit={createTodo} className={style.form}>
                     <input
                         value={input}
@@ -281,7 +281,7 @@ const TodoList = () => {
                         <AiOutlinePlus size={30} />
                     </button>
                 </form>
-                <ul>
+                <div className="mt-5">
                     {todos.map((todolistContents, index) => (
                         <Todo
                             key={index}
@@ -292,7 +292,7 @@ const TodoList = () => {
                             deleteTodo={() => deleteTodo(todolistContents.todolistSeq)}
                         />
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );

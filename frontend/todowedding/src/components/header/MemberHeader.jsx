@@ -45,7 +45,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     }, []);
 
     return (
-        <div className="fixed top-0 z-50 w-[424px] ml-4 flex flex-row h-[90px] pl-2 pr-4 pb-1 bg-gradient-to-r to-white from-[#ebd6ff]">
+        <div className="fixed top-0 z-50 w-[424px] flex flex-row h-[90px] pr-4 pb-1 bg-gradient-to-r to-white from-[#ebd6ff]">
             {marryDt ? (
                 <Link to="/" className="decoration-transparent self-cente pt-4  mx-3 text-[#9F7FFC] font-bold ml-4 ">
                     <div className="decoration-double underline underline-offset-8 text-[24px]">D{marryDt}</div>

@@ -15,11 +15,11 @@ Todo
 수정 : todolist 전체 - 완료 - 미완료조회
 */
 const style = {
-    li: `flex justify-between p-4 my-2 capitalize border-b`,
-    liComplete: `flex justify-between bg-slate-400 p-4 my-2 capitalize`,
+    li: `ml-[20px] mt-4 flex justify-between capitalize border-b mr-[20px]`,
+    liComplete: `flex justify-between bg-slate-400 capitalize`,
     row: `flex`,
-    text: `ml-2 cursor-pointer`,
-    textComplete: `ml-2 cursor-pointer line-through text-gray-200`,
+    text: `ml-[15px] cursor-pointer mb-0`,
+    textComplete: `ml-[15px] cursor-pointer line-through text-gray-300 mb-0`,
     button: `cursor-pointer flex items-center`,
 };
 
@@ -83,7 +83,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
     return (
         <li className={todolistContents.completed ? style.liComplete : style.li}>
             <div className={style.row}>
-                <input onChange={completedTodolist} type="checkbox" checked={isChecked} />
+                <input onChange={completedTodolist} type="checkbox" checked={isChecked} className="mb-2" />
                 <p
                     onClick={completedTodolist} //toggleComplete(todolistContents)
                     className={isChecked ? style.textComplete : style.text}
