@@ -71,7 +71,7 @@ const Budget = (props) => {
         <div className="pocket__status">
             <div className="pocket__status-title">
                 <h1 className="fs-normal fw-light">{twoDigitYear}년 웨딩예산관리</h1>
-                <strong className="fs-title">웨딩 전체 예산 : {addComma(totalBalance.toString())}원</strong>
+                {/* <strong className="fs-title">웨딩 전체 예산 : {addComma(totalBalance.toString())}원</strong> */}
             </div>
 
             <div className="pocket__status-detail">

@@ -5,15 +5,21 @@
  * 작성일 : 2023.09.18
  */
 
-import axios from 'axios';
+
 import React, { useEffect , useState } from 'react'
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 import IncomeList from './IncomeList';
 import ExpenseList from './ExpenseList';
 
 const BudgetIndex = () => { // AdminPage_index 참조
+
+
+   const token = useSelector((state) => state.Auth.token);
+   const memberSeq = token ? token.userSeq : 0;
 
  const [incomes , setIncomes] = useState([]);
  const [expenses , setExpenses] = useState([]);
@@ -22,7 +28,7 @@ const BudgetIndex = () => { // AdminPage_index 참조
  useEffect(() => { // 지출조회 
     axios
          .post("http://localhost:8085/budget/select", {
-            member_seq: 101 // memberSeq로 값 변경하기 
+             member_seq: `${memberSeq}` // memberSeq로 값 변경하기 
          })
          .then((res)=>{
             console.log("지출 전체 조회 : ", res.data);
@@ -37,7 +43,7 @@ const BudgetIndex = () => { // AdminPage_index 참조
 useEffect(()=>{ // 수입조회
     axios
          .post("http://localhost:8085/income/select", {
-            member_seq: 101
+             member_seq: `${memberSeq}`
          })
          .then((res)=>{
             console.log("수입 전체 조회 :", res.data);
