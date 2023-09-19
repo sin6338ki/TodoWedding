@@ -4,6 +4,7 @@ import BudgetList from "./BudgetList";
 import BudgetChart from "./BudgetChart";
 import "../../assets/budget-css/BudgetContainer.css";
 import BudgetIndex from "./BudgetIndex";
+import BudgetRoleChart from "./BudgetRoleChart";
 //import FilterContext from '../Budget/FilterContext'
 
 export const FilterContext = React.createContext();
@@ -47,6 +48,7 @@ const BudgetContainer = (props) => {
                 {/* <BudgetList /> */}
                 <BudgetIndex />
                 {/* <BudgetChart /> */}
+                <BudgetRoleChart />
             </FilterContext.Provider>
         </div>
     );
