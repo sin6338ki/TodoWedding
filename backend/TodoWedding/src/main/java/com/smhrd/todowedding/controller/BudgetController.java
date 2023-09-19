@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -77,7 +79,32 @@ public class BudgetController {
 			return new ResponseEntity<>("지출관리 수정 실패 : " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	// 지출항목 삭제 (delete)
+	@DeleteMapping(value="budget/delete/{budget_seq}")
+	public ResponseEntity<String> deleteBudget(@PathVariable(name="budget_seq") Long budget_seq) {
+	    int result = budgetService.deleteBudget(budget_seq);
 
+	    if (result > 0) { // 삭제된 행이 하나 이상 있다면
+	        return new ResponseEntity<>("삭제 성공", HttpStatus.OK);
+	    } else { // 삭제된 행이 없다면
+	        return new ResponseEntity<>("삭제 실패", HttpStatus.NOT_FOUND);
+	    }
+	}
+	
+	// 수입항목 삭제 (delete)
+	@DeleteMapping(value="income/delete/{income_seq}")
+	public ResponseEntity<String> deleteIncome(@PathVariable(name="income_seq") Long income_seq) {
+		int result = incomeService.deleteIncome(income_seq);
+		
+		if (result > 0) { // 삭제된 행이 하나 이상 있다면
+			return new ResponseEntity<>("삭제 성공", HttpStatus.OK);
+		} else { // 삭제된 행이 없다면
+			return new ResponseEntity<>("삭제 실패", HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	
 	// 수입관리 추가 (insert)
 	@PostMapping("/income/insert")
 	public ResponseEntity<String> insertIncome(@RequestBody IncomeDto incomeinsert) {

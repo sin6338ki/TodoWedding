@@ -34,4 +34,8 @@ public interface TotalMapper {
 	// 총 결혼 예상 비용 수정
 	@Update("UPDATE tw_total_wedding_budget SET total_budget = #{total_budget} WHERE member_seq = #{member_seq}")
 	public int updateTotalBudget(TotalDto totalDto);
+	
+	// 총 결혼 예상 비용 확인
+	@Select("SELECT total_budget FROM tw_total_wedding_budget WHERE member_seq = #{member_seq}")
+	public TotalDto selectTotalBudget(long memberSeq);
 }

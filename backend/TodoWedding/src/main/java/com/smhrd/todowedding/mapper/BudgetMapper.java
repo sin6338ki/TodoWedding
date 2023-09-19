@@ -2,6 +2,7 @@ package com.smhrd.todowedding.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -32,7 +33,15 @@ public interface BudgetMapper {
 	@Select("SELECT budget_seq, budget_item, STR_TO_DATE(budget_expense_dt, '%Y-%m-%d') as budget_expense_dt, budget_cost, budget_role, budget_memo, budget_expense_cost, member_seq FROM tw_budget where member_seq= #{member_seq} ORDER BY STR_TO_DATE(budget_expense_dt, '%Y-%m-%d') ASC")
 	public List<BudgetDto> selectBudget(BudgetDto budget);
     
-    // 수입 관리 정보 추가
+	// 지출 항목 삭제
+	@Delete("DELETE FROM tw_budget where budget_seq = #{budget_seq}")
+	public int deleteBudget(Long budget_seq);
+    
+	// 수입 관리 항목 삭제
+	@Delete("DELETE FROM tw_income where income_seq = #{income_seq}")
+	public int deleteIncome(Long income_seq);
+	
+	// 수입 관리 정보 추가
     @Insert("INSERT INTO tw_income(income_dt, income_cost, income_contents, member_seq) VALUES(#{income_dt}, #{income_cost}, #{income_contents}, #{member_seq})")
     public void insertIncome(IncomeDto incomeinsert);
 	
@@ -43,5 +52,6 @@ public interface BudgetMapper {
     // 수입 관리 정보 조회
     @Select("SELECT income_seq, income_dt, income_cost, income_contents, member_seq FROM tw_income where member_seq= #{member_seq} ")
     public List<IncomeDto> selectIncome(IncomeDto income);
+    
 	
 }

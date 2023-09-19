@@ -22,7 +22,7 @@ tw_marrydate 테이블에 total_budget(결혼 예상금액)
 작성자 : 서유광
 작성일 : 2023.09.13 
 
-* 09.19 유광 : 결혼 총 예상 비용 update,insert 추가
+* 09.19 유광 : 결혼 총 예상 비용 update,insert,select 추가
 */
 
 @Slf4j
@@ -82,6 +82,7 @@ public class TotalService {
 	        return new ResponseEntity<>("Insert Fail", HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
+	
 	// 결혼 총 예상 비용 수정
 	public ResponseEntity<String> updateTotalBudget(TotalDto totalDto) {
         int result = totalMapper.updateTotalBudget(totalDto);
@@ -91,5 +92,10 @@ public class TotalService {
         } else {
             return new ResponseEntity<>("Update Fail", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+	
+	// 결혼 총 예상 비용 확인
+	public TotalDto selectTotalBudget(long memberSeq) {
+        return totalMapper.selectTotalBudget(memberSeq);
     }
 }
