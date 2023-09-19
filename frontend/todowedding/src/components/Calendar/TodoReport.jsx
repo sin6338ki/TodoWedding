@@ -35,7 +35,7 @@ const TodoReport = () => {
     const totalTodo = todoListCount && todoListCount.length > 1 ? todoListCount[0]?.count + todoListCount[1]?.count : 0;
     const completedTodo = todoListCount && todoListCount.length > 1 ? todoListCount[1]?.count : 0;
     const unCompletedTodo = todoListCount && todoListCount.length > 1 ? todoListCount[0]?.count : 0;
-    const todoRatio = totalTodo > 0 ? ((completedTodo / totalTodo) * 100).toFixed(2) : "0";
+    const todoRatio = totalTodo > 0 ? Math.round((completedTodo / totalTodo) * 100) : "0";
 
     return (
         <div>

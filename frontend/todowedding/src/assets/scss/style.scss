@@ -216,10 +216,17 @@ BottomBar 관련
     box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
 }
 
-//BottomBar 가운데 +버튼
+//Modal 링크 container
 .add-link {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
+}
+
+.add-link:hover {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 /**************************************************************************** 메인 페이지
@@ -345,7 +352,7 @@ Modal 관련
     z-index: 999 !important;
     width: 300px;
     height: 400px;
-    padding: 40px;
+    padding: 60px 46px 46px 46px;
     text-align: center;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
@@ -376,7 +383,18 @@ Modal 관련
     font-size: 15px;
     text-decoration: none;
     font-family: "Pretendard-Regular";
+    margin-top: 1px;
 }
+
+// Modal 링크에 마우스 올렸을 때
+.add-content:hover {
+    padding-top: 35px;
+    color: black;
+    font-size: 15px;
+    font-family: "Pretendard-Regular";
+    margin-top: 1px;
+}
+
 
 //
 .add-container {
@@ -782,7 +800,7 @@ D-Day CheckList 관련
 /* 버튼들을 포함하는 부모 div 스타일 */
 .map_btn_container {
     display: flex;
-    margin: 5px 0 5px 0;
+    margin: 3px 0 3px 0;
 }
 
 /* 전체 버튼 스타일 */
@@ -826,6 +844,7 @@ D-Day CheckList 관련
     border: 1px solid #c7dfff;
     width: 140px;
     margin: 2px;
+    color:#000000;
 }
 
 /* 웨딩홀 버튼 스타일 */
@@ -835,6 +854,7 @@ D-Day CheckList 관련
     border: 1px solid #ddc4ff;
     width: 140px;
     margin: 2px;
+    color:#000000;
 }
 
 /* 스튜디오 버튼 스타일 */
@@ -845,6 +865,7 @@ D-Day CheckList 관련
     position: relative;
     width: 140px;
     margin: 2px;
+    color:#000000;
 }
 
 .kakao_map_category_btn,
@@ -872,8 +893,8 @@ D-Day CheckList 관련
 //검색 버튼
 .input_map_place_btn {
     color: #ffffff;
-    background-color: #ada0bd;
-    border: 1px solid #bbb;
+    background-color: #b198fc;
+    border: 1px solid #8d7fe0;
     border-radius: 8px;
     width: 70px;
     height: 45px;

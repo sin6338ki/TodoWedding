@@ -64,7 +64,10 @@ const MemberBottomBar = () => {
             {token === null ||
                 (token.type != "P" && (
                     <>
-                        <LightTooltip title="버튼을 클릭해 투두웨딩의 다양한 기능을 이용해보세요!" placement="top">
+                        <LightTooltip title={
+                            <React.Fragment>
+                                버튼을 클릭해 투두웨딩의 <br /> 다양한 기능을 이용해보세요!
+                            </React.Fragment> } placement="top">
                             <button className="ModalBtn" type="button" onClick={() => setAdd(!add)}>
                                 <img src={ModalBtn} className="ModalImage" alt="AddButton" />
                             </button>
@@ -88,11 +91,7 @@ const MemberBottomBar = () => {
                 </Link>
 
                 <Link
-                    to="todowedding/map"
-                    className="
-            footer-menu-right"
-                    onClick={handleButtonClick}
-                >
+                    to="todowedding/map" className=" footer-menu-right" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Partner} alt="Partner" width="20px" />
                     <span className="text-[6px] mt-1">STORE</span>
                 </Link>
