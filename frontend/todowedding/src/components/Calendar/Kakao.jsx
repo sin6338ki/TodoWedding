@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import qs from "qs";
-import { useLocation } from "react-router-dom";
 
 const Kakao = () => {
+    const navigate = useNavigate();
     const token = useSelector((state) => state.Auth.token);
-    const location = useLocation();
+    const schedule = useSelector((state) => state.CalReducer.schedule);
+    const [startDt, setStartDt] = useState();
+    const [endDt, setEndDt] = useState();
+    const [title, setTitle] = useState();
 
     /**
      * Kakao 톡캘린더 연동하기
@@ -23,31 +27,21 @@ const Kakao = () => {
     const addKakaoURL = "https://kapi.kakao.com/v2/api/calendar/create/event";
     const getKakaoCalURL = "https://kapi.kakao.com/v2/api/calendar/calendars";
 
-    const [data, setData] = useState({});
+    useEffect(() => {
+        setStartDt(schedule.start_at + "T03:00:00Z");
+        setEndDt(schedule.end_at + "T06:00:00Z");
+        setTitle(schedule.title);
+    }, [schedule]);
 
     useEffect(() => {
-        setData({
-            event: JSON.stringify({
-                title: location.state.data.title,
-                time: {
-                    start_at: location.state.data.start_at,
-                    end_at: location.state.data.end_at,
-                    time_zone: "Asia/Seoul",
-                    all_day: false,
-                    lunar: false,
-                },
-            }),
-        });
-    }, []);
-
-    useEffect(() => {
-        console.log("data 확인 : ", data);
+        console.log("startDt", startDt);
+        console.log("endDt", endDt);
+        console.log("title", title);
         addKakaoCal();
-    }, [data]);
+    }, [startDt, endDt, title]);
 
     //사용자 캘린더 목록 불러오기
     const getKakao = () => {
-        console.log("token >>>>>>>>", token.accessToken);
         axios
             .get(getKakaoCalURL, {
                 headers: {
@@ -64,20 +58,37 @@ const Kakao = () => {
 
     //일정추가하기
     const addKakaoCal = () => {
-        // console.log("data 확인", event);
         console.log("일정 추가 토큰 확인", token);
-        axios
-            .post(addKakaoURL, qs.stringify(data), {
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+
+        axios({
+            method: "post",
+            url: addKakaoURL,
+            headers: {
+                Authorization: `Bearer ${token.accessToken}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            data: qs.stringify({
+                event: JSON.stringify({
+                    title: title,
+                    time: {
+                        start_at: startDt,
+                        end_at: endDt,
+                        time_zone: "Asia/Seoul",
+                        all_day: false,
+                        lunar: false,
+                    },
+                }),
+            }),
+        })
             .then((res) => {
                 console.log("addKakaoCal : ", res.data);
+                if (res.data.event_id) {
+                    navigate("/todowedding/calendar");
+                }
             })
             .catch((err) => {
                 console.log("addKakaoCal error : ", err);
+                console.log(err);
             });
     };
 

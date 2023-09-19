@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { setSchedule } from "../../redux/reducers/CalReducer";
+import { useDispatch } from "react-redux";
 
 /*
  * 일정 수정 / 삭제
@@ -11,6 +13,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 const UpdateSchedule = () => {
     const location = useLocation();
     const nav = useNavigate();
+    const dispatch = useDispatch();
     const { scheduleSeq } = useParams();
 
     const [title, setTitle] = useState(location.state.title);
@@ -60,6 +63,17 @@ const UpdateSchedule = () => {
         }
     };
 
+    // 화면 렌더링 했을 때, 수정했을 때 리덕스에 일정 값 저장
+    useEffect(() => {
+        dispatch(
+            setSchedule({
+                title: title,
+                start_at: startDate,
+                end_at: endDate,
+            })
+        );
+    }, [title, startDate, endDate]);
+
     return (
         <div>
             <div className="add-container">
@@ -100,16 +114,7 @@ const UpdateSchedule = () => {
             <button className="Add-TodoList-btn" onClick={deleteSchedule}>
                 캘린더 일정 삭제하기
             </button>
-            <Link
-                to={URL}
-                state={{
-                    data: {
-                        title: title,
-                        start_at: startDate,
-                        end_at: endDate,
-                    },
-                }}
-            >
+            <Link to={URL}>
                 <button className="mt-5 ml-52 text-gray-400 underline underline-offset-4">톡캘린더 연동하기</button>
             </Link>
         </div>

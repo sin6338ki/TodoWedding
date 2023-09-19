@@ -13,9 +13,7 @@ const CalCallback = () => {
     //redux 액션 실행을 위한 dispatch 선언
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
     const token = useSelector((state) => state.Auth.token);
-    const [data, setData] = useState();
 
     // useSearchParams() : URL의 쿼리파라미터에 대한 접근과 조작을 할 수 있음
     const [searchParams] = useSearchParams();
@@ -48,17 +46,8 @@ const CalCallback = () => {
     }, [code]);
 
     useEffect(() => {
-        console.log("redux 저장 후 token : ", token);
+        token && navigate("/kakaoCal");
     }, [token]);
-
-    useEffect(() => {
-        console.log("location : ", location);
-    }, []);
-
-    useEffect(() => {
-        console.log("data : ", data);
-        // navigate("/kakaoCal");
-    }, [data]);
 
     return <div>Kakao Calendar Callback</div>;
 };

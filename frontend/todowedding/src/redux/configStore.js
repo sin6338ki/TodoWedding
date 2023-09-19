@@ -4,6 +4,7 @@ import { createStore, combineReducers } from "redux";
 // local storage 사용
 import storage from "redux-persist/lib/storage";
 import { PartnerAuthReducer } from "./reducers/PartnerAuthReducer";
+import { CalReducer } from "./reducers/CalReducer";
 
 const persistConfig = {
     key: "root",
@@ -30,17 +31,18 @@ function userReducer(state = initialState, action) {
 const allReducers = combineReducers({
     Auth: AuthReducer,
     PartnerAuth: PartnerAuthReducer,
-    User: userReducer //새로 추가한 리듀서 (09.13)
+    User: userReducer, //새로 추가한 리듀서 (09.13)
+    CalReducer: CalReducer,
 });
 
 //todo-redux(09.15)
-const TOGGLE_CHECKED = 'TOGGLE_CHECKED'
-const toggleChecked = (todolistSeq) =>{
+const TOGGLE_CHECKED = "TOGGLE_CHECKED";
+const toggleChecked = (todolistSeq) => {
     return {
-        type:TOGGLE_CHECKED,
-        payload:todolistSeq
-    }
-}
+        type: TOGGLE_CHECKED,
+        payload: todolistSeq,
+    };
+};
 
 const store = createStore(
     persistReducer(persistConfig, allReducers),
