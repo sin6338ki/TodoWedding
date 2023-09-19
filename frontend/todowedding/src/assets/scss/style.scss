@@ -770,3 +770,112 @@ D-Day CheckList 관련
     align-items: center;
     font-family: "Pretendard-Regular";
 }
+
+/**************************************************************************** 웨딩 리포트 관련
+카카오맵 관련
+*******************/
+
+/* Category Button Styles */
+
+/* 카테고리 버튼 선택 관련 (웨딩홀, 스튜디오, 전체선택)*/
+
+/* 버튼들을 포함하는 부모 div 스타일 */
+.map_btn_container {
+    display: flex;
+    margin: 5px 0 5px 0;
+}
+
+/* 전체 버튼 스타일 */
+.select_all {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border: 1px solid #bbb;
+    border-radius: 8px !important;
+    position: relative;
+    width: 140px;
+    margin: 2px;
+}
+
+/* 웨딩홀 버튼 스타일 */
+.select_weddinghall {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border: 1px solid #bbb;
+    border-radius: 8px !important;
+    position: relative;
+    width: 140px;
+    margin: 2px;
+}
+
+/* 스튜디오 버튼 스타일 */
+.select_studio {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border: 1px solid #bbb;
+    border-radius: 8px !important;
+    position: relative;
+    width: 140px;
+    margin: 2px;
+}
+
+//마우스 오버시 스타일 변경
+/* 전체 버튼 스타일 */
+.select_all:hover {
+    background-color: #c7dfff;
+    position: relative;
+    border: 1px solid #c7dfff;
+    width: 140px;
+    margin: 2px;
+}
+
+/* 웨딩홀 버튼 스타일 */
+.select_weddinghall:hover {
+    background-color: #ddc4ff;
+    position: relative;
+    border: 1px solid #ddc4ff;
+    width: 140px;
+    margin: 2px;
+}
+
+/* 스튜디오 버튼 스타일 */
+.select_studio:hover {
+    background-color: #ffd390;
+    box-sizing: border-box;
+    border: 1px solid #f7b95c;
+    position: relative;
+    width: 140px;
+    margin: 2px;
+}
+
+.kakao_map_category_btn,
+.select_all,
+.select_weddinghall,
+.select_studio {
+    border-radius: 0.3em;
+    &:hover,
+    &focus {
+        color: #ffffff;
+    }
+}
+
+/* 검색창 */
+.input_map_place {
+    width: 200px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin: 2px;
+    height: 45px;
+}
+
+//검색 버튼
+.input_map_place_btn {
+    color: #ffffff;
+    background-color: #ada0bd;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    width: 70px;
+    height: 45px;
+    margin: 2px;
+}

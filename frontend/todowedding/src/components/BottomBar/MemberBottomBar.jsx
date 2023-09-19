@@ -9,8 +9,8 @@ import ModalBtn from "../../assets/images/TodoModal_bg.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Modal from "../../components/Modal";
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
 
 /*
  * BottomBar
@@ -44,17 +44,17 @@ const MemberBottomBar = () => {
     };
 
     // Modal 버튼 Tooltip 스타일
-    const LightTooltip = styled(({ className, ...props }) => (
-        <Tooltip {...props} classes={{ popper: className }} />
-      ))(({ theme }) => ({
-        [`& .${tooltipClasses.tooltip}`]: {
-          backgroundColor: theme.palette.common.white,
-          //backgroundColor: 'rgba(238, 217, 255, 0.87)',
-          color: 'rgba(0, 0, 0, 0.87)',
-          boxShadow: theme.shadows[3],
-          fontSize: 13,
-        },
-      }));
+    const LightTooltip = styled(({ className, ...props }) => <Tooltip {...props} classes={{ popper: className }} />)(
+        ({ theme }) => ({
+            [`& .${tooltipClasses.tooltip}`]: {
+                backgroundColor: theme.palette.common.white,
+                //backgroundColor: 'rgba(238, 217, 255, 0.87)',
+                color: "rgba(0, 0, 0, 0.87)",
+                boxShadow: theme.shadows[3],
+                fontSize: 13,
+            },
+        })
+    );
 
     return (
         // <div className="flex flex-col">
@@ -64,14 +64,8 @@ const MemberBottomBar = () => {
             {token === null ||
                 (token.type != "P" && (
                     <>
-                        <LightTooltip 
-                            title="버튼을 클릭해 투두웨딩의 다양한 기능을 이용해보세요!"
-                            placement="top"
-                            >
-                            <button
-                                className="ModalBtn"
-                                type="button"
-                                onClick={() => setAdd(!add)}>
+                        <LightTooltip title="버튼을 클릭해 투두웨딩의 다양한 기능을 이용해보세요!" placement="top">
+                            <button className="ModalBtn" type="button" onClick={() => setAdd(!add)}>
                                 <img src={ModalBtn} className="ModalImage" alt="AddButton" />
                             </button>
                         </LightTooltip>

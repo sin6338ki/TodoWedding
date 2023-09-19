@@ -1,6 +1,7 @@
 package com.smhrd.todowedding.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.model.BudgetDto;
+import com.smhrd.todowedding.model.BudgetListDto;
 import com.smhrd.todowedding.model.IncomeDto;
+import com.smhrd.todowedding.service.BudgetListService;
 import com.smhrd.todowedding.service.BudgetService;
 import com.smhrd.todowedding.service.IncomeService;
 
@@ -35,6 +38,10 @@ public class BudgetController {
 	// 수입관련 서비스 의존성
 	@Autowired
 	private IncomeService incomeService;
+	
+	// 수입,지출 서비스 의존성 유광추가 09.18
+	@Autowired
+	private BudgetListService budgetlistService;
 
 	// 지출관리 전체조회 (select)
 	@PostMapping("/budget/select")
@@ -103,6 +110,13 @@ public class BudgetController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	// income(식별값,비용,날짜,내용), budget(식별값,비용,날짜,내용) 데이터 전송 (select) 
+	@PostMapping("/budgetlist/select")
+	public ResponseEntity<Map<String, Object>> selectBudget(@RequestBody BudgetListDto budgetlistselect) {
+	    Map<String, Object> result = budgetlistService.selectBudgetlist(budgetlistselect);
+	    return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 }

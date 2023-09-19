@@ -18,7 +18,9 @@ import lombok.extern.slf4j.Slf4j;
  * 결혼식 D-day 컨트롤러 - 등록, 조회
  * 작성 : 신지영
  * 일자 : 2023.09.04
+ * 09.18 결혼 일정 수정 추가 : 유광
  */
+
 @Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -51,5 +53,11 @@ public class MarryDateController {
 	@GetMapping(value="marry-d-day/{memberSeq}")
 	public Long findDday(@PathVariable(name="memberSeq") Long memberSeq) throws Exception {
 		return kakaoMessageService.dayCalculator(memberSeq);
+	}
+	
+	//memberSeq에 대한 marryDate 수정하기
+	@PostMapping(value="marrydate/update")
+	public String updateMarryDate(@RequestBody MarryDateDto marryDateDto) {
+	    return marryDateService.marryDateUpdate(marryDateDto);
 	}
 }
