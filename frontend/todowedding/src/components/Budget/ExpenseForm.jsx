@@ -22,7 +22,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
 
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
-    const roles =["신랑", "신부", "공동", "기타"]; 
+    const roles =["","신랑", "신부", "공동", "기타"]; 
 
     const TITLE_SIZE = 35;
 
@@ -192,7 +192,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
     <h3 className="fs-normal fw-regular">분담</h3>
   </div>
   <select 
-    value={budgetRole} 
+    value={budgetRole}
     onChange={budgetRoleChangeHandler} 
     style={{ border: "1px solid #D9D9D9", padding: '6px 9px', borderRadius:'5px' }}
   >
@@ -218,7 +218,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
                         value={budgetMemo}
                         name='budget_memo'
                         onChange={budgetMemoChangeHandler}
-                        placeholder="비고."
+                        placeholder="지출 메모를 작성해주세요"
                         maxLength={TITLE_SIZE}
                         required
                       />

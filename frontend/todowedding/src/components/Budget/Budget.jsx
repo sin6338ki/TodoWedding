@@ -6,11 +6,23 @@ import "../../assets/budget-css/Budget.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-/* Budget 예산관리
+/* Budget 예산관리 [상위컴포넌트]
  * 작성자 : 양수진
  * 작성일 : 2023.09.12
  * 로그인이전 home 으로 이동 (09.18)
  */
+
+
+const style = {
+    bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
+    container: `max-w-[500px] w-full m-auto rounded-md  p-4`,
+    heading: `text-3xl font-bold text-center text-greay-800 p-2`,
+    form: `flex justify-between`,
+    input: `border p-2 w-full text-xl`,
+    button: `border p-4 ml-2 bg-purple-500 text-slate-100`,
+    count: `text-center p-2`,
+};
+
 
 //PocketStatus (상위컴포넌트) --> 입력하면 바로렌더링 하는 부분 수정필요
 const Budget = (props) => {
@@ -70,7 +82,7 @@ const Budget = (props) => {
     return (
         <div className="pocket__status">
             <div className="pocket__status-title">
-                <h1 className="fs-normal fw-light">{twoDigitYear}년 웨딩예산관리</h1>
+                <h3 className={style.heading}>{twoDigitYear}년 웨딩 예산관리</h3>
                 {/* <strong className="fs-title">웨딩 전체 예산 : {addComma(totalBalance.toString())}원</strong> */}
             </div>
 
