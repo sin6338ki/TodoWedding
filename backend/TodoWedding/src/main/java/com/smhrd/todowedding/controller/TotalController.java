@@ -5,13 +5,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.todowedding.model.TotalDto;
-import com.smhrd.todowedding.service.MarryDateService;
 import com.smhrd.todowedding.service.TotalService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +39,14 @@ public class TotalController {
     public ResponseEntity<Map<String, Object>> findTotal (@RequestBody TotalDto totalDto){
         return ResponseEntity.ok(totalService.findTotal(totalDto.getMember_seq())); 
     }
-
+    
+   
+    // 결혼 총 예상 비용 확인
+    @GetMapping(value ="/totalbudget/select/{member_seq}")
+    public ResponseEntity<TotalDto> selectTotalBudget(@PathVariable("member_seq") long memberSeq) {
+        return ResponseEntity.ok(totalService.selectTotalBudget(memberSeq));
+     }
+    
     // 결혼 총 예상 비용 추가
     @PostMapping("/totalbudget/insert")
     public ResponseEntity<String> insertTotalBudget(@RequestBody TotalDto totalDto) {

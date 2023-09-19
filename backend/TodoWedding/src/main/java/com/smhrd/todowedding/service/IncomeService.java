@@ -40,6 +40,9 @@ public class IncomeService {
 		return budgetMapper.selectIncome(incomeselect);
 	}
 	
-
+	// 수입 항목 삭제
+	public int deleteIncome(Long income_seq) {
+	    return budgetMapper.deleteIncome(income_seq);
+	}
 
 }

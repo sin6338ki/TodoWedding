@@ -43,7 +43,11 @@ public class BudgetService {
 		budgetMapper.updateBudget(budgetupdate);
 		
 	}
-	
+
+	// 지출 항목 삭제
+	public int deleteBudget(Long budget_seq) {
+	    return budgetMapper.deleteBudget(budget_seq);
+	}
 	
 	
 }
