@@ -29,8 +29,8 @@ public interface BudgetMapper {
 	public void updateBudget(BudgetDto budget);
 	
 	// 지출 관리 전체 조회
-    @Select("SELECT budget_seq, budget_item, budget_expense_dt, budget_cost, budget_role, budget_memo, budget_expense_cost, member_seq FROM tw_budget where member_seq= #{member_seq} ")
-    public List<BudgetDto> selectBudget(BudgetDto budget);
+	@Select("SELECT budget_seq, budget_item, STR_TO_DATE(budget_expense_dt, '%Y-%m-%d') as budget_expense_dt, budget_cost, budget_role, budget_memo, budget_expense_cost, member_seq FROM tw_budget where member_seq= #{member_seq} ORDER BY STR_TO_DATE(budget_expense_dt, '%Y-%m-%d') ASC")
+	public List<BudgetDto> selectBudget(BudgetDto budget);
     
     // 수입 관리 정보 추가
     @Insert("INSERT INTO tw_income(income_dt, income_cost, income_contents, member_seq) VALUES(#{income_dt}, #{income_cost}, #{income_contents}, #{member_seq})")

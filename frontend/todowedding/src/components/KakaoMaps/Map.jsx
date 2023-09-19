@@ -94,6 +94,9 @@ const Map = () => {
         // Places 서비스 객체 사용.
         var places = new kakao.maps.services.Places();
 
+        // 현재 입력창의 값을 읽어옵니다.
+        const keyword = document.querySelector(".input_map_place").value;
+
         // 키워드 검색의 결과를 처리할 콜백함수
         var callback = function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
@@ -102,16 +105,18 @@ const Map = () => {
             } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
                 // 검색 결과가 없는 경우
                 alert("입력하신 검색어가 존재하지 않습니다.");
-            } else if (searchPlace.trim() === "") {
+            } else if (keyword.trim() === "") {
                 // 빈 문자열을 입력한 경우
                 alert("검색어를 입력해 주세요.");
             } else {
                 // 그 외의 오류 상황
                 alert("검색 중 오류가 발생했습니다.");
             }
+
+            setSearchPlace(""); //input 필드 내용 초기화
         };
 
-        places.keywordSearch(searchPlace, callback);
+        places.keywordSearch(keyword, callback);
     };
 
     // 지도 생성 및 마커 설정
@@ -241,6 +246,15 @@ const Map = () => {
                     yAnchor: yAnchorValue,
                 });
 
+                // 지도를 클릭하면 정보창 닫기
+                kakao.maps.event.addListener(map, "click", function () {
+                    if (markerInfo.currentOverlay) {
+                        markerInfo.currentOverlay.setMap(null);
+                        markerInfo.currentMarker = null;
+                        markerInfo.currentOverlay = null;
+                    }
+                });
+
                 // x버튼 클릭시 정보창 닫기
                 document.addEventListener("click", function (e) {
                     if (e.target.id === "map_closeBtn") {
@@ -315,7 +329,7 @@ const Map = () => {
             <div
                 id="KakaoMap"
                 className="Kakao_Conainer"
-                style={{ width: "560px", height: "732px", marginTop: "2px", position: "fixed"}}
+                style={{ width: "560px", height: "730px", marginTop: "2px" }}
             ></div>
             {/* <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a> */}
         </div>
