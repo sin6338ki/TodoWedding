@@ -1,5 +1,6 @@
 package com.smhrd.todowedding.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,5 +28,11 @@ public class BudgetDto {
 	private String budget_memo; // 메모
 	private String budget_expense_cost; // 지출액
 	private long member_seq; // 회원 고유번호
+
+	@Builder
+	public BudgetDto(long member_seq) {
+		this.member_seq = member_seq;
+	}
+	
 
 }

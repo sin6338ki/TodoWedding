@@ -3,6 +3,7 @@ import Budget from "./Budget";
 import BudgetList from "./BudgetList";
 import BudgetChart from "./BudgetChart";
 import "../../assets/budget-css/BudgetContainer.css";
+import BudgetIndex from "./BudgetIndex";
 //import FilterContext from '../Budget/FilterContext'
 
 export const FilterContext = React.createContext();
@@ -18,37 +19,22 @@ const BudgetContainer = (props) => {
         if (props.isAddItem) {
             let lastedItemId = Math.max(...props.items.map((item) => item.id));
             let lastedItem = props.items.filter((item) => item.id === lastedItemId);
-            // let lastedFilterBaseYear = lastedItem[0].date.getFullYear().toString();
-            // setFilterBaseYear(lastedFilterBaseYear);
-            // 날짜를 String 타입으로 바꾸면서 코드 수정 중
-        if (lastedItem.length > 0 && 'date' in lastedItem[0]) {
-            let lastedFilterBaseYear = new Date(lastedItem[0].date).getFullYear().toString();
+            let lastedFilterBaseYear = lastedItem[0].date.getFullYear().toString();
             setFilterBaseYear(lastedFilterBaseYear);
-        }
     }
     }, [props.items]);
 
     if (Array.isArray(filteredItems) && filteredItems.length > 0) {
         //수정
         filteredItems = props.items.filter((item) => item.date.getFullYear().toString() === filterBaseYear);
-
-        filteredExpenses = filteredItems.filter((item) => item.amountType === "expense");
+        // db에 수입 지출 구분할수있는게 없음... 수입(비용,날짜,내용) &  지출 (비용,날짜,내용) 테이블 필요함 
+        filteredExpenses = filteredItems.filter((item) => item.amountType === "expense"); 
     }
 
     const onChangeFilter = useCallback((selectedYear) => {
         setFilterBaseYear(selectedYear);
     }, []);
 
-    // FilterContext 에러해결 추가 코드
-    // const memoizedValue = useMemo(
-    //     () => ({
-    //         filteredItems,
-    //         filteredItems,
-    //         filterBaseYear,
-    //         onChangeFilter,
-    //     }),
-    //     [onChangeFilter, filteredItems, filterBaseYear, filteredExpenses]
-    // );
 
     const memoizedFilter = useMemo(() => {
         return { onChangeFilter, filteredItems, filterBaseYear, filteredExpenses };
@@ -58,8 +44,9 @@ const BudgetContainer = (props) => {
         <div className="pocket__container">
             <FilterContext.Provider value={memoizedFilter}>
                 <Budget />
-                <BudgetList />
-                <BudgetChart />
+                {/* <BudgetList /> */}
+                <BudgetIndex />
+                {/* <BudgetChart /> */}
             </FilterContext.Provider>
         </div>
     );

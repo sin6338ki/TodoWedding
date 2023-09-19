@@ -37,7 +37,7 @@ public class BudgetController {
 	private IncomeService incomeService;
 
 	// 지출관리 전체조회 (select)
-	@GetMapping("/budget/select")
+	@PostMapping("/budget/select")
 	public ResponseEntity<List<BudgetDto>> selectBudget(@RequestBody BudgetDto budgetselect) {
 		try {
 			List<BudgetDto> result = budgetService.budgetSelect(budgetselect);
@@ -95,7 +95,7 @@ public class BudgetController {
 	}
 
 	// 수입관리 전체조회 (select)
-	@GetMapping("/income/select")
+	@PostMapping("/income/select")
 	public ResponseEntity<List<IncomeDto>> selectIncome(@RequestBody IncomeDto incomeselect) {
 		try {
 			List<IncomeDto> result = incomeService.incomeSelect(incomeselect);
