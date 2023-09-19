@@ -8,6 +8,8 @@
  *  - 예산 관리 페이지 추가 (양수진, 2023.09.12)
  *  - 체크리스트 페이지 추가 (서현록, 2023.09.12)
  *  - 관리자 페이지 추가 (신지영, 2023.09.12)
+ *  - 마이페이지 추가 (서현록, 2023.09.16)
+ *  - 결혼예정일 페이지, 총 예산 페이지 추가 (서현록, 2023.09.18)
  */
 
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
@@ -58,6 +60,8 @@ import PartnerInfo from "./components/PartnerPage/PartnerInfo";
 
 //Admin
 import AdminPartnerInfo from "./components/AdminPage/PartnerInfo";
+import MarryDate from "./components/AddInfo/MarryDate";
+import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
     //userSeq 받아오기
@@ -78,6 +82,10 @@ function AppContent() {
                             <Route path="/auth/kakao/logout" element={<KakaologOut />} />
                             <Route path="/member/delete" element={<KakaoDelete />} />
                             <Route path="/todowedding/mypage" element={<Mypage />} />
+
+                            {/* 결혼예정일, 총 예산 추가 */}
+                            <Route path="/todowedding/marrydate" element={<MarryDate />} />
+                            <Route path="/todowedding/member/total" element={<TotalBudget />} />
 
                             {/* 일정관리 */}
                             <Route path="/todowedding/calendar" element={<Calendar />} />

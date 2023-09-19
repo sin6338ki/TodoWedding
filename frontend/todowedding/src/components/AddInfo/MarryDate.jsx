@@ -47,7 +47,7 @@ const MarryDate = () => {
 
             if (hasMarryDate) {
                 // 등록된 결혼예정일이 있으면 업데이트 호출
-                response = await axios.put(`http://localhost:8085/marrydate`, {
+                response = await axios.post(`http://localhost:8085/marrydate/update`, {
                     marryDt: marryDate,
                     memberSeq: userSeq,
                 });
