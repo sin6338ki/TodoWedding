@@ -30,7 +30,7 @@ function userReducer(state = initialState, action) {
 const allReducers = combineReducers({
     Auth: AuthReducer,
     PartnerAuth: PartnerAuthReducer,
-    User: userReducer, //새로 추가한 리듀서 (09.13)
+    User: userReducer //새로 추가한 리듀서 (09.13)
 });
 
 //todo-redux(09.15)

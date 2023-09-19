@@ -35,10 +35,6 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         });
     };
 
-    //userSeq 받아오기
-    const token = useSelector((state) => state.Auth.token);
-    const memberSeq = token.userSeq;
-
     const [isChecked, setIsChecked] = useState(false);
     const [isCheckedValue, setIsCheckedValue] = useState(todolistContents.completed ? "Y" : "N");
 

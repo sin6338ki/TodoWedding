@@ -9,11 +9,14 @@ import ModalBtn from "../../assets/images/TodoModal_bg.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Modal from "../../components/Modal";
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
 /*
  * BottomBar
  * 작성자 : 서현록
  * 작성일 : 2023.09.05
+ * 수정 : Modal 버튼 마우스 오버시 기능 안내 Tooltip 적용 (서현록, 2023.09.18)
  */
 
 const MemberBottomBar = () => {
@@ -35,9 +38,23 @@ const MemberBottomBar = () => {
         nav("/todowedding/calendar");
     };
 
+    //메인에서 Home 버튼 클릭시 메인페이지로 이동
     const handleHomeButtonClick = () => {
         nav("/");
     };
+
+    // Modal 버튼 Tooltip 스타일
+    const LightTooltip = styled(({ className, ...props }) => (
+        <Tooltip {...props} classes={{ popper: className }} />
+      ))(({ theme }) => ({
+        [`& .${tooltipClasses.tooltip}`]: {
+          backgroundColor: theme.palette.common.white,
+          //backgroundColor: 'rgba(238, 217, 255, 0.87)',
+          color: 'rgba(0, 0, 0, 0.87)',
+          boxShadow: theme.shadows[3],
+          fontSize: 13,
+        },
+      }));
 
     return (
         // <div className="flex flex-col">
@@ -47,13 +64,17 @@ const MemberBottomBar = () => {
             {token === null ||
                 (token.type != "P" && (
                     <>
-                        <button
-                            className="ModalBtn"
-                            type="button"
-                            onClick={() => setAdd(!add)}
-                            title="클릭 후 일정을 추가해보세요">
-                            <img src={ModalBtn} className="ModalImage" alt="AddButton" />
-                        </button>
+                        <LightTooltip 
+                            title="버튼을 클릭해 투두웨딩의 다양한 기능을 이용해보세요!"
+                            placement="top"
+                            >
+                            <button
+                                className="ModalBtn"
+                                type="button"
+                                onClick={() => setAdd(!add)}>
+                                <img src={ModalBtn} className="ModalImage" alt="AddButton" />
+                            </button>
+                        </LightTooltip>
                         {add && <Modal closeModal={() => setAdd(!add)} />}
                     </>
                 ))}
