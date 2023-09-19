@@ -1,6 +1,8 @@
 package com.smhrd.todowedding.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smhrd.todowedding.model.OAuthToken;
 import com.smhrd.todowedding.model.Schedule;
 import com.smhrd.todowedding.service.ScheduleService;
 
@@ -34,14 +39,18 @@ import lombok.extern.slf4j.Slf4j;
  * 작성자 : 신지영
  * 작성일 : 2023.09.06
  */
+
 @Slf4j
 @CrossOrigin("http://localhost:3000")
-//@CrossOrigin
 @RestController
 public class ScheduleController {
 	
 	@Autowired
 	private ScheduleService scheduleService;
+	
+	//토큰 정보 저장
+	private static String accessToken = null;
+	private static Long loginMemberSeq = 0L;
 	
 	//해당 유저의 일정 추가 
 	@PostMapping(value="schedule")
@@ -86,6 +95,22 @@ public class ScheduleController {
 	@GetMapping(value="latest-schedule/{memberSeq}")
 	public JSONObject findLatestSchedule(@PathVariable(name="memberSeq") Long memberSeq) {
 		return scheduleService.findLatestSchedule(memberSeq);
+	}
+	
+	//카카오 캘린더 연동용 callback
+	@GetMapping("/auth/kakao/cal/callback")
+	public Map<String,Object> kakaoCallback(String code) throws NoSuchFieldException, SecurityException, IOException, JsonProcessingException { 
+		log.info("프론트에서 넘어온 카카오 코드값 : " + code);
+		Map<String, Object> KakaoData = scheduleService.getAccessToken(code);
+		
+		//토큰 정보 저장
+		ObjectMapper mapper = new ObjectMapper();
+		Object kakaoToken = KakaoData.get("kakaoAccess");
+		Map<String, Object> tokenMap = mapper.readValue((String) kakaoToken, Map.class);
+		accessToken = (String) tokenMap.get("access_token");
+		loginMemberSeq = (Long) KakaoData.get("userseq");
+		log.info("accessToken : " + accessToken);
+		return KakaoData;
 	}
 
 }

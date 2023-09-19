@@ -13,13 +13,13 @@ import { Link } from "react-router-dom";
  */
 
 const style = {
-    input: `p-3 w-full text-lg`
+    input: `p-3 w-full text-lg`,
 };
 
 const Schedule = () => {
-  //userSeq 받아오기
-  const token = useSelector((state) => state.Auth.token);
-  const userSeq = token.userSeq;
+    //userSeq 받아오기
+    const token = useSelector((state) => state.Auth.token);
+    const userSeq = token.userSeq;
 
     useEffect(() => {
         console.log("accessToken : ", token);
@@ -108,55 +108,10 @@ const Schedule = () => {
         }
     };
 
-    //추가동의항목을 위한 token 재요청 페이지로 이동
-    const REST_API_KEY = "05e6f6ac6b8cd6cf3b1ec2a9ca6542de";
-    const REDIRECT_URI = "http://localhost:3000/auth/kakao/callback";
-    const URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=talk_calendar`;
-
-    /**
-     * Kakao 톡캘린더 연동하기
-     * 일정 생성하기 (POST)
-     * URL : https://kapi.kakao.com/v2/api/calendar/create/event
-     * 파라미터 : 일정을 생성할 캘린더의 ID, 일정정보
-     *            (단, ID를 지정하지 않으면 기본 캘린더(ID : primary)에 일정 생성)
-     * EventCreate : 요청 body
-     *  - String title : 일정제목(최대 50자)
-     *  - Time time : 일정시간
-     * 응답 : event_id (String)
-     * */
-
-    const addKakaoURL = "https://kapi.kakao.com/v2/api/calendar/create/event";
-
-    const event = {
-        title: title,
-        time: {
-            start_at: startDate,
-            end_at: endDate,
-            time_zone: "Asia/Seoul",
-            all_day: true,
-            lunar: false,
-        },
-    };
-
-    const addKakaoCal = () => {
-        axios
-            .post(addKakaoURL, event, { headers: { Authorization: `Bearer ${accessToken}` } })
-            .then((res) => {
-                console.log("addKakaoCal : ", res.data);
-            })
-            .catch((err) => {
-                console.log("addKakaoCal error : ", err);
-            });
-    };
-
     return (
         <div>
             <div className="add-container">
-                <div
-                    action="/schedule"
-                    method="post"
-                    className="add-schedule-header"
-                >
+                <div action="/schedule" method="post" className="add-schedule-header">
                     <input
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -193,9 +148,6 @@ const Schedule = () => {
             <button className="Add-TodoList-btn" onClick={createTodo}>
                 Todo List 추가하기
             </button>
-            <Link to={URL}>
-                <button>톡캘린더 연동하기</button>
-            </Link>
         </div>
     );
 };

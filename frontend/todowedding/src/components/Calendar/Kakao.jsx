@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import qs from "qs";
+import { useLocation } from "react-router-dom";
 
 const Kakao = () => {
     const token = useSelector((state) => state.Auth.token);
+    const location = useLocation();
 
     /**
      * Kakao 톡캘린더 연동하기
@@ -21,40 +23,35 @@ const Kakao = () => {
     const addKakaoURL = "https://kapi.kakao.com/v2/api/calendar/create/event";
     const getKakaoCalURL = "https://kapi.kakao.com/v2/api/calendar/calendars";
 
-    let data = {
-        event: JSON.stringify({
-            title: "일정 제목",
-            time: {
-                start_at: "2023-09-27T03:00:00Z",
-                end_at: "2023-09-27T06:00:00Z",
-                time_zone: "Asia/Seoul",
-                all_day: false,
-                lunar: false,
-            },
-        }),
-    };
-    useEffect(() => {
-        // event.append({
-        //     title: "일정 제목",
-        //     time: {
-        //         start_at: "2023-09-15T03:00:00Z",
-        //         end_at: "2023-09-16T06:00:00Z",
-        //         time_zone: "Asia/Seoul",
-        //         all_day: false,
-        //         lunar: false,
-        //     },
-        // });
+    const [data, setData] = useState({});
 
-        getKakao();
+    useEffect(() => {
+        setData({
+            event: JSON.stringify({
+                title: location.state.data.title,
+                time: {
+                    start_at: location.state.data.start_at,
+                    end_at: location.state.data.end_at,
+                    time_zone: "Asia/Seoul",
+                    all_day: false,
+                    lunar: false,
+                },
+            }),
+        });
     }, []);
+
+    useEffect(() => {
+        console.log("data 확인 : ", data);
+        addKakaoCal();
+    }, [data]);
 
     //사용자 캘린더 목록 불러오기
     const getKakao = () => {
-        console.log("token >>>>>>>>", token);
+        console.log("token >>>>>>>>", token.accessToken);
         axios
             .get(getKakaoCalURL, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${token.accessToken}`,
                 },
             })
             .then((res) => {
@@ -84,18 +81,7 @@ const Kakao = () => {
             });
     };
 
-    return (
-        <div>
-            Kakao
-            <button
-                onClick={() => {
-                    addKakaoCal();
-                }}
-            >
-                일정 추가하기
-            </button>
-        </div>
-    );
+    return <div></div>;
 };
 
 export default Kakao;

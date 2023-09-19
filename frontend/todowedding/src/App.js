@@ -32,6 +32,7 @@ import TodoList from "./components/TodoList/TodoList";
 import Chatting from "./components/FindPartner/Chatting";
 import ChattingRoom from "./components/FindPartner/ChattingRoom";
 import UpdateSchedule from "./components/Calendar/UpdateSchedule";
+import CalCallback from "./components/Calendar/CalCallback";
 
 import "./tailwind.css";
 import "./index.css";
@@ -110,8 +111,9 @@ function AppContent() {
                             <Route path="/todowedding/partner/join" element={<PartnerJoin />}></Route>
                             <Route path="/todowedding/partner/info" element={<PartnerInfo />}></Route>
 
-                            {/* 카카오 테스트 */}
-                            <Route path="/kakao" element={<Kakao />}></Route>
+                            {/* 카카오 캘린더 */}
+                            <Route path="/kakaoCal" element={<Kakao />}></Route>
+                            <Route path="/auth/kakaoCal/callback" element={<CalCallback />}></Route>
 
                             {/* 관리자 페이지 */}
                             <Route path="/todowedding/admin" element={<AdminIndex />}></Route>

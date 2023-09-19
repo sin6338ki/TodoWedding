@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 /*
  * 일정 수정 / 삭제
@@ -9,62 +9,61 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
  */
 
 const UpdateSchedule = () => {
-  const location = useLocation();
-  const nav = useNavigate();
-  const { scheduleSeq } = useParams();
+    const location = useLocation();
+    const nav = useNavigate();
+    const { scheduleSeq } = useParams();
 
-  const [title, setTitle] = useState(location.state.title);
-  const [startDate, setStartDate] = useState(location.state.start);
-  const [endDate, setEndDate] = useState(location.state.end);
+    const [title, setTitle] = useState(location.state.title);
+    const [startDate, setStartDate] = useState(location.state.start);
+    const [endDate, setEndDate] = useState(location.state.end);
 
-  const style = {
-    input: `p-3 w-full text-lg`
-  };
+    const style = {
+        input: `p-3 w-full text-lg`,
+    };
 
-  // 일정 수정 함수
-  const updateSchedule = async (e) => {
-    e.preventDefault();
+    //추가동의항목을 위한 token 재요청 페이지로 이동
+    const REST_API_KEY = "05e6f6ac6b8cd6cf3b1ec2a9ca6542de";
+    const REDIRECT_URI = "http://localhost:3000/auth/kakaoCal/callback";
+    const URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=talk_calendar`;
 
-    if (title === "" || startDate === "" || endDate === "") {
-      alert("일정 제목과 날짜를 입력해주세요!");
-    } else {
-      try {
-        await axios.put(`http://localhost:8085/schedule/${scheduleSeq}`
-        , {
-          scheduleStartDt: startDate,
-          scheduleEndDt: endDate,
-          scheduleContents: title,
-        });
-        
-        alert('일정이 성공적으로 수정되었습니다.');
-        nav('/todowedding/calendar');
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+    // 일정 수정 함수
+    const updateSchedule = async (e) => {
+        e.preventDefault();
 
-  // 일정 삭제 함수
-  const deleteSchedule = async () => {
-    try{
-      await axios.delete(`http://localhost:8085/schedule/${scheduleSeq}`);
-      
-      alert('일정이 성공적으로 삭제되었습니다.');
-      nav('/todowedding/calendar');
-    } catch(err){
-      console.log(err);
-    }
-    
-};
-  
-  return (
-    <div>
-      <div className="add-container">
-                <div
-                    action="/schedule"
-                    method="post"
-                    className='add-schedule-header'
-                >
+        if (title === "" || startDate === "" || endDate === "") {
+            alert("일정 제목과 날짜를 입력해주세요!");
+        } else {
+            try {
+                await axios.put(`http://localhost:8085/schedule/${scheduleSeq}`, {
+                    scheduleStartDt: startDate,
+                    scheduleEndDt: endDate,
+                    scheduleContents: title,
+                });
+
+                alert("일정이 성공적으로 수정되었습니다.");
+                nav("/todowedding/calendar");
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
+
+    // 일정 삭제 함수
+    const deleteSchedule = async () => {
+        try {
+            await axios.delete(`http://localhost:8085/schedule/${scheduleSeq}`);
+
+            alert("일정이 성공적으로 삭제되었습니다.");
+            nav("/todowedding/calendar");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    return (
+        <div>
+            <div className="add-container">
+                <div action="/schedule" method="post" className="add-schedule-header">
                     <input
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -96,13 +95,25 @@ const UpdateSchedule = () => {
                 </div>
             </div>
             <button className="Add-Schedule-btn" onClick={updateSchedule}>
-              캘린더 일정 업데이트하기
+                캘린더 일정 업데이트하기
             </button>
             <button className="Add-TodoList-btn" onClick={deleteSchedule}>
-              캘린더 일정 삭제하기
+                캘린더 일정 삭제하기
             </button>
-    </div>
-  )
-}
+            <Link
+                to={URL}
+                state={{
+                    data: {
+                        title: title,
+                        start_at: startDate,
+                        end_at: endDate,
+                    },
+                }}
+            >
+                <button className="mt-5 ml-52 text-gray-400 underline underline-offset-4">톡캘린더 연동하기</button>
+            </Link>
+        </div>
+    );
+};
 
-export default UpdateSchedule
+export default UpdateSchedule;
