@@ -68,16 +68,7 @@ const Budget = (props) => {
         }
     }, [memberSeq]);
 
-    //전체 총수입 총지출 조회 메서드 (postman에서 selectTotal참고)
-    // const fetchData = async () => {
-    //     try {
-    //         const res = await axios.get(`http://localhost:8085/member/total`);
-    //         console.log("budget 조회 response : ", res.data.income_total_cost);
-    //         setTotalIncome(res.data);
-    //     } catch (error) {
-    //         console.error("Error", error);
-    //     }
-    // };
+  
 
     return (
         <div className="pocket__status">

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js'
-import {Doughnut} from 'react-chartjs-2'
+import {pie} from 'react-chartjs-2'
 
 const BudgetRoleChart = ( {brideCnt , broomCnt , bothCnt , etcCnt}) => {
     ChartJS.register(ArcElement, Tooltip, Legend);
@@ -33,7 +33,7 @@ const BudgetRoleChart = ( {brideCnt , broomCnt , bothCnt , etcCnt}) => {
     };
   return (
     <div>
-        <Doughnut data = {data}/>
+        <Pie data = {data}/>
     </div>
   )
 }

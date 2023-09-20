@@ -53,7 +53,7 @@ const IncomeList = ({ incomes = [] }, { total }) => {
                 <div className="text-center font-bold col-span-3 ">날짜</div>
                 <div className="text-center font-bold col-span-3 ">수입비용</div>
                 <div className="text-center font-bold col-span-3">수입내역</div>
-                <div className="text-center font-bold col-span-1">delete</div>
+                <div className="text-center font-bold col-span-2">삭제</div>
             </div>
 
             {sortedIncomes.slice(offset, offset + limits).map((incomes, idx) => {

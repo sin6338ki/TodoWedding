@@ -43,24 +43,7 @@ const TodoList = () => {
     const [input, setInput] = useState("");
     const [isChecked, setIsChecked] = useState();
 
-    // useEffect를 사용하여 컴포넌트가 마운트 됐을 때 API 호출 실행
-    // useEffect(() => {
-    //     // 비동기 함수 선언
-    //     const fetchTodos = async () => {
-    //       try {
-    //         // API 호출
-    //         const response = await axios.get(`http://localhost:8085/todolist/${memberSeq}`);        // 이렇게 적는게 맞는지 확인
 
-    //         // API 응답에서 투두리스트 데이터 추출 및 상태 설정
-    //         setTodos(response.data);
-    //       } catch (error) {
-    //         console.error('Failed to fetch todos', error);
-    //       }
-    //     };
-
-    //     // 비동기 함수 실행
-    //     fetchTodos();
-    //   }, []);  // 빈 배열([])은 컴포넌트가 마운트 됐을 때만 실행하라는 의미
 
     // 2.전체 투두리스트 조회
     useEffect(() => {

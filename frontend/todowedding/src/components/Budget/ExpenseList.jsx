@@ -10,8 +10,13 @@ import React from 'react'
 import { useState } from 'react';
 import { addComma } from "../utils/numberUtils";
 import Pagination from ".././AdminPage/Pagination";
+import axios from 'axios';
+
 
 const ExpenseList = ({ expenses = [] },{total}) => {
+
+
+  const [Expenses, setExpenses] = useState([]); //09.20추가 
 
         //Pagination
         const limits = 5;
@@ -38,17 +43,28 @@ const ExpenseList = ({ expenses = [] },{total}) => {
    const sortedExpenses = [...expenses].sort(sortExpensesByDate);
 
    // 지출내역 삭제 
-
+   const expenseDelete = async (budgetSeq) => {
+         try{
+            console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
+            const response = await axios.delete(`http://localhost:8085/budget/delete/${budgetSeq}`)
+            console.log("지출list 삭제성공 :", response.data);
+            // 삭제 추가코드(09.20)
+            setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.budget_seq !== budgetSeq));
+         } catch (err) {
+             console.log("지출리스트 삭제 err : " , err);
+         }
+   };
    
 
   return (
     <div>
          <div className="grid grid-cols-12 ml-3 pt-3 mb-5">
-                <div className="text-center font-bold col-span-2 ">NO</div>
+                <div className="text-center font-bold col-span-1 ">NO</div>
                 <div className="text-center font-bold col-span-3 ">날짜</div>
                 <div className="text-center font-bold col-span-2 ">지출비용</div>
-                <div className="text-center font-bold col-span-3">내역</div>
-                <div className="text-center font-bold col-span-2">분담</div>
+                <div className="text-center font-bold col-span-3">내용</div>
+                <div className="text-center font-bold col-span-1">분담</div>
+                <div className="text-center font-bold col-span-2">삭제</div>
         </div> 
          
                 {sortedExpenses.slice(offset, offset + limits).map((expenses, idx) => {            
@@ -56,11 +72,17 @@ const ExpenseList = ({ expenses = [] },{total}) => {
                     const itemNumber = (page - 1) * limits + idx + 1;
                     return (
                         <div className='grid grid-cols-12 ml-3 pt-3 mb-5' key={idx}>
-                            <div className="text-center col-span-2 mt-1 text-xs">{itemNumber}</div>
+                            <div className="text-center col-span-1 mt-1 text-xs">{itemNumber}</div>
                             <div className="text-center col-span-3 mt-1 text-xs">{expenses.budget_expense_dt}</div>
                             <div className="text-center col-span-2 mt-2 text-xs">{addComma(expenses.budget_cost.toString())}원</div>
                             <div className="text-center col-span-3 mt-1 text-xs">{expenses.budget_item}</div>        
-                            <div className="text-center col-span-2 mt-1 text-xs">{expenses.budget_role}</div>     
+                            <div className="text-center col-span-1 mt-1 text-xs">{expenses.budget_role}</div>   
+                            <button
+                                  onClick={()=> expenseDelete(expenses.budget_seq)}
+                                  className='text-center col-span-2 mt-1 text-xs'
+                            >
+                              삭제
+                            </button>  
                         </div>
                   
                        );
