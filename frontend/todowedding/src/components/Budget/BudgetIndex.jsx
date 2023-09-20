@@ -27,11 +27,13 @@ const BudgetIndex = () => {
     const [bothCnt, setBothCnt] = useState(0);
     const [etcCnt, setEtcCnt] = useState(0);
 
+
+    /**지출조회 및 수입조회 무한 렌더링됨 - [expenses] , [incomes] 안에   */
     useEffect(() => {
-        // 지출조회
+        // 지출조회 
         axios
             // .post("http://localhost:8085/budget/select", {
-            .post("http://172.30.1.7:8085/budget/select", {
+            .post("http://localhost:8085/budget/select", {
                 member_seq: `${memberSeq}`, // memberSeq로 값 변경하기
             })
             .then((res) => {
@@ -47,7 +49,7 @@ const BudgetIndex = () => {
         // 수입조회
         axios
             // .post("http://localhost:8085/income/select", {
-            .post("http://172.30.1.7:8085/income/select", {
+            .post("http://localhost:8085/income/select", {
                 member_seq: `${memberSeq}`,
             })
             .then((res) => {

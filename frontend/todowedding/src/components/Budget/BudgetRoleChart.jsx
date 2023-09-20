@@ -1,37 +1,37 @@
-import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import React from 'react';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
 const BudgetRoleChart = ({ brideCnt, broomCnt, bothCnt, etcCnt }) => {
-    ChartJS.register(ArcElement, Tooltip, Legend);
+  const data = [
+    { name: '신부', value: brideCnt },
+    { name: '신랑', value: broomCnt },
+    { name: '공동', value: bothCnt },
+    { name: '기타', value: etcCnt }
+  ];
 
-    const data = {
-        label: ["신부", "신랑", "공동", "기타"],
-        datasets: [
-            {
-                labels: "expense",
-                data: [brideCnt, broomCnt, bothCnt, etcCnt],
-                backgroundColor: [
-                    "rgba(54, 162, 235, 0.2)",
-                    "rgba(255, 206, 86, 0.2)",
-                    "rgba(75, 192, 192, 0.2)",
-                    "rgba(153, 102, 255, 0.2)",
-                ],
-                borderColor: [
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                ],
-                borderWidth: 0.5,
-            },
-        ],
-    };
-    return (
-        <div>
-            <Pie data={data} />
-        </div>
-    );
+  const COLORS = ['#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'];
+
+  return (
+    <div>
+      <PieChart width={200} height={150}>
+        <Pie
+          dataKey="value"
+          isAnimationActive={true}
+          data={data}
+          cx="50%"
+          cy="50%"
+          outerRadius={60}
+          fill="#8884d8"
+          label
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+      </PieChart>
+    </div>
+  );
 };
 
 export default BudgetRoleChart;

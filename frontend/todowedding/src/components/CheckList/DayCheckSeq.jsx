@@ -87,7 +87,7 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
         try {
             console.log("checkdaySeq: ", checkdaySeq);
             // const response = await axios.get(`http://localhost:8085/daychecklist/${checkdaySeq}`);
-            const response = await axios.get(`http://172.30.1.7:8085/daychecklist/${checkdaySeq}`);
+            const response = await axios.get(`http://localhost:8085/daychecklist/${checkdaySeq}`);
 
             setContentsLocal(response.data.map((item) => item.checkday_list_contents));
         } catch (error) {

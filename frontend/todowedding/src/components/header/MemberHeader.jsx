@@ -20,7 +20,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     const findLatestSchedule = () => {
         axios
             // .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
-            .get(`http://172.30.1.7:8085/latest-schedule/${token.userSeq}`)
+            .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
             .then((res) => {
                 console.log("최근 일정 조회 결과 : ", res.data);
                 if (res.data != "") {

@@ -37,7 +37,7 @@ const PartnerLogin = () => {
     const login = async () => {
         await axios
             // .post("http://localhost:8085/partner/login", {
-            .post("http://172.30.1.7:8085/partner/login", {
+            .post("http://localhost:8085/partner/login", {
                 partner_id: id,
                 partner_pw: pw,
             })

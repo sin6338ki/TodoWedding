@@ -1,57 +1,28 @@
-import React from 'react'
-import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,} from 'chart.js'
-import { Bar } from 'react-chartjs-2'
-import BudgetIndex from './BudgetIndex';
-import BudgetDashboard from './BudgetDashboard';
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from 'recharts';
 
+const IncomeBudgetChart = ({ fianlTotalIncome, fianlTotalExpense }) => {
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
-
-  export const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: '수입/지출 Chart',
-      },
-    },
-  };
-
-const IncomeBudgetChart = ({expenses , incomes}) => {
-
-
-    const data = {
-        labels: ['budgets', 'Incomes'],
-        datasets: [
-          {
-            label: 'incomes',
-            data: [incomes],
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          },
-          {
-            label: 'budgets',
-            data: [expenses],
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          },
-        ],
-      };
-
+  const data = [
+    { name: '수입', income: fianlTotalIncome },
+    { name: '지출', expense: fianlTotalExpense }
+  ];
 
   return (
-    <div>
-        <Bar options={options} data={data} />;
-    </div>
-  )
+    <span style={{position:'relative'}}>
+    <ResponsiveContainer style={{position:'relative',left:"-20px"}} width="100%" height={200}>
+      <BarChart data={data} layout="vertical">
+        <CartesianGrid strokeDasharray="2 2" />
+        <XAxis type="number" />
+        <YAxis dataKey="name" type="category" />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="income" fill="#8884d8" name="Incomes" />
+        <Bar dataKey="expense" fill="#82ca9d" name="Expenses" />
+      </BarChart>
+    </ResponsiveContainer>
+    </span>
+  );
 }
 
-export default IncomeBudgetChart
+export default IncomeBudgetChart;
