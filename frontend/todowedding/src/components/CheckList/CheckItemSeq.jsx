@@ -96,7 +96,8 @@ const CheckItemSeq = () => {
                 <div className="checkitemseq-intro">
                     <p>
                         {location.state.check_item_contents} 체크리스트를 알려드립니다! <br />
-                        미완료 항목은 +버튼을 눌러 나의 Todo List에 추가할 수 있어요!
+                        미완료 항목은 + 버튼을 눌러
+                        <br></br>자신의 투두리스트에 추가할 수 있어요.
                     </p>
                 </div>
             )}
@@ -107,7 +108,7 @@ const CheckItemSeq = () => {
                         <p className="checkitemseq-content">{item.checkitem_list_contents}</p>
                         {!checkedItems.includes(item.checkitem_list_seq) && (
                             <button className="checkitemseq-plus">
-                                <img src={addTodo} alt="addTodo" width="25px" onClick={() => addToDo(item)} />
+                                <img src={addTodo} alt="addTodo" width="20px" onClick={() => addToDo(item)} />
                             </button>
                         )}
                     </div>

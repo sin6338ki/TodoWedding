@@ -3,7 +3,7 @@ import BudgetRoleChart from './BudgetRoleChart'
 
 const BudgetDashboard = ({incomes,expenses,brideCnt,broomCnt,bothCnt,etcCnt}) => {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4"> 
             <div className="rounded-md border shadow-md text-black">
                 <div className="text-xl text-gray-500 m-4">Total Expense 📊 </div>
                 <div className="text-4xl m-4 text-[#b66dff]">{expenses.length} 건</div>

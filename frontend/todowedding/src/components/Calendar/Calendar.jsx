@@ -38,30 +38,43 @@ const Calendar = () => {
     return (
         <div>
             <MyCalendar />
-                <div style={{ display: "flex"}} className="Calendar-plusBtn">
-                    <button>
-                        <img className="calendarBtn" src={add_schedule}
-                            alt="일정추가"width="56px"onClick={addSchedule} />
-                    </button>
-                    <button>
-                        <img className="calendarBtn" src={item_checklist}
-                            alt="항목별체크리스트" width="55px" onClick={itemCheckList} />
-                    </button>
-                    <button>
-                        <img className="calendarBtn" src={dday_checklist}
-                            alt="D-Day체크리스트" width="60px" onClick={dDayCheckList} />
-                    </button>
-                </div>
-                <div style={{ display: "flex" }}>
-                    <div className='report-container'>
-                        <div className="report-header1">결혼 준비 진행도</div>
-                        <div className="report-content1"><TodoReport/></div>
+            <div style={{ display: "flex" }} className="Calendar-plusBtn">
+                <button>
+                    <img className="calendarBtn" src={add_schedule} alt="일정추가" width="60px" onClick={addSchedule} />
+                </button>
+                <button>
+                    <img
+                        className="calendarBtn"
+                        src={item_checklist}
+                        alt="항목별체크리스트"
+                        width="60px"
+                        onClick={itemCheckList}
+                    />
+                </button>
+                <button>
+                    <img
+                        className="calendarBtn"
+                        src={dday_checklist}
+                        alt="D-Day체크리스트"
+                        width="64px"
+                        onClick={dDayCheckList}
+                    />
+                </button>
+            </div>
+            <div style={{ display: "flex" }}>
+                <div className="mt-2">
+                    <div className="report-header1">결혼 준비 진행도</div>
+                    <div className="report-content1">
+                        <TodoReport />
                     </div>
-                    <div className='report-container'>
-                        <p className="report-header2">예산 관리 그래프</p>
-                        <div className="report-content2"><BudgetReport/></div>
+                </div>
+                <div className="mt-2">
+                    <p className="report-header2">예산 현황</p>
+                    <div className="report-content2">
+                        <BudgetReport />
                     </div>
                 </div>
+            </div>
             <div>
                 <p className="TodoList-Title">최근 TodoList 3가지</p>
                 <MyTodoList />

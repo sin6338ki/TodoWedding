@@ -18,30 +18,29 @@ const BudgetReport = () => {
     const token = useSelector((state) => state.Auth.token);
     const userSeq = token ? token.userSeq : 0;
 
-   // 총 예산/수입/지출 결과 불러오기
-   useEffect(() => {
-    const fetchTotalBudgetAndResult = async () => {
-      try {
-        // 백엔드로 총예산 조회 요청 보내기
-        const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
-        if(budgetResponse.data) {
-          setTotalBudget(budgetResponse.data.total_budget);
-          console.log("등록된 총 예산 : ", budgetResponse.data.total_budget); 
-        }
+    // 총 예산/수입/지출 결과 불러오기
+    useEffect(() => {
+        const fetchTotalBudgetAndResult = async () => {
+            try {
+                // 백엔드로 총예산 조회 요청 보내기
+                const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+                if (budgetResponse.data) {
+                    setTotalBudget(budgetResponse.data.total_budget);
+                    console.log("등록된 총 예산 : ", budgetResponse.data.total_budget);
+                }
 
-        // 백엔드로 수입/지출 결과 조회 요청 보내기 
-        const resultResponse = await axios.post(`http://localhost:8085/member/total`, { member_seq: userSeq });
-        console.log("BudgetReport 결과 : ", resultResponse.data);
-        
-        setTotalIncome(resultResponse.data.income_total_cost);
-        setTotalExpense(resultResponse.data.budget_sum_cost);
+                // 백엔드로 수입/지출 결과 조회 요청 보내기
+                const resultResponse = await axios.post(`http://localhost:8085/member/total`, { member_seq: userSeq });
+                console.log("BudgetReport 결과 : ", resultResponse.data);
 
-      } catch (error) {
-          console.error("데이터 조회 에러 : ", error);
-      }
-    };
-    fetchTotalBudgetAndResult();
-  },[userSeq]);
+                setTotalIncome(resultResponse.data.income_total_cost);
+                setTotalExpense(resultResponse.data.budget_sum_cost);
+            } catch (error) {
+                console.error("데이터 조회 에러 : ", error);
+            }
+        };
+        fetchTotalBudgetAndResult();
+    }, [userSeq]);
 
     return (
         <div>

@@ -99,10 +99,16 @@ const MyCalendar = () => {
                     right: "prev,next",
                 }}
                 locale="ko" //한국어 설정
-                height={"51vh"} //50
+                height={"52vh"} //50
                 events={events}
+                contentHeight={"600"}
                 dateClick={handleDateClick}
                 eventClick={handleEventClick}
+                buttonText={{
+                    today: "오늘", // 'today' 버튼 텍스트 변경
+                    month: "월", // 'month' 버튼 텍스트 변경
+                    week: "주", // 'week' 버튼 텍스트 변경
+                }}
             />
         </div>
     );
