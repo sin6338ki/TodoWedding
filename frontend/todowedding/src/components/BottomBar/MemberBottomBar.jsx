@@ -8,7 +8,7 @@ import Home from "../../assets/images/icon/home.png";
 import ModalBtn from "../../assets/images/TodoModal_bg.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Modal from "../../components/Modal";
+import Modal from "../../components/Main/Modal";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 

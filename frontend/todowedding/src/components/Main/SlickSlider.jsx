@@ -7,11 +7,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 //Guide Image
-import Main1 from "../assets/images/slick/Slick_Img1.png";
-import Main2 from "../assets/images/slick/Slick_Img2.png";
-import Main3 from "../assets/images/slick/Slick_Img3.png";
-import Main4 from "../assets/images/slick/Slick_Img4.png";
-import Main5 from "../assets/images/slick/Slick_Img5.png";
+import Main1 from "../../assets/images/SlickSlider/Slick_Img1.png";
+import Main2 from "../../assets/images/SlickSlider/Slick_Img2.png";
+import Main3 from "../../assets/images/SlickSlider/Slick_Img3.png";
+import Main4 from "../../assets/images/SlickSlider/Slick_Img4.png";
+import Main5 from "../../assets/images/SlickSlider/Slick_Img5.png";
 
 /*
  * react-slick 라이브러리 구성

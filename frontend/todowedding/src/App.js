@@ -8,39 +8,47 @@
  *  - 예산 관리 페이지 추가 (양수진, 2023.09.12)
  *  - 체크리스트 페이지 추가 (서현록, 2023.09.12)
  *  - 관리자 페이지 추가 (신지영, 2023.09.12)
- *  - 마이페이지 추가 (서현록, 2023.09.16)
+ *  - 마이페이지(로그아웃, 회원탈퇴) 추가 (서현록, 2023.09.16)
  *  - 결혼예정일 페이지, 총 예산 페이지 추가 (서현록, 2023.09.18)
  */
 
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import Header from "./components/Header/Header";
-import BottomBar from "./components/BottomBar/BottomBar";
-import ADSlickSlider from "./components/ADSlickSlider";
-import Kakaologin from "./components/Login/Kakaologin";
-import KakaologOut from "./components/Login/KakaologOut";
-import KakaoDelete from "./components/Login/KakaoDelete";
-import Callback from "./components/Login/Callback";
-import Mypage from "./components/Login/Mypage";
-import Main from "./components/Main";
-import Calendar from "./components/Calendar/Calendar";
-import CheckItemList from "./components/CheckList/CheckItemList";
-import CheckItemSeq from "./components/CheckList/CheckItemSeq";
-import DayCheckList from "./components/CheckList/DayCheckList";
-import DayCheckSeq from "./components/CheckList/DayCheckSeq";
-import Schedule from "./components/Calendar/Schedule";
-import TodoList from "./components/TodoList/TodoList";
-import Chatting from "./components/FindPartner/Chatting";
-import ChattingRoom from "./components/FindPartner/ChattingRoom";
-import UpdateSchedule from "./components/Calendar/UpdateSchedule";
-import CalCallback from "./components/Calendar/CalCallback";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./tailwind.css";
 import "./index.css";
 import "./FullCalendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import WebImage from "./assets/images/iwedding.png";
+import MarginImage from "./assets/images/MarginImage.png"
+import WebImage from "./assets/images/TodoWebImage.png";
+
+import Header from "./components/Header/Header";
+import BottomBar from "./components/BottomBar/BottomBar";
+import Main from "./components/Main/Main";
+import ADSlickSlider from "./components/Main/ADSlickSlider";
+
+//Login
+import Kakaologin from "./components/Login/Kakaologin";
+import KakaologOut from "./components/Login/KakaologOut";
+import Callback from "./components/Login/Callback";
+import Mypage from "./components/Login/Mypage";
+
+//일정관리
+import Calendar from "./components/Calendar/Calendar";
+import Schedule from "./components/Calendar/Schedule";
+import UpdateSchedule from "./components/Calendar/UpdateSchedule";
+import CalCallback from "./components/Calendar/CalCallback";
+
+//체크리스트
+import CheckItemList from "./components/CheckList/CheckItemList";
+import CheckItemSeq from "./components/CheckList/CheckItemSeq";
+import DayCheckList from "./components/CheckList/DayCheckList";
+import DayCheckSeq from "./components/CheckList/DayCheckSeq";
+
+//TodoList
+import TodoList from "./components/TodoList/TodoList";
+
+//Chatting
+import Chatting from "./components/FindPartner/Chatting";
+import ChattingRoom from "./components/FindPartner/ChattingRoom";
 
 //업체 전용 관련
 import Partner from "./components/PartnerPage/Partner";
@@ -64,23 +72,20 @@ import MarryDate from "./components/AddInfo/MarryDate";
 import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
-    //userSeq 받아오기
-    const token = useSelector((state) => state.Auth.token);
-    const userSeq = token?.userSeq;
 
     return (
-        <div>
+        <div style={{backgroundColor: "#F8FAF9"}}>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div>
                     <Header />
-                    <div className="body" id="Pretendard-Regular">
+                    <div className="body" id="Pretendard-Regular" style={{backgroundColor: "#ffffff"}}>
                         <Routes>
                             <Route path="/" element={<Main />} />
+                            
                             {/* 로그인 */}
                             <Route path="/todowedding/login" element={<Kakaologin />} />
                             <Route path="/auth/kakao/callback" element={<Callback />} />
                             <Route path="/auth/kakao/logout" element={<KakaologOut />} />
-                            <Route path="/member/delete" element={<KakaoDelete />} />
                             <Route path="/todowedding/mypage" element={<Mypage />} />
 
                             {/* 결혼예정일, 총 예산 추가 */}
@@ -132,11 +137,13 @@ function AppContent() {
                 </div>
 
                 {/*웹 이미지 */}
-                <div style={{ width: " 350px", margin: "90px 0 20px 25px" }}>
-                    <div>
+                <div style={{ width: " 350px", backgroundColor: "#F8FAF9" , marginLeft: "25px" }}>
+                    <img src={MarginImage} alt="margin-image" style={{height: "90px"}}/>
+                    <div style={{paddingBottom: "20px"}}>
                         <ADSlickSlider />
                     </div>
                     <img src={WebImage} alt="web-image" />
+                    <img src={MarginImage} alt="margin-image" style={{height: "190px"}}/>
                 </div>
             </div>
         </div>

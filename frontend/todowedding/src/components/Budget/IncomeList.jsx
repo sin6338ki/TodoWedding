@@ -71,7 +71,7 @@ const IncomeList = ({ incomes = [] },{total}) => {
                             <div className="text-center col-span-3 mt-2 text-xs">{addComma(incomes.income_cost.toString())}원</div>
                             <div className="text-center col-span-3 mt-1 text-xs">{incomes.income_contents}</div>
                             {/* 삭제 버튼 */}
-                            <button onClick={incomeDelete} className="text-center col-span-2 mt-1 text-xs">
+                            <button onClick={() => incomeDelete(incomes.income_seq)} className="text-center col-span-2 mt-1 text-xs">
                               삭제
                             </button>          
                         </div>

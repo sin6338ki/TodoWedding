@@ -25,12 +25,12 @@ const TotalBudget = () => {
   useEffect(() => {
     const fetchTotalBudget = async () => {
       try {
-      //백엔드로 총예산 조회 요청 보내기
+      //백엔드로 총 예산 조회 요청 보내기
         const response = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
         if(response.data) {
           setTotalBudget(response.data);
           setHasTotalBudget(true);
-          console.log("등록된 총 예산 : ", response.data); 
+          console.log("등록된 총 예산 : ", response.data.total_budget); 
         }
       } catch (error) {
           console.error("총 예산 조회 에러 : ", error);
@@ -40,7 +40,7 @@ const TotalBudget = () => {
   },[userSeq]);
 
  
-  //폼 제출 핸들러 함수
+  // 등록/수정 버튼 클릭시
   const handleSubmit=async(event)=>{
     event.preventDefault();
   
@@ -61,10 +61,10 @@ const TotalBudget = () => {
               }
         
               if(response.status===200){
-                  alert("총 예상 비용이 성공적으로 업데이트되었습니다.")
-                  nav("/");
+                  alert("총 예산 비용이 성공적으로 업데이트되었습니다.")
+                  nav("/todowedding/calendar");
               }else{
-                  alert("총 예상 비용 업데이트에 실패하였습니다.")
+                  alert("총 예산 비용 업데이트에 실패하였습니다.")
               }
               }catch(error){
                   console.error(error)

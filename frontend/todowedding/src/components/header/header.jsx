@@ -35,7 +35,7 @@ const Header = () => {
     //결혼일 조회
     const findMarryDt = () => {
         axios
-            .get(`http://172.30.1.7:8085/marry-d-day/${token.userSeq}`)
+            .get(`http://localhost:8085/marry-d-day/${token.userSeq}`)
             .then((res) => {
                 console.log("결혼일 조회 결과 : ", res.data);
                 if (res.data >= 0) {
@@ -52,7 +52,7 @@ const Header = () => {
 
     //Admin 계정 여부 확인
     const isAdmin = () => {
-        axios.get(`http://172.30.1.7:8085/admin/${token.userSeq}`).then((res) => {
+        axios.get(`http://localhost:8085/admin/${token.userSeq}`).then((res) => {
             if (res.data === "Y") {
                 setLoginUserNickname(token.userNick);
                 setHeaderType("admin");
