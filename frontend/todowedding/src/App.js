@@ -23,6 +23,7 @@ import WebImage from "./assets/images/TodoWebImage.png";
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
 import Main from "./components/Main/Main";
+import GuidePage from './components/Main/GuidePage';
 import ADSlickSlider from "./components/Main/ADSlickSlider";
 
 //Login
@@ -81,6 +82,7 @@ function AppContent() {
                     <div className="body" id="Pretendard-Regular" style={{backgroundColor: "#ffffff"}}>
                         <Routes>
                             <Route path="/" element={<Main />} />
+                            <Route path="/todowedding/guide/:id" element={<GuidePage/>} />
                             
                             {/* 로그인 */}
                             <Route path="/todowedding/login" element={<Kakaologin />} />

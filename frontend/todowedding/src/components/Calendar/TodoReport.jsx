@@ -45,7 +45,7 @@ const TodoReport = () => {
                         총 투두리스트 : <span className="font-bold">{totalTodo > 0 ? totalTodo : "0"}</span>개
                     </p>
                     <p className="mb-1">- 완료 : {completedTodo > 0 ? completedTodo : "0"}건</p>
-                    <p className="mb-1"> - 미완료 : {unCompletedTodo > 0 ? unCompletedTodo : "0"}건</p>
+                    <p className="mb-1">- 미완료 : {unCompletedTodo > 0 ? unCompletedTodo : "0"}건</p>
                     <p className="mb-1">- 진행률 : {todoRatio}%</p>
                 </>
             ) : (

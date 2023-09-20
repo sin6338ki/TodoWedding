@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
  * 작성일 : 2023.09.07
  * 수정
  *  - 카카오 톡캘린더 API 연동 (신지영, 2023.09.09)
+ *  - 일정 시작일, 종료일 디버깅 완료 (서현록, 2023.09.20)
  */
 
 const style = {
@@ -36,32 +37,34 @@ const Schedule = () => {
     const [schedule, setSchedule] = useState([]);
 
     //'캘린더 일정 추가' 버튼 클릭
-    const createSchedule = async (e) => {
-        e.preventDefault(e);
-        console.log("캘린더 일정 추가 버튼 클릭!");
-        if (title === "" || startDate === "" || endDate === "") {
-            alert("일정 제목과 날짜를 입력해주세요!");
-        } else {
-            console.log("일정추가 제목 -> ", title);
-            const data = {
-                scheduleStartDt: startDate,
-                scheduleEndDt: endDate,
-                scheduleContents: title,
-                memberSeq: userSeq,
-            };
-            await axios
-                .post("http://localhost:8085/schedule", data)
-                .then((res) => {
-                    console.log("스프링으로 넘기는 값 -> ", data);
-                    //                fetchData();
-                    allSchedule();
-                    nav("/todowedding/calendar");
-                })
-                .catch((err) => {
-                    console.log("error", err);
-                });
-        }
-    };
+const createSchedule = async (e) => {
+    e.preventDefault(e);
+    console.log("캘린더 일정 추가 버튼 클릭!");
+    if (title === "" || startDate === "" || endDate === "") {
+        alert("일정 제목과 날짜를 입력해주세요!");
+    } else if(new Date(startDate) > new Date(endDate)) {
+        alert("일정 종료일을 일정 시작일보다 빠르게 설정할 수 없습니다. 일정 날짜를 다시 선택해주세요");
+    } else {
+        console.log("일정추가 제목 -> ", title);
+        const data = {
+            scheduleStartDt: startDate,
+            scheduleEndDt: endDate,
+            scheduleContents: title,
+            memberSeq: userSeq,
+        };
+        await axios
+            .post("http://localhost:8085/schedule", data)
+            .then((res) => {
+                console.log("스프링으로 넘기는 값 -> ", data);
+                //                fetchData();
+                allSchedule();
+                nav("/todowedding/calendar");
+            })
+            .catch((err) => {
+                console.log("error", err);
+            });
+    }
+};
 
     //'TodoList 추가하기' 버튼 클릭
     const createTodo = async (e) => {

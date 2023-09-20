@@ -30,34 +30,18 @@ const SlickSlider = () => {
         autoplaySpeed: 2300,
     };
 
+    const images = [Main1, Main2, Main3, Main4, Main5];
+
     return (
         <div>
             <Slider {...settings} className="mt-[90px]">
-                <div>
-                    <Link to="/todowedding/guide_1">
-                        <img src={Main1} alt="Image1" />
-                    </Link>
-                </div>
-                <div>
-                    <Link to="/todowedding/guide_2">
-                        <img src={Main2} alt="Image2" />
-                    </Link>
-                </div>
-                <div>
-                    <Link to="/todowedding/guide_3">
-                        <img src={Main3} alt="Image3" />
-                    </Link>
-                </div>
-                <div>
-                    <Link to="/todowedding/guide_4">
-                        <img src={Main4} alt="Image4" />
-                    </Link>
-                </div>
-                <div>
-                    <Link to="/todowedding/guide_5">
-                        <img src={Main5} alt="Image5" />
-                    </Link>
-                </div>
+                {images.map((image, index) => (
+                    <div key={index}>
+                        <Link to={`/todowedding/guide/${index + 1}`}>
+                            <img src={image} alt={`Image${index + 1}`} />
+                        </Link>
+                    </div>
+                ))}
             </Slider>
         </div>
     );
