@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
  * 캘린더 하단 예산관리리포트
  * 작성자 : 서현록
  * 작성일 : 2023.09.16
- * 수정 : 총 예산 불러오기 마무리 (서현록, 2023.09.19)
+ *  - 수정 : 총 예산 불러오기 마무리 (서현록, 2023.09.19)
  */
 
 const BudgetReport = () => {
@@ -42,11 +42,17 @@ const BudgetReport = () => {
         fetchTotalBudgetAndResult();
     }, [userSeq]);
 
+    const fianlTotalBudget = (totalBudget || 0); // 총 예산
+    const fianlTotalIncome = (totalIncome || 0); // 총 수입
+    const fianlTotalExpense = (totalExpense || 0); //총 지출
+    const balance = fianlTotalBudget + fianlTotalIncome - fianlTotalExpense; // 잔액
+
     return (
         <div>
-            <p>총 예산 : {(totalBudget || 0).toLocaleString()}원</p>
-            <p>총 수입 : {(totalIncome || 0).toLocaleString()}원</p>
-            <p>총 지출 : {(totalExpense || 0).toLocaleString()}원</p>
+            <p className="mb-1">잔액 : {balance}원</p>
+            <p className="mb-1">- 총 예산 : {fianlTotalBudget}원</p>
+            <p className="mb-1">- 총 수입 : {fianlTotalIncome}원</p>
+            <p className="mb-1">- 총 지출 : {fianlTotalExpense}원</p>
         </div>
     );
 };
