@@ -3,8 +3,8 @@ import axios from "axios";
 import StudioMarker from "../../assets/images/icon/studiomaker.png";
 import WeddingHallMarker from "../../assets/images/icon/hollmaker.png";
 import BasicMarker from "../../assets/images/icon/basicmaker.png";
-import "../../assets/KakaoMaps_Css/KakaoMaps.css";
-import { useNavigate } from "react-router-dom";
+import '../../assets/KakaoMaps_Css/KakaoMaps.css'
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 /**
@@ -37,16 +37,19 @@ const Map = () => {
     const [searchPlace, setSearchPlace] = useState(""); // 사용자가 입력한 검색어를 저장
     const [currentCategory, setCurrentCategory] = useState("웨딩홀_스튜디오"); // 선택된 카테고리 상태 관리
 
-    //userSeq 받아오기
-    const token = useSelector((state) => state.Auth.token);
-    const userSeq = token ? token.userSeq : 0;
 
-    //로그인 전이면(userSeq가 0일 때) 다시 메인페이지로
-    useEffect(() => {
-        if (!userSeq) {
-            nav("/");
-        }
-    }, [userSeq, nav]);
+      //userSeq 받아오기
+      const token = useSelector((state) => state.Auth.token);
+      const userSeq = token ? token.userSeq : 0;
+
+            //로그인 전이면(userSeq가 0일 때) 다시 메인페이지로
+            useEffect(() => {
+                if (!userSeq) {
+                nav('/');
+                }
+            }, [userSeq, nav]);
+
+
 
     const changeMarker = (type) => {
         setCurrentCategory(type);
@@ -61,7 +64,7 @@ const Map = () => {
             .get("http://localhost:8085/kakaomaps")
             .then((response) => {
                 // 응답 데이터 설정 (위도와 경도 정보를 가진 배열)
-                console.log("DB에서 가져온 데이터", response.data); // <-- 여기서 데이터 확인
+                console.log("DB에서 가져온 데이터",response.data); // <-- 여기서 데이터 확인
                 setDbPlaces(
                     response.data.map((item) => ({
                         /* 받아온 정보
@@ -82,6 +85,8 @@ const Map = () => {
                         partner_code: item.partner_code,
                         partner_tel: item.partner_tel,
                         partner_link: item.partner_link,
+
+
                     }))
                 );
             })
@@ -93,10 +98,10 @@ const Map = () => {
     const searchPlaces = () => {
         // Places 서비스 객체 사용.
         var places = new kakao.maps.services.Places();
-
+    
         // 현재 입력창의 값을 읽어옵니다.
-        const keyword = document.querySelector(".input_map_place").value;
-
+        const keyword = document.querySelector('.input_map_place').value;
+    
         // 키워드 검색의 결과를 처리할 콜백함수
         var callback = function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
@@ -105,18 +110,18 @@ const Map = () => {
             } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
                 // 검색 결과가 없는 경우
                 alert("입력하신 검색어가 존재하지 않습니다.");
-            } else if (keyword.trim() === "") {
+            } else if (keyword.trim() === '') {
                 // 빈 문자열을 입력한 경우
                 alert("검색어를 입력해 주세요.");
             } else {
                 // 그 외의 오류 상황
                 alert("검색 중 오류가 발생했습니다.");
             }
-
-            setSearchPlace(""); //input 필드 내용 초기화
+    
+            setSearchPlace('');  //input 필드 내용 초기화
         };
-
-        places.keywordSearch(keyword, callback);
+    
+        places.keywordSearch(keyword, callback); 
     };
 
     // 지도 생성 및 마커 설정
@@ -128,6 +133,7 @@ const Map = () => {
         };
 
         const map = new kakao.maps.Map(container, options); // 지도 생성
+
 
         // 각각의 marker와 overlay를 짝지어 저장할 객체
         let markerInfo = {};
@@ -165,7 +171,8 @@ const Map = () => {
 
                 marker.setMap(map);
 
-                var phone = place.phone ? place.phone : "전화번호 없음";
+                
+                var phone = place.phone ? place.phone : '전화번호 없음';
 
                 // 커스텀 오버레이에 표출될 내용
                 var content;
@@ -244,11 +251,12 @@ const Map = () => {
                     position: markerPosition,
                     content: content,
                     yAnchor: yAnchorValue,
+
                 });
 
                 // x버튼 클릭시 정보창 닫기
-                document.addEventListener("click", function (e) {
-                    if (e.target.id === "map_closeBtn") {
+                document.addEventListener('click', function (e) {
+                    if (e.target.id === 'map_closeBtn') {
                         if (markerInfo.currentOverlay) {
                             markerInfo.currentOverlay.setMap(null);
                         }
@@ -256,9 +264,11 @@ const Map = () => {
                         markerInfo.currentOverlay = null;
                     }
                 });
-
+                
+                
                 // 마커를 클릭하면 해당 커스텀 오버레이가 표시되거나 사라지게 함
                 kakao.maps.event.addListener(marker, "click", function () {
+                    
                     // 만약 이전에 열었던 overlay가 있다면 그것을 먼저 닫음
                     if (markerInfo.currentMarker && markerInfo.currentOverlay) {
                         markerInfo.currentOverlay.setMap(null);
@@ -277,7 +287,10 @@ const Map = () => {
                     // 현재 사용중인 Marker 및 Overlay 갱신
                     markerInfo.currentMarker = marker;
                     markerInfo.currentOverlay = customOverlay;
+
+                    
                 });
+                    
             });
 
         let filteredDbPlaces = dbPlaces;
@@ -288,41 +301,25 @@ const Map = () => {
             filteredSearchedPlaces = searchedPlaces.filter((place) => place.partner_code === currentCategory);
         }
 
+
+        
         mapMarkers(filteredDbPlaces);
         mapMarkers(filteredSearchedPlaces);
     }, [dbPlaces, searchedPlaces, currentCategory]);
 
     return (
         <div>
-            <div>
+            <div >
                 <div className="map_btn_container">
-                    <button className="select_all" onClick={() => changeMarker("웨딩홀_스튜디오")}>
-                        전체
-                    </button>
-                    <button className="select_weddinghall" onClick={() => changeMarker("웨딩홀")}>
-                        웨딩홀
-                    </button>
-                    <button className="select_studio" onClick={() => changeMarker("스튜디오")}>
-                        스튜디오
-                    </button>
-                    <input
-                        type="text"
-                        className="input_map_place"
-                        placeholder="검색어 입력"
-                        value={searchPlace}
-                        onChange={(e) => setSearchPlace(e.target.value)}
-                    />
-                    <button className="input_map_place_btn" onClick={searchPlaces}>
-                        검색
-                    </button>
+                    <button className="select_all" onClick={() => changeMarker("웨딩홀_스튜디오")}>전체</button>
+                    <button className="select_weddinghall" onClick={() => changeMarker("웨딩홀")}>웨딩홀</button>
+                    <button className="select_studio" onClick={() => changeMarker("스튜디오")}>스튜디오</button>
+                    <input type="text" className="input_map_place" placeholder="검색어 입력" value={searchPlace} onChange={(e) => setSearchPlace(e.target.value)}/>
+                    <button className="input_map_place_btn" onClick={searchPlaces}>검색</button>
                 </div>
             </div>
 
-            <div
-                id="KakaoMap"
-                className="Kakao_Conainer"
-                style={{ width: "560px", height: "730px", marginTop: "2px" }}
-            ></div>
+            <div id="KakaoMap" className="Kakao_Conainer" style={{ width: "560px", height: "730px", marginTop: "2px" }}></div>
             {/* <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a> */}
         </div>
     );
