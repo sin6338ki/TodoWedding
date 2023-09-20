@@ -5,6 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteToken } from "../../redux/reducers/AuthReducer"; // 로그아웃 액션 생성 함수
 
+/*
+ * 카카오 로그아웃, 회원 탈퇴
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.16
+ */
+
 const Mypage = () => {
     const dispatch = useDispatch();
     const nav = useNavigate();

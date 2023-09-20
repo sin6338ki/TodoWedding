@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
  * 캘린더 하단 예산관리리포트
  * 작성자 : 서현록
  * 작성일 : 2023.09.16
+ * 수정 : 총 예산 불러오기 마무리 (서현록, 2023.09.19)
  */
 
 const BudgetReport = () => {
@@ -17,24 +18,35 @@ const BudgetReport = () => {
     const token = useSelector((state) => state.Auth.token);
     const userSeq = token ? token.userSeq : 0;
 
-    // 총 예산, 총 수입, 총 지출 결과 불러오기
+    // 총 예산/수입/지출 결과 불러오기
     useEffect(() => {
-        axios
-            .post(`http://localhost:8085/member/total`, { member_seq: userSeq })
-            .then((response) => {
-                console.log("BudgetReport 결과 : ", response.data);
-                setTotalIncome(response.data.income_total_cost);
-                setTotalExpense(response.data.budget_sum_cost);
-            })
-            .catch((error) => console.log("총 예산 불러오기 에러 : ", error));
+        const fetchTotalBudgetAndResult = async () => {
+            try {
+                // 백엔드로 총예산 조회 요청 보내기
+                const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+                if (budgetResponse.data) {
+                    setTotalBudget(budgetResponse.data.total_budget);
+                    console.log("등록된 총 예산 : ", budgetResponse.data.total_budget);
+                }
+
+                // 백엔드로 수입/지출 결과 조회 요청 보내기
+                const resultResponse = await axios.post(`http://localhost:8085/member/total`, { member_seq: userSeq });
+                console.log("BudgetReport 결과 : ", resultResponse.data);
+
+                setTotalIncome(resultResponse.data.income_total_cost);
+                setTotalExpense(resultResponse.data.budget_sum_cost);
+            } catch (error) {
+                console.error("데이터 조회 에러 : ", error);
+            }
+        };
+        fetchTotalBudgetAndResult();
     }, [userSeq]);
 
     return (
         <div>
-            <p className="mb-1">현재 잔액 : {totalBudget + totalIncome - totalExpense}원</p>
-            <p className="mb-1">- 총 예산 : {totalBudget}원</p>
-            <p className="mb-1">- 총 수입 : {totalIncome}원</p>
-            <p className="mb-1">- 총 지출 : {totalExpense}원</p>
+            <p>총 예산 : {(totalBudget || 0).toLocaleString()}원</p>
+            <p>총 수입 : {(totalIncome || 0).toLocaleString()}원</p>
+            <p>총 지출 : {(totalExpense || 0).toLocaleString()}원</p>
         </div>
     );
 };
