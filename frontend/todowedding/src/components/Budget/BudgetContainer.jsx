@@ -5,7 +5,8 @@ import BudgetChart from "./BudgetChart";
 import "../../assets/budget-css/BudgetContainer.css";
 import BudgetIndex from "./BudgetIndex";
 import BudgetRoleChart from "./BudgetRoleChart";
-//import FilterContext from '../Budget/FilterContext'
+import NewItemContainer from "./NewItemContainer";
+
 
 export const FilterContext = React.createContext();
 
@@ -42,14 +43,22 @@ const BudgetContainer = (props) => {
     }, [filteredItems, filterBaseYear]);
 
     return (
+
+       <div>
+        <div>
+            <NewItemContainer/>
+        </div>
         <div className="pocket__container">
+        
             <FilterContext.Provider value={memoizedFilter}>
+                
                 <Budget />
-                {/* <BudgetList /> */}
+              
                 <BudgetIndex />
-                {/* <BudgetChart /> */}
+               
                 <BudgetRoleChart />
             </FilterContext.Provider>
+        </div>
         </div>
     );
 };

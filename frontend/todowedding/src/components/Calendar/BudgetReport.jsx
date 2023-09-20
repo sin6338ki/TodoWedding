@@ -20,7 +20,7 @@ const BudgetReport = () => {
     // 총 예산, 총 수입, 총 지출 결과 불러오기
     useEffect(() => {
         axios
-            .post(`http://172.30.1.7:8085/member/total`, { member_seq: userSeq })
+            .post(`http://localhost:8085/member/total`, { member_seq: userSeq })
             .then((response) => {
                 console.log("BudgetReport 결과 : ", response.data);
                 setTotalIncome(response.data.income_total_cost);

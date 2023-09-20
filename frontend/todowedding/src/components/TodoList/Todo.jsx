@@ -63,7 +63,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         };
 
         try {
-            const checkResult = await axios.put(`http://172.30.1.7:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+            const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
             console.log("성공 checked ", checkResult);
             await setChangeCheck(!changeCheck);
         } catch (err) {
@@ -92,10 +92,10 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
                 </p>
                 <hr />
             </div>
-            <button onClick={() => deleteTodo(todolistContents.todolistSeq)} className="trashBtn">
+            <button onClick={() => deleteTodo(todolistContents.todolistSeq)} className="trashBtn" style={{marginLeft:"280px"}}>
                 {<FaRegTrashAlt />}
             </button>
-            <button className={style.row} style={{ marginRight: "50px" }} onClick={handleCalendarButtonClick}>
+            <button className={style.row} style={{ marginRight: "30px" }} onClick={handleCalendarButtonClick}>
                 <img className="calendarIcon" src={Todo_calendaricon} alt="일정추가" width="20px" />
             </button>
         </li>

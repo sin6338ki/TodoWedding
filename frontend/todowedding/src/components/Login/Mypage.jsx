@@ -29,7 +29,7 @@ const Mypage = () => {
                 console.log("Unlink response:", unlinkResponse);
 
                 // 서버에 회원 정보 삭제 요청
-                const deleteResponse = await axios.delete(`http://172.30.1.7:8085/member/delete?member_seq=${userSeq}`);
+                const deleteResponse = await axios.delete(`http://localhost:8085/member/delete?member_seq=${userSeq}`);
                 console.log("Delete response:", deleteResponse);
 
                 // 로그아웃 처리
@@ -48,7 +48,7 @@ const Mypage = () => {
     };
 
     const logoutURL =
-        "https://kauth.kakao.com/oauth/logout?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&logout_redirect_uri=http://172.30.1.7:3000/auth/kakao/logout";
+        "https://kauth.kakao.com/oauth/logout?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&logout_redirect_uri=http://localhost:3000/auth/kakao/logout";
 
     return (
         <div className="Login-Page">

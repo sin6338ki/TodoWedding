@@ -23,20 +23,20 @@ const BudgetIndex = () => {
     const [incomes, setIncomes] = useState([]);
     const [expenses, setExpenses] = useState([]);
 
-    useEffect(() => {
-        // 지출조회
-        axios
-            .post("http://172.30.1.7:8085/budget/select", {
-                member_seq: 101, // memberSeq로 값 변경하기
-            })
-            .then((res) => {
-                console.log("지출 전체 조회 : ", res.data);
-                setExpenses(res.data);
-            })
-            .catch((err) => {
-                console.log("지출 전체 조회 에러 : ", err);
-            });
-    }, []);
+   //  useEffect(() => {
+   //      // 지출조회
+   //      axios
+   //          .post("http://localhost:8085/budget/select", {
+   //              member_seq: 101, // memberSeq로 값 변경하기
+   //          })
+   //          .then((res) => {
+   //              console.log("지출 전체 조회 : ", res.data);
+   //              setExpenses(res.data);
+   //          })
+   //          .catch((err) => {
+   //              console.log("지출 전체 조회 에러 : ", err);
+   //          });
+   //  }, []);
 
     // chart정보
     const [brideCnt, setBrideCnt] = useState(0);
@@ -47,7 +47,7 @@ const BudgetIndex = () => {
     useEffect(() => {
         // 지출조회
         axios
-            .post("http://172.30.1.7:8085/budget/select", {
+            .post("http://localhost:8085/budget/select", {
                 member_seq: `${memberSeq}`, // memberSeq로 값 변경하기
             })
             .then((res) => {
@@ -62,7 +62,7 @@ const BudgetIndex = () => {
     useEffect(() => {
         // 수입조회
         axios
-            .post("http://172.30.1.7:8085/income/select", {
+            .post("http://localhost:8085/income/select", {
                 member_seq: `${memberSeq}`,
             })
             .then((res) => {
