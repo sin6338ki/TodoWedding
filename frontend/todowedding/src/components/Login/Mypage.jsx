@@ -5,6 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteToken } from "../../redux/reducers/AuthReducer"; // 로그아웃 액션 생성 함수
 
+/*
+ * 카카오 로그아웃, 회원 탈퇴
+ * 작성자 : 서현록
+ * 작성일 : 2023.09.16
+ */
+
 const Mypage = () => {
     const dispatch = useDispatch();
     const nav = useNavigate();
@@ -54,9 +60,9 @@ const Mypage = () => {
         <div className="Login-Page">
             <img src={Logo} width="300px" style={{ margin: "20px 0 35px 0" }} />
             <p>
-                카카오 계정으로 간편하게 로그인하고
+                카카오로 간편하게 로그인하고
                 <br />
-                Todo Wedding의 다양한 서비스를 이용해보세요
+                투두웨딩의 다양한 서비스를 이용해보세요.
             </p>
             <br />
             {/* 로그아웃을 하게 되면 다른 카카오 계정으로 로그인 가능 */}

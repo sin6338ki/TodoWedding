@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Todolist from "../../assets/images/icon/to-do-list.png";
+import Todolist from "../../assets/images/icon/select.png";
 import Partner from "../../assets/images/icon/map.png";
 import Calendar from "../../assets/images/icon/calendar.png";
-import Budget from "../../assets/images/icon/budget.png";
+import Budget from "../../assets/images/icon/wallet.png";
 import Home from "../../assets/images/icon/home.png";
 import ModalBtn from "../../assets/images/TodoModal_bg.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Modal from "../../components/Modal";
+import Modal from "../../components/Main/Modal";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 
@@ -64,10 +64,14 @@ const MemberBottomBar = () => {
             {token === null ||
                 (token.type != "P" && (
                     <>
-                        <LightTooltip title={
-                            <React.Fragment>
-                                버튼을 클릭해 투두웨딩의 <br /> 다양한 기능을 이용해보세요!
-                            </React.Fragment> } placement="top">
+                        <LightTooltip
+                            title={
+                                <React.Fragment>
+                                    버튼을 클릭해 투두웨딩의 <br /> 다양한 기능을 이용해보세요!
+                                </React.Fragment>
+                            }
+                            placement="top"
+                        >
                             <button className="ModalBtn" type="button" onClick={() => setAdd(!add)}>
                                 <img src={ModalBtn} className="ModalImage" alt="AddButton" />
                             </button>
@@ -77,27 +81,26 @@ const MemberBottomBar = () => {
                 ))}
 
             <div className="bottom-bar">
-                <Link to="/" className="footer-menu-right" onClick={handleHomeButtonClick}>
-                    <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
-                    <span className="text-[6px] mt-1">HOME</span>
-                </Link>
                 <Link to="todowedding/calendar" className="footer-menu-right" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="20px" />
-                    <span className="text-[6px] mt-1">CALENDAR</span>
+                    <span className="text-[6px] mt-1 font-light">CALENDAR</span>
                 </Link>
                 <Link to="todowedding/todolist" className="footer-menu-right" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Todolist} alt="Todolist" width="20px" />
-                    <span className="text-[6px] mt-1">TODO</span>
+                    <span className="text-[6px] mt-1 font-light">TODO</span>
+                </Link>
+                <Link to="/" className="footer-menu-right" onClick={handleHomeButtonClick}>
+                    <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
+                    <span className="text-[6px] mt-1 font-light">HOME</span>
                 </Link>
 
-                <Link
-                    to="todowedding/map" className=" footer-menu-right" onClick={handleButtonClick}>
-                    <img className="bottom-bar-hover" src={Partner} alt="Partner" width="20px" />
-                    <span className="text-[6px] mt-1">STORE</span>
-                </Link>
                 <Link to="/todowedding/budget" className="footer-menu-right">
                     <img className="bottom-bar-hover" src={Budget} alt="Budget" width="20px" />
-                    <span className="text-[6px] mt-1"> BUDGET</span>
+                    <span className="text-[6px] mt-1 font-light"> BUDGET</span>
+                </Link>
+                <Link to="todowedding/map" className=" footer-menu-right" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Partner} alt="Partner" width="20px" />
+                    <span className="text-[6px] mt-1 font-light">STORE</span>
                 </Link>
             </div>
         </div>

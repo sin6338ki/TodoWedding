@@ -79,7 +79,7 @@ const DayCheckList = () => {
         placeholder: (provided) => ({
             ...provided,
             position: "absolute",
-            left: "50%",
+            left: "30%",
             top: "50%",
             transform: "translate(-50%, -50%)",
         }),

@@ -7,10 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 //AD Image
-import AD1 from "../assets/images/AD/todoImage1.png"
-import AD2 from "../assets/images/AD/todoImage2.png"
-import AD3 from "../assets/images/AD/todoImage3.png"
-import AD4 from "../assets/images/AD/todoImage4.png"
+import AD1 from "../../assets/images/AD/todoImage1.png"
+import AD2 from "../../assets/images/AD/todoImage2.png"
+import AD3 from "../../assets/images/AD/todoImage3.png"
+import AD4 from "../../assets/images/AD/todoImage4.png"
 
 /*
  * AD react-slick 라이브러리 구성

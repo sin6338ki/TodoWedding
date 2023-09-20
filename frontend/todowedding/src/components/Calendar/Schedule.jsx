@@ -118,35 +118,35 @@ const Schedule = () => {
                         className={style.input}
                         type="text"
                         style={{ textAlign: "center", border: "none", background: "transparent", outline: "none" }}
-                        placeholder="일정 제목을 입력하세요"
+                        placeholder="일정을 입력하세요"
                     />
                 </div>
                 <div className="add-schedule-date">
-                    <h5>
-                        일정 시작
+                    <div className="text-[#b4b4b4]">
+                        일정 시작일
                         <input
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
                             className="add-date"
                         />
-                    </h5>
-                    <h5>
-                        일정 종료
+                    </div>
+                    <div className="text-[#b4b4b4]">
+                        일정 종료일
                         <input
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
                             className="add-date"
                         />
-                    </h5>
+                    </div>
                 </div>
             </div>
             <button className="Add-Schedule-btn" onClick={createSchedule}>
-                캘린더 일정 추가하기
+                일정 추가
             </button>
             <button className="Add-TodoList-btn" onClick={createTodo}>
-                Todo List 추가하기
+                투두리스트 추가
             </button>
         </div>
     );
