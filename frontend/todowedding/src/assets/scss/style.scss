@@ -134,6 +134,7 @@ Body 관련
 
 //body
 .body {
+    margin-left: 36px;
     width: 423px;
     padding-bottom: 100px;
     //  background-color: #fff;
@@ -163,13 +164,12 @@ BottomBar 관련
     position: fixed;
     bottom: 0;
     display: flex;
-    bottom: 0px;
     height: 70px;
     width: 423px;
     // background-color: rgba(249, 245, 255, 0.788);
     background-color: rgba(252, 248, 255);
     margin-top: 0px;
-    margin-left: 16px;
+    margin-left: 35px;
     padding-left: 5px;
     padding-right: 5px;
     align-items: center;
@@ -557,7 +557,8 @@ TodoList 관련
 
 .trashBtn {
     position: absolute;
-    margin-left: 360px;
+    margin-left: 340px;
+    margin-top: 1px;
 }
 
 /**************************************************************************** FullCalendar 관련

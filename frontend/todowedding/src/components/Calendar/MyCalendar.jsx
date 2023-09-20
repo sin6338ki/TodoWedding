@@ -101,7 +101,7 @@ const MyCalendar = () => {
                 locale="ko" //한국어 설정
                 height={"52vh"} //50
                 events={events}
-                contentHeight={"auto"}
+                contentHeight={"600"}
                 dateClick={handleDateClick}
                 eventClick={handleEventClick}
                 buttonText={{

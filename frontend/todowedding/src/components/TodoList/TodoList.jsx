@@ -13,12 +13,11 @@ Todolist (추가/삭제/전체조회:완료), (완료-미완료 개수조회 /�
 작성일 : 2023.09.08 */
 
 const style = {
-    bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
     container: `max-w-[500px] w-full m-auto rounded-md  p-4 mt-100`,
-    heading: `text-3xl font-bold text-center text-greay-800 p-2`,
-    form: `flex justify-between mt-[20px] mx-[15px] h-[40px]`,
+    heading: `text-3xl font-bold text-center text-greay-800`,
+    form: `flex justify-between mt-[50px] mx-[15px] h-[40px] mr-[30px]`,
     input: `border p-2 w-full text-sm`,
-    button: `border p-1 ml-2 bg-[#9F7FFC] text-slate-100`,
+    button: `p-1 ml-2 bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] text-slate-100`,
     count: `text-center p-2`,
 };
 
@@ -260,7 +259,10 @@ const TodoList = () => {
                 </div> */}
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
-                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[120px] mx-[15px]">
+                <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                    className="mt-[120px] pl-[10px] mr-[35px]"
+                >
                     {todos.length < 1 ? null : (
                         <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}`}</span>
                     )}
@@ -275,13 +277,13 @@ const TodoList = () => {
                         onChange={(e) => setInput(e.target.value)}
                         className={style.input}
                         type="text"
-                        placeholder="내용을 기입하세요"
+                        placeholder="투두리스트를 입력하세요"
                     />
                     <button className={style.button}>
                         <AiOutlinePlus size={30} />
                     </button>
                 </form>
-                <div className="mt-5">
+                <div className="mt-[60px]">
                     {todos.map((todolistContents, index) => (
                         <Todo
                             key={index}

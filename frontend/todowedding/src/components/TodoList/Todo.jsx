@@ -15,7 +15,7 @@ Todo
 수정 : todolist 전체 - 완료 - 미완료조회
 */
 const style = {
-    li: `ml-[20px] mt-4 flex justify-between capitalize border-b mr-[20px]`,
+    li: `ml-[20px] mt-4 flex justify-between capitalize border-b mr-[32px]`,
     liComplete: `flex justify-between bg-slate-400 capitalize`,
     row: `flex`,
     text: `ml-[15px] cursor-pointer mb-0`,
