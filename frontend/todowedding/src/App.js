@@ -17,7 +17,7 @@ import "./tailwind.css";
 import "./index.css";
 import "./FullCalendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MarginImage from "./assets/images/MarginImage.png"
+import MarginImage from "./assets/images/MarginImage.png";
 import WebImage from "./assets/images/TodoWebImage.png";
 
 import Header from "./components/Header/Header";
@@ -72,16 +72,15 @@ import MarryDate from "./components/AddInfo/MarryDate";
 import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
-
     return (
-        <div style={{backgroundColor: "#F8FAF9"}}>
+        <div style={{ backgroundColor: "#F8FAF9", marginLeft: "27px" }}>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div>
                     <Header />
-                    <div className="body" id="Pretendard-Regular" style={{backgroundColor: "#ffffff"}}>
+                    <div className="body" id="Pretendard-Regular" style={{ backgroundColor: "#ffffff" }}>
                         <Routes>
                             <Route path="/" element={<Main />} />
-                            
+
                             {/* 로그인 */}
                             <Route path="/todowedding/login" element={<Kakaologin />} />
                             <Route path="/auth/kakao/callback" element={<Callback />} />
@@ -137,13 +136,13 @@ function AppContent() {
                 </div>
 
                 {/*웹 이미지 */}
-                <div style={{ width: " 350px", backgroundColor: "#F8FAF9" , marginLeft: "25px" }}>
-                    <img src={MarginImage} alt="margin-image" style={{height: "90px"}}/>
-                    <div style={{paddingBottom: "20px"}}>
+                <div style={{ width: " 350px", backgroundColor: "#F8FAF9", marginLeft: "25px" }}>
+                    <img src={MarginImage} alt="margin-image" style={{ height: "90px" }} />
+                    <div style={{ paddingBottom: "20px" }}>
                         <ADSlickSlider />
                     </div>
                     <img src={WebImage} alt="web-image" />
-                    <img src={MarginImage} alt="margin-image" style={{height: "190px"}}/>
+                    <img src={MarginImage} alt="margin-image" style={{ height: "190px" }} />
                 </div>
             </div>
         </div>

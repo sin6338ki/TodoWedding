@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Todolist from "../../assets/images/icon/select.png";
+import Todolist from "../../assets/images/icon/check-box.png";
 import Partner from "../../assets/images/icon/map.png";
 import Calendar from "../../assets/images/icon/calendar.png";
 import Budget from "../../assets/images/icon/wallet.png";
@@ -83,7 +83,7 @@ const MemberBottomBar = () => {
             <div className="bottom-bar">
                 <Link to="todowedding/calendar" className="footer-menu-right" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">CALENDAR</span>
+                    <span className="text-[6px] mt-1 font-light">CAL</span>
                 </Link>
                 <Link to="todowedding/todolist" className="footer-menu-right" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Todolist} alt="Todolist" width="20px" />

@@ -23,14 +23,16 @@ const BudgetReport = () => {
         const fetchTotalBudgetAndResult = async () => {
             try {
                 // 백엔드로 총예산 조회 요청 보내기
-                const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+                // const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+                const budgetResponse = await axios.get(`http://172.30.1.7:8085/totalbudget/select/${userSeq}`);
                 if (budgetResponse.data) {
                     setTotalBudget(budgetResponse.data.total_budget);
                     console.log("등록된 총 예산 : ", budgetResponse.data.total_budget);
                 }
 
                 // 백엔드로 수입/지출 결과 조회 요청 보내기
-                const resultResponse = await axios.post(`http://localhost:8085/member/total`, { member_seq: userSeq });
+                // const resultResponse = await axios.post(`http://localhost:8085/member/total`, { member_seq: userSeq });
+                const resultResponse = await axios.post(`http://172.30.1.7:8085/member/total`, { member_seq: userSeq });
                 console.log("BudgetReport 결과 : ", resultResponse.data);
 
                 setTotalIncome(resultResponse.data.income_total_cost);

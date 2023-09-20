@@ -134,11 +134,11 @@ Body 관련
 
 //body
 .body {
-    margin-left: 36px;
     position: relative;
-    width: 423px;
+    width: 414px;
     padding-bottom: 100px;
-    height: 910px;
+    height: 100%;
+    overflow: hidden;
     //  background-color: #fff;
 }
 
@@ -151,31 +151,37 @@ BottomBar 관련
     box-sizing: border-box;
     border-radius: 25px;
     padding: 7px;
-    margin-left: 210px;
     position: fixed;
     display: flex;
-    bottom: 75px;
+    bottom: 65px;
     height: 65px;
     width: 65px;
     align-items: center;
     background-image: linear-gradient(90deg, rgb(215, 138, 255, 0.7), rgb(159, 127, 252));
-    transform: translate(230%, -5%);
+    transform: translate(530%, 0%);
+    z-index: 999;
 }
 
 .bottom-bar {
     position: fixed;
     bottom: 0;
     display: flex;
-    height: 70px;
-    width: 423px;
-    // background-color: rgba(249, 245, 255, 0.788);
-    background-color: rgba(252, 248, 255);
-    margin-top: 0px;
-    margin-left: 35px;
-    padding-left: 5px;
-    padding-right: 5px;
+    height: 60px;
+    width: 414px;
+    background-color: #f8faf9;
     align-items: center;
-    font-weight: 600;
+    justify-content: space-around;
+}
+
+.admin-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    height: 60px;
+    width: 414px;
+    // background-color: rgb(235, 214, 255);
+    background-image: linear-gradient(180deg, rgb(70, 89, 115), rgb(44, 53, 64));
+    align-items: center;
     justify-content: space-around;
 }
 
@@ -196,10 +202,15 @@ BottomBar 관련
     box-shadow: 1px 1px 16px 10px rgb(219, 204, 238);
 }
 
+.admin-bottom-bar-hover:hover {
+    border-radius: 50%;
+    box-shadow: 1px 1px 16px 10px rgb(120, 120, 120);
+}
+
 .footer-menu-right {
     color: black;
     text-decoration: none;
-    padding: 3% 5% 3% 5%;
+    padding: 5% 5% 3% 5%;
     align-items: center;
     text-align: center;
     display: flex;
@@ -268,7 +279,7 @@ BottomBar 관련
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    margin: 60px 0 0 40px;
+    margin: 80px 0 0 30px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
     color: #ffffff;
@@ -287,7 +298,7 @@ BottomBar 관련
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    margin: 45px 0 0 40px;
+    margin: 60px 0 0 30px;
     background-color: #9f7ffc; //#a5a4dd;
     font-family: "Pretendard-Regular";
     color: #ffffff;
@@ -313,18 +324,18 @@ BottomBar 관련
 //메인페이지 - 웨딩 항목별 체크리스트 Container
 .main-itemchecklist-container {
     justify-content: center;
-    margin: 45px 10px 0 20px;
+    margin: 60px 10px 0 20px;
 }
 
 //
 .main-daychecklist-header {
     box-sizing: border-box;
-    width: 440px;
+    width: 380px;
     height: 75px;
     border-radius: 10px 10px 0 0;
-    margin: 80px 59px 0 59px;
+    margin: 180px 0 0 20px;
     padding-top: 26px;
-    background-color: #a5a4dd;
+    background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
     color: #ffffff;
     text-align: center;
@@ -333,7 +344,7 @@ BottomBar 관련
 //메인페이지 - 웨딩 D-Day 체크리스트 Container
 .main-ddaychecklist-container {
     justify-content: center;
-    margin: 25px 55px 50px 20px;
+    margin: 40px 55px 50px 20px;
 }
 
 /**************************************************************************** Modal
@@ -419,12 +430,13 @@ Modal 관련
     box-sizing: border-box;
     width: 320px;
     height: 60px;
-    border: 1px solid rgb(240, 240, 240);
+    border: 1px solid #d4c7f9;
     border-radius: 10px 10px 0 0;
     margin: 210px 10px 0 50px;
-    background-color: rgb(240, 240, 240);
+    background-color: #d4c7f9;
     font-family: "Pretendard-Regular";
     text-align: center;
+    color: rgb(120, 120, 120);
 }
 
 // 일정추가-일정시작,종료-container
@@ -437,6 +449,7 @@ Modal 관련
     padding: 35px 0 20px 0;
     font-family: "Pretendard-Regular";
     text-align: center;
+    color: rgb(120, 120, 120);
 }
 
 // 캘린더 일정 추가하기 버튼
@@ -486,13 +499,13 @@ Modal 관련
 .MyTodo-Icon {
     width: 20px;
     height: 20px;
-    margin: 0 10px 0 12px;
+    margin: 0 10px 0 25px;
 }
 
 //일정관리 페이지 - 최근 TodoList 3가지
 .TodoList-Title {
     font-family: "Pretendard-Regular";
-    margin: 40px 130px 20px 15px;
+    margin: 40px 130px 20px 25px;
     font-weight: 900;
     font-size: 18px;
     text-decoration: underline;
@@ -505,7 +518,7 @@ Modal 관련
     width: 180px;
     height: 40px;
     border-radius: 10px 10px 0 0;
-    margin: 20px 5px 0 10px;
+    margin: 20px 5px 0 20px;
     padding-top: 10px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
@@ -519,7 +532,7 @@ Modal 관련
     width: 180px;
     height: 40px;
     border-radius: 10px 10px 0 0;
-    margin: 20px 59px 0 15px;
+    margin: 20px 20px 0 0;
     padding-top: 10px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
@@ -534,7 +547,7 @@ Modal 관련
     height: 145px;
     border: 1px solid #9f7ffc;
     border-radius: 0 0 10px 10px;
-    margin: 0 5px 0 10px;
+    margin: 0px 20px 0 20px;
     padding-left: 20px;
     padding-top: 25px;
     font-family: "Pretendard-Regular";
@@ -548,7 +561,7 @@ Modal 관련
     height: 145px;
     border: 1px solid #9f7ffc;
     border-radius: 0 0 10px 10px;
-    margin: 0 59px 0 15px;
+    margin: 0 20px 0 0;
     padding: 25px 0 5px 20px;
     font-family: "Pretendard-Regular";
     font-size: small;
@@ -572,7 +585,7 @@ FullCalendar 관련
 }
 
 .my-fullcalendar {
-    margin: 100px 15px 0 5px;
+    margin: 110px 15px 0 15px;
 }
 
 .fc-toolbar {
@@ -584,11 +597,11 @@ FullCalendar 관련
 
 /* FullCalendar 헤더의 글꼴 크기 변경 */
 .fc-toolbar-title {
-    font-size: 18px !important; /* 원하는 크기로 조절 */
+    font-size: 16px !important; /* 원하는 크기로 조절 */
     font-weight: 800 !important;
-    padding-right: 20px;
+    padding-right: 40px;
     padding-top: 5px;
-    padding-bottom: 70px;
+    padding-bottom: 80px;
     text-align: center;
 }
 
@@ -826,13 +839,13 @@ D-Day CheckList 관련
     box-sizing: border-box;
     width: 320px;
     height: 60px;
-    border: 1px solid rgb(240, 240, 240);
+    border: 1px solid #d4c7f9;
     border-radius: 10px 10px 0 0;
     margin: 210px 10px 0 50px;
-    background-color: rgb(240, 240, 240);
+    background-color: #d4c7f9;
     font-family: "Pretendard-Regular";
     text-align: center;
-    color: #b4b4b4;
+    color: rgb(120, 120, 120);
 }
 
 //결혼예정일 날짜 선택 container
@@ -845,7 +858,7 @@ D-Day CheckList 관련
     padding: 60px 0 40px 0;
     font-family: "Pretendard-Regular";
     text-align: center;
-    color: #b4b4b4;
+    color: rgb(120, 120, 120);
 }
 
 //결혼예정일 등록/수정 버튼
@@ -873,7 +886,7 @@ D-Day CheckList 관련
 /* 버튼들을 포함하는 부모 div 스타일 */
 .map_btn_container {
     display: flex;
-    margin: 3px 0 3px 0;
+    margin: 100px 0 3px 0;
 }
 
 /* 전체 버튼 스타일 */
@@ -883,8 +896,10 @@ D-Day CheckList 관련
     border: 1px solid #bbb;
     border-radius: 8px !important;
     position: relative;
-    width: 140px;
+    width: 60px;
+    height: 40px;
     margin: 2px;
+    font-size: 12px;
 }
 
 /* 웨딩홀 버튼 스타일 */
@@ -894,8 +909,10 @@ D-Day CheckList 관련
     border: 1px solid #bbb;
     border-radius: 8px !important;
     position: relative;
-    width: 140px;
+    width: 60px;
+    height: 40px;
     margin: 2px;
+    font-size: 12px;
 }
 
 /* 스튜디오 버튼 스타일 */
@@ -905,8 +922,10 @@ D-Day CheckList 관련
     border: 1px solid #bbb;
     border-radius: 8px !important;
     position: relative;
-    width: 140px;
+    width: 60px;
+    height: 40px;
     margin: 2px;
+    font-size: 12px;
 }
 
 //마우스 오버시 스타일 변경
@@ -915,7 +934,6 @@ D-Day CheckList 관련
     background-color: #c7dfff;
     position: relative;
     border: 1px solid #c7dfff;
-    width: 140px;
     margin: 2px;
     color: #000000;
 }
@@ -925,7 +943,7 @@ D-Day CheckList 관련
     background-color: #ddc4ff;
     position: relative;
     border: 1px solid #ddc4ff;
-    width: 140px;
+
     margin: 2px;
     color: #000000;
 }
@@ -936,7 +954,6 @@ D-Day CheckList 관련
     box-sizing: border-box;
     border: 1px solid #f7b95c;
     position: relative;
-    width: 140px;
     margin: 2px;
     color: #000000;
 }
@@ -958,18 +975,18 @@ D-Day CheckList 관련
     border: 1px solid #bbb;
     border-radius: 8px;
     padding: 10px 12px;
-    font-size: 14px;
     margin: 2px;
-    height: 45px;
+    height: 40px;
+    font-size: 12px;
 }
 
 //검색 버튼
 .input_map_place_btn {
     color: #ffffff;
-    background-color: #b198fc;
-    border: 1px solid #8d7fe0;
+    background-color: #9f7ffc;
     border-radius: 8px;
-    width: 70px;
-    height: 45px;
+    width: 60px;
+    height: 40px;
     margin: 2px;
+    font-size: 12px;
 }

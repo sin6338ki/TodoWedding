@@ -33,7 +33,8 @@ const MyCalendar = () => {
     //전체 일정 불러오기
     useEffect(() => {
         axios
-            .get(`http://localhost:8085/all-schedule/${userSeq}`)
+            // .get(`http://localhost:8085/all-schedule/${userSeq}`)
+            .get(`http://172.30.1.7:8085/all-schedule/${userSeq}`)
             .then((res) => {
                 // 이벤트 컬러 화사한 색상으로만 뽑기------------------------------------------------------
                 const fetchedEvents = res.data.map((event, idx) => {
@@ -99,7 +100,7 @@ const MyCalendar = () => {
                     right: "prev,next",
                 }}
                 locale="ko" //한국어 설정
-                height={"52vh"} //50
+                height={"49vh"} //50
                 events={events}
                 contentHeight={"600"}
                 dateClick={handleDateClick}

@@ -22,7 +22,8 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
         const input = document.getElementById("searchPartnerInput").value;
         console.log("input : ", input);
         axios
-            .get(`http://localhost:8085/admin/partner?keyword=${input}`)
+            // .get(`http://localhost:8085/admin/partner?keyword=${input}`)
+            .get(`http://172.30.1.7:8085/admin/partner?keyword=${input}`)
             .then((res) => {
                 console.log("업체 검색 response : ", res.data);
                 setPartners(res.data);
@@ -41,16 +42,16 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
 
     return (
         <div>
-            <div className="text-left text-2xl font-bold w-full mt-2 p-3 border-b">업체 리스트</div>
-            <div className="flex flex-row p-3 mt-2">
+            <div className="text-left text-2xl font-bold mt-2 p-3 mx-4 border-b">업체 리스트</div>
+            <div className="flex flex-row my-4 mx-4">
                 <h5 className="align-middle pt-2 text-xs">업체 검색</h5>
                 <input
                     type="text"
-                    className="border border-[#9F7FFC] ml-3 align-middle text-xs"
+                    className="border border-[#465973] ml-3 align-middle text-xs"
                     id="searchPartnerInput"
                 ></input>
                 <button
-                    className="bg-[#9F7FFC] w-10 text-white text-xs"
+                    className="bg-[#465973] w-10 text-white text-xs"
                     onClick={() => {
                         searchPartner();
                     }}
@@ -66,19 +67,19 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
                     전체 업체
                 </button>
             </div>
-            <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
+            <div className="grid grid-cols-9 mx-4 pt-3 mb-1">
                 <div className="text-center font-bold col-span-1 text-xs">NO</div>
                 <div className="text-center font-bold col-span-1 text-xs">구분</div>
                 <div className="text-center font-bold col-span-2 text-xs">아이디</div>
                 <div className="text-center font-bold col-span-2 text-xs">업체명</div>
                 <div className="text-center font-bold col-span-3 text-xs">연락처</div>
-                <div className="text-center font-bold col-span-3 text-xs">사업자등록번호</div>
+                {/* <div className="text-center font-bold col-span-3 text-xs">사업자등록번호</div> */}
             </div>
             {partners.slice(offset, offset + limits).map((partner, idx) => {
                 return (
                     <div
                         key={idx}
-                        className="grid grid-cols-12 ml-3"
+                        className="grid grid-cols-9 mx-4"
                         onClick={() => {
                             updateInfo(partner.partner_seq);
                         }}
@@ -88,11 +89,11 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
                         <div className="text-center col-span-2 mt-3 text-xs">{partner.partner_id}</div>
                         <div className="text-center col-span-2 mt-3 text-xs">{partner.partner_name}</div>
                         <div className="text-center col-span-3 mt-3 text-xs">{partner.partner_tel}</div>
-                        <div className="text-center col-span-3 mt-3 text-xs">{partner.partner_registration}</div>
+                        {/* <div className="text-center col-span-3 mt-3 text-xs">{partner.partner_registration}</div> */}
                     </div>
                 );
             })}
-            <div className="mt-5 ml-60 fixed bottom-[100px]">
+            <div className="ml-[180px] fixed bottom-[80px]">
                 <Pagination limits={limits} page={page} setPage={setPage} total={total} />
             </div>
         </div>

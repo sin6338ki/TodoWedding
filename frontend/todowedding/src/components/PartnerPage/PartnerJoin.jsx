@@ -39,7 +39,8 @@ const PartnerJoin = () => {
     const applyJoin = () => {
         console.log("회원가입 폼 입력 데이터 확인 : ", joinData);
         axios
-            .post("http://localhost:8085/partner/join", joinData)
+            // .post("http://localhost:8085/partner/join", joinData)
+            .post("http://172.30.1.7:8085/partner/join", joinData)
             .then((res) => {
                 console.log("회원가입 response : ", res.data);
                 if (res.data === "회원가입 완료") {
@@ -55,7 +56,8 @@ const PartnerJoin = () => {
     const checkSameId = () => {
         console.log("중복체크 아이디 : ", partnerId);
         axios
-            .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
+            // .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
+            .get(`http://172.30.1.7:8085/partner/check-id?partnerId=${partnerId}`)
             .then((res) => {
                 if (res.data == 1) {
                     alert("사용 가능한 아이디입니다. ");
@@ -80,8 +82,9 @@ const PartnerJoin = () => {
     }, [checkPartnerPw]);
 
     return (
-        <div className="ml-10 mt-10 w-[480px] flex flex-col">
-            <div className="mb-3 self-center w-[480px]">
+        <div className="mx-[25px] mt-[130px] w-[380px] flex flex-col text-[#9F7FFC]">
+            <div className="m-auto mb-5 text-xl font-bold">업체 전용 회원가입</div>
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">아이디</p>
                 <div className="flex flex-row">
                     <input
@@ -89,29 +92,29 @@ const PartnerJoin = () => {
                             setPartnerId(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF]"
+                        className="w-[315px] border h-8 p-2 text-[#A383FF]"
                     ></input>
                     <button
                         onClick={() => {
                             checkSameId();
                         }}
-                        className="text-xs ml-5 bg-gray-100 p-2"
+                        className="text-xs ml-1 bg-gray-100 p-2"
                     >
                         중복체크
                     </button>
                 </div>
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">비밀번호</p>
                 <input
                     onChange={(e) => {
                         setPartnerPw(e.target.value);
                     }}
                     type="password"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 ></input>
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">비밀번호 확인</p>
                 <p id="checkPw"></p>
                 <input
@@ -119,91 +122,95 @@ const PartnerJoin = () => {
                         setCheckPartnerPw(e.target.value);
                     }}
                     type="password"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 ></input>
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">기업명</p>
                 <input
                     onChange={(e) => {
                         setPartnerName(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">사업자등록번호</p>
                 <input
                     onChange={(e) => {
                         setPartnerRegistration(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">전화번호</p>
                 <input
                     onChange={(e) => {
                         setPartnerTel(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">홈페이지</p>
                 <input
                     onChange={(e) => {
                         setPartnerLink(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 ></input>
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">담당자</p>
                 <input
                     onChange={(e) => {
                         setPartnerManager(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">담당자 연락처</p>
                 <input
                     onChange={(e) => {
                         setPartnerManagerTel(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
-            <div className="mb-3 self-center w-[480px]">
+            <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">업체 주소</p>
                 <input
                     onChange={(e) => {
                         setPartnerAddress(e.target.value);
                     }}
                     type="text"
-                    className="w-[480px] border h-8 p-2 text-[#A383FF]"
+                    className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
             <div className="flex flex-row">
-                <div className="flex flex-col mb-3 self-center w-[480px]">
+                <div className="flex flex-col mb-3 self-center w-[380px]">
                     <label htmlFor="email" className="mb-2 text-left text-gray-500">
                         마케팅 활용 동의
                     </label>
                     <div>
                         <input type="checkbox" name="agree" id="email" />
-                        <label htmlFor="email">마케팅 관련 정보 이메일 수신 동의</label>
+                        <label htmlFor="email" className="pl-1">
+                            마케팅 관련 정보 이메일 수신 동의
+                        </label>
                     </div>
                     <div>
                         <input type="checkbox" name="agree" id="sms" />
-                        <label htmlFor="sms">마케팅 관련 정보 SMS 수신 동의</label>
+                        <label htmlFor="sms" className="pl-1">
+                            마케팅 관련 정보 SMS 수신 동의
+                        </label>
                     </div>
                 </div>
                 <input
@@ -212,7 +219,7 @@ const PartnerJoin = () => {
                     onClick={() => {
                         applyJoin();
                     }}
-                    className="self-center h-[56px] w-[110px] rounded-md bg-gray-300 "
+                    className="self-center h-[56px] w-[110px] rounded-md bg-gray-100 "
                 />
             </div>
         </div>

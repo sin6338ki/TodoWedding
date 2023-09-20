@@ -15,10 +15,10 @@ Todo
 수정 : todolist 전체 - 완료 - 미완료조회
 */
 const style = {
-    li: `ml-[20px] mt-4 flex justify-between capitalize border-b mr-[32px]`,
+    li: `mx-[30px] mt-4 flex justify-between capitalize border-b`,
     liComplete: `flex justify-between bg-slate-400 capitalize`,
     row: `flex`,
-    text: `ml-[15px] cursor-pointer mb-0`,
+    text: `ml-[15px] cursor-pointer`,
     textComplete: `ml-[15px] cursor-pointer line-through text-gray-300 mb-0`,
     button: `cursor-pointer flex items-center`,
 };
@@ -63,7 +63,8 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         };
 
         try {
-            const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+            // const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+            const checkResult = await axios.put(`http://172.30.1.7:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
             console.log("성공 checked ", checkResult);
             await setChangeCheck(!changeCheck);
         } catch (err) {
@@ -92,10 +93,14 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
                 </p>
                 <hr />
             </div>
-            <button onClick={() => deleteTodo(todolistContents.todolistSeq)} className="trashBtn" style={{marginLeft:"280px"}}>
+            <button
+                onClick={() => deleteTodo(todolistContents.todolistSeq)}
+                className="trashBtn"
+                style={{ marginLeft: "280px" }}
+            >
                 {<FaRegTrashAlt />}
             </button>
-            <button className={style.row} style={{ marginRight: "30px" }} onClick={handleCalendarButtonClick}>
+            <button className={style.row} style={{ marginRight: "20px" }} onClick={handleCalendarButtonClick}>
                 <img className="calendarIcon" src={Todo_calendaricon} alt="일정추가" width="20px" />
             </button>
         </li>
