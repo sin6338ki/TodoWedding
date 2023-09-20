@@ -1,6 +1,6 @@
 
 /**
- * 예산관리 수입 list 페이지
+ * 예산관리내역 수입 list 페이지
  * 작성자 : 양수진
  * 작성일 : 2023.09.18
  */
@@ -71,9 +71,9 @@ const IncomeList = ({ incomes = [] },{total}) => {
                             <div className="text-center col-span-3 mt-2 text-xs">{addComma(incomes.income_cost.toString())}원</div>
                             <div className="text-center col-span-3 mt-1 text-xs">{incomes.income_contents}</div>
                             {/* 삭제 버튼 */}
-                            <button onClick={incomeDelete} className="text-center col-span-2 mt-1 text-xs">
-                              삭제
-                            </button>          
+                            <button onClick={() => incomeDelete(incomes.income_seq)} className="text-center col-span-2 mt-1 text-xs">
+  삭제
+</button>          
                         </div>
                     );
                 })}  
