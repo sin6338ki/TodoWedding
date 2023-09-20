@@ -11,7 +11,7 @@ import bell from "../../assets/images/icon/bell.png";
 
 const PartnerHeader = ({ loginUserNickname }) => {
     return (
-        <div className="fixed top-0 z-50 w-[424px] h-[90px] ml-[16px] flex flex-row bg-gradient-to-r to-white from-[#ebd6ff]">
+        <div className="fixed top-0 z-50 w-[414px] h-[90px] flex flex-row bg-gradient-to-r to-white from-[#D4C7F9]">
             <Link to="/todowedding/partner" className="pt-[25px] ml-5">
                 <img src={TodoLogo} alt="ToDo" width="110px" style={{ cursor: "pointer" }} />
             </Link>

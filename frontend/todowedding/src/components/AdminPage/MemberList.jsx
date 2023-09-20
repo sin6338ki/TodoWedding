@@ -13,7 +13,8 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
         const input = document.getElementById("searchMemberInput").value;
         console.log("input : ", input);
         axios
-            .get(`http://localhost:8085/admin/member?keyword=${input}`)
+            // .get(`http://localhost:8085/admin/member?keyword=${input}`)
+            .get(`http://172.30.1.7:8085/admin/member?keyword=${input}`)
             .then((res) => {
                 console.log("회원 검색 response : ", res.data);
                 setMembers(res.data);
@@ -26,16 +27,16 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
 
     return (
         <div>
-            <div className="text-left text-2xl font-bold w-full mt-2 p-3 border-b">회원 리스트</div>
-            <div className="flex flex-row p-3 mt-2">
+            <div className="text-left text-2xl font-bold mt-2 p-3 mx-4 border-b">회원 리스트</div>
+            <div className="flex flex-row my-4 mx-4">
                 <h5 className="align-middle pt-2 text-xs">회원 검색</h5>
                 <input
                     type="text"
                     id="searchMemberInput"
-                    className="border border-[#9F7FFC] ml-3 align-middle text-xs"
+                    className="border border-[#465973] ml-3 align-middle text-xs"
                 ></input>
                 <button
-                    className="bg-[#9F7FFC] w-10 text-white text-xs"
+                    className="bg-[#465973] w-10 text-white text-xs"
                     onClick={() => {
                         searchMember();
                     }}
@@ -43,7 +44,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
                     검색
                 </button>
                 <button
-                    className="ml-3 text-xs text-gray-400"
+                    className="ml-3 text-xs text-[#465973]"
                     onClick={() => {
                         findAllMember();
                     }}
@@ -51,7 +52,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
                     전체 회원
                 </button>
             </div>
-            <div className="grid grid-cols-12 ml-3 pt-3 mb-5">
+            <div className="grid grid-cols-12 mx-4 pt-3 mb-5">
                 <div className="text-center font-bold col-span-1 text-xs">NO</div>
                 <div className="text-center font-bold col-span-3 text-xs">닉네임</div>
                 <div className="text-center font-bold col-span-4 text-xs">email</div>

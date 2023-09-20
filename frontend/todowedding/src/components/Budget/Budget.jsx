@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
  * 로그인이전 home 으로 이동 (09.18)
  */
 
-
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
     container: `max-w-[500px] w-full m-auto rounded-md  p-4`,
@@ -22,7 +21,6 @@ const style = {
     button: `border p-4 ml-2 bg-purple-500 text-slate-100`,
     count: `text-center p-2`,
 };
-
 
 //PocketStatus (상위컴포넌트) --> 입력하면 바로렌더링 하는 부분 수정필요
 const Budget = (props) => {
@@ -57,7 +55,8 @@ const Budget = (props) => {
             };
 
             axios
-                .post(`http://localhost:8085/member/total`, memberSeqObj)
+                // .post(`http://localhost:8085/member/total`, memberSeqObj)
+                .post(`http://172.30.1.7:8085/member/total`, memberSeqObj)
                 .then((response) => {
                     console.log("222", response);
                     setTotalExpense(response.data.budget_sum_cost);

@@ -17,7 +17,7 @@ const PartnerChart = ({ hallCnt, studioCnt }) => {
             {
                 label: "Partners(개)",
                 data: [hallCnt, studioCnt],
-                backgroundColor: ["rgba(17, 206, 177, 0.2)", "rgba(17, 206, 177, 0.8)"],
+                backgroundColor: ["rgba(4, 135, 217, 0.5)", "rgb(4, 135, 217)"],
                 borderColor: ["rgba(255, 99, 132, 1)", "rgba(153, 102, 255, 1)"],
                 borderWidth: 0,
             },

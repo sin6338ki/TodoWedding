@@ -17,7 +17,7 @@ const AgeChart = ({ twentyCnt, thirtyCnt, fourtyCnt }) => {
             {
                 label: "Users(명)",
                 data: [twentyCnt, thirtyCnt, fourtyCnt],
-                backgroundColor: ["rgba(254, 117, 150, 0.2)", "rgba(254, 117, 150, 0.8)", "rgba(255, 159, 64, 0.2)"],
+                backgroundColor: ["rgba(44, 191, 108, 0.5)", "rgba(44, 191, 108)", "rgba(44,191,108,0.2)"],
                 borderColor: ["rgba(255, 99, 132, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"],
                 borderWidth: 0,
             },

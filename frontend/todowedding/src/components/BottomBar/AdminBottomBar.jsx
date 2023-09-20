@@ -1,31 +1,29 @@
 /**
- * Parner 회원 로그인시 bottom bar
+ * Admin 전용 Bottom Bar
  * 작성자 : 신지영
- * 작성일 : 2023.09.15
+ * 작성일 : 2023.09.20
  */
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { deleteToken } from "../../redux/reducers/AuthReducer";
+import Button from "react-bootstrap/Button";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import { deleteToken } from "../../redux/reducers/AuthReducer";
 
 /**
  * 아이콘 import
  */
-import Logout from "../../assets/images/icon/logout.png";
-import Info from "../../assets/images/icon/info.png";
-import Home from "../../assets/images/icon/home.png";
-import Withdrawal from "../../assets/images/icon/trash.png";
+import Logout from "../../assets/images/icon/logout_white.png";
+import Home from "../../assets/images/icon/home_white.png";
+import Withdrawal from "../../assets/images/icon/trash_white.png";
 
-const PartnerBottomBar = () => {
+const AdminBottomBar = () => {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.Auth.token);
     const navigate = useNavigate();
-    const [isAdminCk, setIsAdminCk] = useState("N");
 
     //회원탈퇴 동의 모달
     const [show, setShow] = useState(false);
@@ -86,32 +84,28 @@ const PartnerBottomBar = () => {
     }, [token]);
 
     return (
-        <div className="bottom-bar">
-            <Link to="todowedding/partner/info" className="footer-menu-left" id="infoBtn">
-                <img className="bottom-bar-hover" src={Info} alt="Info" width="20px" />
-                <span className="text-xs mt-1">정보수정</span>
-            </Link>
+        <div className="admin-bottom-bar">
             <button
                 onClick={() => {
                     partnerLogout();
                 }}
-                className="footer-menu-left"
+                className="admin-bottom-bar-hover footer-menu-left"
             >
-                <img className="bottom-bar-hover" src={Logout} alt="Logout" width="20px" />
-                <span className="text-xs mt-1"> 로그아웃</span>
+                <img className="mt-1" src={Logout} alt="Logout" width="20px" />
+                <span className="text-xs mt-1 text-white"> 로그아웃</span>
             </button>
             <div
                 onClick={() => {
                     handleShow();
                 }}
-                className="footer-menu-left"
+                className="footer-menu-left admin-bottom-bar-hover"
             >
-                <img className="bottom-bar-hover" src={Withdrawal} alt="Withdrawal" width="20px" />
-                <span className="text-xs mt-1"> 회원탈퇴</span>
+                <img className="mt-1" src={Withdrawal} alt="Withdrawal" width="20px" />
+                <span className="text-xs mt-1 text-white"> 회원탈퇴</span>
             </div>
-            <Link to="/todowedding/partner" className="footer-menu-left">
-                <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
-                <span className="text-xs mt-1"> Home</span>
+            <Link to="/todowedding/admin" className="footer-menu-left admin-bottom-bar-hover">
+                <img className="mt-1" src={Home} alt="Home" width="20px" />
+                <span className="text-xs mt-1 text-white"> Home</span>
             </Link>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -142,4 +136,4 @@ const PartnerBottomBar = () => {
     );
 };
 
-export default PartnerBottomBar;
+export default AdminBottomBar;

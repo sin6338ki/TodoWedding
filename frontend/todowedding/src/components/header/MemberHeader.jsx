@@ -19,7 +19,8 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     //최근 일정 조회
     const findLatestSchedule = () => {
         axios
-            .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
+            // .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
+            .get(`http://172.30.1.7:8085/latest-schedule/${token.userSeq}`)
             .then((res) => {
                 console.log("최근 일정 조회 결과 : ", res.data);
                 if (res.data != "") {
@@ -45,10 +46,12 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     }, []);
 
     return (
-        <div className="fixed top-0 z-50 w-[424px] flex flex-row h-[90px] pr-5 pb-1 ml-[36px] bg-gradient-to-r to-white from-[#ebd6ff]">
+        <div className="fixed top-0 z-50 w-[414px] flex flex-row h-[90px] pr-5 pb-1 bg-gradient-to-r to-white from-[#D4C7F9]">
             {marryDt ? (
                 <Link to="/" className="decoration-transparent self-cente pt-4  mx-3 text-[#9F7FFC] font-bold ml-4 ">
-                    <div className="decoration-double underline underline-offset-8 text-[24px]">D{marryDt}</div>
+                    <div className="decoration-double underline underline-offset-8 text-[24px] w-[70px]">
+                        D{marryDt}
+                    </div>
                 </Link>
             ) : (
                 <Link to="/">

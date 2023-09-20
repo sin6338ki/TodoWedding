@@ -61,7 +61,8 @@ const Map = () => {
     // DB에서 장소 정보 가져오기
     useEffect(() => {
         axios
-            .get("http://localhost:8085/kakaomaps")
+            // .get("http://localhost:8085/kakaomaps")
+            .get("http://172.30.1.7:8085/kakaomaps")
             .then((response) => {
                 // 응답 데이터 설정 (위도와 경도 정보를 가진 배열)
                 console.log("DB에서 가져온 데이터",response.data); // <-- 여기서 데이터 확인
@@ -319,7 +320,15 @@ const Map = () => {
                 </div>
             </div>
 
+<<<<<<< HEAD
             <div id="KakaoMap" className="Kakao_Conainer" style={{ width: "560px", height: "730px", marginTop: "2px" }}></div>
+=======
+            <div
+                id="KakaoMap"
+                className="Kakao_Conainer border border-[#9F7FFC] mx-[6px]"
+                style={{ width: "400px", height: "490px", marginTop: "10px" }}
+            ></div>
+>>>>>>> origin/jiyoung
             {/* <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a> */}
         </div>
     );

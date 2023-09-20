@@ -37,34 +37,35 @@ const Schedule = () => {
     const [schedule, setSchedule] = useState([]);
 
     //'캘린더 일정 추가' 버튼 클릭
-const createSchedule = async (e) => {
-    e.preventDefault(e);
-    console.log("캘린더 일정 추가 버튼 클릭!");
-    if (title === "" || startDate === "" || endDate === "") {
-        alert("일정 제목과 날짜를 입력해주세요!");
-    } else if(new Date(startDate) > new Date(endDate)) {
-        alert("일정 종료일을 일정 시작일보다 빠르게 설정할 수 없습니다. 일정 날짜를 다시 선택해주세요");
-    } else {
-        console.log("일정추가 제목 -> ", title);
-        const data = {
-            scheduleStartDt: startDate,
-            scheduleEndDt: endDate,
-            scheduleContents: title,
-            memberSeq: userSeq,
-        };
-        await axios
-            .post("http://localhost:8085/schedule", data)
-            .then((res) => {
-                console.log("스프링으로 넘기는 값 -> ", data);
-                //                fetchData();
-                allSchedule();
-                nav("/todowedding/calendar");
-            })
-            .catch((err) => {
-                console.log("error", err);
-            });
-    }
-};
+    const createSchedule = async (e) => {
+        e.preventDefault(e);
+        console.log("캘린더 일정 추가 버튼 클릭!");
+        if (title === "" || startDate === "" || endDate === "") {
+            alert("일정 제목과 날짜를 입력해주세요!");
+        } else if (new Date(startDate) > new Date(endDate)) {
+            alert("일정 종료일을 일정 시작일보다 빠르게 설정할 수 없습니다. 일정 날짜를 다시 선택해주세요");
+        } else {
+            console.log("일정추가 제목 -> ", title);
+            const data = {
+                scheduleStartDt: startDate,
+                scheduleEndDt: endDate,
+                scheduleContents: title,
+                memberSeq: userSeq,
+            };
+            await axios
+                // .post("http://localhost:8085/schedule", data)
+                .post("http://172.30.1.7:8085/schedule", data)
+                .then((res) => {
+                    console.log("스프링으로 넘기는 값 -> ", data);
+                    //                fetchData();
+                    allSchedule();
+                    nav("/todowedding/calendar");
+                })
+                .catch((err) => {
+                    console.log("error", err);
+                });
+        }
+    };
 
     //'TodoList 추가하기' 버튼 클릭
     const createTodo = async (e) => {
@@ -81,7 +82,8 @@ const createSchedule = async (e) => {
 
             //backend axios통신
             await axios
-                .post("http://localhost:8085/todolist", data)
+                // .post("http://localhost:8085/todolist", data)
+                .post("http://172.30.1.7:8085/todolist", data)
                 .then((res) => {
                     console.log("스프링으로 넘기는 값 -> ", data);
                     //                fetchData();
@@ -98,7 +100,8 @@ const createSchedule = async (e) => {
     const allSchedule = () => {
         try {
             axios
-                .get(`http://localhost:8085/all-schedule/${userSeq}`)
+                // .get(`http://localhost:8085/all-schedule/${userSeq}`)
+                .get(`http://172.30.1.7:8085/all-schedule/${userSeq}`)
                 .then((res) => {
                     console.log("전체 일정 조회 response : ", res.data);
                     setSchedule(res.data);
@@ -125,7 +128,7 @@ const createSchedule = async (e) => {
                     />
                 </div>
                 <div className="add-schedule-date">
-                    <div className="text-[#b4b4b4]">
+                    <div className="text-[#969696]">
                         일정 시작일
                         <input
                             type="date"
@@ -134,7 +137,7 @@ const createSchedule = async (e) => {
                             className="add-date"
                         />
                     </div>
-                    <div className="text-[#b4b4b4]">
+                    <div className="text-[#969696]">
                         일정 종료일
                         <input
                             type="date"

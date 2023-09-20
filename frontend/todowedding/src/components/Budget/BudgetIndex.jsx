@@ -15,14 +15,11 @@ import ExpenseList from "./ExpenseList";
 import BudgetDashboard from "./BudgetDashboard";
 
 const BudgetIndex = () => {
-   
-
     const token = useSelector((state) => state.Auth.token);
     const memberSeq = token ? token.userSeq : 0;
 
     const [incomes, setIncomes] = useState([]);
     const [expenses, setExpenses] = useState([]);
-
 
     // chart정보
     const [brideCnt, setBrideCnt] = useState(0);
@@ -33,8 +30,9 @@ const BudgetIndex = () => {
     useEffect(() => {
         // 지출조회
         axios
-            .post("http://localhost:8085/budget/select", {
-                member_seq: `${memberSeq}`, 
+            // .post("http://localhost:8085/budget/select", {
+            .post("http://172.30.1.7:8085/budget/select", {
+                member_seq: `${memberSeq}`, // memberSeq로 값 변경하기
             })
             .then((res) => {
                 console.log("지출 전체 조회 : ", res.data);
@@ -48,7 +46,8 @@ const BudgetIndex = () => {
     useEffect(() => {
         // 수입조회
         axios
-            .post("http://localhost:8085/income/select", {
+            // .post("http://localhost:8085/income/select", {
+            .post("http://172.30.1.7:8085/income/select", {
                 member_seq: `${memberSeq}`,
             })
             .then((res) => {
@@ -87,8 +86,6 @@ const BudgetIndex = () => {
     useEffect(() => {
         chartRole();
     }, [expenses]);
-
-
 
     return (
         <div>
