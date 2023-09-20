@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://172.30.1.7:3000", "http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3000"})
 @RestController
 public class ScheduleController {
 	

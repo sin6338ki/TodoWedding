@@ -37,6 +37,10 @@ const ExpenseList = ({ expenses = [] },{total}) => {
   // 수입 리스트를 날짜순으로 정렬한 후 슬라이스하여 표시
    const sortedExpenses = [...expenses].sort(sortExpensesByDate);
 
+   // 지출내역 삭제 
+
+   
+
   return (
     <div>
          <div className="grid grid-cols-12 ml-3 pt-3 mb-5">
