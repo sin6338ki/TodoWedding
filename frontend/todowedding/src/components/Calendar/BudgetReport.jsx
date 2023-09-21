@@ -44,6 +44,11 @@ const BudgetReport = () => {
         fetchTotalBudgetAndResult();
     }, [userSeq]);
 
+    //숫자 세 자리 마다 콤마(,) 찍기
+    const numberWithCommas = (x) => {
+        return x.toLocaleString();
+    }
+
     const fianlTotalBudget = (totalBudget || 0); // 총 예산
     const fianlTotalIncome = (totalIncome || 0); // 총 수입
     const fianlTotalExpense = (totalExpense || 0); //총 지출
@@ -51,10 +56,10 @@ const BudgetReport = () => {
 
     return (
         <div>
-            <p className="mb-1">잔액 : {balance}원</p>
-            <p className="mb-1">- 총 예산 : {fianlTotalBudget}원</p>
-            <p className="mb-1">- 총 수입 : {fianlTotalIncome}원</p>
-            <p className="mb-1">- 총 지출 : {fianlTotalExpense}원</p>
+            <p className="mb-1">잔액 : {numberWithCommas(balance)}원</p>
+            <p className="mb-1">- 총 예산 : {numberWithCommas(fianlTotalBudget)}원</p>
+            <p className="mb-1">- 총 수입 : {numberWithCommas(fianlTotalIncome)}원</p>
+            <p className="mb-1">- 총 지출 : {numberWithCommas(fianlTotalExpense)}원</p>
         </div>
     );
 };

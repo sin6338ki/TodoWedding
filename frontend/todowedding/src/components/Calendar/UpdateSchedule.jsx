@@ -36,6 +36,8 @@ const UpdateSchedule = () => {
 
         if (title === "" || startDate === "" || endDate === "") {
             alert("일정 제목과 날짜를 입력해주세요!");
+        } else if (new Date(startDate) > new Date(endDate)) {
+            alert("일정 종료일을 일정 시작일보다 빠르게 설정할 수 없습니다. 일정 날짜를 다시 선택해주세요");
         } else {
             try {
                 // await axios.put(`http://localhost:8085/schedule/${scheduleSeq}`, {
