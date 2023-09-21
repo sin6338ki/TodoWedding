@@ -9,8 +9,10 @@ import { useState } from "react";
 import { addComma } from "../utils/numberUtils";
 import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-const IncomeList = ({ incomes = [] }, { total }) => {
+const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
+    const token = useSelector((state) => state.Auth.token);
     //Pagination
     const limits = 5;
     const [page, setPage] = useState(1);
@@ -41,7 +43,12 @@ const IncomeList = ({ incomes = [] }, { total }) => {
             // const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
-            // 화면에서 삭제효과
+
+            // 지영 수정 부분 =============================
+            if (response.data === "삭제 성공") {
+                findIncomes(token.userSeq);
+            }
+            // ============================================
         } catch (err) {
             console.error("incomeList 삭제 error : ", err);
         }

@@ -55,8 +55,8 @@ const Budget = (props) => {
             };
 
             axios
+                // .post(`http://172.30.1.7:8085/member/total`, memberSeqObj)
                 .post(`http://localhost:8085/member/total`, memberSeqObj)
-                // .post(`http://localhost:8085/member/total`, memberSeqObj)
                 .then((response) => {
                     console.log("222", response);
                     setTotalExpense(response.data.budget_sum_cost);

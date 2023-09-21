@@ -4,6 +4,7 @@ import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
 import { StopEditContext } from "./NewItemContainer";
 import "../../assets/budget-css/NewItemForm.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 import IncomeForm from "./IncomeForm";
 import ExpenseForm from "./ExpenseForm";
@@ -16,6 +17,7 @@ import ExpenseForm from "./ExpenseForm";
  */
 
 const NewItemForm = () => {
+    const token = useSelector((state) => state.Auth.token);
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
 
@@ -97,6 +99,7 @@ const NewItemForm = () => {
                         setIncomeContents("");
                         setIncomeCost("");
                         setEnteredAmountType("income");
+                        location.reload();
                     }
                 })
                 .catch((error) => {
@@ -122,6 +125,7 @@ const NewItemForm = () => {
                         setBudgetExpenseCost("");
                         setBudgetRole("");
                         setBudgetMemo("");
+                        location.reload();
                     }
                 })
                 .catch((error) => {
