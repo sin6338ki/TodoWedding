@@ -32,8 +32,8 @@ const BudgetIndex = () => {
     useEffect(() => {
         // 지출조회 
         axios
-            // .post("http://localhost:8085/budget/select", {
-            .post("http://localhost:8085/budget/select", {
+            // .post("http://172.30.1.7:8085/budget/select", {
+            .post("http://172.30.1.7:8085/budget/select", {
                 member_seq: `${memberSeq}`, // memberSeq로 값 변경하기
             })
             .then((res) => {
@@ -48,8 +48,8 @@ const BudgetIndex = () => {
     useEffect(() => {
         // 수입조회
         axios
-            // .post("http://localhost:8085/income/select", {
-            .post("http://localhost:8085/income/select", {
+            // .post("http://172.30.1.7:8085/income/select", {
+            .post("http://172.30.1.7:8085/income/select", {
                 member_seq: `${memberSeq}`,
             })
             .then((res) => {

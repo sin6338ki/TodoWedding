@@ -33,8 +33,8 @@ const CheckItemSeq = () => {
     // CheckItemSeq에 저장된 항목별 체크리스트 불러오기
     const fetchItems = async () => {
         try {
-            // const response = await axios.get(`http://localhost:8085/checkitem/${checkItemSeq}`);
-            const response = await axios.get(`http://localhost:8085/checkitem/${checkItemSeq}`);
+            // const response = await axios.get(`http://172.30.1.7:8085/checkitem/${checkItemSeq}`);
+            const response = await axios.get(`http://172.30.1.7:8085/checkitem/${checkItemSeq}`);
             setItems(response.data);
             console.log(response.data);
         } catch (error) {
@@ -55,8 +55,8 @@ const CheckItemSeq = () => {
             memberSeq: userSeq,
         };
         try {
-            // const response = await axios.post("http://localhost:8085/todolist", data);
-            const response = await axios.post("http://localhost:8085/todolist", data);
+            // const response = await axios.post("http://172.30.1.7:8085/todolist", data);
+            const response = await axios.post("http://172.30.1.7:8085/todolist", data);
             console.log(response.data);
 
             // // 알림 메시지 표시

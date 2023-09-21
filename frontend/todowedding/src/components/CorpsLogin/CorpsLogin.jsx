@@ -17,8 +17,8 @@ const CorpsLogin = () => {
             alert("아이디 또는 비밀번호를 입력해주세요");
         } else {
             console.log("spring 넘기는 값", loginUserInfo);
-            // axios.post("http://localhost:8085", loginUserInfo); // 기업로그인 경로 확인하기
-            axios.post("http://localhost:8085", loginUserInfo); // 기업로그인 경로 확인하기
+            // axios.post("http://172.30.1.7:8085", loginUserInfo); // 기업로그인 경로 확인하기
+            axios.post("http://172.30.1.7:8085", loginUserInfo); // 기업로그인 경로 확인하기
         }
     };
 

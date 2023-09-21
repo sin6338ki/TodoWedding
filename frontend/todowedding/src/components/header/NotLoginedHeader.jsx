@@ -12,7 +12,7 @@ const NotLoginedHeader = () => {
     return (
         <div className="fixed top-0 z-50 flex flex-row w-[414px] h-[90px] bg-gradient-to-r to-white from-[#D4C7F9]">
             <Link to="/" className="pt-[20px] ml-4">
-                <img src={TodoLogo} alt="ToDo" className="w-[130px]" style={{ cursor: "pointer" }} />
+                <img src={TodoLogo} alt="ToDo" className="w-[100px] mt-2 ml-3" style={{ cursor: "pointer" }} />
             </Link>
             <Link to="/todowedding/login" className="ml-52 self-center no-underline text-[#9F7FFC]">
                 <span className="text-sm text-[#9F7FFC]">로그인</span>

@@ -81,7 +81,7 @@ const MemberBottomBar = () => {
                 ))}
 
             <div className="bottom-bar ">
-                <Link to="todowedding/calendar" className="footer-menu-right" onClick={handleButtonClick}>
+                <Link to="todowedding/calendar" className="footer-menu-right ml-1" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="20px" />
                     <span className="text-[6px] mt-1 font-light">CAL</span>
                 </Link>
