@@ -18,7 +18,7 @@ import "./index.css";
 import "./FullCalendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MarginImage from "./assets/images/MarginImage.png";
-import WebImage from "./assets/images/TodoWebImage.png";
+import WebImage from "./assets/images/intro_img.png";
 
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";
@@ -74,7 +74,7 @@ import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
     return (
-        <div style={{ backgroundColor: "#F8FAF9", marginLeft: "27px" }}>
+        <div style={{ backgroundColor: "#F8FAF9", marginLeft: "13px" }}>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div>
                     <Header />
@@ -143,7 +143,7 @@ function AppContent() {
                     <div style={{ paddingBottom: "20px" }}>
                         <ADSlickSlider />
                     </div>
-                    <img src={WebImage} alt="web-image" />
+                    <img src={WebImage} alt="web-image" className="shadow-md" />
                     <img src={MarginImage} alt="margin-image" style={{ height: "190px" }} />
                 </div>
             </div>

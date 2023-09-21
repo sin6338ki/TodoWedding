@@ -78,8 +78,13 @@ const TotalBudget = () => {
             <form onSubmit={handleSubmit}>
                 <div className="marrydate-header">총 예산을 입력해주세요</div>
                 <div className="marrydate-contents">
-                    <p>↓ 총 예산 비용 ↓ </p>
-                    <input type="number" value={totalBudget} onChange={(e) => setTotalBudget(e.target.value)} />
+                    <input
+                        type="number"
+                        value={totalBudget}
+                        onChange={(e) => setTotalBudget(e.target.value)}
+                        placeholder="총 예산을 입력해 주세요"
+                        className="text-center border border-gray-300 rounded-md p-2"
+                    />
                 </div>
                 <button className="marrydate-btn" type="submit">
                     {hasTotalBudget ? "수정" : "등록"}

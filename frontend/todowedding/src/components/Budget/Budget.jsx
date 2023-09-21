@@ -14,8 +14,8 @@ import { useSelector } from "react-redux";
 
 const style = {
     bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-    container: `max-w-[500px] w-full m-auto rounded-md  p-4`,
-    heading: `text-3xl font-bold text-center text-greay-800 p-2`,
+    container: `w-[433px] m-auto rounded-md  p-4`,
+    heading: `text-3xl font-bold text-center text-gray-800 p-2`,
     form: `flex justify-between`,
     input: `border p-2 w-full text-xl`,
     button: `border p-4 ml-2 bg-purple-500 text-slate-100`,
@@ -66,8 +66,6 @@ const Budget = (props) => {
                 .catch((error) => console.error("Error:", error));
         }
     }, [memberSeq]);
-
-  
 
     return (
         <div className="pocket__status">

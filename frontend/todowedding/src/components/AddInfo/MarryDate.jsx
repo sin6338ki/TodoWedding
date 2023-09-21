@@ -78,7 +78,12 @@ const MarryDate = () => {
             <form onSubmit={handleSubmit}>
                 <div className="marrydate-header text-[#b4b4b4] pt-3">결혼 예정일을 선택해주세요</div>
                 <div className="marrydate-contents">
-                    <input type="date" value={marryDate} onChange={(e) => setMarryDate(e.target.value)} />
+                    <input
+                        type="date"
+                        value={marryDate}
+                        onChange={(e) => setMarryDate(e.target.value)}
+                        className="w-[230px]"
+                    />
                 </div>
                 <button className="marrydate-btn" type="submit">
                     {hasMarryDate ? "수정" : "등록"}
