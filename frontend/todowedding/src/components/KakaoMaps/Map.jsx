@@ -125,7 +125,7 @@ const Map = () => {
         const container = document.getElementById("KakaoMap"); // 지도를 담을 ID
         const options = {
             center: new kakao.maps.LatLng(35.1595454, 126.8526012), // 광주 중심 좌표
-            level: 8, // Level이 낮을 수록 확대, 높을 수록 축소
+            level: 9, // Level이 낮을 수록 확대, 높을 수록 축소
         };
 
         const map = new kakao.maps.Map(container, options); // 지도 생성
@@ -321,7 +321,7 @@ const Map = () => {
 
             <div
                 id="KakaoMap"
-                className="Kakao_Conainer border border-[#9F7FFC] mx-[6px]"
+                className="Kakao_Conainer border border-[#9F7FFC] mx-auto"
                 style={{ width: "400px", height: "490px", marginTop: "10px" }}
             ></div>
             {/* <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a> */}

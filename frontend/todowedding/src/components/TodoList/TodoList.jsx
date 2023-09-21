@@ -17,7 +17,7 @@ const style = {
     heading: `pt-3 text-3xl font-bold text-center text-greay-800`,
     form: `flex justify-between mt-[50px] mx-[25px] h-[40px] mr-[30px]`,
     input: `border p-2 w-full text-sm`,
-    button: `p-1 bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] text-slate-100`,
+    button: `p-1 ml-1 bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] text-slate-100`,
     count: `text-center p-2`,
 };
 
@@ -42,8 +42,6 @@ const TodoList = () => {
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
     const [isChecked, setIsChecked] = useState();
-
-
 
     // 2.전체 투두리스트 조회
     useEffect(() => {

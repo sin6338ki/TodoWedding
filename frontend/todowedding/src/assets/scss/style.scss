@@ -841,7 +841,8 @@ D-Day CheckList 관련
     height: 60px;
     border: 1px solid #d4c7f9;
     border-radius: 10px 10px 0 0;
-    margin: 210px 10px 0 50px;
+    margin: 210px 0 0 55px;
+    padding-top: 16px;
     background-color: #d4c7f9;
     font-family: "Pretendard-Regular";
     text-align: center;
@@ -854,8 +855,8 @@ D-Day CheckList 관련
     width: 320px;
     border: 1px solid rgb(240, 240, 240);
     border-radius: 0 0 10px 10px;
-    margin: 0 20px 0 50px;
-    padding: 60px 0 40px 0;
+    margin: 0 0px 0 55px;
+    padding: 60px 0 60px 0;
     font-family: "Pretendard-Regular";
     text-align: center;
     color: rgb(120, 120, 120);
@@ -886,7 +887,7 @@ D-Day CheckList 관련
 /* 버튼들을 포함하는 부모 div 스타일 */
 .map_btn_container {
     display: flex;
-    margin: 100px 0 3px 0;
+    margin: 100px 15px 3px 15px;
 }
 
 /* 전체 버튼 스타일 */
