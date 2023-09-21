@@ -11,6 +11,9 @@ import { useState } from 'react';
 import { addComma } from "../utils/numberUtils";
 import Pagination from ".././AdminPage/Pagination";
 import axios from 'axios';
+import { FaRegTrashAlt } from "react-icons/fa";
+
+
 
 
 const ExpenseList = ({ expenses = [] },{total}) => {
@@ -58,30 +61,30 @@ const ExpenseList = ({ expenses = [] },{total}) => {
 
   return (
     <div>
-         <div className="grid grid-cols-12 ml-3 pt-3 mb-5">
-                <div className="text-center font-bold col-span-1 ">NO</div>
-                <div className="text-center font-bold col-span-3 ">날짜</div>
-                <div className="text-center font-bold col-span-2 ">지출비용</div>
-                <div className="text-center font-bold col-span-3">내용</div>
-                <div className="text-center font-bold col-span-1">분담</div>
-                <div className="text-center font-bold col-span-2">삭제</div>
+         <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
+                {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
+                <div className="text-center text-xs font-bold col-span-3 ">날짜</div>
+                <div className="text-center text-xs font-bold col-span-3 ">지출비용</div>
+                <div className="text-center text-xs font-bold col-span-3">내용</div>
+                <div className="text-center text-xs font-bold col-span-1">분담</div>
+                <div className="text-center text-xs font-bold col-span-2">삭제</div>
         </div> 
          
                 {sortedExpenses.slice(offset, offset + limits).map((expenses, idx) => {            
                    // 새로운 변수를 사용하여 번호 계산
                     const itemNumber = (page - 1) * limits + idx + 1;
                     return (
-                        <div className='grid grid-cols-12 ml-3 pt-3 mb-5' key={idx}>
-                            <div className="text-center col-span-1 mt-1 text-xs">{itemNumber}</div>
+                        <div className='grid grid-cols-12 ml-3 pt-3 mb-1' key={idx}>
+                            {/* <div className="text-center col-span-1 mt-1 text-xs">{itemNumber}</div> */}
                             <div className="text-center col-span-3 mt-1 text-xs">{expenses.budget_expense_dt}</div>
-                            <div className="text-center col-span-2 mt-2 text-xs">{addComma(expenses.budget_cost.toString())}원</div>
+                            <div className="text-center col-span-3 mt-1 text-xs">{addComma(expenses.budget_cost.toString())}원</div>
                             <div className="text-center col-span-3 mt-1 text-xs">{expenses.budget_item}</div>        
                             <div className="text-center col-span-1 mt-1 text-xs">{expenses.budget_role}</div>   
                             <button
                                   onClick={()=> expenseDelete(expenses.budget_seq)}
-                                  className='text-center col-span-2 mt-1 text-xs'
+                                  className='text-center col-span-2 mt-1 ml-6 text-xs'
                             >
-                              삭제
+                              {<FaRegTrashAlt />}
                             </button>  
                         </div>
                   
@@ -89,18 +92,27 @@ const ExpenseList = ({ expenses = [] },{total}) => {
                     })} 
                 
               {/* 더보기 버튼 */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end' , marginLeft:'40px'}}>
               {offset + limits <= expenses.length && (
-                  <button onClick={handleLoadMore} className='mt-[20px]'>
+                  <button onClick={handleLoadMore} className='mt-[20px]' style={{ color: '#d68aff' }}>
                     더 보기
+                    {/* <img className="zoombutton" src={zoombutton} alt="더보기" width="20px" /> */}
+                    <svg height="10" width="50">
+                         <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
+                    </svg>
                   </button>
                 )}
+                </div>
 
                {/* 첫 페이지로 돌아가는 버튼 */}
               {offset + limits > expenses.length &&  page > 1 && (
                 <>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <button onClick={() => setPage(1)} className='mt-[20px]'>
+                  <button onClick={() => setPage(1)} className='mt-[20px]' style={{ color: '#d68aff' }}>
                     처음으로
+                    <svg height="10" width="50">
+                        <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
+                    </svg>
                   </button>
                   </div>
                 </>

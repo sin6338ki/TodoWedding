@@ -27,8 +27,8 @@ const Kakaologin = () => {
     }, [userSeq]);
 
     // 사용자가 로그인 버튼 선택시 이동되는 URL
-    // const loginURL = `https://kauth.kakao.com/oauth/authorize?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`;
-    const loginURL = `https://kauth.kakao.com/oauth/authorize?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&redirect_uri=http://172.30.1.7:3000/auth/kakao/callback&response_type=code`;
+    const loginURL = `https://kauth.kakao.com/oauth/authorize?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`;
+    // const loginURL = `https://kauth.kakao.com/oauth/authorize?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&redirect_uri=http://172.30.1.7:3000/auth/kakao/callback&response_type=code`;
 
     return (
         <div className="Login-Page">

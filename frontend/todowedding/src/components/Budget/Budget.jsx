@@ -25,7 +25,7 @@ const style = {
 //PocketStatus (상위컴포넌트) --> 입력하면 바로렌더링 하는 부분 수정필요
 const Budget = (props) => {
     const { filteredItems, filterBaseYear } = useContext(FilterContext);
-    const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산 --> 어디서 가져와야할까 ?
+    const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산 
     const [totalIncome, setTotalIncome] = useState(0); // 총수입
     const [totalExpense, setTotalExpense] = useState(0); // 총지출
     const twoDigitYear = filterBaseYear.slice(-2);

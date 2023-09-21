@@ -1,5 +1,5 @@
 import React, { useDebugValue, useEffect, useState } from "react";
-import { FaCloudDownloadAlt, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

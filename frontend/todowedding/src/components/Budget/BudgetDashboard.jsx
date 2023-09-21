@@ -77,10 +77,10 @@ const BudgetDashboard = ({incomes,expenses,brideCnt,broomCnt,bothCnt,etcCnt}) =>
             <div className="rounded-md border shadow-md text-black">
                 <div className="text-xl text-gray-500 m-4">Total Expense 📊 </div>
                 <div className="text-4xl m-4 text-[#b66dff]">{expenses.length} 건</div>
-                <div className="text-xl text-gray-500 m-4">신랑 {broomPercentage.toFixed(2)} %</div>
-                <div className="text-xl text-gray-500 m-4">신부 {bridePercentage.toFixed(2)} %</div>
-                <div className="text-xl text-gray-500 m-4">공동 {bothPercentage.toFixed(2)} %</div>
-                <div className="text-xl text-gray-500 m-4">기타 {etcPercentage.toFixed(2)} %</div>
+                <div className="text-s text-gray-500 m-4">신랑 {broomPercentage.toFixed(2)} %</div>
+                <div className="text-s text-gray-500 m-4">신부 {bridePercentage.toFixed(2)} %</div>
+                <div className="text-s text-gray-500 m-4">공동 {bothPercentage.toFixed(2)} %</div>
+                <div className="text-s text-gray-500 m-4">기타 {etcPercentage.toFixed(2)} %</div>
             </div>
             <div className="my-5  w-full m-auto">
                 <div className="my-3 pb-4 font-bold text-gray-500 underline underline-offset-4">지출 분담 그래프</div>
@@ -88,8 +88,8 @@ const BudgetDashboard = ({incomes,expenses,brideCnt,broomCnt,bothCnt,etcCnt}) =>
             </div>
             <div className="rounded-md border shadow-md text-black">
                 <div className="text-xl text-gray-500 m-4">💰 수입 지출 그래프</div>
-                <div className="text-xl text-gray-500 m-4">수입 {incomePercentage.toFixed(2)}  %</div>
-                <div className="text-xl text-gray-500 m-4">지출 {expensePercentage.toFixed(2)} %</div>           
+                <div className="text-s text-gray-500 m-4">수입 {incomePercentage.toFixed(2)}  %</div>
+                <div className="text-s text-gray-500 m-4">지출 {expensePercentage.toFixed(2)} %</div>           
             </div>
          
             <div className='my-5 w-full m-auto'>
