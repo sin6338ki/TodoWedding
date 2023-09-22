@@ -54,18 +54,9 @@ public class KakaoLoginService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
-<<<<<<< HEAD
-<<<<<<< HEAD
-//		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
 		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
-=======
-		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
-//		params.add("redirect_uri", "http://172.30.1.7:3000/auth/kakao/callback");
->>>>>>> origin/jiyoung
-=======
-		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
-//		params.add("redirect_uri", "http://172.30.1.7:3000/auth/kakao/callback");
->>>>>>> origin/yougwang
+
+
 		params.add("code", code);
 		
 
@@ -155,9 +146,47 @@ public class KakaoLoginService {
 		KakaoData.put("userseq",Seq);
 		KakaoData.put("userNick",nickname);
 		KakaoData.put("kakaoAccess",response.getBody());
+		KakaoData.put("kakaoRefresh", oauthToken.getRefresh_token());
 		
 		return KakaoData; 
 	}	
+	
+	
+	// refreshToken 서비스
+	public String refreshAccessToken(String refreshToken) {
+	    RestTemplate rt = new RestTemplate();
+
+	    // HttpHeader 오브젝트 생성
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+	    // HttpBody 오브젝트 생성
+	    MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+	    params.add("grant_type", "refresh_token");
+	    params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de"); 
+	    params.add("refresh_token", refreshToken);
+
+	    // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
+	    HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
+
+	    ResponseEntity<String> response = rt.exchange(
+	        "https://kauth.kakao.com/oauth/token",
+	        HttpMethod.POST,
+	        kakaoTokenRequest,
+	        String.class);
+
+	     ObjectMapper objectMapper = new ObjectMapper();
+	     OAuthToken oauthToken;
+	     try {
+	         oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
+	     } catch (JsonProcessingException e) {
+	         e.printStackTrace();
+	         throw new RuntimeException(e); // or other error handling.
+	     }
+
+	     return oauthToken.getAccess_token(); 
+	}
+	
 }
 
 

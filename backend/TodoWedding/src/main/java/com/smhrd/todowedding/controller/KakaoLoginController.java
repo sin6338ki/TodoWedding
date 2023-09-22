@@ -1,6 +1,7 @@
 package com.smhrd.todowedding.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,6 +69,22 @@ public class KakaoLoginController {
 		log.info("accessToken : " + accessToken);
 		return KakaoData;
 	}
+	
+	
+	// 리프레시 토큰 검증 로직
+    // 검증에 성공하면 새로운 액세스 토큰 발급
+	@PostMapping("/member/refresh")
+	public ResponseEntity<Map<String, Object>> refreshAccessToken(@RequestBody Map<String, Object> payload) {
+	    String refreshToken = (String) payload.get("refreshToken");
+	    
+	    String newAccessToken = kakaoLoginService.refreshAccessToken(refreshToken);
+	    log.info("새로운 카카오 access 토큰 : " + newAccessToken);
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("accessToken", newAccessToken);
+	    
+	    return ResponseEntity.ok(response);
+	}
+	
 	
 	// 전체 회원 조회 
 	@GetMapping("/member")
