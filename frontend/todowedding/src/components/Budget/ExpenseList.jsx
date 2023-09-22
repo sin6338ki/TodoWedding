@@ -10,6 +10,7 @@ import { addComma } from "../utils/numberUtils";
 import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const token = useSelector((state) => state.Auth.token);

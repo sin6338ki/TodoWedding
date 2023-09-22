@@ -25,7 +25,6 @@ const CalCallback = () => {
         console.log("code :", code);
         // 3가지의 정보 전달 (사용자 seq, nick, access)
         axios
-            // .get(`http://172.30.1.7:8085/auth/kakao/cal/callback?code=${code}`)
             .get(`http://172.30.1.7:8085/auth/kakao/cal/callback?code=${code}`)
             .then((res) => {
                 const access_token = JSON.parse(res.data.kakaoAccess).access_token;

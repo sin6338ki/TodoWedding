@@ -14,7 +14,6 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
         console.log("input : ", input);
         axios
             .get(`http://localhost:8085/admin/member?keyword=${input}`)
-            // .get(`http://172.30.1.7:8085/admin/member?keyword=${input}`)
             .then((res) => {
                 console.log("회원 검색 response : ", res.data);
                 setMembers(res.data);

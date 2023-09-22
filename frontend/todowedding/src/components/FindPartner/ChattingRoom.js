@@ -33,7 +33,6 @@ const ChattingRoom = () => {
     useEffect(() => {
         //이전 채팅 내역 불러오기
         axios
-            // .get(`http://localhost:8085/chat/message/${chatRoomSeq}`)
             .get(`http://localhost:8085/chat/message/${chatRoomSeq}`)
             .then((res) => {
                 console.log("채팅 내역 불러오기", res.data);

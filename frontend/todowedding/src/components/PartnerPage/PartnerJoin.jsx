@@ -39,7 +39,6 @@ const PartnerJoin = () => {
     const applyJoin = () => {
         console.log("회원가입 폼 입력 데이터 확인 : ", joinData);
         axios
-            // .post("http://localhost:8085/partner/join", joinData)
             .post("http://localhost:8085/partner/join", joinData)
             .then((res) => {
                 console.log("회원가입 response : ", res.data);
@@ -56,7 +55,6 @@ const PartnerJoin = () => {
     const checkSameId = () => {
         console.log("중복체크 아이디 : ", partnerId);
         axios
-            // .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
             .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
             .then((res) => {
                 if (res.data == 1) {

@@ -10,6 +10,7 @@ import { addComma } from "../utils/numberUtils";
 import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     const token = useSelector((state) => state.Auth.token);
@@ -40,7 +41,6 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     const incomeDelete = async (incomeSeq) => {
         try {
             console.log("income리스트 삭제실행 , incomeSeq", incomeSeq);
-            // const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
 

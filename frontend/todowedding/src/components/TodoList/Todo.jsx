@@ -63,7 +63,6 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         };
 
         try {
-            // const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
             const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
             console.log("성공 checked ", checkResult);
             await setChangeCheck(!changeCheck);
