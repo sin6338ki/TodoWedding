@@ -31,28 +31,33 @@ const ChattingRoom = () => {
     //없다면 새로운 채팅방 생성 및 구독
 
     useEffect(() => {
-        //이전 채팅 내역 불러오기
-        axios
-            .get(`http://172.30.1.7:8085/chat/message/${chatRoomSeq}`)
-            .then((res) => {
-                console.log("채팅 내역 불러오기", res.data);
-                res.data.forEach((element) => {
-                    const chatting = {
-                        chatRoomSeq: element.chat_room_seq,
-                        chattingContents: element.chatting_contents,
-                        chattingCreateDt: element.chatting_create_dt,
-                        chattingSender: element.chatting_sender,
-                        chattingSenderType: element.chatting_sender_type,
-                        chattingSeq: element.chatting_seq,
-                    };
-                    setChatList((chats) => [...chats, chatting]);
+        const render = async () => {
+            //이전 채팅 내역 불러오기
+            await axios
+                .get(`http://localhost:8085/chat/message/${chatRoomSeq}`)
+                .then((res) => {
+                    console.log("채팅 내역 불러오기", res.data);
+                    res.data.forEach((element) => {
+                        const chatting = {
+                            chatRoomSeq: element.chat_room_seq,
+                            chattingContents: element.chatting_contents,
+                            chattingCreateDt: element.chatting_create_dt,
+                            chattingSender: element.chatting_sender,
+                            chattingSenderType: element.chatting_sender_type,
+                            chattingSeq: element.chatting_seq,
+                        };
+                        setChatList((chats) => [...chats, chatting]);
+                    });
+                })
+                .catch((err) => {
+                    console.log("채팅 내역 불러오기 error", err);
                 });
-            })
-            .catch((err) => {
-                console.log("채팅 내역 불러오기 error", err);
-            });
-        //최초 렌더링시 웹소켓 연결
-        connect();
+            //최초 렌더링시 웹소켓 연결
+            await connect();
+        };
+
+        render();
+
         return () => disConnect();
     }, [location]);
 
@@ -71,9 +76,9 @@ const ChattingRoom = () => {
     const connect = () => {
         try {
             console.log("로그인 접속자 확인", token.type, token.userNick);
+
             const newClient = new StompJs.Client({
-                // brokerURL: "ws://172.30.1.7:8085/stomp-chat",
-                brokerURL: "ws://172.30.1.7:8085/stomp-chat",
+                brokerURL: "ws://localhost:8085/stomp-chat",
                 connectHeaders: {
                     //header에 채팅방과 참가자 정보 함께 전송
                     chatRoomSeq: location.pathname.split("/")[3],
@@ -91,11 +96,18 @@ const ChattingRoom = () => {
             // //해당 채팅방 구독
             newClient.onConnect = () => {
                 newClient.subscribe(`/sub/chat/${chatRoomSeq}`, callback);
+
+                newClient.publish({
+                    destination: "/pub/enter/" + chatRoomSeq,
+                    body: JSON.stringify({
+                        type: "ENTER",
+                        chattingContents: token.userNick + "님이 입장하셨습니다",
+                    }),
+                    headers: { priority: "9" },
+                });
             };
 
             newClient.activate(); //클라이언트 활성화
-            // changeClient(newClient);
-
             setStompClient(newClient);
         } catch (err) {
             console.log("websocket 연결 error : ", err);
@@ -105,9 +117,11 @@ const ChattingRoom = () => {
     //callback 함수
     const callback = async (message) => {
         console.log("message : ", message.body);
+
         if (message.body) {
             let chatting = await JSON.parse(message.body);
             console.log("chatting", chatting);
+
             await setContent(chatting);
             await setChatList((chats) => [...chats, chatting]);
         }
@@ -140,6 +154,7 @@ const ChattingRoom = () => {
         stompClient.publish({
             destination: "/pub/chat/" + chatRoomSeq,
             body: JSON.stringify({
+                type: "TALK",
                 chattingCreateDt: dateString,
                 chattingSender: token.userNick,
                 chattingContents: content,
@@ -153,33 +168,47 @@ const ChattingRoom = () => {
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
     const msgBox = () => {
         return chatList.map((item, idx) => {
-            if (item.chattingSenderType != token.type) {
+            if (item.type === "ENTER") {
+                console.log("ENTER : ", item.chattingContents);
                 return (
                     <div key={idx} className="snap-center mr-3 my-2 text-xs w-[400px] ml-3">
-                        <div className="my-1 text-left px-2 py-1 rounded-full bg-[#FFD7A9] border-none w-fit">
-                            <span>{item.chattingSender}</span>
-                        </div>
                         <div className="flex flex-row">
-                            <div className="py-2 mr-1 text-left shadow-md border rounded-md border-pink-300 shadow-white-300 min-w-[150px]  max-w-[220px]">
+                            <div className="py-2 ma text-center shadow-md border rounded-full shadow-white-300 min-w-[150px] max-w-[220px]">
                                 <span className="px-2">{item.chattingContents}</span>
                             </div>
-                            <div className="mt-1 text-left text-[8px]">
-                                <span>{item.chattingCreateDt}</span>
+                        </div>
+                    </div>
+                );
+            } else if (item.type === "END") {
+            } else {
+                if (item.chattingSenderType != token.type) {
+                    return (
+                        <div key={idx} className="snap-center mr-3 my-2 text-xs w-[400px] ml-3">
+                            <div className="my-1 text-left px-2 py-1 rounded-full bg-[#FFD7A9] border-none w-fit">
+                                <span>{item.chattingSender}</span>
+                            </div>
+                            <div className="flex flex-row">
+                                <div className="py-2 mr-1 text-left shadow-md border rounded-md border-pink-300 shadow-white-300 min-w-[150px]  max-w-[220px]">
+                                    <span className="px-2">{item.chattingContents}</span>
+                                </div>
+                                <div className="mt-1 text-left text-[8px]">
+                                    <span>{item.chattingCreateDt}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                );
-            } else {
-                return (
-                    <div key={idx} className="flex flex-row snap-center self-end my-2 text-xs mr-3">
-                        <div className="mr-1 text-right text-[8px] align-self-end">
-                            <span>{item.chattingCreateDt}</span>
+                    );
+                } else {
+                    return (
+                        <div key={idx} className="flex flex-row snap-center self-end my-2 text-xs mr-3">
+                            <div className="mr-1 text-right text-[8px] align-self-end">
+                                <span>{item.chattingCreateDt}</span>
+                            </div>
+                            <div className="py-2 shadow-md shadow-gray-300 border rounded-md border-black mt-3 text-right min-w-[150px] max-w-[220px]">
+                                <span className="px-2">{item.chattingContents}</span>
+                            </div>
                         </div>
-                        <div className="py-2 shadow-md shadow-gray-300 border rounded-md border-black mt-3 text-right min-w-[150px] max-w-[220px]">
-                            <span className="px-2">{item.chattingContents}</span>
-                        </div>
-                    </div>
-                );
+                    );
+                }
             }
         });
     };
