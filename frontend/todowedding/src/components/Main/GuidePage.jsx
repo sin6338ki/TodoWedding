@@ -12,7 +12,7 @@ const GuidePage = () => {
     const images = [Guide1, Guide2, Guide3, Guide4, Guide5];
 
     return (
-        <div>
+        <div style={{marginTop: "81px"}}>
         <img src={images[Number(id) - 1]} alt={`Image${id}`} />
     </div>
     );

@@ -74,7 +74,7 @@ import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
     return (
-        <div style={{ backgroundColor: "#F8FAF9", marginLeft: "13px" }}>
+        <div style={{ backgroundColor: "#F8FAF9", marginLeft: "23px", marginRight: "20px" }}>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div>
                     <Header />
@@ -138,7 +138,7 @@ function AppContent() {
                 </div>
 
                 {/*웹 이미지 */}
-                <div style={{ width: " 350px", backgroundColor: "#F8FAF9", marginLeft: "25px" }}>
+                <div style={{ width: " 350px", backgroundColor: "#F8FAF9"}}>
                     <img src={MarginImage} alt="margin-image" style={{ height: "90px" }} />
                     <div style={{ paddingBottom: "20px" }}>
                         <ADSlickSlider />

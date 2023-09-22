@@ -32,8 +32,8 @@ const Kakaologin = () => {
 
     return (
         <div className="Login-Page">
-            <img src={Logo} width="300px" style={{ margin: "20px 0 47px 0" }} />
-            <p style={{ marginBottom: "30px" }}>
+            <img src={Logo} width="300px" style={{ marginBottom: "30px" }} />
+            <p style={{ margin: "0 0 20px 20px" }}>
                 카카오 계정으로 간편하게 로그인하고
                 <br />
                 TodoWedding의 다양한 서비스를
@@ -44,6 +44,7 @@ const Kakaologin = () => {
                     src={KakaoLogin}
                     width={300}
                     alt="Kakao Login"
+                    style={{ margin: "0 0 5px 9px" }}
                     onClick={() => {
                         console.log("kakaologin 클릭!");
                     }}
@@ -51,7 +52,7 @@ const Kakaologin = () => {
             </a>
             <div className="Partner-Login">
                 <Link to="../partner/login" relative="path" className="Partner-Login-Link">
-                    <p>기업계정으로 시작하기</p>
+                    <p style={{ marginLeft: "10px", paddingTop: "5px" }}>기업계정으로 시작하기</p>
                 </Link>
             </div>
         </div>

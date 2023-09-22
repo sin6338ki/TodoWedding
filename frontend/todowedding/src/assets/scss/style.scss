@@ -57,17 +57,17 @@ Login 관련
 *******************/
 
 .Login-Page {
-    margin: 140px 0 100px 20px;
+    margin: 105px 0 100px 20px;
     padding: 100px 80px 0 60px;
     font-size: small;
     box-sizing: border-box;
-    border: 1px solid #8483c9;
+    // border: 1px solid #8483c9;
     border-radius: 10px;
     font-family: "Pretendard-Regular";
     text-align: center;
     align-items: center;
-    height: 580px;
-    width: 380px;
+    height: 520px;
+    width: 376px;
 }
 
 .kakao {
@@ -138,7 +138,7 @@ Body 관련
     width: 414px;
     padding-bottom: 100px;
     height: 100%;
-    overflow: hidden;
+    overflow:hidden;
     //  background-color: #fff;
 }
 
@@ -272,14 +272,14 @@ BottomBar 관련
 .main-itemchecklist {
     box-sizing: border-box;
     position: relative;
-    width: 140px;
+    width: 160px;
     height: 50px;
     border: 1px solid #9f7ffc;
     border-radius: 30px;
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    margin: 80px 0 0 30px;
+    margin: 48px 0 0 26px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
     color: #ffffff;
@@ -291,14 +291,14 @@ BottomBar 관련
 .main-ddaychecklist {
     box-sizing: border-box;
     position: relative;
-    width: 140px;
+    width: 160px;
     height: 50px;
     border: 1px solid #9f7ffc;
     border-radius: 30px;
     padding-top: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 60px 0 0 30px;
+    padding-left: 18px;
+    padding-right: 18px;
+    margin: 40px 0 0 26px;
     background-color: #9f7ffc; //#a5a4dd;
     font-family: "Pretendard-Regular";
     color: #ffffff;
@@ -324,27 +324,28 @@ BottomBar 관련
 //메인페이지 - 웨딩 항목별 체크리스트 Container
 .main-itemchecklist-container {
     justify-content: center;
-    margin: 60px 10px 0 20px;
+    margin: 30px 10px 0 10px;
 }
 
-//
+//메인페이지 - 웨딩별 D-Day 체크리스트 Header
 .main-daychecklist-header {
     box-sizing: border-box;
-    width: 380px;
+    width: 373px;
     height: 75px;
     border-radius: 10px 10px 0 0;
-    margin: 180px 0 0 20px;
+    margin: 140px 0 0 20px;
     padding-top: 26px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
     color: #ffffff;
     text-align: center;
+    font-size: 1;
 }
 
 //메인페이지 - 웨딩 D-Day 체크리스트 Container
 .main-ddaychecklist-container {
     justify-content: center;
-    margin: 40px 55px 50px 20px;
+    margin: 23px 55px 50px 10px;
 }
 
 /**************************************************************************** Modal
@@ -655,22 +656,6 @@ FullCalendar 관련
 항목별 CheckList 관련
 *******************/
 
-//항목별 체크리스트 - 소개글
-.checkitem-intro {
-    box-sizing: border-box;
-    position: relative;
-    width: 380px;
-    height: 100px;
-    left: 20px;
-    top: 150px;
-    background: #f5f1ff;
-    border: 1px solid #9f7ffc;
-    border-radius: 10px;
-    padding: 25px 0 0 0;
-    font-family: "Pretendard-Regular";
-    text-align: center;
-}
-
 //항목별 체크리스트 - 아이템
 .checkitem-item {
     box-sizing: border-box;
@@ -700,25 +685,26 @@ FullCalendar 관련
 .checkitemseq-intro {
     box-sizing: border-box;
     position: relative;
-    width: 380px;
+    width: 373px;
     height: 100px;
     left: 20px;
-    top: 150px;
+    top: 115px;
     background: #f5f1ff;
     border: 1px solid #8483c9;
     border-radius: 10px;
     padding-top: 16px;
     text-align: center;
+    font-size: 15px;
     font-family: "Pretendard-Regular";
 }
 
 //항목별 체크리스트 Seq - 일정리스트
 .checkitemseq-item {
     box-sizing: border-box;
-    width: 380px;
+    width: 373px;
     border: 1px solid #9f7ffc;
     border-radius: 10px;
-    margin: 180px 0 30px 20px;
+    margin: 140px 0 30px 20px;
     padding: 10px 0 10px 20px;
 }
 
@@ -757,6 +743,23 @@ FullCalendar 관련
 D-Day CheckList 관련
 *******************/
 
+//항목별 체크리스트 - 소개글
+.checkitem-intro {
+    box-sizing: border-box;
+    position: relative;
+    width: 373px;
+    height: 100px;
+    left: 20px;
+    top: 115px;
+    background: #f5f1ff;
+    border: 1px solid #9f7ffc;
+    border-radius: 10px;
+    padding-top: 28px;
+    font-family: "Pretendard-Regular";
+    text-align: center;
+    font-size: 15px;
+}
+
 //D-Day 체크리스트 - selectBox
 .daychecklist-selectbox {
     margin: 190px 59px 40px 59px;
@@ -771,7 +774,7 @@ D-Day CheckList 관련
     width: 380px;
     height: 65px;
     border-radius: 10px 10px 0 0;
-    margin: 80px 59px 0 20px;
+    margin: 50px 59px 0 20px;
     padding-top: 23px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
@@ -782,7 +785,7 @@ D-Day CheckList 관련
 //D-Day 체크리스트 - 체크리스트 내용
 .daychecklist-contents {
     box-sizing: border-box;
-    width: 380px;
+    width: 373px;
     border: 1px solid #9f7ffc;
     border-radius: 0 0 10px 10px;
     margin: 0 59px 40px 20px;

@@ -21,6 +21,7 @@ import AD4 from "../../assets/images/AD/todoImage4.png"
 const ADSlickSlider = () => {
     const settings = {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 100,
       slidesToShow: 1,
