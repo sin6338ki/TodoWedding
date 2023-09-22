@@ -13,8 +13,8 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
         const input = document.getElementById("searchMemberInput").value;
         console.log("input : ", input);
         axios
+            .get(`http://localhost:8085/admin/member?keyword=${input}`)
             // .get(`http://172.30.1.7:8085/admin/member?keyword=${input}`)
-            .get(`http://172.30.1.7:8085/admin/member?keyword=${input}`)
             .then((res) => {
                 console.log("회원 검색 response : ", res.data);
                 setMembers(res.data);
@@ -33,7 +33,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
                 <input
                     type="text"
                     id="searchMemberInput"
-                    className="border border-[#465973] ml-3 align-middle text-xs"
+                    className="border border-[#465973] ml-3 pl-2 align-middle text-xs"
                 ></input>
                 <button
                     className="bg-[#465973] w-10 text-white text-xs"

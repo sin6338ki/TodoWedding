@@ -183,7 +183,7 @@ public class PartnerService {
 	public String isAdmin(Long partnerSeq) {
 		String isAdminResult = "";
 		try {
-			if(partnerMapper.isAdmin(partnerSeq) > 0) {
+			if(partnerMapper.isAdmin(partnerSeq) != null) {
 				isAdminResult = "Y";
 			}else{
 				isAdminResult = "N";
@@ -195,8 +195,8 @@ public class PartnerService {
 	}
 	
 	//검색 기능 
-	public List<PartnerResponseDto> searchPartner(String keyword){
-		List<PartnerResponseDto> searchPartnerResult = null;
+	public List<JSONObject> searchPartner(String keyword){
+		List<JSONObject> searchPartnerResult = null;
 		try {
 			searchPartnerResult = partnerMapper.searchPartner(keyword);
 		}catch(Exception e) {

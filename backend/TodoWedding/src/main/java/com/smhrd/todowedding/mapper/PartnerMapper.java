@@ -77,10 +77,10 @@ public interface PartnerMapper {
     
     //Admin 계정 여부 판단 
     @Select("select * from tw_partner where partner_seq=#{partnerSeq} and admin_yn='Y'")
-    public int isAdmin(Long partnerSeq);
+    public JSONObject isAdmin(Long partnerSeq);
     
 	//검색 기능
-	@Select("select partner_seq, partner_id, partner_pw, partner_name, partner_registration, partner_tel, partner_link, partner_manager, partner_manager_tel, partner_address from tw_partner where partner_id like '%${keyword}%' or partner_name like '%${keyword}%'")
-	public List<PartnerResponseDto> searchPartner(String keyword);//검색 기능 
+	@Select("select partner_seq, partner_code, partner_id, partner_pw, partner_name, partner_registration, partner_tel, partner_link, partner_manager, partner_manager_tel, partner_address from tw_partner where partner_id like '%${keyword}%' or partner_name like '%${keyword}%'")
+	public List<JSONObject> searchPartner(String keyword);//검색 기능 
     
 }

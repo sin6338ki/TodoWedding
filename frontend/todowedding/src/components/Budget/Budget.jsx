@@ -25,7 +25,7 @@ const style = {
 //PocketStatus (상위컴포넌트) --> 입력하면 바로렌더링 하는 부분 수정필요
 const Budget = (props) => {
     const { filteredItems, filterBaseYear } = useContext(FilterContext);
-    const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산 
+    const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산
     const [totalIncome, setTotalIncome] = useState(0); // 총수입
     const [totalExpense, setTotalExpense] = useState(0); // 총지출
     const twoDigitYear = filterBaseYear.slice(-2);
@@ -55,8 +55,8 @@ const Budget = (props) => {
             };
 
             axios
-                .post(`http://172.30.1.7:8085/member/total`, memberSeqObj)
                 // .post(`http://172.30.1.7:8085/member/total`, memberSeqObj)
+                .post(`http://localhost:8085/member/total`, memberSeqObj)
                 .then((response) => {
                     console.log("222", response);
                     setTotalExpense(response.data.budget_sum_cost);

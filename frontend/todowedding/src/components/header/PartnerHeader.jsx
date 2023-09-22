@@ -15,7 +15,7 @@ const PartnerHeader = ({ loginUserNickname }) => {
             <Link to="/todowedding/partner" className="pt-[25px] ml-5">
                 <img src={TodoLogo} alt="ToDo" width="110px" style={{ cursor: "pointer" }} />
             </Link>
-            <div className="text-xs ml-36 self-center text-center">
+            <div className="text-xs ml-8 self-center text-center">
                 반가워요, <span className="text-bold text-[#9F7FFC]">{loginUserNickname}</span>님
             </div>
         </div>

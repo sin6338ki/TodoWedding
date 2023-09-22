@@ -35,8 +35,8 @@ const Mypage = () => {
                 console.log("Unlink response:", unlinkResponse);
 
                 // 서버에 회원 정보 삭제 요청
+                const deleteResponse = await axios.delete(`http://localhost:8085/member/delete?member_seq=${userSeq}`);
                 // const deleteResponse = await axios.delete(`http://172.30.1.7:8085/member/delete?member_seq=${userSeq}`);
-                const deleteResponse = await axios.delete(`http://172.30.1.7:8085/member/delete?member_seq=${userSeq}`);
                 console.log("Delete response:", deleteResponse);
 
                 // 로그아웃 처리

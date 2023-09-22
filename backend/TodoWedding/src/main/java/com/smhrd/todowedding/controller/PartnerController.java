@@ -130,7 +130,7 @@ public class PartnerController {
     
 	//회원 검색
 	@GetMapping(value="admin/partner")
-	public List<PartnerResponseDto> searchPartner(@RequestParam("keyword") String keyword){
+	public List<JSONObject> searchPartner(@RequestParam("keyword") String keyword){
 		log.info("keyword : {}", keyword);
 		return partnerService.searchPartner(keyword);
 	}

@@ -2,14 +2,12 @@ import React, { useCallback, useEffect, useState, useMemo } from "react";
 import BudgetContainer, { FilterContext } from "./BudgetContainer";
 import NewItemContainer from "./NewItemContainer";
 
-
 export const ItemDispatchContext = React.createContext();
 
 const BudgetApp = () => {
     const [isAddItem, setIsAddItem] = useState(false);
     const [nextItemId, setNextItemId] = useState(0);
     const [items, setItems] = useState([]);
-   
 
     useEffect(() => {
         const localItems = JSON.parse(localStorage.getItem("items"));
@@ -41,12 +39,11 @@ const BudgetApp = () => {
                   addItemData 객체를 받아서 items 배열에 추가하고, 
                   nextItemId 값을 1 증가시켜줍니다
     */
-    const onAdd = useCallback((addItemData) => { 
+    const onAdd = useCallback((addItemData) => {
         setNextItemId((nextItemId) => nextItemId + 1);
         setIsAddItem(true);
         setItems((prevItems) => [...prevItems, addItemData]);
     }, []);
-
 
     /*onRemove 함수 :특정 아이템을 삭제하는 함수입니다. 
                     삭제할 item의 id값인 deleteItemData를 인자로 받아서 

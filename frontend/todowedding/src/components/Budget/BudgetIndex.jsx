@@ -27,30 +27,21 @@ const BudgetIndex = () => {
     const [bothCnt, setBothCnt] = useState(0);
     const [etcCnt, setEtcCnt] = useState(0);
 
-
-    /**지출조회 및 수입조회 무한 렌더링됨 - [expenses] , [incomes] 안에   */
+    /**
+     * 지영 수정 부분 : 삭제 처리 시 바로 화면에 적용!
+     */
     useEffect(() => {
-        // 지출조회 
-        axios
-            // .post("http://172.30.1.7:8085/budget/select", {
-            .post("http://172.30.1.7:8085/budget/select", {
-                member_seq: `${memberSeq}`, // memberSeq로 값 변경하기
-            })
-            .then((res) => {
-                console.log("지출 전체 조회 : ", res.data);
-                setExpenses(res.data);
-            })
-            .catch((err) => {
-                console.log("지출 전체 조회 에러 : ", err);
-            });
+        findIncomes();
+        findExpenses();
     }, []);
 
-    useEffect(() => {
+    //수입 조회 메서드
+    const findIncomes = () => {
         // 수입조회
         axios
-            // .post("http://172.30.1.7:8085/income/select", {
-            .post("http://172.30.1.7:8085/income/select", {
-                member_seq: `${memberSeq}`,
+            .post("http://localhost:8085/income/select", {
+                // .post("http://172.30.1.7:8085/income/select", {
+                member_seq: token.userSeq,
             })
             .then((res) => {
                 console.log("수입 전체 조회 :", res.data);
@@ -59,7 +50,25 @@ const BudgetIndex = () => {
             .catch((err) => {
                 console.log("수입 전체 조회 에러 :", err);
             });
-    }, []);
+    };
+
+    //지출 조회 메서드
+    const findExpenses = () => {
+        axios
+            .post("http://localhost:8085/budget/select", {
+                // .post("http://172.30.1.7:8085/budget/select", {
+                member_seq: token.userSeq, // memberSeq로 값 변경하기
+            })
+            .then((res) => {
+                console.log("지출 전체 조회 : ", res.data);
+                setExpenses(res.data);
+            })
+            .catch((err) => {
+                console.log("지출 전체 조회 에러 : ", err);
+            });
+    };
+
+    // ================================================================
 
     // 분담 조회 (신부-신랑-공동-기타)
     const chartRole = () => {
@@ -102,12 +111,14 @@ const BudgetIndex = () => {
                         etcCnt={etcCnt}
                     />
                 </Tab>
+                {/* 지영 수정 부분 */}
                 <Tab eventKey="income" title="수입 리스트">
-                    <IncomeList incomes={incomes} />
+                    <IncomeList incomes={incomes} findIncomes={findIncomes} />
                 </Tab>
                 <Tab eventKey="budget" title="지출 리스트">
-                    <ExpenseList expenses={expenses} />
+                    <ExpenseList expenses={expenses} findExpenses={findExpenses} />
                 </Tab>
+                {/* 지영 수정 부분 끝 */}
             </Tabs>
         </div>
     );

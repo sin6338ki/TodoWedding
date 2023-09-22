@@ -30,7 +30,7 @@ public class WebSocketController {
 	@Autowired
 	private SimpMessagingTemplate messagingTemplate;
 	
-	//채팅 메세지 전달
+	//채팅 메시지 전달
 	@MessageMapping(value="chat/{chatRoomSeq}")
 	public void broadCasting(@Payload Chatting chatting, 
 			@DestinationVariable(value="chatRoomSeq") Long chatRoomSeq) {
@@ -38,5 +38,13 @@ public class WebSocketController {
 		chatService.saveChatMessage(chatRoomSeq, chatting);
 		messagingTemplate.convertAndSend("/sub/chat/" + chatRoomSeq, chatting);
 	}
+	
+	//입장 메시지
+	@MessageMapping(value="enter/{chatRoomSeq}")
+	public void enter(@Payload Chatting chatting, @DestinationVariable(value="chatroomSeq") Long chatRoomSeq) {
+		log.info("greeting message, {}", chatting);
+		messagingTemplate.convertAndSend("/sub/chat/" + chatRoomSeq, chatting);
+	}
+	
 	
 }

@@ -11,7 +11,8 @@ import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const IncomeList = ({ incomes = [] }, { total }) => {
+const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
+    const token = useSelector((state) => state.Auth.token);
     //Pagination
     const limits = 5;
     const [page, setPage] = useState(1);
@@ -42,7 +43,12 @@ const IncomeList = ({ incomes = [] }, { total }) => {
             // const response = await axios.delete(`http://172.30.1.7:8085/income/delete/${incomeSeq}`);
             const response = await axios.delete(`http://172.30.1.7:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
-            // 화면에서 삭제효과
+
+            // 지영 수정 부분 =============================
+            if (response.data === "삭제 성공") {
+                findIncomes(token.userSeq);
+            }
+            // ============================================
         } catch (err) {
             console.error("incomeList 삭제 error : ", err);
         }
@@ -74,34 +80,34 @@ const IncomeList = ({ incomes = [] }, { total }) => {
                             onClick={() => incomeDelete(incomes.income_seq)}
                             className="text-center col-span-2 mt-1 ml-5 text-xs ml-8"
                         >
-                        {<FaRegTrashAlt />}
+                            {<FaRegTrashAlt />}
                         </button>
                     </div>
                 );
             })}
 
             {/* 더보기 버튼 */}
-            
-            <div style={{ display: 'flex', justifyContent: 'flex-end' , marginLeft: '-30px'}}>
-            {offset + limits <= incomes.length && (
-                <button onClick={handleLoadMore} className="mt-[20px]" style={{ color: '#d68aff' }}>
-                    더 보기
-                    <svg height="10" width="50">
-                                <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
-                    </svg>
-                </button>
-            )}
+
+            <div style={{ display: "flex", justifyContent: "flex-end", marginLeft: "-30px" }}>
+                {offset + limits <= incomes.length && (
+                    <button onClick={handleLoadMore} className="mt-[20px]" style={{ color: "#d68aff" }}>
+                        더 보기
+                        <svg height="10" width="50">
+                            <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
+                        </svg>
+                    </button>
+                )}
             </div>
 
             {/* 첫 페이지로 돌아가는 버튼 */}
             {offset + limits > incomes.length && page > 1 && (
                 <>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <button onClick={() => setPage(1)} className="mt-[20px]" style={{ color: '#d68aff' }}>
+                        <button onClick={() => setPage(1)} className="mt-[20px]" style={{ color: "#d68aff" }}>
                             처음으로
                             <svg height="10" width="50">
                                 <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
-                           </svg>
+                            </svg>
                         </button>
                     </div>
                 </>
