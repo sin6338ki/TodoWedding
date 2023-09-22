@@ -216,7 +216,7 @@ const ChattingRoom = () => {
     return (
         <div
             id="chatting-container"
-            className="h-[600px] w-[370px] mx-auto mt-[100px] flex flex-col border rounded-2xl border-black w-5/6"
+            className="h-[600px] w-[370px] mx-auto mt-[100 px] flex flex-col border rounded-2xl border-black w-5/6"
         >
             <div
                 id="chatting-banner"
