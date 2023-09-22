@@ -108,7 +108,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
 
           {/* 날짜 */}
              <div className="new-item__form-info">
-                <h2 className="fs-normal fw-regular">날짜</h2>
+                <h1 className="fs-normal fw-light text-xl">날짜</h1>
                 <input
                     type="date"
                     name='budget_Date'
@@ -117,13 +117,14 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
                     min="2020-01-01"
                     max={getDate()}
                     required
+                    style={{marginTop:'-25px'}}
                 />
             </div>
 
             {/* 내용 */}
             <div className="new-item__form-info">
                 <div className="new-item__form-info--title">
-                    <h2 className="fs-normal fw-regular">제목</h2>
+                    <h2 className="fs-normal fw-light text-xl">제목</h2>
                     <span className="fs-tiny ft-alert" style={{ display: isTitleSizeOver ? "inline-block" : "none" }}>
                         {TITLE_SIZE}자까지만 입력할 수 있어요.
                     </span>
@@ -142,7 +143,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
            {/* 금액 */}
              <div className="new-item__form-info">
                 <div className="new-item__form-info--title">
-                    <h2 className="fs-normal fw-regular">금액</h2>
+                    <h2 className="fs-normal fw-light text-xl">금액</h2>
                     <span
                         className="fs-tiny ft-alert"
                         style={{ display: isEnteredWrongAmount ? "inline-block" : "none" }}
@@ -166,7 +167,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
                 {/* 예상비용 */}
              <div className='new-item__form-info'>
                     <div className='new-item__form-info--title'>
-                     <h2 className="fs-normal fw-regular">예상 비용</h2>
+                     <h2 className="fs-normal fw-light text-xl">예상 비용</h2>
                           <span
                                className="fs-tiny ft-alert"
                                style={{ display: isEnteredWrongAmount ? "inline-block" : "none" }}
@@ -189,7 +190,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
                   {/* 분담 */}
 <div className="new-item__form-info">
   <div className="new-item__form-info--title">
-    <h3 className="fs-normal fw-regular">분담</h3>
+    <h3 className="fs-normal fw-light text-xl">분담</h3>
   </div>
   <select 
     value={budgetRole}
@@ -205,7 +206,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
                    {/* 비고 */}
              <div className="new-item__form-info">
                     <div className="new-item__form-info--title">
-                            <h2 className="fs-normal fw-regular">비고</h2>
+                            <h2 className="fs-normal fw-light text-xl">비고</h2>
                             <span
                                 className="fs-tiny ft-alert"
                                 style={{ display: isEnteredWrongAmount ? "inline-block" : "none" }}

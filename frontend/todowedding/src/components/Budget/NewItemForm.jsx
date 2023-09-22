@@ -12,6 +12,7 @@ import ExpenseForm from "./ExpenseForm";
 /*
  * 예산관리 페이지 (DB-insert)
  * - 수입 , 지출 입력 form 컴포넌트 분리
+ * 디자인 radio 에서 btn 으로 수정 (09.22)
  * 작성자 : 양수진
  * 작성일 : 2023.09.14
  */
@@ -137,7 +138,8 @@ const NewItemForm = () => {
             {/* 수입인지 지출인지 체크  */}
             <div className="amount__type">
                 <div className="amount__income">
-                    <input
+                    
+                    {/* <input
                         type="radio"
                         id="income"
                         name="amount-type"
@@ -146,13 +148,25 @@ const NewItemForm = () => {
                         checked={enteredAmountType === "income"}
                         required
                     />
+                  
                     <label htmlFor="income" className="fs-small">
                         수입
-                    </label>
-                </div>
+                    </label> */}
+
+                    <button  //버튼Type으로 수정중
+                    type="button"
+                    id="income"
+                    className={`amount__income ${enteredAmountType === "income" ? "active" : ""}`}
+                    onClick={() => setEnteredAmountType("income")}
+                    style={{ backgroundColor: "#9f7ffc", borderRadius: "10px", padding: "8px 16px", color: "#ffffff", border: "none" ,width: "150px" , marginBottom:'20px'}}
+                    >
+                    수입
+                    </button>
+                    </div>
 
                 <div className="amount__expense">
-                    <input
+                    
+                    {/* <input
                         type="radio"
                         id="expense"
                         name="amount-type"
@@ -161,9 +175,22 @@ const NewItemForm = () => {
                         checked={enteredAmountType === "expense"}
                         required
                     />
+                    
                     <label htmlFor="expense" className="fs-small">
                         지출
-                    </label>
+                    </label> */}
+
+                    <button  //버튼Type으로 수정 (09.22)
+                    type="button"
+                    id="expense"
+                    className={`amount__expense ${enteredAmountType === "expense" ? "active" : ""}`}
+                    onClick={() => setEnteredAmountType("expense")}
+                    style={{ backgroundColor: "#9f7ffc", borderRadius: "10px", padding: "8px 16px", color: "#ffffff", border: "none"  ,width: "150px" , marginBottom:'20px'}}
+                    >
+                        지출
+                    </button>
+
+
                 </div>
             </div>
 

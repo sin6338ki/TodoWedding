@@ -96,7 +96,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
     <div>
      {/* 내역추가(날짜) */}
      <div className="new-item__form-info">
-                <h2 className="fs-normal fw-regular">날짜</h2>
+                <h2 className="fs-normal fw-light text-xl">날짜</h2>
                 <input
                     type="date"
                     name="income_dt"
@@ -110,7 +110,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
         {/* 내용 */}
             <div className="new-item__form-info">
                 <div className="new-item__form-info--title">
-                    <h2 className="fs-normal fw-regular">제목</h2>
+                    <h2 className="fs-normal fw-light text-xl">제목</h2>
                     <span className="fs-tiny ft-alert" style={{ display: isTitleSizeOver ? "inline-block" : "none" }}>
                         {TITLE_SIZE}자까지만 입력할 수 있어요.
                     </span>
@@ -128,7 +128,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
         {/* 금액 */}
             <div className="new-item__form-info">
                 <div className="new-item__form-info--title">
-                    <h2 className="fs-normal fw-regular">금액</h2>
+                    <h2 className="fs-normal fw-light text-xl">금액</h2>
                     <span
                         className="fs-tiny ft-alert"
                         style={{ display: isEnteredWrongAmount ? "inline-block" : "none" }}

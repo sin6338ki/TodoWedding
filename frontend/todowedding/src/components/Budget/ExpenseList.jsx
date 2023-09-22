@@ -11,6 +11,7 @@ import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import zoombutton from "../../assets/images/icon/zoombutton.png"
 
 const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const token = useSelector((state) => state.Auth.token);
@@ -58,7 +59,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     };
 
     return (
-        <div>
+        <div style={{marginTop:"-20px"}}>
             <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
                 {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
                 <div className="text-center text-xs font-bold col-span-3 ">날짜</div>
@@ -91,11 +92,11 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
             })}
 
             {/* 더보기 버튼 */}
-            <div style={{ display: "flex", justifyContent: "flex-end", marginLeft: "40px" }}>
+            <div style={{ display: "flex", justifyContent: "flex-end", marginLeft: "-60px" }}>
                 {offset + limits <= expenses.length && (
-                    <button onClick={handleLoadMore} className="mt-[20px]" style={{ color: "#d68aff" }}>
-                        더 보기
-                        {/* <img className="zoombutton" src={zoombutton} alt="더보기" width="20px" /> */}
+                    <button onClick={handleLoadMore} className="mt-[20px] text-xs" style={{ color: "#9f7ffc", marginRight:"10px"}}>
+                        더보기
+                        {/* <img className="zoombutton" src={zoombutton} alt="더보기" width="20px" color="lightgray" /> */}
                         <svg height="10" width="50">
                             <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
                         </svg>
@@ -107,7 +108,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
             {offset + limits > expenses.length && page > 1 && (
                 <>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <button onClick={() => setPage(1)} className="mt-[20px]" style={{ color: "#d68aff" }}>
+                        <button onClick={() => setPage(1)} className="mt-[20px] text-xs" style={{ color: "#9f7ffc" , marginRight:"10px"}}>
                             처음으로
                             <svg height="10" width="50">
                                 <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />

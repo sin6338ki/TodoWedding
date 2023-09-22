@@ -1,6 +1,7 @@
 .new-item__container {
     position: relative;
     width: 410px;
+
     padding: 30px 43px;
     margin: 30px auto;
     border-radius: 5px;
@@ -17,6 +18,58 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
     height: 100%;
+    margin-left: 5%;
+    
   }
+
+  
+  /* 버튼애니메이션효과  */
+
+  /* @keyframes waveAnimation {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(214, 138, 255, 0.7);
+    }
+    100% {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 25px rgba(214, 138, 255, 0);
+    }
+  } */
+
+
+  @keyframes pulseAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .button-container {
+    position: relative;
+  }
+  
+  .pulse-animation {
+     position: absolute;
+     top: -10px;
+     left: -10px;
+     width: calc(100% + 20px);
+     height: calc(100% + 20px);
+     background-color: #ff0000; /* 원하는 배경색 */
+     animation-name: pulseAnimation;
+     animation-duration:.8s; /* 애니메이션 지속 시간 */
+     animation-timing-function:cubic-bezier(.42, .01, .57, .98); /* 애니메이션 타이밍 함수 */
+     animation-iteration-count:-1; /* 반복 횟수 */
+  }
+  
+  
+  
+  
+  
+  
