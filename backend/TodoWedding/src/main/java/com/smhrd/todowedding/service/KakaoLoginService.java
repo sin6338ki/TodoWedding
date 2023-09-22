@@ -54,18 +54,7 @@ public class KakaoLoginService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
-<<<<<<< HEAD
-<<<<<<< HEAD
-//		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
 		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
-=======
-		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
-//		params.add("redirect_uri", "http://172.30.1.7:3000/auth/kakao/callback");
->>>>>>> origin/jiyoung
-=======
-		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
-//		params.add("redirect_uri", "http://172.30.1.7:3000/auth/kakao/callback");
->>>>>>> origin/yougwang
 		params.add("code", code);
 		
 
