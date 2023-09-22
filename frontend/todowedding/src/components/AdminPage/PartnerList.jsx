@@ -47,7 +47,7 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
                 <h5 className="align-middle pt-2 text-xs">업체 검색</h5>
                 <input
                     type="text"
-                    className="border border-[#465973] ml-3 align-middle text-xs"
+                    className="pl-2 border border-[#465973] ml-3 align-middle text-xs"
                     id="searchPartnerInput"
                 ></input>
                 <button

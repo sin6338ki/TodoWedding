@@ -35,6 +35,14 @@ const PartnerInfo = () => {
             .then((res) => {
                 console.log("업체 정보 조회 result : ", res.data);
                 setPartnerInfo(res.data);
+                setPartnerPw(res.data.partner_pw);
+                setPartnerName(res.data.partner_name);
+                setPartnerRegistration(res.data.partner_registration);
+                setPartnerTel(res.data.partner_tel);
+                setPartnerLink(res.data.partner_link);
+                setPartnerManager(res.data.partner_manager);
+                setPartnerManagerTel(res.data.partner_manager_tel);
+                setPartnerAddress(res.data.partner_address);
             })
             .catch((err) => {
                 console.log("업체 정보 조회 err : ", err);

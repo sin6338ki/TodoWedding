@@ -79,7 +79,7 @@ const TotalBudget = () => {
                 <div className="marrydate-header">총 예산을 입력해주세요</div>
                 <div className="marrydate-contents">
                     <input
-                        type="number"
+                        type="text"
                         value={totalBudget}
                         onChange={(e) => setTotalBudget(e.target.value)}
                         placeholder="총 예산을 입력해 주세요"

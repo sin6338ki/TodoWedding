@@ -64,7 +64,7 @@ const MarryDate = () => {
 
             if (response.status === 200) {
                 alert("결혼 예정일이 성공적으로 업데이트되었습니다.");
-                nav("/");
+                window.location.href = "http://localhost:3000";
             } else {
                 alert("결혼 예정일 업데이트에 실패하였습니다.");
             }
