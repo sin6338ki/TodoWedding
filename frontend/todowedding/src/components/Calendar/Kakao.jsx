@@ -8,9 +8,10 @@ const Kakao = () => {
     const navigate = useNavigate();
     const token = useSelector((state) => state.Auth.token);
     const schedule = useSelector((state) => state.CalReducer.schedule);
-    const [startDt, setStartDt] = useState();
-    const [endDt, setEndDt] = useState();
-    const [title, setTitle] = useState();
+    const [startDt, setStartDt] = useState(schedule.start_at);
+    const [endDt, setEndDt] = useState(schedule.end_at);
+    const [title, setTitle] = useState(schedule.title);
+    const [event, setEvent] = useState({});
 
     /**
      * Kakao 톡캘린더 연동하기
@@ -25,61 +26,58 @@ const Kakao = () => {
      * */
 
     const addKakaoURL = "https://kapi.kakao.com/v2/api/calendar/create/event";
-    const getKakaoCalURL = "https://kapi.kakao.com/v2/api/calendar/calendars";
 
     useEffect(() => {
-        setStartDt(schedule.start_at + "T03:00:00Z");
-        setEndDt(schedule.end_at + "T06:00:00Z");
         setTitle(schedule.title);
+        let date = new Date(schedule.end_at);
+
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate() + 1;
+
+        let dateStr = year + "-" + month + "-" + day;
+
+        console.log("end date : ", dateStr);
+
+        setStartDt(schedule.start_at + "T00:00:00Z");
+        setEndDt(dateStr + "T00:00:00Z");
     }, [schedule]);
 
     useEffect(() => {
         console.log("startDt", startDt);
         console.log("endDt", endDt);
         console.log("title", title);
-        addKakaoCal();
+        setEvent({
+            title: title,
+            time: {
+                start_at: startDt,
+                end_at: endDt,
+                time_zone: "Asia/Seoul",
+                all_day: true,
+                lunar: false,
+            },
+        });
     }, [startDt, endDt, title]);
 
-    //사용자 캘린더 목록 불러오기
-    const getKakao = () => {
-        axios
-            .get(getKakaoCalURL, {
-                headers: {
-                    Authorization: `Bearer ${token.accessToken}`,
-                },
-            })
-            .then((res) => {
-                console.log("캘린더 요청 : ", res.data);
-            })
-            .catch((err) => {
-                console.log("캘린더 요청 에러 : ", err);
-            });
-    };
+    useEffect(() => {
+        console.log("event : ", event);
+        addKakaoCal();
+        console.log("event 변환", qs.stringify(event));
+    }, [event]);
 
     //일정추가하기
     const addKakaoCal = () => {
         console.log("일정 추가 토큰 확인", token);
 
-        axios({
-            method: "post",
-            url: addKakaoURL,
-            headers: {
-                Authorization: `Bearer ${token.accessToken}`,
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            data: qs.stringify({
-                event: JSON.stringify({
-                    title: title,
-                    time: {
-                        start_at: startDt,
-                        end_at: endDt,
-                        time_zone: "Asia/Seoul",
-                        all_day: false,
-                        lunar: false,
-                    },
-                }),
-            }),
-        })
+        axios
+            .post({
+                url: addKakaoURL,
+                headers: {
+                    Authorization: `Bearer ${token.accessToken}`,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                event: qs.stringify(event),
+            })
             .then((res) => {
                 console.log("addKakaoCal : ", res.data);
                 if (res.data.event_id) {

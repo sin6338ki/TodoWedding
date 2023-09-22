@@ -55,8 +55,6 @@ public class KakaoLoginService {
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
 		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
-
-
 		params.add("code", code);
 		
 

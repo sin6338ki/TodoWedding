@@ -211,36 +211,17 @@ const TodoList = () => {
         //html
         <div>
             <div>
-                {/* <div className="mt-[110px] flex flex-row mx-[15px]">
-                    <button
-                        onClick={calendarOnclick}
-                        style={{ marginRight: "100px", fontWeight: activeButton === "Calendar" ? "700" : "normal" }}
-                    >
-                        Calendar
-                        {activeButton === "Calendar" && <line y1="0.5" x2={74} y2="0.5" stroke="black" />}
-                    </button>
-                    <button
-                        onClick={todoOnclick}
-                        style={{ marginRight: "100px", fontWeight: activeButton === "Todolist" ? "700" : "normal" }}
-                    >
-                        Todolist
-                        {activeButton === "Todolist" && (
-                            <svg height="10" width="100">
-                                <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "black", strokeWidth: "2" }} />
-                            </svg>
-                        )}
-                    </button>
-                    <button
-                        onClick={budgetOnclick}
-                        style={{ marginRight: "100px", fontWeight: activeButton === "Budget" ? "700" : "normal" }}
-                    >
-                        Budget
-                        {activeButton === "Budget" && <line y1="0.5" x2={74} y2="0.5" stroke="black" />}
-                    </button>
-                </div> */}
+                
+            <div className="checkitem-intro">
+                나만의 웨딩 투두리스트를 등록하고
+                <br />
+                웨딩 일정을 캘린더에 추가하고 일정 조회해보세요 
+            </div>
 
+
+       
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
-                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[150px] mx-[25px]">
+                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[130px] mx-[25px]">
                     {todos.length < 1 ? null : (
                         <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}`}</span>
                     )}
@@ -249,13 +230,14 @@ const TodoList = () => {
                 </div>
 
                 {/* <h3 className={style.heading}>Todo List</h3> */}
-                <form onSubmit={createTodo} className={style.form}>
+                <form onSubmit={createTodo} className={style.form} style={{marginTop:"20px" , marginBottom:"-20Px"}}>
                     <input
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         className={style.input}
                         type="text"
                         placeholder="투두리스트를 입력하세요"
+                        
                     />
                     <button className={style.button}>
                         <AiOutlinePlus size={30} />
