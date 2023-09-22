@@ -39,7 +39,7 @@ const IncomeList = ({ incomes = [] }, { total }) => {
         try {
             console.log("income리스트 삭제실행 , incomeSeq", incomeSeq);
             // const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
-            const response = await axios.delete(`http://172.30.1.7:8085/income/delete/${incomeSeq}`);
+            const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
             // 화면에서 삭제효과
         } catch (err) {

@@ -50,7 +50,7 @@ const PartnerBottomBar = () => {
     const withDrawal = () => {
         axios
             // .delete(`http://localhost:8085/partner/${token.userSeq}`)
-            .delete(`http://172.30.1.7:8085/partner/${token.userSeq}`)
+            .delete(`http://localhost:8085/partner/${token.userSeq}`)
             .then((res) => {
                 console.log("회원 탈퇴 결과 : ", res.data);
 
@@ -71,7 +71,7 @@ const PartnerBottomBar = () => {
     const isAdmin = () => {
         axios
             // .get(`http://localhost:8085/admin/${token.userSeq}`)
-            .get(`http://172.30.1.7:8085/admin/${token.userSeq}`)
+            .get(`http://localhost:8085/admin/${token.userSeq}`)
             .then((res) => {
                 console.log("isAdmin response : ", res.data);
                 setIsAdminCk(res.data);

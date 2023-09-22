@@ -83,7 +83,7 @@ const NewItemForm = () => {
             axios
                 .post(
                     // `http://localhost:8085/income/insert`,
-                    `http://172.30.1.7:8085/income/insert`,
+                    `http://localhost:8085/income/insert`,
                     incomeData // useState 훅으로 생성된 상태 사용
                 )
 
@@ -107,7 +107,7 @@ const NewItemForm = () => {
             axios
                 .post(
                     // `http://localhost:8085/budget/insert`,
-                    `http://172.30.1.7:8085/budget/insert`,
+                    `http://localhost:8085/budget/insert`,
                     newBudgetData // useState 훅으로 생성된 상태 사용
                 )
                 .then((response) => {
