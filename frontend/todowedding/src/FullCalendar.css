@@ -68,8 +68,8 @@ FullCalendar 관련
 
 /* 이벤트 표시 container */
 .fc-event-title-container {
-  height: 20px;
-  font-size: small ;
+  height: 19px;
+  font-size: 12.5px ;
   color:rgb(45, 36, 49) ;
   font-family: 'Pretendard-Regular';
   text-align: center;
@@ -80,9 +80,9 @@ FullCalendar 관련
   z-index: -2 !important;
 }
 
+/* 일-토 주 컬럼 */
+.fc-col-header-cell {
+  background-color:rgb(230, 217, 243);
+}
 
-
-
-
-
-
+/* */

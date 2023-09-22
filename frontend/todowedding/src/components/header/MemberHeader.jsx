@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
+import headerBtn from "../../assets/images/icon/header-btn.png"
 import TodoLogo from "../../assets/images/todo_logo.png";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     //최근 일정 조회
     const findLatestSchedule = () => {
         axios
-            .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
+            .get(`http://172.30.1.7:8085/latest-schedule/${token.userSeq}`)
             .then((res) => {
                 console.log("최근 일정 조회 결과 : ", res.data);
                 if (res.data != "") {
@@ -47,8 +47,8 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     return (
         <div className="fixed top-0 z-50 w-[414px] flex flex-row h-[90px] pr-5 pb-1 bg-gradient-to-r to-white from-[#D4C7F9]">
             {marryDt ? (
-                <Link to="/" className="decoration-transparent self-cente pt-4  mx-3 text-[#9F7FFC] font-bold ml-4 ">
-                    <div className="decoration-double underline underline-offset-8 text-[24px] w-[70px]">
+                <Link to="/" className="decoration-transparent self-cente pl-3 pt-4 ml-4 text-[#9F7FFC] font-bold">
+                    <div className="w-40 decoration-solid underline underline-offset-8 text-[27px]" id="marryFont">
                         D{marryDt}
                     </div>
                 </Link>
@@ -58,7 +58,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                 </Link>
             )}
 
-            <div className="flex flex-col ml-1 self-center w-[350px]">
+            <div className="relative flex flex-col self-center w-[350px]">
                 <div className="text-sm mt-2 text-start">
                     반가워요, <span className="font-bold">{loginUserNickname}</span>님
                 </div>
@@ -81,8 +81,9 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                     )}
                 </div>
             </div>
-            <Link to="/todowedding/login" className="border p-2 bg-[#9F7FFC] self-center underline text-slate-100">
-                {<GiHamburgerMenu className="w-3 h-3" />}
+            <Link to="/todowedding/login" className="border p-2 mr-1 self-center header-hamburger">
+                <img src={headerBtn}>
+                </img>
             </Link>
         </div>
     );

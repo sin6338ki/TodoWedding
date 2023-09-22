@@ -20,7 +20,7 @@ const TodoReport = () => {
     useEffect(() => {
         const fetchTodoListCount = async () => {
             try {
-                const response = await axios.get(`http://localhost:8085/count-of-todolist/${userSeq}`);
+                const response = await axios.get(`http://172.30.1.7:8085/count-of-todolist/${userSeq}`);
                 setTodoListCount(response.data);
                 console.log("TodoReport 결과 : ", response.data);
             } catch (error) {
@@ -41,12 +41,12 @@ const TodoReport = () => {
         <div>
             {todoListCount ? (
                 <>
-                    <p className="mb-1">
+                    <p className="mb-1 underline">
                         총 투두리스트 : <span className="font-bold">{totalTodo > 0 ? totalTodo : "0"}</span>개
                     </p>
                     <p className="mb-1">- 완료 : {completedTodo > 0 ? completedTodo : "0"}건</p>
                     <p className="mb-1">- 미완료 : {unCompletedTodo > 0 ? unCompletedTodo : "0"}건</p>
-                    <p className="mb-1">- 진행률 : {todoRatio}%</p>
+                    <p className="mb-1 font-bold">- 진행률 : {todoRatio}%</p>
                 </>
             ) : (
                 <p>Loading...</p>

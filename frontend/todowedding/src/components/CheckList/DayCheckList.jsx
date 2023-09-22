@@ -45,7 +45,7 @@ const DayCheckList = () => {
     // D-Day 체크리스트 전체 조회
     const getDayChecklist = async () => {
         try {
-            const response = await axios.get("http://localhost:8085/daychecklist");
+            const response = await axios.get("http://172.30.1.7:8085/daychecklist");
             setChecklist(response.data);
             console.log("D-Day 리스트 : ", response.data);
 
@@ -79,9 +79,8 @@ const DayCheckList = () => {
         placeholder: (provided) => ({
             ...provided,
             position: "absolute",
-            left: "30%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
+            left: "50%",
+            transform: "translateX(-50%)",
         }),
         singleValue: (provided, state) => {
             const opacity = state.isDisabled ? 0.5 : 1;
@@ -93,8 +92,7 @@ const DayCheckList = () => {
                 transition,
                 position: "absolute",
                 left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
+                transform: "translateX(-50%)",
             };
         },
     };
@@ -145,13 +143,13 @@ const DayCheckList = () => {
     };
 
     return (
-        <div>
+        <div className="dday-checklist-page">
             <div className="checkitem-intro">
                 D-Day 웨딩 체크리스트를 조회하고
                 <br />
                 원하는 체크리스트를 카카오톡으로 받아보세요!
             </div>
-            <div className="daychecklist-selectbox">
+            <div className="daychecklist-selectbox" style={{marginTop: "140px"}}>
                 <Select
                     options={options}
                     onChange={(option) => {
