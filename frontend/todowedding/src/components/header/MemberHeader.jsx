@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import headerBtn from "../../assets/images/icon/header-btn.png"
+import headerBtn from "../../assets/images/icon/header-btn.png";
 import TodoLogo from "../../assets/images/todo_logo.png";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     //최근 일정 조회
     const findLatestSchedule = () => {
         axios
-            .get(`http://172.30.1.7:8085/latest-schedule/${token.userSeq}`)
+            .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
             .then((res) => {
                 console.log("최근 일정 조회 결과 : ", res.data);
                 if (res.data != "") {
@@ -82,8 +82,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                 </div>
             </div>
             <Link to="/todowedding/login" className="border p-2 mr-1 self-center header-hamburger">
-                <img src={headerBtn}>
-                </img>
+                <img src={headerBtn}></img>
             </Link>
         </div>
     );

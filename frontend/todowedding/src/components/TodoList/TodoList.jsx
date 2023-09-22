@@ -104,7 +104,7 @@ const TodoList = () => {
 
         // try~catch (추가작성 09.15)
         try {
-            const response = await axios.post("http://172.30.1.7:8085/todolist", data);
+            const response = await axios.post("http://localhost:8085/todolist", data);
             console.log("response : ", response);
 
             // 서버로부터 반환된 새로운 투두 데이터
@@ -129,7 +129,7 @@ const TodoList = () => {
             memberSeq: todo.memberSeq,
         };
         try {
-            await axios.put(`http://172.30.1.7:8085/todolist/check`, data); //`http://172.30.1.7:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+            await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
             console.log("성공 checked ");
         } catch (err) {
             console.error("Error checked: ", err);
@@ -140,7 +140,7 @@ const TodoList = () => {
     const deleteTodo = async (todolistSeq) => {
         try {
             console.log("투두리스트 삭제 실행, todolistSeq : ", todolistSeq);
-            const response = await axios.delete(`http://172.30.1.7:8085/todolist/${todolistSeq}`);
+            const response = await axios.delete(`http://localhost:8085/todolist/${todolistSeq}`);
             console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
             response.data === 1 &&
@@ -154,7 +154,7 @@ const TodoList = () => {
     const fetchData = async () => {
         // fetchData 수정(09.15)
         try {
-            const res = await axios.get(`http://172.30.1.7:8085/todolist/${memberSeq}`);
+            const res = await axios.get(`http://localhost:8085/todolist/${memberSeq}`);
             console.log("findallTodolist 조회 response : ", res.data);
             setTodos(res.data);
         } catch (error) {
@@ -169,7 +169,7 @@ const TodoList = () => {
 
     const cntTodoList = async () => {
         try {
-            const res = await axios.get(`http://172.30.1.7:8085/count-of-todolist/${memberSeq}`);
+            const res = await axios.get(`http://localhost:8085/count-of-todolist/${memberSeq}`);
             console.log("cntTodoList response", res.data);
             console.log("cntTodoList response length", res.data.length);
             // setUnCompletedCnt(res.data[0].count)
@@ -211,15 +211,12 @@ const TodoList = () => {
         //html
         <div>
             <div>
-                
-            <div className="checkitem-intro">
-                나만의 웨딩 투두리스트를 등록하고
-                <br />
-                웨딩 일정을 캘린더에 추가하고 일정 조회해보세요 
-            </div>
+                <div className="checkitem-intro">
+                    나만의 웨딩 투두리스트를 등록하고
+                    <br />
+                    웨딩 일정을 캘린더에 추가하고 일정 조회해보세요
+                </div>
 
-
-       
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
                 <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[130px] mx-[25px]">
                     {todos.length < 1 ? null : (
@@ -230,14 +227,13 @@ const TodoList = () => {
                 </div>
 
                 {/* <h3 className={style.heading}>Todo List</h3> */}
-                <form onSubmit={createTodo} className={style.form} style={{marginTop:"20px" , marginBottom:"-20Px"}}>
+                <form onSubmit={createTodo} className={style.form} style={{ marginTop: "20px", marginBottom: "-20Px" }}>
                     <input
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         className={style.input}
                         type="text"
                         placeholder="투두리스트를 입력하세요"
-                        
                     />
                     <button className={style.button}>
                         <AiOutlinePlus size={30} />

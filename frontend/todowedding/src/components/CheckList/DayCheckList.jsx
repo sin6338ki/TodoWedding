@@ -45,7 +45,7 @@ const DayCheckList = () => {
     // D-Day 체크리스트 전체 조회
     const getDayChecklist = async () => {
         try {
-            const response = await axios.get("http://172.30.1.7:8085/daychecklist");
+            const response = await axios.get("http://localhost:8085/daychecklist");
             setChecklist(response.data);
             console.log("D-Day 리스트 : ", response.data);
 
@@ -149,7 +149,7 @@ const DayCheckList = () => {
                 <br />
                 원하는 체크리스트를 카카오톡으로 받아보세요!
             </div>
-            <div className="daychecklist-selectbox" style={{marginTop: "140px"}}>
+            <div className="daychecklist-selectbox" style={{ marginTop: "140px" }}>
                 <Select
                     options={options}
                     onChange={(option) => {

@@ -85,7 +85,7 @@ const NewItemForm = () => {
             console.log("수입 선택", incomeData);
             axios
                 .post(
-                    `http://172.30.1.7:8085/income/insert`,
+                    `http://localhost:8085/income/insert`,
                     incomeData // useState 훅으로 생성된 상태 사용
                 )
 
@@ -109,7 +109,7 @@ const NewItemForm = () => {
             console.log("지출 선택", newBudgetData);
             axios
                 .post(
-                    `http://172.30.1.7:8085/budget/insert`,
+                    `http://localhost:8085/budget/insert`,
                     newBudgetData // useState 훅으로 생성된 상태 사용
                 )
                 .then((response) => {
@@ -138,7 +138,6 @@ const NewItemForm = () => {
             {/* 수입인지 지출인지 체크  */}
             <div className="amount__type">
                 <div className="amount__income">
-                    
                     {/* <input
                         type="radio"
                         id="income"
@@ -153,19 +152,26 @@ const NewItemForm = () => {
                         수입
                     </label> */}
 
-                    <button  //버튼Type으로 수정중
-                    type="button"
-                    id="income"
-                    className={`amount__income ${enteredAmountType === "income" ? "active" : ""}`}
-                    onClick={() => setEnteredAmountType("income")}
-                    style={{ backgroundColor: "#9f7ffc", borderRadius: "10px", padding: "8px 16px", color: "#ffffff", border: "none" ,width: "150px" , marginBottom:'20px'}}
+                    <button //버튼Type으로 수정중
+                        type="button"
+                        id="income"
+                        className={`amount__income ${enteredAmountType === "income" ? "active" : ""}`}
+                        onClick={() => setEnteredAmountType("income")}
+                        style={{
+                            backgroundColor: "#9f7ffc",
+                            borderRadius: "10px",
+                            padding: "8px 16px",
+                            color: "#ffffff",
+                            border: "none",
+                            width: "150px",
+                            marginBottom: "20px",
+                        }}
                     >
-                    수입
+                        수입
                     </button>
-                    </div>
+                </div>
 
                 <div className="amount__expense">
-                    
                     {/* <input
                         type="radio"
                         id="expense"
@@ -180,17 +186,23 @@ const NewItemForm = () => {
                         지출
                     </label> */}
 
-                    <button  //버튼Type으로 수정 (09.22)
-                    type="button"
-                    id="expense"
-                    className={`amount__expense ${enteredAmountType === "expense" ? "active" : ""}`}
-                    onClick={() => setEnteredAmountType("expense")}
-                    style={{ backgroundColor: "#9f7ffc", borderRadius: "10px", padding: "8px 16px", color: "#ffffff", border: "none"  ,width: "150px" , marginBottom:'20px'}}
+                    <button //버튼Type으로 수정 (09.22)
+                        type="button"
+                        id="expense"
+                        className={`amount__expense ${enteredAmountType === "expense" ? "active" : ""}`}
+                        onClick={() => setEnteredAmountType("expense")}
+                        style={{
+                            backgroundColor: "#9f7ffc",
+                            borderRadius: "10px",
+                            padding: "8px 16px",
+                            color: "#ffffff",
+                            border: "none",
+                            width: "150px",
+                            marginBottom: "20px",
+                        }}
                     >
                         지출
                     </button>
-
-
                 </div>
             </div>
 

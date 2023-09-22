@@ -44,14 +44,14 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
         const fetchTotalBudgetAndResult = async () => {
             try {
                 // 백엔드로 총예산 조회 요청 보내기
-                const budgetResponse = await axios.get(`http://172.30.1.7:8085/totalbudget/select/${userSeq}`);
+                const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
                 if (budgetResponse.data) {
                     setTotalBudget(budgetResponse.data.total_budget);
                     console.log("등록된 총 예산 : ", budgetResponse.data.total_budget);
                 }
 
                 // 백엔드로 수입/지출 결과 조회 요청 보내기
-                const resultResponse = await axios.post(`http://172.30.1.7:8085/member/total`, { member_seq: userSeq });
+                const resultResponse = await axios.post(`http://localhost:8085/member/total`, { member_seq: userSeq });
                 console.log("BudgetReport 결과 : ", resultResponse.data);
 
                 setTotalIncome(resultResponse.data.income_total_cost);
@@ -74,28 +74,39 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
         // <div className="grid grid-cols-2 gap-4"> // 배열을 세로로 바꿈
         <div>
             <div className="rounded-md border shadow-md text-black">
-                <div className="text-xl text-black-500 m-4" style={{textAlign:'center'}}>Total Expense 📊 </div>
-                <div className="text-4xl m-4 text-[#b66dff]" style={{textAlign:'center'}}>{expenses.length} 건</div>
-                <div className="text-m text-gray-500 m-4" style={{textAlign:'center'}}>신랑 {broomPercentage.toFixed(0)}%   신부 {bridePercentage.toFixed(0)}% 공동 {bothPercentage.toFixed(0)}%   기타 {etcPercentage.toFixed(0)}% </div>
+                <div className="text-xl text-black-500 m-4" style={{ textAlign: "center" }}>
+                    Total Expense 📊{" "}
+                </div>
+                <div className="text-4xl m-4 text-[#b66dff]" style={{ textAlign: "center" }}>
+                    {expenses.length} 건
+                </div>
+                <div className="text-m text-gray-500 m-4" style={{ textAlign: "center" }}>
+                    신랑 {broomPercentage.toFixed(0)}% 신부 {bridePercentage.toFixed(0)}% 공동{" "}
+                    {bothPercentage.toFixed(0)}% 기타 {etcPercentage.toFixed(0)}%{" "}
+                </div>
                 {/* <div className="text-xl text-gray-500 m-4">신부 {bridePercentage.toFixed(0)} %</div> */}
                 {/* <div className="text-xl text-gray-500 m-4">공동 {bothPercentage.toFixed(0)}%   기타 {etcPercentage.toFixed(0)}%</div> */}
                 {/* <div className="text-xl text-gray-500 m-4">기타 {etcPercentage.toFixed(0)} %</div> */}
             </div>
-            <div className="my-5  w-full m-auto" > 
-              
+            <div className="my-5  w-full m-auto">
                 <BudgetRoleChart
                     broomPercentage={broomPercentage}
                     bridePercentage={bridePercentage}
                     bothPercentage={bothPercentage}
                     etcPercentage={etcPercentage}
                     className="w-2/3"
-                    
                 />
             </div>
             <div className="rounded-md border shadow-md text-black">
-                <div className="text-xl text-black-500 m-4" style={{textAlign:'center'}}>💰 수입 지출 그래프</div>
-                <div className="text-m text-gray-500 m-4" style={{textAlign:'center'}}>수입 {incomePercentage} %  </div>
-                <div className="text-m text-gray-500 m-4" style={{textAlign:'center'}}>지출 {expensePercentage} %</div>
+                <div className="text-xl text-black-500 m-4" style={{ textAlign: "center" }}>
+                    💰 수입 지출 그래프
+                </div>
+                <div className="text-m text-gray-500 m-4" style={{ textAlign: "center" }}>
+                    수입 {incomePercentage} %{" "}
+                </div>
+                <div className="text-m text-gray-500 m-4" style={{ textAlign: "center" }}>
+                    지출 {expensePercentage} %
+                </div>
             </div>
 
             <div className="my-5 w-full m-auto">

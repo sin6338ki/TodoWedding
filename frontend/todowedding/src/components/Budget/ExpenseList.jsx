@@ -11,7 +11,7 @@ import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import zoombutton from "../../assets/images/icon/zoombutton.png"
+import zoombutton from "../../assets/images/icon/zoombutton.png";
 
 const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const token = useSelector((state) => state.Auth.token);
@@ -44,7 +44,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const expenseDelete = async (budgetSeq) => {
         try {
             console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
-            const response = await axios.delete(`http://172.30.1.7:8085/budget/delete/${budgetSeq}`);
+            const response = await axios.delete(`http://localhost:8085/budget/delete/${budgetSeq}`);
             console.log("지출list 삭제성공 :", response.data);
             // 삭제 추가코드(09.20)
             // 지영 수정 부분 ===============================================
@@ -59,7 +59,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     };
 
     return (
-        <div style={{marginTop:"-20px"}}>
+        <div style={{ marginTop: "-20px" }}>
             <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
                 {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
                 <div className="text-center text-xs font-bold col-span-3 ">날짜</div>
@@ -94,7 +94,11 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
             {/* 더보기 버튼 */}
             <div style={{ display: "flex", justifyContent: "flex-end", marginLeft: "-60px" }}>
                 {offset + limits <= expenses.length && (
-                    <button onClick={handleLoadMore} className="mt-[20px] text-xs" style={{ color: "#9f7ffc", marginRight:"10px"}}>
+                    <button
+                        onClick={handleLoadMore}
+                        className="mt-[20px] text-xs"
+                        style={{ color: "#9f7ffc", marginRight: "10px" }}
+                    >
                         더보기
                         {/* <img className="zoombutton" src={zoombutton} alt="더보기" width="20px" color="lightgray" /> */}
                         <svg height="10" width="50">
@@ -108,7 +112,11 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
             {offset + limits > expenses.length && page > 1 && (
                 <>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <button onClick={() => setPage(1)} className="mt-[20px] text-xs" style={{ color: "#9f7ffc" , marginRight:"10px"}}>
+                        <button
+                            onClick={() => setPage(1)}
+                            className="mt-[20px] text-xs"
+                            style={{ color: "#9f7ffc", marginRight: "10px" }}
+                        >
                             처음으로
                             <svg height="10" width="50">
                                 <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
