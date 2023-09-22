@@ -50,13 +50,8 @@ const Index = () => {
 
     //Admin 계정 여부 확인
     const isAdmin = () => {
-<<<<<<< HEAD
         // axios.get(`http://172.30.1.7:8085/admin/${token.userSeq}`).then((res) => {
         axios.get(`http://172.30.1.7:8085/admin/${token.userSeq}`).then((res) => {
-=======
-        axios.get(`http://localhost:8085/admin/${token.userSeq}`).then((res) => {
-            // axios.get(`http://172.30.1.7:8085/admin/${token.userSeq}`).then((res) => {
->>>>>>> origin/jiyoung
             if (res.data != "Y") {
                 alert("관리자 계정이 아닙니다. 관리자 계정으로 로그인 후 접속해 주세요.");
                 navigate("/");

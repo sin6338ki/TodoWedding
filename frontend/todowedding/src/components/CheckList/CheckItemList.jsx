@@ -19,8 +19,8 @@ const CheckItemList = () => {
     // 항목별 체크리스트 전체 조회
     const fetchCheckItems = async () => {
         try {
-            // const response = await axios.get("http://172.30.1.7:8085/checkitem");
-            const response = await axios.get("http://172.30.1.7:8085/checkitem");
+            // const response = await axios.get("http://localhost:8085/checkitem");
+            const response = await axios.get("http://localhost:8085/checkitem");
             setCheckItems(response.data);
             console.log("response.data : ", response.data);
         } catch (error) {

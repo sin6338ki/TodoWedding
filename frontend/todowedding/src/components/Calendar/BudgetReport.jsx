@@ -47,11 +47,11 @@ const BudgetReport = () => {
     //숫자 세 자리 마다 콤마(,) 찍기
     const numberWithCommas = (x) => {
         return x.toLocaleString();
-    }
+    };
 
-    const fianlTotalBudget = (totalBudget || 0); // 총 예산
-    const fianlTotalIncome = (totalIncome || 0); // 총 수입
-    const fianlTotalExpense = (totalExpense || 0); //총 지출
+    const fianlTotalBudget = totalBudget || 0; // 총 예산
+    const fianlTotalIncome = totalIncome || 0; // 총 수입
+    const fianlTotalExpense = totalExpense || 0; //총 지출
     const balance = fianlTotalBudget + fianlTotalIncome - fianlTotalExpense; // 잔액
 
     return (

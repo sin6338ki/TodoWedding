@@ -39,8 +39,8 @@ const PartnerJoin = () => {
     const applyJoin = () => {
         console.log("회원가입 폼 입력 데이터 확인 : ", joinData);
         axios
-            // .post("http://172.30.1.7:8085/partner/join", joinData)
-            .post("http://172.30.1.7:8085/partner/join", joinData)
+            // .post("http://localhost:8085/partner/join", joinData)
+            .post("http://localhost:8085/partner/join", joinData)
             .then((res) => {
                 console.log("회원가입 response : ", res.data);
                 if (res.data === "회원가입 완료") {
@@ -56,8 +56,8 @@ const PartnerJoin = () => {
     const checkSameId = () => {
         console.log("중복체크 아이디 : ", partnerId);
         axios
-            // .get(`http://172.30.1.7:8085/partner/check-id?partnerId=${partnerId}`)
-            .get(`http://172.30.1.7:8085/partner/check-id?partnerId=${partnerId}`)
+            // .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
+            .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
             .then((res) => {
                 if (res.data == 1) {
                     alert("사용 가능한 아이디입니다. ");

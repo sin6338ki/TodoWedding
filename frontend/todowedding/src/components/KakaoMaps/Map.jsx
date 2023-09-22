@@ -58,8 +58,8 @@ const Map = () => {
     // DB에서 장소 정보 가져오기
     useEffect(() => {
         axios
-            // .get("http://172.30.1.7:8085/kakaomaps")
-            .get("http://172.30.1.7:8085/kakaomaps")
+            // .get("http://localhost:8085/kakaomaps")
+            .get("http://localhost:8085/kakaomaps")
             .then((response) => {
                 // 응답 데이터 설정 (위도와 경도 정보를 가진 배열)
                 console.log("DB에서 가져온 데이터", response.data); // <-- 여기서 데이터 확인
@@ -124,11 +124,14 @@ const Map = () => {
     useEffect(() => {
         const container = document.getElementById("KakaoMap"); // 지도를 담을 ID
         const options = {
-            center: new kakao.maps.LatLng(35.1595454, 126.8526012), // 광주 중심 좌표
-            level: 9, // Level이 낮을 수록 확대, 높을 수록 축소
+            center: new kakao.maps.LatLng(35.167194, 126.88357), // 광주 중심 좌표
+            level: 8, // Level이 낮을 수록 확대, 높을 수록 축소
         };
 
         const map = new kakao.maps.Map(container, options); // 지도 생성
+
+        var overlays = []; // DB에서 가져온 장소들의 CustomOverlay 저장
+        var searchedOverlays = []; // 검색된 장소들의 CustomOverlay 저장
 
         // 각각의 marker와 overlay를 짝지어 저장할 객체
         let markerInfo = {};
@@ -150,7 +153,7 @@ const Map = () => {
                     markerImageSrc = BasicMarker;
                 }
 
-                let imageSize = new kakao.maps.Size(52, 50);
+                let imageSize = new kakao.maps.Size(37, 35);
                 let imageOption = { offset: new kakao.maps.Point(27, 69) };
 
                 // 마커 이미지 설정 (빈 문자열이 아닌 경우에만 사용)
@@ -241,25 +244,45 @@ const Map = () => {
                 }
 
                 var customOverlay = new kakao.maps.CustomOverlay({
-                    map: place.partner_seq === 101 ? map : null, // partner_seq가 101인 경우에만 초기에 오버레이를 보여줌
+                    // map: place.partner_seq === 107 ? map : null, // partner_seq가 101인 경우에만 초기에 오버레이를 보여줌
                     position: markerPosition,
                     content: content,
                     yAnchor: yAnchorValue,
                 });
 
-                // x버튼 클릭시 정보창 닫기
+                // 초기에 맵에 띄울 정보 -> 전체 카테고리 일때만 나오게
+                if (place.partner_seq === 107 && currentCategory === "웨딩홀_스튜디오") {
+                    customOverlay.setMap(map);
+
+                    // 현재 사용중인 Marker 및 Overlay 갱신
+                    markerInfo.currentMarker = marker;
+                    markerInfo.currentOverlay = customOverlay;
+                }
+
+                // 장소 배열에 따라 적정한 배열에 커스텀 오버레이 추가
+                if (placesArray === dbPlaces) {
+                    overlays.push(customOverlay);
+                } else if (placesArray === searchedPlaces) {
+                    searchedOverlays.push(customOverlay);
+                }
+
+                // x버튼 클릭 시 현재 열린 정보창(오버레이) 닫기
                 document.addEventListener("click", function (e) {
                     if (e.target.id === "map_closeBtn") {
                         if (markerInfo.currentOverlay) {
+                            // 현재 열린 오버레이가 있다면 닫기
                             markerInfo.currentOverlay.setMap(null);
                         }
-                        markerInfo.currentMarker = null;
-                        markerInfo.currentOverlay = null;
+                        markerInfo.currentMarker = null; // 현재 마커 정보 초기화
+                        markerInfo.currentOverlay = null; // 현재 오버레이 정보 초기화
                     }
                 });
 
                 // 마커를 클릭하면 해당 커스텀 오버레이가 표시되거나 사라지게 함
                 kakao.maps.event.addListener(marker, "click", function () {
+                    closeAllOverlays(); // 모든 커스텀 오버레이 닫기
+                    customOverlay.setMap(map); // 클릭한 마커의 커스텀 오버레이만 열기
+
                     // 만약 이전에 열었던 overlay가 있다면 그것을 먼저 닫음
                     if (markerInfo.currentMarker && markerInfo.currentOverlay) {
                         markerInfo.currentOverlay.setMap(null);
@@ -278,17 +301,37 @@ const Map = () => {
                     // 현재 사용중인 Marker 및 Overlay 갱신
                     markerInfo.currentMarker = marker;
                     markerInfo.currentOverlay = customOverlay;
+
+                    // 화면 중심을 클릭한 마커 위치로 이동
+                    map.panTo(marker.getPosition());
                 });
+
+                // DB정보와 카카오 검색정보 분할 관리
+                function closeAllOverlays() {
+                    for (var i = 0; i < overlays.length; i++) {
+                        overlays[i].setMap(null); // DB에서 가져온 장소들의 모든 커스텀 오버레이 닫기
+                    }
+                    for (var i = 0; i < searchedOverlays.length; i++) {
+                        searchedOverlays[i].setMap(null); // 검색된 장소들의 모든 커스텀 오버레이 닫기
+                    }
+                }
             });
 
+        // 현재 선택된 카테고리에 따라 DB와 검색 장소 필터링
         let filteredDbPlaces = dbPlaces;
         let filteredSearchedPlaces = searchedPlaces;
 
         if (currentCategory !== "웨딩홀_스튜디오") {
+            // 전체가 아닌 경우만 필터링 진행
+
+            // 선택된 카테고리에 해당하는 DB 장소만 추출
             filteredDbPlaces = dbPlaces.filter((place) => place.partner_code === currentCategory);
+
+            // 선택된 카테고리에 해당하는 검색 장소만 추출
             filteredSearchedPlaces = searchedPlaces.filter((place) => place.partner_code === currentCategory);
         }
 
+        // 필터링 된 장소들로 마커 생성 및 맵에 표시
         mapMarkers(filteredDbPlaces);
         mapMarkers(filteredSearchedPlaces);
     }, [dbPlaces, searchedPlaces, currentCategory]);

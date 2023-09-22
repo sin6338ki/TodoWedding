@@ -30,8 +30,8 @@ const PartnerInfo = () => {
     //업체 정보 조회 메서드
     const findPartnerInfo = () => {
         axios
-            // .get(`http://172.30.1.7:8085/partner/info/${token.userSeq}`)
-            .get(`http://172.30.1.7:8085/partner/info/${token.userSeq}`)
+            // .get(`http://localhost:8085/partner/info/${token.userSeq}`)
+            .get(`http://localhost:8085/partner/info/${token.userSeq}`)
             .then((res) => {
                 console.log("업체 정보 조회 result : ", res.data);
                 setPartnerInfo(res.data);
@@ -88,8 +88,8 @@ const PartnerInfo = () => {
     //회원 정보 업데이트
     const updatePartnerInfo = () => {
         axios
-            // .put(`http://172.30.1.7:8085/partner`, partnerUpdateDto)
-            .put(`http://172.30.1.7:8085/partner`, partnerUpdateDto)
+            // .put(`http://localhost:8085/partner`, partnerUpdateDto)
+            .put(`http://localhost:8085/partner`, partnerUpdateDto)
             .then((res) => {
                 console.log("기업 회원 정보 update response", res.data);
                 alert("회원 정보 수정이 완료되었습니다.!");

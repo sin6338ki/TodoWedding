@@ -25,8 +25,8 @@ const MarryDate = () => {
     useEffect(() => {
         const fetchMarryDate = async () => {
             try {
+                // const response = await axios.get(`http://localhost:8085/marrydate/${userSeq}`);
                 const response = await axios.get(`http://localhost:8085/marrydate/${userSeq}`);
-                // const response = await axios.get(`http://172.30.1.7:8085/marrydate/${userSeq}`);
                 if (response.data) {
                     setMarryDate(response.data);
                     setHasMarryDate(true); // 등록된 결혼 예정일이 있다면 hasMarryData를 true로 설정

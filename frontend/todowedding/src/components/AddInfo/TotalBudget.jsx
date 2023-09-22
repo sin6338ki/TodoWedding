@@ -26,8 +26,13 @@ const TotalBudget = () => {
         const fetchTotalBudget = async () => {
             try {
                 //백엔드로 총 예산 조회 요청 보내기
+<<<<<<< HEAD
                 const response = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
                 // const response = await axios.get(`http://172.30.1.7:8085/totalbudget/select/${userSeq}`);
+=======
+                // const response = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+                const response = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+>>>>>>> origin/yougwang
                 if (response.data) {
                     setTotalBudget(response.data);
                     setHasTotalBudget(true);
