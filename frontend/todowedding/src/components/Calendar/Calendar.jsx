@@ -40,14 +40,21 @@ const Calendar = () => {
             <MyCalendar />
             <div style={{ display: "flex" }} className="Calendar-plusBtn">
                 <button>
-                    <img className="calendarBtn" src={add_schedule} alt="일정추가" width="60px" onClick={addSchedule} />
+                    <img 
+                        className="calendarBtn" 
+                        src={add_schedule} 
+                        alt="일정추가" 
+                        style={{width:"40px", 
+                        margin: "0 10px 0 15px"}} 
+                        onClick={addSchedule} />
                 </button>
                 <button>
                     <img
                         className="calendarBtn"
                         src={item_checklist}
                         alt="항목별체크리스트"
-                        width="60px"
+                        style={{width:"40px", 
+                        margin: "0 10px 0 3px"}} 
                         onClick={itemCheckList}
                     />
                 </button>
@@ -56,19 +63,20 @@ const Calendar = () => {
                         className="calendarBtn"
                         src={dday_checklist}
                         alt="D-Day체크리스트"
-                        width="64px"
+                        style={{width:"40px", 
+                        margin: "0 10px 0 3px"}} 
                         onClick={dDayCheckList}
                     />
                 </button>
             </div>
             <div style={{ display: "flex" }}>
-                <div className="mt-2">
+                <div>
                     <div className="report-header1">결혼 준비 진행도</div>
                     <div className="report-content1">
                         <TodoReport />
                     </div>
                 </div>
-                <div className="mt-2">
+                <div>
                     <p className="report-header2">예산 현황</p>
                     <div className="report-content2">
                         <BudgetReport />

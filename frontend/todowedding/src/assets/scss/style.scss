@@ -16,6 +16,12 @@
     font-family: "Pretendard-Regular";
 }
 
+//header 결혼예정일 D-Day 폰트
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:wght@700&family=Noto+Sans+KR&display=swap');
+#marryFont{
+    font-family: 'Gelasio', serif;
+}
+
 /**************************************************************************** Header
 Header 관련
 *******************/
@@ -52,6 +58,18 @@ Header 관련
     margin-left: 350px;
 }
 
+//결혼예정일 D-Day 표시
+.underline-offset-8{
+    position: relative;
+    width:max-content;
+    padding-right: 25px;
+}
+
+.header-hamburger {
+    width: 55px;
+    box-sizing:border-box;
+    --bs-border-color: transparent;
+}
 /**************************************************************************** Login
 Login 관련
 *******************/
@@ -153,9 +171,11 @@ BottomBar 관련
     padding: 7px;
     position: fixed;
     display: flex;
-    bottom: 65px;
+    bottom: 70px;
     height: 65px;
     width: 65px;
+    //left: 150px;
+    margin: 0 0 0 -15px;
     align-items: center;
     background-image: linear-gradient(90deg, rgb(215, 138, 255, 0.7), rgb(159, 127, 252));
     transform: translate(530%, 0%);
@@ -171,6 +191,7 @@ BottomBar 관련
     background-color: #f8faf9;
     align-items: center;
     justify-content: space-around;
+    z-index: 999;
 }
 
 .admin-bottom-bar {
@@ -429,35 +450,37 @@ Modal 관련
 // 일정추가-제목-container
 .add-schedule-header {
     box-sizing: border-box;
-    width: 320px;
-    height: 60px;
+    width: 350px;
+    height: 70px;
     border: 1px solid #d4c7f9;
     border-radius: 10px 10px 0 0;
-    margin: 210px 10px 0 50px;
+    margin: 160px 10px 0 30px;
     background-color: #d4c7f9;
     font-family: "Pretendard-Regular";
     text-align: center;
-    color: rgb(120, 120, 120);
+    padding-top: 5px;
+    color: rgb(0, 0, 0);
 }
 
 // 일정추가-일정시작,종료-container
 .add-schedule-date {
     box-sizing: border-box;
-    width: 320px;
+    width: 350px;
     border: 1px solid rgb(240, 240, 240);
     border-radius: 0 0 10px 10px;
-    margin: 0px 10px 0 50px;
-    padding: 35px 0 20px 0;
+    margin: 0px 10px 0 30px;
+    padding: 40px 0 20px 0;
     font-family: "Pretendard-Regular";
+    font-size: 17px;
     text-align: center;
-    color: rgb(120, 120, 120);
+    color: rgb(0, 0, 0);
 }
 
 // 캘린더 일정 추가하기 버튼
 .Add-Schedule-btn {
     width: 135px;
     height: 55px;
-    margin: 20px 0 0 60px;
+    margin: 10px 0 0 60px;
     border-radius: 10px;
     color: #ffffff;
     background-color: #9f7ffc;
@@ -470,12 +493,29 @@ Modal 관련
 .Add-TodoList-btn {
     width: 135px;
     height: 55px;
-    margin: 20px 20px 0 20px;
+    margin: 10px 20px 0 20px;
     border-radius: 10px;
     color: #ffffff;
     background-color: #9f7ffc;
     display: table-row;
     justify-content: center;
+    align-items: center;
+    font-family: "Pretendard-Regular";
+}
+
+//톡캘린더 연동하기 버튼
+.add-talk-calendar {
+    width: 290px;
+    height: 45px;
+    margin: 14px 20px 0 60px;
+    border-radius: 10px;
+    color: #696969;
+    background-color: #FEE500;
+    display: table-row;
+    text-decoration-line: none !important;
+    justify-content: center;
+    
+    font-size: 15px;
     align-items: center;
     font-family: "Pretendard-Regular";
 }
@@ -500,13 +540,13 @@ Modal 관련
 .MyTodo-Icon {
     width: 20px;
     height: 20px;
-    margin: 0 10px 0 25px;
+    margin: 0 10px 0 40px;
 }
 
 //일정관리 페이지 - 최근 TodoList 3가지
 .TodoList-Title {
     font-family: "Pretendard-Regular";
-    margin: 40px 130px 20px 25px;
+    margin: 35px 130px 20px 70px;
     font-weight: 900;
     font-size: 18px;
     text-decoration: underline;
@@ -519,7 +559,7 @@ Modal 관련
     width: 180px;
     height: 40px;
     border-radius: 10px 10px 0 0;
-    margin: 20px 5px 0 20px;
+    margin: 20px 0 0 20px;
     padding-top: 10px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
@@ -548,11 +588,11 @@ Modal 관련
     height: 145px;
     border: 1px solid #9f7ffc;
     border-radius: 0 0 10px 10px;
-    margin: 0px 20px 0 20px;
+    margin: 0px 12px 0 20px;
     padding-left: 20px;
     padding-top: 25px;
     font-family: "Pretendard-Regular";
-    font-size: small;
+    font-size: 14px;
 }
 
 //일정관리 - 웨딩리포트 content (예산 관리 그래프)
@@ -565,7 +605,7 @@ Modal 관련
     margin: 0 20px 0 0;
     padding: 25px 0 5px 20px;
     font-family: "Pretendard-Regular";
-    font-size: small;
+    font-size: 14px;
 }
 /**************************************************************************** TodoList 관련
 TodoList 관련
@@ -586,7 +626,7 @@ FullCalendar 관련
 }
 
 .my-fullcalendar {
-    margin: 110px 15px 0 15px;
+    margin: 110px 17px 0 15px;
 }
 
 .fc-toolbar {
@@ -598,7 +638,7 @@ FullCalendar 관련
 
 /* FullCalendar 헤더의 글꼴 크기 변경 */
 .fc-toolbar-title {
-    font-size: 16px !important; /* 원하는 크기로 조절 */
+    font-size: 17px !important; /* 원하는 크기로 조절 */
     font-weight: 800 !important;
     padding-right: 40px;
     padding-top: 5px;
@@ -608,71 +648,73 @@ FullCalendar 관련
 
 .fc-prev-button {
     border: none !important;
-    background-color: rgb(248, 249, 250) !important;
-    color: rgb(150, 150, 150) !important;
-    font-size: 16px !important;
-    margin-top: 10px !important;
+    background-color: #F0EBFD !important;
+    color: rgb(149, 96, 219) !important;
+    font-size: 15px !important;
+    margin-top: 12px !important;
+    
 }
 
 .fc-next-button {
     border: none !important;
-    background-color: rgb(248, 249, 250) !important;
-    color: rgb(150, 150, 150) !important;
-    font-size: 16px !important;
-    margin-top: 10px !important;
+    background-color: #F0EBFD !important;
+    color: rgb(149, 96, 219) !important;
+    font-size: 15px !important;
+    margin-top: 12px !important;
 }
 
 /* "today" 버튼 */
 .fc-today-button {
-    background-color: rgb(248, 249, 250) !important;
-    color: rgb(150, 150, 150) !important;
+    background-color: #F0EBFD!important;
+    color: rgb(149, 96, 219) !important;
     border: none !important;
-    font-size: 14px !important;
-    width: 43px !important;
-    margin-top: 10px !important;
+    font-size: 13px !important;
+    width: 40px !important;
+    margin-top: 12px !important;
+    margin-left: 3px !important;
 }
 
 /* "month" 버튼 */
 .fc-dayGridMonth-button {
-    background-color: rgb(248, 249, 250) !important;
-    color: rgb(150, 150, 150) !important;
+    background-color:#F0EBFD !important;
+    color: rgb(149, 96, 219) !important;
     border: none !important;
-    font-size: 14px !important;
-    width: 43px !important;
-    margin-top: 10px !important;
+    font-size: 13px !important;
+    width: 40px !important;
+    margin-top: 12px !important;
 }
 
 /* "week" 버튼 */
 .fc-dayGridWeek-button {
-    background-color: rgb(248, 249, 250) !important;
-    color: rgb(150, 150, 150) !important;
+    background-color: #F0EBFD !important;
+    color: rgb(149, 96, 219) !important;
     border: none !important;
-    font-size: 14px !important;
-    width: 43px !important;
-    margin-top: 10px !important;
+    font-size: 13px !important;
+    width: 40px !important;
+    margin-top: 12px !important;
 }
 
 /**************************************************************************** 항목별 CheckList 관련
 항목별 CheckList 관련
 *******************/
 
+//항목별 체크리스트 - 페이지
+.checklist-page {
+    height: 690px;
+}
 //항목별 체크리스트 - 아이템
 .checkitem-item {
     box-sizing: border-box;
-
     position: relative;
-    width: 380px;
+    width: 373px;
     height: 50px;
     left: 20px;
-    top: 180px;
+    top: 140px;
     margin-bottom: 15px;
-
     background: #ffffff;
     border: 1px solid #000000;
     border-radius: 15px;
-
     padding-top: 13px;
-
     font-family: "Pretendard-Regular";
 }
 
@@ -743,6 +785,11 @@ FullCalendar 관련
 D-Day CheckList 관련
 *******************/
 
+//D-Day 체크리스트 페이지 height
+.dday-checklist-page {
+    height: 100%;
+}
+
 //항목별 체크리스트 - 소개글
 .checkitem-intro {
     box-sizing: border-box;
@@ -762,7 +809,7 @@ D-Day CheckList 관련
 
 //D-Day 체크리스트 - selectBox
 .daychecklist-selectbox {
-    margin: 190px 59px 40px 59px;
+    margin: 190px 30px 25px 30px;
     font-family: "Pretendard-Regular";
     text-align: center;
     font-size: 14px;
@@ -771,10 +818,10 @@ D-Day CheckList 관련
 //D-Day 체크리스트 - 체크리스트 헤더
 .daychecklist-header {
     box-sizing: border-box;
-    width: 380px;
+    width: 373px;
     height: 65px;
     border-radius: 10px 10px 0 0;
-    margin: 50px 59px 0 20px;
+    margin: 20px 59px 0 20px;
     padding-top: 23px;
     background-color: #9f7ffc;
     font-family: "Pretendard-Regular";
@@ -975,7 +1022,7 @@ D-Day CheckList 관련
 
 /* 검색창 */
 .input_map_place {
-    width: 200px;
+    width: 190px;
     border: 1px solid #bbb;
     border-radius: 8px;
     padding: 10px 12px;

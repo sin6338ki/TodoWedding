@@ -33,7 +33,7 @@ const ChattingRoom = () => {
     useEffect(() => {
         //이전 채팅 내역 불러오기
         axios
-            .get(`http://localhost:8085/chat/message/${chatRoomSeq}`)
+            .get(`http://172.30.1.7:8085/chat/message/${chatRoomSeq}`)
             .then((res) => {
                 console.log("채팅 내역 불러오기", res.data);
                 res.data.forEach((element) => {
@@ -72,8 +72,8 @@ const ChattingRoom = () => {
         try {
             console.log("로그인 접속자 확인", token.type, token.userNick);
             const newClient = new StompJs.Client({
-                // brokerURL: "ws://localhost:8085/stomp-chat",
-                brokerURL: "ws://localhost:8085/stomp-chat",
+                // brokerURL: "ws://172.30.1.7:8085/stomp-chat",
+                brokerURL: "ws://172.30.1.7:8085/stomp-chat",
                 connectHeaders: {
                     //header에 채팅방과 참가자 정보 함께 전송
                     chatRoomSeq: location.pathname.split("/")[3],
@@ -187,7 +187,7 @@ const ChattingRoom = () => {
     return (
         <div
             id="chatting-container"
-            className="h-[680px] mx-auto mt-[120px] flex flex-col border rounded-2xl border-black w-5/6"
+            className="h-[600px] w-[370px] mx-auto mt-[100px] flex flex-col border rounded-2xl border-black w-5/6"
         >
             <div
                 id="chatting-banner"

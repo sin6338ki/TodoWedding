@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { setSchedule } from "../../redux/reducers/CalReducer";
 import { useDispatch } from "react-redux";
+import talkCalendarLogo from "../../assets/images/icon/talk-calendar-logo.png"
 
 /*
  * 일정 수정 / 삭제
@@ -26,7 +27,7 @@ const UpdateSchedule = () => {
 
     //추가동의항목을 위한 token 재요청 페이지로 이동
     const REST_API_KEY = "05e6f6ac6b8cd6cf3b1ec2a9ca6542de";
-    const REDIRECT_URI = "http://localhost:3000/auth/kakaoCal/callback";
+    const REDIRECT_URI = "http://172.30.1.7:3000/auth/kakaoCal/callback";
     const URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=talk_calendar`;
 
     // 일정 수정 함수
@@ -39,7 +40,7 @@ const UpdateSchedule = () => {
             alert("일정 종료일을 일정 시작일보다 빠르게 설정할 수 없습니다. 일정 날짜를 다시 선택해주세요");
         } else {
             try {
-                await axios.put(`http://localhost:8085/schedule/${scheduleSeq}`, {
+                await axios.put(`http://172.30.1.7:8085/schedule/${scheduleSeq}`, {
                     scheduleStartDt: startDate,
                     scheduleEndDt: endDate,
                     scheduleContents: title,
@@ -56,7 +57,7 @@ const UpdateSchedule = () => {
     // 일정 삭제 함수
     const deleteSchedule = async () => {
         try {
-            await axios.delete(`http://localhost:8085/schedule/${scheduleSeq}`);
+            await axios.delete(`http://172.30.1.7:8085/schedule/${scheduleSeq}`);
 
             alert("일정이 성공적으로 삭제되었습니다.");
             nav("/todowedding/calendar");
@@ -116,9 +117,12 @@ const UpdateSchedule = () => {
             <button className="Add-TodoList-btn" onClick={deleteSchedule}>
                 삭제하기
             </button>
-            <Link to={URL}>
-                <button className="mt-5 ml-[145px] text-gray-400 underline underline-offset-4">
-                    톡캘린더 연동하기
+            <Link to={URL} style={{textDecorationLine:"none"}}>
+                <button className="add-talk-calendar" style={{display:"flex"}}>
+                    <img src={talkCalendarLogo}
+                         alt="톡캘린더 연동하기"
+                         style={{ width:"60px", marginRight:"15px"}}/>
+                    <p style={{marginTop: "17px", marginRight:"5px"}}>톡캘린더 연동하기</p>
                 </button>
             </Link>
         </div>
