@@ -61,7 +61,7 @@ const Partner = () => {
                             <>
                                 <div className="text-center col-span-1">{idx + 1}</div>
                                 <div className="text-center col-span-1">{chatRoom.nickname}</div>
-                                <div className="text-center col-span-2">{chatRoom.chatting_create_dt}</div>
+                                <div className="text-center col-span-2">{chatRoom.last_date}</div>
                                 <button
                                     className="text-[#B4B4B4] col-span-1"
                                     onClick={() => {
