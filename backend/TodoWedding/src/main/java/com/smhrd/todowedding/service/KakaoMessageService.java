@@ -73,7 +73,7 @@ public class KakaoMessageService {
         
         if(sendType.equals("dDay")) {        	
         	//message 한 줄로 통합
-        	oneLineMessage = "안녕하세요. " + loginNickname + "님!\n결혼식까지 " + dDay + "일 남으셨어요💏\n" + dDay + "일 남은 결혼식을 위한 \n결혼 준비 체크리스트를 확인해보세요😀\n\n";
+        	oneLineMessage = "안녕하세요. " + loginNickname + "님!\n결혼식까지 " + dDay + "일 남으셨어요💏\n\n" + dDay + "일 남은 결혼식을 위한 \n결혼 준비 체크리스트를 확인해보세요😀\n\n";
         	for(String msg : message) {
         		oneLineMessage += "💌  " + msg + "\n";
         	}
