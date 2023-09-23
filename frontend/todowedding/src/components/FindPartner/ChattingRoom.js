@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as StompJs from "@stomp/stompjs";
 import "../../tailwind.css";
 import { useSelector } from "react-redux"; //redux 액션 실행
@@ -17,6 +17,7 @@ const ChattingRoom = () => {
     const location = useLocation();
     const locationData = location.state;
     const chatRoomSeq = location.pathname.split("/")[3];
+    const navigate = useNavigate();
     const [content, setContent] = useState("");
     const [chatList, setChatList] = useState([]); // 채팅 기록
 
@@ -58,8 +59,8 @@ const ChattingRoom = () => {
 
         render();
 
-        return () => disConnect();
-    }, [location]);
+        // return () => disConnect();
+    }, []);
 
     //스크롤 적용
     useEffect(() => {
@@ -74,6 +75,11 @@ const ChattingRoom = () => {
 
     //웹소켓 연결
     const connect = () => {
+        //이미 웹소켓이 활성화 된 경우 return
+        if (stompClient && stompClient.connected) {
+            return;
+        }
+
         try {
             console.log("로그인 접속자 확인", token.type, token.userNick);
 
@@ -88,7 +94,7 @@ const ChattingRoom = () => {
                 debug: function (str) {
                     console.log("웹소켓 연결 debug : ", str);
                 },
-                reconnectDelay: 5000, //자동재연결
+                // reconnectDelay: 5000, //자동재연결
                 heartbeatIncoming: 4000,
                 heartbeatOutgoing: 4000,
             });
@@ -103,7 +109,6 @@ const ChattingRoom = () => {
                         type: "ENTER",
                         chattingContents: token.userNick + "님이 입장하셨습니다",
                     }),
-                    headers: { priority: "9" },
                 });
             };
 
@@ -120,20 +125,34 @@ const ChattingRoom = () => {
 
         if (message.body) {
             let chatting = await JSON.parse(message.body);
-            console.log("chatting", chatting);
-
             await setContent(chatting);
             await setChatList((chats) => [...chats, chatting]);
         }
     };
 
     //연결해제
-    const disConnect = () => {
-        if (locationData.memberSeq == null || !stompClient) {
+    const disConnect = async () => {
+        if (!stompClient.connected == null || !stompClient) {
             // stompClient 체크 추가
             return;
         }
-        stompClient.deactivate();
+
+        //퇴장 메시지
+        await stompClient.publish({
+            destination: "/pub/exit/" + chatRoomSeq,
+            body: JSON.stringify({
+                type: "EXIT",
+                chattingContents: token.userNick + "님이 퇴장하셨습니다",
+            }),
+        });
+
+        await stompClient.deactivate();
+
+        if (token.type === "M") {
+            await navigate("/todowedding/map");
+        } else {
+            await navigate("/todowedding/partner");
+        }
     };
 
     //전송하기
@@ -167,19 +186,27 @@ const ChattingRoom = () => {
 
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
     const msgBox = () => {
+        console.log("chatList : ", chatList);
         return chatList.map((item, idx) => {
             if (item.type === "ENTER") {
                 console.log("ENTER : ", item.chattingContents);
                 return (
-                    <div key={idx} className="snap-center mr-3 my-2 text-xs w-[400px] ml-3">
-                        <div className="flex flex-row">
-                            <div className="py-2 ma text-center shadow-md border rounded-full shadow-white-300 min-w-[150px] max-w-[220px]">
-                                <span className="px-2">{item.chattingContents}</span>
-                            </div>
-                        </div>
+                    <div
+                        key={idx}
+                        className="py-2 px-3 bg-gray-200 my-3 text-center shadow-md rounded-full max-w-[220px] self-center text-xs"
+                    >
+                        <span className="px-2">{item.chattingContents}</span>
                     </div>
                 );
-            } else if (item.type === "END") {
+            } else if (item.type === "EXIT") {
+                return (
+                    <div
+                        key={idx}
+                        className="py-2 px-3 bg-gray-200 my-3 text-center shadow-md rounded-full max-w-[220px] self-center text-xs"
+                    >
+                        <span className="px-2">{item.chattingContents}</span>
+                    </div>
+                );
             } else {
                 if (item.chattingSenderType != token.type) {
                     return (
@@ -216,13 +243,21 @@ const ChattingRoom = () => {
     return (
         <div
             id="chatting-container"
-            className="h-[600px] w-[370px] mx-auto mt-[100 px] flex flex-col border rounded-2xl border-black w-5/6"
+            className="h-[600px] w-[370px] mx-auto mt-[100px] flex flex-col border rounded-2xl border-black"
         >
             <div
                 id="chatting-banner"
-                className="flex flex-col bg-[#D0CFFA] text-lg font-bold h-12 border rounded-t-2xl"
+                className="flex flex-row bg-[#D0CFFA] text-lg font-bold h-12 border rounded-t-2xl"
             >
                 <p className="text-left ml-4 mt-[10px]">1:1 상담하기</p>
+                <button
+                    className="font-light text-sm ml-44 border border-black self-center px-2 py-1 rounded-md text-gray-600"
+                    onClick={() => {
+                        disConnect();
+                    }}
+                >
+                    채팅종료
+                </button>
             </div>
             <div
                 id="chatting-contents-container"

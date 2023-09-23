@@ -49,4 +49,12 @@ public class WebSocketController {
 			log.info("웹소켓 메시지 : "+ chatting.getChattingContents() + chatRoomSeq);
 			messagingTemplate.convertAndSend("/sub/chat/" + chatRoomSeq, chatting);
 	}
+	
+	//퇴장 메시지 전달
+	@MessageMapping(value="exit/{chatRoomSeq}")
+	public void exit(@Payload GreetingMessage chatting, 
+			@DestinationVariable(value="chatRoomSeq") Long chatRoomSeq) {
+			log.info("웹소켓 메시지 : "+ chatting.getChattingContents() + chatRoomSeq);
+			messagingTemplate.convertAndSend("/sub/chat/" + chatRoomSeq, chatting);
+	}
 }
