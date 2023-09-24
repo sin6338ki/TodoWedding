@@ -20,7 +20,7 @@ const TodoReport = () => {
     useEffect(() => {
         const fetchTodoListCount = async () => {
             try {
-                const response = await axios.get(`http://3.36.116.165:8085/count-of-todolist/${userSeq}`);
+                const response = await axios.get(`http://localhost:8085/count-of-todolist/${userSeq}`);
                 setTodoListCount(response.data);
                 console.log("TodoReport 결과 : ", response.data);
             } catch (error) {

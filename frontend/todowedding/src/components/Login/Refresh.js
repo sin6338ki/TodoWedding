@@ -9,7 +9,7 @@ import { setToken } from "./actions"; // 액세스 토큰을 업데이트하는 
  */
 
 const instance = axios.create({
-    baseURL: "http://3.36.116.165:8085",
+    baseURL: "http://localhost:8085",
 });
 
 // 응답 인터셉터 추가

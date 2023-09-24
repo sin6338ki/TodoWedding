@@ -24,7 +24,7 @@ const Partner = () => {
     const findChatRoom = () => {
         token &&
             axios
-                .get(`http://3.36.116.165:8085/chat/${token.userSeq}`)
+                .get(`http://localhost:8085/chat/${token.userSeq}`)
                 .then((res) => {
                     console.log("채팅방 조회 response : ", res.data);
                     setResultFindChatRoom(res.data);

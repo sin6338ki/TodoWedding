@@ -38,7 +38,7 @@ const MyTodoList = () => {
     const fetchData = () => {
         try {
             axios
-                .get(`http://3.36.116.165:8085/todolist/${userSeq}`)
+                .get(`http://localhost:8085/todolist/${userSeq}`)
                 .then((res) => {
                     // 최근 투두리스트 3개만 가져오기
                     const firstThreeItems = res.data.slice(0, 3);

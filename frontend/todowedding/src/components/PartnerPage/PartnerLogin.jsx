@@ -36,7 +36,7 @@ const PartnerLogin = () => {
     //로그인 버튼 클릭했을 때 이벤트
     const login = async () => {
         await axios
-            .post("http://3.36.116.165:8085/partner/login", {
+            .post("http://localhost:8085/partner/login", {
                 partner_id: id,
                 partner_pw: pw,
             })

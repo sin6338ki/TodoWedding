@@ -22,7 +22,7 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
         const input = document.getElementById("searchPartnerInput").value;
         console.log("input : ", input);
         axios
-            .get(`http://3.36.116.165:8085/admin/partner?keyword=${input}`)
+            .get(`http://localhost:8085/admin/partner?keyword=${input}`)
             .then((res) => {
                 console.log("업체 검색 response : ", res.data);
                 setPartners(res.data);
