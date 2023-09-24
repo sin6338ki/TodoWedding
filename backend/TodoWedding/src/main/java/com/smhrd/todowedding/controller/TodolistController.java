@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.7:3000"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.7:3000", "http://3.36.116.165:3000"})
 @RestController
 public class TodolistController {
 
