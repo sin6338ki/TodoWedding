@@ -30,7 +30,7 @@ const Main = () => {
     // 항목별 체크리스트 전체 조회
     const fetchCheckItems = async () => {
         try {
-            const response = await axios.get("http://localhost:8085/checkitem");
+            const response = await axios.get("http://3.36.116.165:8085/checkitem");
             setCheckItems(response.data);
             console.log("항목별 체크리스트 : ", response.data);
         } catch (error) {
@@ -57,7 +57,7 @@ const Main = () => {
     //D-Day 체크리스트 전체 조회
     const getDayChecklist = async () => {
         try {
-            const response = await axios.get("http://localhost:8085/daychecklist");
+            const response = await axios.get("http://3.36.116.165:8085/daychecklist");
             setChecklist(response.data);
             console.log("D-Day 체크리스트 : ", response.data);
         } catch (error) {

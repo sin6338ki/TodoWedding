@@ -13,7 +13,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
         const input = document.getElementById("searchMemberInput").value;
         console.log("input : ", input);
         axios
-            .get(`http://localhost:8085/admin/member?keyword=${input}`)
+            .get(`http://3.36.116.165:8085/admin/member?keyword=${input}`)
             .then((res) => {
                 console.log("회원 검색 response : ", res.data);
                 setMembers(res.data);

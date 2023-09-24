@@ -44,7 +44,7 @@ const Chatting = () => {
     const createChat = () => {
         console.log("createChat 실행!");
         axios
-            .post("http://localhost:8085/chat", data)
+            .post("http://3.36.116.165:8085/chat", data)
             .then((res) => {
                 let result = res.data;
                 result === 1 && isAlivedChat();
@@ -57,7 +57,7 @@ const Chatting = () => {
     //채팅방 유무 확인 이벤트
     const isAlivedChat = async () => {
         try {
-            const res = await axios.get(`http://localhost:8085/chat/${token.userSeq}/${partnerSeq}`);
+            const res = await axios.get(`http://3.36.116.165:8085/chat/${token.userSeq}/${partnerSeq}`);
             console.log("isAlivedChat result : ", res.data);
             let result = res.data;
             if (result != "none") {

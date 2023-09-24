@@ -33,7 +33,7 @@ const MyCalendar = () => {
     //전체 일정 불러오기
     useEffect(() => {
         axios
-            .get(`http://localhost:8085/all-schedule/${userSeq}`)
+            .get(`http://3.36.116.165:8085/all-schedule/${userSeq}`)
             .then((res) => {
                 // 이벤트 컬러 화사한 색상으로만 뽑기------------------------------------------------------
                 const fetchedEvents = res.data.map((event, idx) => {
