@@ -72,10 +72,6 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
     };
 
     useEffect(() => {
-        console.log("todolistContents", todolistContents.todolistSeq);
-    }, []);
-
-    useEffect(() => {
         toggleComplete;
         console.log("todolistContents", todolistContents.todolistSeq);
     }, [isChecked]);

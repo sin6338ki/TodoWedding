@@ -3,9 +3,13 @@ package com.smhrd.todowedding.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,17 +163,27 @@ public class KakaoMessageService {
       Long dDay = dayCalculator(loginMemberSeq);
       log.info("dDay, {}", dDay);
 
-      Date now = new Date();
+      LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul")); 
       
       for(JSONObject scheduleItem : scheduleList) {
          String scheduleDate = (String)scheduleItem.get("schedule_start_dt");
-         //string to date 변환
-         Date scheduleDateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(scheduleDate);
-         Long diffDate = (scheduleDateFormat.getTime() - now.getTime()) / (1000 * 24 * 60 * 60) + 1;
-         log.info("diffDate : {}", diffDate);
+
+         log.info("schedule_start_dt : {}", scheduleDate);
          
-         if(diffDate == 1 || diffDate == 0) {
-            message.add((String)scheduleItem.get("schedule_contents"));
+         //string to date 변환
+         LocalDate scheduleDateFormat = LocalDate.parse(scheduleDate);
+        		 
+         log.info("dateFormat : {}", scheduleDateFormat);
+         log.info("gettime of schedule : {}", scheduleDateFormat);
+         log.info("gettime of today : {}", now);
+         //오늘 날짜 
+         Period diffDate = Period.between(now, scheduleDateFormat);
+         log.info("diffDate : {}", diffDate.getDays());
+         
+         if(diffDate.getDays() == 0) {
+            message.add("오늘 일정 : " + (String)scheduleItem.get("schedule_contents"));
+         }else if(diffDate.getDays() == 1) {
+        	 message.add("하루 남은 일정 : " + (String)scheduleItem.get("schedule_contents")); 
          }
       }
       sendMessage(accessToken, loginMemberSeq, message, dDay, "schedule");         

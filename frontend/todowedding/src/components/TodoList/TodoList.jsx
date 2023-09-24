@@ -121,20 +121,20 @@ const TodoList = () => {
     };
 
     // 3. 투두리스트 체크했을 때 실행되는 메서드 ---> (현재 Todo.jsx에 넣어둠)
-    const toggleComplete = async (todo) => {
-        console.log("check_실행", todo);
-        const data = {
-            todolistCompleted: isChecked,
-            todolistSeq: todo.todolistSeq,
-            memberSeq: todo.memberSeq,
-        };
-        try {
-            await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
-            console.log("성공 checked ");
-        } catch (err) {
-            console.error("Error checked: ", err);
-        }
-    };
+    // const toggleComplete = async (todo) => {
+    //     console.log("check_실행", todo);
+    //     const data = {
+    //         todolistCompleted: isChecked,
+    //         todolistSeq: todo.todolistSeq,
+    //         memberSeq: todo.memberSeq,
+    //     };
+    //     try {
+    //         await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+    //         console.log("성공 checked ");
+    //     } catch (err) {
+    //         console.error("Error checked: ", err);
+    //     }
+    // };
 
     // 삭제 실행 메서드 변경 코드
     const deleteTodo = async (todolistSeq) => {
@@ -143,8 +143,10 @@ const TodoList = () => {
             const response = await axios.delete(`http://localhost:8085/todolist/${todolistSeq}`);
             console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
-            response.data === 1 &&
+            if (response.data === 1) {
                 setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== todolistSeq));
+                cntTodoList();
+            }
         } catch (err) {
             console.error("delete 삭제 error : ", err);
         }

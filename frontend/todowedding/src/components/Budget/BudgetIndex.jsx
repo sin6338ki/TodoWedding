@@ -31,8 +31,8 @@ const BudgetIndex = () => {
      * 지영 수정 부분 : 삭제 처리 시 바로 화면에 적용!
      */
     useEffect(() => {
-        findIncomes();
-        findExpenses();
+        token && findIncomes();
+        token && findExpenses();
     }, []);
 
     //수입 조회 메서드

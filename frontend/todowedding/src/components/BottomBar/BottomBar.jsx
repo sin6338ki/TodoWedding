@@ -37,8 +37,9 @@ function BottomBar() {
 
     return (
         <>
-            <MemberBottomBar />
-            {token != null && isAdminCk == "Y" && token.type == "P" && <AdminBottomBar />}
+            {token == null && <MemberBottomBar />}
+            {token != null && token.type == "M" && <MemberBottomBar />}
+            {token != null && isAdminCk == "Y" && <AdminBottomBar />}
             {token != null && isAdminCk != "Y" && token.type == "P" && <PartnerBottomBar />}
         </>
     );
