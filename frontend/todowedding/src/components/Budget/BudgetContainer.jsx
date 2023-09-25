@@ -41,8 +41,8 @@ const BudgetContainer = (props) => {
     }, [filteredItems, filterBaseYear]);
 
     return (
-        <div>
-            <div>
+            <div >
+            <div >
                 <NewItemContainer />
             </div>
             <div className="pocket__container">

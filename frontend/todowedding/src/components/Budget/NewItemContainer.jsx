@@ -34,7 +34,7 @@ const NewItemContainer = () => {
         <div className="new-item__container" style={{ cursor: !isEditing ? "pointer" : "auto" }}>
             {!isEditing && (
                 
-                // <button className="fs-normal bg-gradient-to-r from-[#d68aff] to-[#9F7FFC]  fw-bold add-new-item-button " onClick={startEditingHandler} style={{borderRadius:"30px"}}>
+                
                 <button className="fs-normal bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] add-new-item-button" onClick={startEditingHandler} style={{ borderRadius: "15px",  color: "white", transition: "background-color 0.3s ease" , height:"50px"}}>   
                 예산 추가하기
                 </button>

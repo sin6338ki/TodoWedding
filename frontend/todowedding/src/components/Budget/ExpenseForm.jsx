@@ -1,3 +1,11 @@
+
+
+/* Budget 예산 지출 입력 (내역추가)
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.15
+ */
+
+
 import React, { useContext, useState, useCallback, useEffect } from 'react';
 import { ItemDispatchContext } from '../Budget/BudgetApp';
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
@@ -22,7 +30,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
 
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
-    const roles =["","신랑", "신부", "공동", "기타"]; 
+    const roles =["분담을 선택해주세요","신랑", "신부", "공동", "기타"]; 
 
     const TITLE_SIZE = 35;
 
@@ -195,7 +203,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
   <select 
     value={budgetRole}
     onChange={budgetRoleChangeHandler} 
-    style={{ border: "1px solid #D9D9D9", padding: '6px 9px', borderRadius:'5px' }}
+    style={{ border: "1px solid #D9D9D9", padding: '6px 9px', borderRadius:'5px' ,color:'darkgray'}}
   >
     {roles.map((role, index) => (
       <option key={index} value={role}>{role}</option>

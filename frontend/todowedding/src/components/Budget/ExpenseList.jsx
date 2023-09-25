@@ -18,7 +18,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const [Expenses, setExpenses] = useState([]); //09.20추가
 
     //Pagination
-    const limits = 5;
+    const limits = 10; // 지출 리스트 개수 
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limits;
 
@@ -126,7 +126,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
                 </>
             )}
 
-            {/* 10개씩 페이지 처리  */}
+            {/* 페이지 처리  */}
             {offset + limits >= expenses.length && (
                 <Pagination limits={limits} page={page} setPage={setPage} total={total} />
             )}

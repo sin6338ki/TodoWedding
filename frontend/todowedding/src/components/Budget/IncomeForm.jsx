@@ -1,3 +1,9 @@
+
+/* Budget 예산 수입 입력 (내역추가)
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.15
+ */
+
 import React, { useCallback, useState, useContext, useEffect } from "react";
 import { ItemDispatchContext } from "./BudgetApp";
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
@@ -6,12 +12,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
-
 const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, incomeDt, setIncomeDt, incomeContents, setIncomeContents, incomeCost, setIncomeCost  }) => {
 
-
-
-    
     // const token = useSelector((state) => state.Auth.token);  // 여기로 이동
     // const memberSeq = token ? token.userSeq : 0;  
 

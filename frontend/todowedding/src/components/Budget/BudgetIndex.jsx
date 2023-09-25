@@ -1,5 +1,5 @@
 /**
- * 예산관리 수입 & 지출 list 페이지
+ * 예산관리 통계 & 수입 & 지출 list 페이지
  * 작성자 : 양수진
  * 작성일 : 2023.09.18
  */
@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import IncomeList from "./IncomeList";
 import ExpenseList from "./ExpenseList";
@@ -26,6 +27,14 @@ const BudgetIndex = () => {
     const [broomCnt, setBroomCnt] = useState(0);
     const [bothCnt, setBothCnt] = useState(0);
     const [etcCnt, setEtcCnt] = useState(0);
+ 
+     /**로그인 userSeq err 처리 (09.25) */
+
+     
+
+
+
+
 
     /**
      * 지영 수정 부분 : 삭제 처리 시 바로 화면에 적용!
@@ -98,7 +107,7 @@ const BudgetIndex = () => {
 
     return (
         <div>
-            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3 mt-1 text-[#A383FF]">
+            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 mt-1 text-[#A383FF]">
                 <Tab eventKey="home" title="통계">
                     <BudgetDashboard
                         incomes={incomes}

@@ -37,25 +37,37 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 20px;
   }
   
   .amount__expense {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right:  10px;
   }
-  
-  .amount__income input[type='radio'],
-  .amount__expense input[type='radio'] {
-    margin-right: 2px;
+/*   
+  지출 수입 버튼 css적용 (09.25) */
+  .amount__income [type='button'],  
+  .amount__expense [type='button'] {
     accent-color: #808080;
   }
   
-  .amount__income input[type='radio']:checked,
-  .amount__expense input[type='radio']:checked {
+  .amount__income [type='button']:checked,
+  .amount__expense [type='button']:checked {
     accent-color: #5D5FEF;
   }
+
+  /* 버튼 효과추가 (09.25) */
+.amount__income[type='button'],
+.amount__expense[type='button'] {
+    accent-color: #808080;
+}
+
+.amount__income[type='button'].active,
+.amount__expense[type='button'].active {
+    accent-color: #5D5FEF;
+}
   
   .new-item__form-actions {
     display: flex;
@@ -71,3 +83,6 @@
   /* .income-form {
     display: none;
   } */
+
+
+  
