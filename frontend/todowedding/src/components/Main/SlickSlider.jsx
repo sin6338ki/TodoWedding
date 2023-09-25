@@ -22,12 +22,13 @@ import Main5 from "../../assets/images/SlickSlider/Slick_Img5.png";
 const SlickSlider = () => {
     const settings = {
         dots: true,
+        arrows: false,
         infinite: true,
-        speed: 100,
+        speed: 200,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2300,
+        autoplaySpeed: 3000,
     };
 
     const images = [Main1, Main2, Main3, Main4, Main5];

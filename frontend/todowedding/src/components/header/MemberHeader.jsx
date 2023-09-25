@@ -2,12 +2,13 @@
  * 일반 회원용 헤더
  * 작성자 : 신지영
  * 작성일 : 2023.09.14
+ * 수정 : 결혼예정일 미등록시 결혼예정일 추가 페이지로 연결 (서현록, 2023.09.24)
  */
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import headerBtn from "../../assets/images/icon/header-btn.png";
-import TodoLogo from "../../assets/images/todo_logo.png";
+import TodoLogo from "../../assets/images/icon/logo_img.png";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -45,20 +46,24 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     }, []);
 
     return (
-        <div className="fixed top-0 z-50 w-[414px] flex flex-row h-[90px] pr-5 pb-1 bg-gradient-to-r to-white from-[#D4C7F9]">
+        <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 bg-gradient-to-r to-white from-[#D4C7F9]">
             {marryDt ? (
                 <Link to="/" className="decoration-transparent self-cente pl-3 pt-4 ml-4 text-[#9F7FFC] font-bold">
-                    <div className="w-40 decoration-solid underline underline-offset-8 text-[27px]" id="marryFont">
+                    <div className="decoration-solid underline underline-offset-8 text-[25px]" id="marryFont">
                         D{marryDt}
                     </div>
                 </Link>
             ) : (
-                <Link to="/">
-                    <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} />
+                <Link to="/todowedding/marrydate"className="no-underline">
+                    {/* <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} /> */}
+                    <button className="flex relative w-[120px]  mt-0">
+                        <img src={TodoLogo} style={{width:"27px"}} className="mt-3 ml-4 mb-3"/>
+                        <div className="ml-1 mt-4 font-bold text-[#7555d3] text-[13px]">결혼예정일을 <br/> 등록해주세요</div>
+                    </button>
                 </Link>
             )}
 
-            <div className="relative flex flex-col self-center w-[350px]">
+            <div className="relative flex flex-col self-center w-[420px]">
                 <div className="text-sm mt-2 text-start">
                     반가워요, <span className="font-bold">{loginUserNickname}</span>님
                 </div>
@@ -74,7 +79,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                     ) : (
                         <div>
                             <span>
-                                <span className="font-bold text-[#9F7FFC] ">TodoWedding</span>과 함께 <br></br>
+                                <span className="font-bold text-[#9F7FFC]">TodoWedding</span>과 함께 <br></br>
                                 쉽고 편하게 결혼을 준비해보세요!
                             </span>
                         </div>

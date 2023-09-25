@@ -149,7 +149,7 @@ const DayCheckList = () => {
                 <br />
                 원하는 체크리스트를 카카오톡으로 받아보세요!
             </div>
-            <div className="daychecklist-selectbox" style={{ marginTop: "140px" }}>
+            <div className="daychecklist-selectbox">
                 <Select
                     options={options}
                     onChange={(option) => {
@@ -162,7 +162,7 @@ const DayCheckList = () => {
             </div>
             {selectedOption && (
                 <>
-                    <div className="daychecklist-header">
+                    <div className="main-daychecklist-header">
                         <p>결혼예정일 {selectedOption.label} 체크리스트</p>
                     </div>
                     <div>

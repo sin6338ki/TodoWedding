@@ -28,7 +28,7 @@ const TotalBudget = () => {
                 //백엔드로 총 예산 조회 요청 보내기
                 const response = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
                 if (response.data) {
-                    setTotalBudget(response.data);
+                    setTotalBudget(response.data.total_budget);
                     setHasTotalBudget(true);
                     console.log("등록된 총 예산 : ", response.data.total_budget);
                 }
@@ -71,9 +71,9 @@ const TotalBudget = () => {
     };
 
     return (
-        <div>
+        <div className="add-container">
             <form onSubmit={handleSubmit}>
-                <div className="marrydate-header">총 예산을 입력해주세요</div>
+                <div className="marrydate-header pt-3">총 예산을 입력해주세요</div>
                 <div className="marrydate-contents">
                     <input
                         type="number"

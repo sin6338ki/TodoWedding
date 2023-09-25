@@ -9,6 +9,7 @@
   
   .pocket__status-detail {
     display: flex;
+    width: 100%;
     padding: 10px 0;
     margin-bottom: 60px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;

@@ -71,7 +71,7 @@ const MarryDate = () => {
     };
 
     return (
-        <div>
+        <div className="add-container">
             <form onSubmit={handleSubmit}>
                 <div className="marrydate-header text-[#b4b4b4] pt-3">결혼 예정일을 선택해주세요</div>
                 <div className="marrydate-contents">

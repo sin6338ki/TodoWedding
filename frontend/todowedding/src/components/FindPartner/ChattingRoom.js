@@ -215,7 +215,7 @@ const ChattingRoom = () => {
                                 <span>{item.chattingSender}</span>
                             </div>
                             <div className="flex flex-row">
-                                <div className="py-2 mr-1 text-left shadow-md border rounded-md border-pink-300 shadow-white-300 min-w-[150px]  max-w-[220px]">
+                                <div className="py-2 mr-1 text-left shadow-md border rounded-md border-pink-300 shadow-white-300 box-content">
                                     <span className="px-2">{item.chattingContents}</span>
                                 </div>
                                 <div className="mt-1 text-left text-[8px]">
@@ -230,8 +230,8 @@ const ChattingRoom = () => {
                             <div className="mr-1 text-right text-[8px] align-self-end">
                                 <span>{item.chattingCreateDt}</span>
                             </div>
-                            <div className="py-2 px-2 shadow-md shadow-gray-300 border rounded-md border-black mt-3 text-left min-w-[150px] max-w-[220px]">
-                                <span>{item.chattingContents}</span>
+                            <div className="py-2 shadow-md shadow-gray-300 border rounded-md border-black text-right box-content">
+                                <span className="px-2">{item.chattingContents}</span>
                             </div>
                         </div>
                     );
@@ -243,21 +243,13 @@ const ChattingRoom = () => {
     return (
         <div
             id="chatting-container"
-            className="h-[600px] w-[370px] mx-auto mt-[100px] flex flex-col border rounded-2xl border-black"
+            className="h-[80%] w-[90%] mx-auto mt-[110px] flex flex-col border rounded-2xl border-black"
         >
             <div
                 id="chatting-banner"
-                className="flex flex-row bg-[#D0CFFA] text-lg font-bold h-12 border rounded-t-2xl"
+                className="flex flex-col bg-[#D0CFFA] text-lg font-bold h-10 border rounded-t-2xl"
             >
-                <p className="text-left ml-4 mt-[10px]">1:1 상담하기</p>
-                <button
-                    className="font-light text-sm ml-44 border border-black self-center px-2 py-1 rounded-md text-gray-600"
-                    onClick={() => {
-                        disConnect();
-                    }}
-                >
-                    채팅종료
-                </button>
+                <p className="text-left ml-4 mt-[6px] text-[14px]">1:1 상담하기</p>
             </div>
             <div
                 id="chatting-contents-container"
@@ -265,22 +257,22 @@ const ChattingRoom = () => {
             >
                 {token && msgBox()}
             </div>
-            <div id="chatting-input-container" className="grid grid-cols-6 bg-[#F4F4F4] h-32 rounded-b-2xl">
-                {/* <div className="col-span-5 flex flex-col-reverse border-b border-black mx-3 mb-3 align-bottom"> */}
-                <input
-                    onChange={(e) => {
-                        setContent(e.target.value);
-                    }}
-                    id="chatting-input-box"
-                    type="text"
-                    className="text-xs col-span-5 self-end mb-3 pb-1 appearance-none bg-transparent border-b-2 w-64 ml-5 focus:outline-none text-gray-700 border-[#9F7FFC]-500"
-                ></input>
-                {/* </div> */}
+            <div id="chatting-input-container" className="grid grid-cols-6 bg-[#F4F4F4] h-[100px] rounded-b-2xl mt-1">
+                <div className="col-span-5 flex flex-col-reverse border-b border-black mx-3 mb-10 align-bottom">
+                    <input
+                        onChange={(e) => {
+                            setContent(e.target.value);
+                        }}
+                        id="chatting-input-box"
+                        type="text"
+                        className="appearance-none bg-transparent border-noneh-9 w-80 ml-2 mb-1 focus:outline-none  text-gray-700 border-[#9F7FFC]-500"
+                    ></input>
+                </div>
                 <button
                     onClick={() => {
                         send();
                     }}
-                    className="bg-[#C8C8C8] mt-20 mb-3 align-bottom rounded-md h-9 mr-3"
+                    className="bg-[#C8C8C8] mt-5 mb-10 align-bottom rounded-md h-9 mr-3"
                 >
                     전송
                 </button>

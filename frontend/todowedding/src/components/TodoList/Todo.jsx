@@ -15,10 +15,10 @@ Todo
 수정 : todolist 전체 - 완료 - 미완료조회
 */
 const style = {
-    li: `mx-[30px] mt-4 flex justify-between capitalize border-b`,
+    li: `mx-[35px] mt-4 flex justify-between capitalize border-b`,
     liComplete: `flex justify-between bg-slate-400 capitalize`,
     row: `flex`,
-    text: `ml-[15px] cursor-pointer`,
+    text: `ml-[15px] cursor-pointer mb-2`,
     textComplete: `ml-[15px] cursor-pointer line-through text-gray-300 mb-0`,
     button: `cursor-pointer flex items-center`,
 };
@@ -91,11 +91,11 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
             <button
                 onClick={() => deleteTodo(todolistContents.todolistSeq)}
                 className="trashBtn"
-                style={{ marginLeft: "280px" }}
+                style={{ marginLeft: "67%" }}
             >
                 {<FaRegTrashAlt />}
             </button>
-            <button className={style.row} style={{ marginRight: "20px" }} onClick={handleCalendarButtonClick}>
+            <button className={style.row} style={{ marginRight: "3%" }} onClick={handleCalendarButtonClick}>
                 <img className="calendarIcon" src={Todo_calendaricon} alt="일정추가" width="20px" />
             </button>
         </li>

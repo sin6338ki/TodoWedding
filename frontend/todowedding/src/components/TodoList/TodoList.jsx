@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import addBtn from "../../assets/images/icon/plus (1).png"
 
 /*
 
@@ -14,11 +15,11 @@ Todolist (추가/삭제/전체조회:완료), (완료-미완료 개수조회 /�
 
 const style = {
     container: `max-w-[500px] w-full m-auto rounded-md  p-4 mt-100`,
-    heading: `pt-3 text-3xl font-bold text-center text-greay-800`,
-    form: `flex justify-between mt-[50px] mx-[25px] h-[40px] mr-[30px]`,
-    input: `border p-2 w-full text-sm`,
-    button: `p-1 ml-1 bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] text-slate-100`,
-    count: `text-center p-2`,
+    heading: `pt-3 text-3xl font-bold text-center text-gray-800`,
+    form: `flex justify-between mt-[50px] mx-[22px] h-[45px]`,
+    input: `border p-2 w-full h-[50px] text-m rounded-lg mr-1 text-center`,
+    button: `w-[45px] h-[6]`,
+    count: `text-center px-7 py-2 box-content bg-violet-300 rounded-full text-sm`,
 };
 
 //  // 투두 전체-진행-미진행 조회
@@ -216,16 +217,16 @@ const TodoList = () => {
                 <div className="checkitem-intro">
                     나만의 웨딩 투두리스트를 등록하고
                     <br />
-                    웨딩 일정을 캘린더에 추가하고 일정 조회해보세요
+                    원하는 웨딩 일정을 캘린더에 추가해보세요!
                 </div>
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
-                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[130px] mx-[25px]">
+                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[25px] mx-[5%] mb-[25px]">
                     {todos.length < 1 ? null : (
-                        <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}`}</span>
+                        <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}건`}</span>
                     )}
-                    {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${unCompletedCnt}`}</span>}
-                    {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}`}</span>}
+                    {todos.length < 1 ? null : <span className={style.count}> {`진행 : ${unCompletedCnt}건`}</span>}
+                    {todos.length < 1 ? null : <span className={style.count}> {`완료 : ${completedCnt}건`}</span>}
                 </div>
 
                 {/* <h3 className={style.heading}>Todo List</h3> */}
@@ -238,10 +239,11 @@ const TodoList = () => {
                         placeholder="투두리스트를 입력하세요"
                     />
                     <button className={style.button}>
-                        <AiOutlinePlus size={30} />
+                        {/* <AiOutlinePlus size={30} /> */}
+                        <img src={addBtn} style={{width:"35px", margin:"10%"}}/>
                     </button>
                 </form>
-                <div className="mt-[60px]">
+                <div className="mt-[60px] mb-10">
                     {todos.map((todolistContents, index) => (
                         <Todo
                             key={index}

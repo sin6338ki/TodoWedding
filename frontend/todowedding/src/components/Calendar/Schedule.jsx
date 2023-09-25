@@ -120,7 +120,7 @@ const Schedule = () => {
                         onChange={(e) => setTitle(e.target.value)}
                         className={style.input}
                         type="text"
-                        style={{ textAlign: "center", border: "none", background: "transparent", outline: "none" }}
+                        style={{ textAlign: "center", border: "none", background: "transparent", outline: "none"}}
                         placeholder="일정을 입력하세요"
                     />
                 </div>
@@ -145,12 +145,14 @@ const Schedule = () => {
                     </div>
                 </div>
             </div>
-            <button className="Add-Schedule-btn" onClick={createSchedule}>
-                일정 추가
-            </button>
-            <button className="Add-TodoList-btn" onClick={createTodo}>
-                투두리스트 추가
-            </button>
+            <div className="Add-Schedule">
+                <button className="Add-Schedule-btn" onClick={createSchedule}>
+                    일정 추가
+                </button>
+                <button className="Add-TodoList-btn" onClick={createTodo}>
+                    투두리스트 추가
+                </button>
+            </div>
         </div>
     );
 };

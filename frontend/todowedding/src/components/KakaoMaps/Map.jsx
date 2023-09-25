@@ -364,7 +364,7 @@ const Map = () => {
             <div
                 id="KakaoMap"
                 className="Kakao_Conainer border border-[#9F7FFC] mx-auto"
-                style={{ width: "400px", height: "560px", marginTop: "10px" }}
+                style={{ width: "97%", height: "800px", marginTop: "10px"}}
             ></div>
             {/* <a href="http://localhost:3000/todowedding/chatting">채팅방 이동</a> */}
         </div>

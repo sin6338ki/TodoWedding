@@ -4,6 +4,7 @@
 
     padding: 30px 43px;
     margin: 30px auto;
+    margin-top: 100px;
     border-radius: 5px;
     background-color: #FFFFFF;
     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px; (그림자효과) */ 
@@ -18,9 +19,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
     height: 100%;
-    margin-left: 5%;
     
   }
 

@@ -111,22 +111,26 @@ const UpdateSchedule = () => {
                     </div>
                 </div>
             </div>
-            <button className="Add-Schedule-btn" onClick={updateSchedule}>
-                수정하기
-            </button>
-            <button className="Add-TodoList-btn" onClick={deleteSchedule}>
-                삭제하기
-            </button>
-            <Link to={URL} style={{ textDecorationLine: "none" }}>
-                <button className="add-talk-calendar" style={{ display: "flex" }}>
-                    <img
-                        src={talkCalendarLogo}
-                        alt="톡캘린더 연동하기"
-                        style={{ width: "60px", marginRight: "15px" }}
-                    />
-                    <p style={{ marginTop: "17px", marginRight: "5px" }}>톡캘린더 연동하기</p>
+            <div className="Add-Schedule">
+                <button className="Add-Schedule-btn" onClick={updateSchedule}>
+                    수정하기
                 </button>
-            </Link>
+                <button className="Add-TodoList-btn" onClick={deleteSchedule}>
+                    삭제하기
+                </button>
+            </div>
+            <div style={{display:"flex", justifyContent:"center"}}>
+                <Link to={URL} style={{ textDecorationLine: "none" }}>
+                    <button className="add-talk-calendar" style={{ display: "flex" }}>
+                        <img
+                            src={talkCalendarLogo}
+                            alt="톡캘린더 연동하기"
+                            style={{ width: "60px", marginRight: "15px" }}
+                        />
+                        <p style={{ marginTop: "17px", marginRight: "5px" }}>톡캘린더 연동하기</p>
+                    </button>
+                </Link>
+            </div>
         </div>
     );
 };

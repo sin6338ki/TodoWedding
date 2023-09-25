@@ -57,12 +57,14 @@ const Mypage = () => {
         "https://kauth.kakao.com/oauth/logout?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&logout_redirect_uri=http://localhost:3000/auth/kakao/logout";
 
     return (
-        <div className="Login-Page">
+        <div className="Login-Page" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
             <img src={Logo} width="300px" style={{ margin: "20px 0 35px 0" }} />
             <p>
-                카카오로 간편하게 로그인하고
+                카카오 로그인 버튼 클릭 후 
                 <br />
-                투두웨딩의 다양한 서비스를 이용해보세요.
+                카카오계정과 함께 로그아웃을 진행하면
+                <br />
+                다른 카카오 계정으로 투두웨딩을 이용하실 수 있어요
             </p>
             <br />
             {/* 로그아웃을 하게 되면 다른 카카오 계정으로 로그인 가능 */}
