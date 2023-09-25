@@ -6,7 +6,7 @@ import "../../assets/budget-css/Budget.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-/* Budget 예산관리 [상위컴포넌트]
+/* Budget 예산관리 [상위컴포넌트] : 총수입 , 총지출
  * 작성자 : 양수진
  * 작성일 : 2023.09.12
  * 로그인이전 home 으로 이동 (09.18)

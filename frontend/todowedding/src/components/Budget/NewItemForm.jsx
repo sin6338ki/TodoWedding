@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useCallback, useState, useContext , useEffect} from "react";
 import { ItemDispatchContext } from "./BudgetApp";
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
 import { StopEditContext } from "./NewItemContainer";
@@ -32,7 +32,8 @@ const NewItemForm = () => {
     const [budgetDate, setBudgetDate] = useState("");
     const [budgetTitle, setBudgetTitle] = useState("");
     const [budgetCost, setBudgetCost] = useState("");
-    const [enteredAmountType, setEnteredAmountType] = useState("income");
+    const [enteredAmountType, setEnteredAmountType] = useState("expense");  // default 내역추가 (지출로수정 09.25)
+    const [selectedType, setSelectedType] = useState("expense"); //버튼 이벤트함수 추가(09.25)
 
     // 지출 항목 추가 input
     const [budgetRole, setBudgetRole] = useState("");
@@ -56,12 +57,37 @@ const NewItemForm = () => {
     const getDate = useCallback(() => {
         return new Date().toISOString().substring(0, 10);
     }, []);
+    
+
+    // 
 
     // 수입 인지 지출인지 type확인
     const amountTypeChangeHandler = (event) => {
         setEnteredAmountType(event.target.value);
     };
 
+    // 내역추가 지출-수입 버튼 색상 변경 (09.25)
+    useEffect(() => {
+        if (enteredAmountType === 'expense') {
+          document.getElementById('expense').style.setProperty('background-color', '#9f7ffc');
+          document.getElementById('expense').style.setProperty('color', '#FFFFFF');
+          document.getElementById('income').style.setProperty('background-color', '#808080');
+          document.getElementById('income').style.setProperty('color', '#000000');
+        } else if (enteredAmountType === 'income') {
+          document.getElementById('expense').style.setProperty('background-color', '#808080');
+          document.getElementById('expense').style.setProperty('color', '#000000');
+          document.getElementById('income').style.setProperty('background-color', '#9f7ffc');
+          document.getElementById('income').style.setProperty('color', '#FFFFFF');
+        } else  { // 아무것도 선택안했을때 버튼 둘다 보라색으로 ?
+            document.getElementById('expense').style.setProperty('background-color', '#9f7ffc');
+            document.getElementById('expense').style.setProperty('color', '#FFFFFF');
+            document.getElementById('income').style.setProperty('background-color', '#9f7ffc');
+            document.getElementById('income').style.setProperty('color', '#FFFFFF');
+        }
+      }, [enteredAmountType]);
+
+
+  
     // back에서 BudgetDto에 맞춰 값 넣어주기 -->9/13 수정
     //   const enteredData = {
     //     id: nextItemId,
@@ -137,60 +163,12 @@ const NewItemForm = () => {
         <div className="new-item__form">
             {/* 수입인지 지출인지 체크  */}
             <div className="amount__type">
-                <div className="amount__income">
-                    {/* <input
-                        type="radio"
-                        id="income"
-                        name="amount-type"
-                        value="income"
-                        onChange={amountTypeChangeHandler}
-                        checked={enteredAmountType === "income"}
-                        required
-                    />
-                  
-                    <label htmlFor="income" className="fs-small">
-                        수입
-                    </label> */}
-
-                    <button //버튼Type으로 수정중
-                        type="button"
-                        id="income"
-                        className={`amount__income ${enteredAmountType === "income" ? "active" : ""}`}
-                        onClick={() => setEnteredAmountType("income")}
-                        style={{
-                            backgroundColor: "#9f7ffc",
-                            borderRadius: "10px",
-                            padding: "8px 16px",
-                            color: "#ffffff",
-                            border: "none",
-                            width: "150px",
-                            marginBottom: "20px",
-                        }}
-                    >
-                        수입
-                    </button>
-                </div>
-
-                <div className="amount__expense">
-                    {/* <input
-                        type="radio"
-                        id="expense"
-                        name="amount-type"
-                        value="expense"
-                        onChange={amountTypeChangeHandler}
-                        checked={enteredAmountType === "expense"}
-                        required
-                    />
-                    
-                    <label htmlFor="expense" className="fs-small">
-                        지출
-                    </label> */}
-
+            <div className="amount__expense">
                     <button //버튼Type으로 수정 (09.22)
                         type="button"
                         id="expense"
                         className={`amount__expense ${enteredAmountType === "expense" ? "active" : ""}`}
-                        onClick={() => setEnteredAmountType("expense")}
+                        onClick={() => setEnteredAmountType("expense") }
                         style={{
                             backgroundColor: "#9f7ffc",
                             borderRadius: "10px",
@@ -204,6 +182,28 @@ const NewItemForm = () => {
                         지출
                     </button>
                 </div>
+                <div className="amount__income">
+                    <button //버튼Type으로 수정완료
+                        type="button"
+                        id="income"
+                        className={`amount__income ${enteredAmountType === "income" ? "active" : ""}`}
+                        onClick={() => setEnteredAmountType("income") }
+                        style={{
+                            backgroundColor: "#9f7ffc",
+                            borderRadius: "10px",
+                            padding: "8px 16px",
+                            color: "#ffffff",
+                            border: "none",
+                            width: "150px",
+                            marginBottom: "20px",
+                        }}
+                    >
+                        수입
+                    </button>
+                </div>
+
+           
+
             </div>
 
             {/* 무한루프 */}

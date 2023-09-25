@@ -1,3 +1,11 @@
+/* 예산 관리 Total Expense 
+          : 지출 분담 chart 
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.14
+ */
+
+
+
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
@@ -29,7 +37,6 @@ const BudgetRoleChart = ({ broomPercentage, bridePercentage, bothPercentage, etc
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
-                {/* <Tooltip  /> */}
                 <Tooltip formatter={(value) => `${Math.round(value)}`} />
             </PieChart>
         </div>

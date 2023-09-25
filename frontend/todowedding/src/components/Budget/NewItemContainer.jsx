@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import NewItem from "./NewItem";
-import '../../assets/budget-css/NewItemContainer.css'
-
+import "../../assets/budget-css/NewItemContainer.css";
 
 export const StopEditContext = React.createContext();
 
@@ -13,7 +12,6 @@ const style = {
     button: `p-1 ml-1 bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] text-slate-100`,
     count: `text-center p-2`,
 };
-
 
 const NewItemContainer = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -33,15 +31,18 @@ const NewItemContainer = () => {
     return (
         <div className="new-item__container" style={{ cursor: !isEditing ? "pointer" : "auto" }}>
             {!isEditing && (
-                
-                // <button className="fs-normal bg-gradient-to-r from-[#d68aff] to-[#9F7FFC]  fw-bold add-new-item-button " onClick={startEditingHandler} style={{borderRadius:"30px"}}>
-                <button className="fs-normal bg-gradient-to-r from-[#e5b4ff] to-[#9b79ff] add-new-item-button" onClick={startEditingHandler} style={{ borderRadius: "15px",  color: "white", transition: "background-color 0.3s ease" , height:"50px", width:"90%"}}>   
-                예산 추가하기
+                <button
+                    className="fs-normal bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] add-new-item-button"
+                    onClick={startEditingHandler}
+                    style={{
+                        borderRadius: "15px",
+                        color: "white",
+                        transition: "background-color 0.3s ease",
+                        height: "50px",
+                    }}
+                >
+                    예산 추가하기
                 </button>
-
-                
-               
-
             )}
             {isEditing && (
                 <StopEditContext.Provider value={memoizedStopEdit}>
