@@ -9,9 +9,6 @@ import { setToken } from './actions'; // 액세스 토큰을 업데이트하는 
  */
 
 
-const instance = axios.create({
-    baseURL: 'http://localhost:8085',
-});
 
 // 응답 인터셉터 추가
 instance.interceptors.response.use(
@@ -22,12 +19,13 @@ instance.interceptors.response.use(
     async function (error) {
         if (error.response.status === 401 && error.config && !error.config.__isRetryRequest) { 
             // 상태 코드가 401이고, 이전에 재시도한 요청이 아니라면
-
+            
             const refreshToken = store.getState().auth.refreshToken; // 리프레시 토큰 가져오기
+            console.log('refreshToken:', refreshToken); 
 
             try {
                 
-                const res = await instance.post('/member/refresh', { refreshToken });
+                const res = await instance.post('http://localhost:8085/member/refresh', { refreshToken });
                 const newAccessToken = res.data.accessToken; // 새로운 액세스 토큰 가져오기
 
                 // Redux 스토어의 액세스 토큰 업데이트하기
@@ -37,6 +35,7 @@ instance.interceptors.response.use(
                 error.config.headers['Authorization'] = 'Bearer ' + newAccessToken;
                 error.config.__isRetryRequest = true;
                 return instance(error.config);
+                
                 
             } catch (err) {
                 console.log('액세스 토큰 갱신 실패', err);
