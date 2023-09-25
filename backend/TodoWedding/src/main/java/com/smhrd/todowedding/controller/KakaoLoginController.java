@@ -107,7 +107,7 @@ public class KakaoLoginController {
 	}
 	
 	//예약 메시지 보내기 - D-day 안내 메시지
-	@Scheduled(cron = "0 0 10 * * *", zone = "Asia/Seoul")
+//	@Scheduled(cron = "0 0 10 * * *", zone = "Asia/Seoul")
 //	@Scheduled(cron = "10 * * * * *", zone = "Asia/Seoul")
 	public void dDayMessageSendRun() throws Exception {
 
@@ -120,7 +120,7 @@ public class KakaoLoginController {
 	}
 	
 	//예약 메시지 보내기 - 하루 남은, 당일 일정 안내 메시지
-	@Scheduled(cron = "30 0 10 * * *", zone = "Asia/Seoul")
+//	@Scheduled(cron = "30 0 10 * * *", zone = "Asia/Seoul")
 //	@Scheduled(cron = "1 * * * * *", zone = "Asia/Seoul")
 	public void ScheduleMessageSendRun() throws Exception {
 		log.info("하루 남은 일정 알림 메시지 보내기 스케쥴러 실행 : {}", accessToken);

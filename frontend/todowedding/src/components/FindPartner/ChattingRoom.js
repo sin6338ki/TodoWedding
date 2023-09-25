@@ -230,8 +230,8 @@ const ChattingRoom = () => {
                             <div className="mr-1 text-right text-[8px] align-self-end">
                                 <span>{item.chattingCreateDt}</span>
                             </div>
-                            <div className="py-2 shadow-md shadow-gray-300 border rounded-md border-black mt-3 text-right min-w-[150px] max-w-[220px]">
-                                <span className="px-2">{item.chattingContents}</span>
+                            <div className="py-2 px-2 shadow-md shadow-gray-300 border rounded-md border-black mt-3 text-left min-w-[150px] max-w-[220px]">
+                                <span>{item.chattingContents}</span>
                             </div>
                         </div>
                     );
@@ -266,16 +266,16 @@ const ChattingRoom = () => {
                 {token && msgBox()}
             </div>
             <div id="chatting-input-container" className="grid grid-cols-6 bg-[#F4F4F4] h-32 rounded-b-2xl">
-                <div className="col-span-5 flex flex-col-reverse border-b border-black mx-3 mb-3 align-bottom">
-                    <input
-                        onChange={(e) => {
-                            setContent(e.target.value);
-                        }}
-                        id="chatting-input-box"
-                        type="text"
-                        className="appearance-none bg-transparent border-noneh-9 w-80 ml-2 mb-1 focus:outline-none  text-gray-700 border-[#9F7FFC]-500"
-                    ></input>
-                </div>
+                {/* <div className="col-span-5 flex flex-col-reverse border-b border-black mx-3 mb-3 align-bottom"> */}
+                <input
+                    onChange={(e) => {
+                        setContent(e.target.value);
+                    }}
+                    id="chatting-input-box"
+                    type="text"
+                    className="text-xs col-span-5 self-end mb-3 pb-1 appearance-none bg-transparent border-b-2 w-64 ml-5 focus:outline-none text-gray-700 border-[#9F7FFC]-500"
+                ></input>
+                {/* </div> */}
                 <button
                     onClick={() => {
                         send();

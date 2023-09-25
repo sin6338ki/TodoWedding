@@ -28,7 +28,6 @@ const KakaologOut = () => {
                     {},
                     {
                         headers: {
-                            
                             Authorization: `Bearer ${token.accessToken}`,
                         },
                     }
