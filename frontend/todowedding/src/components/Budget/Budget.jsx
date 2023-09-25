@@ -55,7 +55,7 @@ const Budget = (props) => {
             };
 
             axios
-                .post(`http://172.30.1.7:8085/member/total`, memberSeqObj)
+                .post(`http://localhost:8085/member/total`, memberSeqObj)
                 .then((response) => {
                     console.log("222", response);
                     setTotalExpense(response.data.budget_sum_cost);
@@ -69,7 +69,7 @@ const Budget = (props) => {
     return (
         <div className="pocket__status">
             <div className="pocket__status-title">
-                <h3 className={style.heading}>{twoDigitYear}년 웨딩 예산관리</h3>
+                {/* <h1 className={style.heading}>20{twoDigitYear}년 결혼 예산 관리</h1> */}
                 {/* <strong className="fs-title">웨딩 전체 예산 : {addComma(totalBalance.toString())}원</strong> */}
             </div>
 

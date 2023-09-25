@@ -30,7 +30,7 @@ const PartnerInfo = () => {
     //업체 정보 조회 메서드
     const findPartnerInfo = () => {
         axios
-            .get(`http://172.30.1.7:8085/partner/info/${token.userSeq}`)
+            .get(`http://localhost:8085/partner/info/${token.userSeq}`)
             .then((res) => {
                 console.log("업체 정보 조회 result : ", res.data);
                 setPartnerInfo(res.data);
@@ -87,7 +87,7 @@ const PartnerInfo = () => {
     //회원 정보 업데이트
     const updatePartnerInfo = () => {
         axios
-            .put(`http://172.30.1.7:8085/partner`, partnerUpdateDto)
+            .put(`http://localhost:8085/partner`, partnerUpdateDto)
             .then((res) => {
                 console.log("기업 회원 정보 update response", res.data);
                 alert("회원 정보 수정이 완료되었습니다.!");
@@ -100,19 +100,19 @@ const PartnerInfo = () => {
     };
 
     return (
-        <div>
-            <div className="flex relative w-[180px] mt-[120px] mx-auto">
+        <div className="partner-page mx-[5px] mt-[33px] w-[100%] flex flex-col">
+            <div className="flex relative w-[180px] mt-[120px] mb-4 mx-auto">
                 <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
                 <div className="text-center font-bold absolute w-full h-full mt-2">업체 정보 수정하기</div>
             </div>
-            <div className="ml-5 mt-10 w-[380px] flex flex-col">
+            <div className=" flex flex-col">
                 <div className="mb-3 self-center w-[380px]">
                     <p className="mb-2 text-left text-gray-500">아이디</p>
                     <input
                         value={partnerInfo.partner_id}
                         disabled
                         type="text"
-                        className="w-[380px] border text-[#A383FF] h-8 p-2"
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -123,7 +123,7 @@ const PartnerInfo = () => {
                             setPartnerPw(e.target.value);
                         }}
                         type="password"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2 "
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -135,7 +135,7 @@ const PartnerInfo = () => {
                             setCheckPartnerPw(e.target.value);
                         }}
                         type="password"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -146,7 +146,7 @@ const PartnerInfo = () => {
                             setPartnerName(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     />
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -157,7 +157,7 @@ const PartnerInfo = () => {
                             setPartnerRegistration(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     />
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -168,7 +168,7 @@ const PartnerInfo = () => {
                             setPartnerTel(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     />
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -180,7 +180,7 @@ const PartnerInfo = () => {
                             setPartnerLink(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -191,7 +191,7 @@ const PartnerInfo = () => {
                             setPartnerManager(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     />
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -202,7 +202,7 @@ const PartnerInfo = () => {
                             setPartnerManagerTel(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     />
                 </div>
                 <div className="mb-3 self-center w-[380px]">
@@ -213,10 +213,10 @@ const PartnerInfo = () => {
                             setPartnerAddress(e.target.value);
                         }}
                         type="text"
-                        className="w-[380px] border h-8 p-2 text-[#A383FF] "
+                        className="w-[380px] border text-[#8267d3] h-8 p-2"
                     />
                 </div>
-                <div>
+                <div style={{width:"35%", display:"flex"}} className="mx-auto mt-3 mb-5">
                     <input
                         type="button"
                         value="제출하기"

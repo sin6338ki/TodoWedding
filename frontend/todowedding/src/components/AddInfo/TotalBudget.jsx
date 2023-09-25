@@ -26,9 +26,9 @@ const TotalBudget = () => {
         const fetchTotalBudget = async () => {
             try {
                 //백엔드로 총 예산 조회 요청 보내기
-                const response = await axios.get(`http://172.30.1.7:8085/totalbudget/select/${userSeq}`);
+                const response = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
                 if (response.data) {
-                    setTotalBudget(response.data);
+                    setTotalBudget(response.data.total_budget);
                     setHasTotalBudget(true);
                     console.log("등록된 총 예산 : ", response.data.total_budget);
                 }
@@ -47,13 +47,13 @@ const TotalBudget = () => {
             let response;
             if (hasTotalBudget) {
                 //이미 등록된 총 예산이 있는 경우 수정 API 호출하기
-                response = await axios.post("http://172.30.1.7:8085/totalbudget/update", {
+                response = await axios.post("http://localhost:8085/totalbudget/update", {
                     total_budget: totalBudget,
                     member_seq: userSeq,
                 });
             } else {
                 //등록된 총 예산이 없는 경우 등록 API 호출하기
-                response = await axios.post("http://172.30.1.7:8085/totalbudget/insert", {
+                response = await axios.post("http://localhost:8085/totalbudget/insert", {
                     total_budget: totalBudget,
                     member_seq: userSeq,
                 });
@@ -71,9 +71,9 @@ const TotalBudget = () => {
     };
 
     return (
-        <div>
+        <div className="add-container">
             <form onSubmit={handleSubmit}>
-                <div className="marrydate-header">총 예산을 입력해주세요</div>
+                <div className="marrydate-header pt-3">총 예산을 입력해주세요</div>
                 <div className="marrydate-contents">
                     <input
                         type="text"

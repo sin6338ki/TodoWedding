@@ -41,7 +41,7 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     const incomeDelete = async (incomeSeq) => {
         try {
             console.log("income리스트 삭제실행 , incomeSeq", incomeSeq);
-            const response = await axios.delete(`http://172.30.1.7:8085/income/delete/${incomeSeq}`);
+            const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
 
             // 지영 수정 부분 =============================
@@ -55,7 +55,7 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     };
 
     return (
-        <div>
+        <div style={{ marginTop: "-20px" }}>
             <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
                 {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
                 <div className="text-center text-xs font-bold col-span-3 mr-2 ">날짜</div>
@@ -90,7 +90,11 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
 
             <div style={{ display: "flex", justifyContent: "flex-end", marginLeft: "-30px" }}>
                 {offset + limits <= incomes.length && (
-                    <button onClick={handleLoadMore} className="mt-[20px]" style={{ color: "#d68aff" }}>
+                    <button
+                        onClick={handleLoadMore}
+                        className="mt-[20px] text-xs"
+                        style={{ color: "#9f7ffc", marginRight: "25px", fontSize: "xs" }}
+                    >
                         더 보기
                         <svg height="10" width="50">
                             <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />
@@ -103,7 +107,11 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
             {offset + limits > incomes.length && page > 1 && (
                 <>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <button onClick={() => setPage(1)} className="mt-[20px]" style={{ color: "#d68aff" }}>
+                        <button
+                            onClick={() => setPage(1)}
+                            className="mt-[20px] text-xs"
+                            style={{ color: "#9f7ffc", marginRight: "25px", fontSize: "xs" }}
+                        >
                             처음으로
                             <svg height="10" width="50">
                                 <line x1="0" y1="0" x2="100" y2="0" style={{ stroke: "lightgray", strokeWidth: "2" }} />

@@ -16,6 +16,7 @@ import lombok.Setter;
 public class Chatting {
 
 	private Long chattingSeq;
+	private String type;
 	private String chattingCreateDt;
 	private String chattingSender;
 	private String chattingContents;

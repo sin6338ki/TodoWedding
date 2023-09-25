@@ -1,7 +1,7 @@
 .new-item__form-info {
     display: flex;
     flex-flow: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .new-item__form-info h2 {

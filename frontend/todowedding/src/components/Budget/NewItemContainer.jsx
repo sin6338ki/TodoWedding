@@ -33,10 +33,15 @@ const NewItemContainer = () => {
     return (
         <div className="new-item__container" style={{ cursor: !isEditing ? "pointer" : "auto" }}>
             {!isEditing && (
-                // <button className="fs-normal fw-bold add-new-item-button" onClick={startEditingHandler}>
-                <button className="fs-normal bg-gradient-to-r from-[#d68aff] to-[#9F7FFC]  fw-bold add-new-item-button" onClick={startEditingHandler} style={{borderRadius:"30px"}}>
-                    예산 추가하기
+                
+                // <button className="fs-normal bg-gradient-to-r from-[#d68aff] to-[#9F7FFC]  fw-bold add-new-item-button " onClick={startEditingHandler} style={{borderRadius:"30px"}}>
+                <button className="fs-normal bg-gradient-to-r from-[#e5b4ff] to-[#9b79ff] add-new-item-button" onClick={startEditingHandler} style={{ borderRadius: "15px",  color: "white", transition: "background-color 0.3s ease" , height:"50px", width:"90%"}}>   
+                예산 추가하기
                 </button>
+
+                
+               
+
             )}
             {isEditing && (
                 <StopEditContext.Provider value={memoizedStopEdit}>

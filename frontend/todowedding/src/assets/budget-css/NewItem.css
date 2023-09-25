@@ -6,7 +6,7 @@
   .new-item:before {
     content: "";
     position: absolute;
-    top: 80px;
+    top: 70px; 
     width: 320px;
     height: 0px;
     opacity: 0.5;

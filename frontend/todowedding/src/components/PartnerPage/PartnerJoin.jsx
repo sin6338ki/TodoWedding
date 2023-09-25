@@ -39,7 +39,7 @@ const PartnerJoin = () => {
     const applyJoin = () => {
         console.log("회원가입 폼 입력 데이터 확인 : ", joinData);
         axios
-            .post("http://172.30.1.7:8085/partner/join", joinData)
+            .post("http://localhost:8085/partner/join", joinData)
             .then((res) => {
                 console.log("회원가입 response : ", res.data);
                 if (res.data === "회원가입 완료") {
@@ -55,7 +55,7 @@ const PartnerJoin = () => {
     const checkSameId = () => {
         console.log("중복체크 아이디 : ", partnerId);
         axios
-            .get(`http://172.30.1.7:8085/partner/check-id?partnerId=${partnerId}`)
+            .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
             .then((res) => {
                 if (res.data == 1) {
                     alert("사용 가능한 아이디입니다. ");
@@ -80,11 +80,11 @@ const PartnerJoin = () => {
     }, [checkPartnerPw]);
 
     return (
-        <div className="mx-[25px] mt-[130px] w-[380px] flex flex-col text-[#9F7FFC]">
-            <div className="m-auto mb-5 text-xl font-bold">업체 전용 회원가입</div>
+        <div className="partner-page mx-[5px] mt-[130px] w-[380px] flex flex-col text-[#5d45a7]">
+            <div className="m-auto mt-4 mb-5 text-xl font-bold">업체 전용 회원가입</div>
             <div className="mb-3 self-center w-[380px]">
                 <p className="mb-2 text-left text-gray-500">아이디</p>
-                <div className="flex flex-row">
+                <div className="flex flex-row ">
                     <input
                         onChange={(e) => {
                             setPartnerId(e.target.value);
@@ -193,7 +193,7 @@ const PartnerJoin = () => {
                     className="w-[380px] border h-8 p-2 text-[#A383FF]"
                 />
             </div>
-            <div className="flex flex-row">
+            <div className="flex flex-row mx-[10%] mt-3">
                 <div className="flex flex-col mb-3 self-center w-[380px]">
                     <label htmlFor="email" className="mb-2 text-left text-gray-500">
                         마케팅 활용 동의

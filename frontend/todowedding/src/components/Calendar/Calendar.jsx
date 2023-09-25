@@ -44,7 +44,7 @@ const Calendar = () => {
                         className="calendarBtn" 
                         src={add_schedule} 
                         alt="일정추가" 
-                        style={{width:"40px", 
+                        style={{width:"43px", 
                         margin: "0 10px 0 15px"}} 
                         onClick={addSchedule} />
                 </button>
@@ -53,8 +53,8 @@ const Calendar = () => {
                         className="calendarBtn"
                         src={item_checklist}
                         alt="항목별체크리스트"
-                        style={{width:"40px", 
-                        margin: "0 10px 0 3px"}} 
+                        style={{width:"43px", 
+                        margin: "0 010px 0 3px"}} 
                         onClick={itemCheckList}
                     />
                 </button>
@@ -63,29 +63,29 @@ const Calendar = () => {
                         className="calendarBtn"
                         src={dday_checklist}
                         alt="D-Day체크리스트"
-                        style={{width:"40px", 
-                        margin: "0 10px 0 3px"}} 
+                        style={{width:"43px", 
+                        margin: "0 0 0 3px"}} 
                         onClick={dDayCheckList}
                     />
                 </button>
             </div>
-            <div style={{ display: "flex" }}>
-                <div>
+            <div style={{ display: "flex" }}  className="report-container">
+                <div style={{marginRight: "2%", width:"47.5%"}}>
                     <div className="report-header1">결혼 준비 진행도</div>
                     <div className="report-content1">
                         <TodoReport />
                     </div>
                 </div>
-                <div>
+                <div style={{marginLeft: "0.5%", width:"47.5%"}}>
                     <p className="report-header2">예산 현황</p>
                     <div className="report-content2">
                         <BudgetReport />
                     </div>
                 </div>
             </div>
-            <div>
+            <div style={{marginBottom:"10%"}}>
                 <p className="TodoList-Title">최근 TodoList 3가지</p>
-                <MyTodoList />
+                <MyTodoList/>
             </div>
         </div>
     );

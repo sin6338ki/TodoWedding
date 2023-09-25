@@ -25,7 +25,7 @@ const MarryDate = () => {
     useEffect(() => {
         const fetchMarryDate = async () => {
             try {
-                const response = await axios.get(`http://172.30.1.7:8085/marrydate/${userSeq}`);
+                const response = await axios.get(`http://localhost:8085/marrydate/${userSeq}`);
                 if (response.data) {
                     setMarryDate(response.data);
                     setHasMarryDate(true); // 등록된 결혼 예정일이 있다면 hasMarryData를 true로 설정
@@ -47,13 +47,13 @@ const MarryDate = () => {
 
             if (hasMarryDate) {
                 // 등록된 결혼예정일이 있으면 업데이트 호출
-                response = await axios.post(`http://172.30.1.7:8085/marrydate/update`, {
+                response = await axios.post(`http://localhost:8085/marrydate/update`, {
                     marryDt: marryDate,
                     memberSeq: userSeq,
                 });
             } else {
                 // 등록된 결혼예정일이 없으면 등록하기 호출
-                response = await axios.post(`http://172.30.1.7:8085/marrydate`, {
+                response = await axios.post(`http://localhost:8085/marrydate`, {
                     marryDt: marryDate,
                     memberSeq: userSeq,
                 });
@@ -61,7 +61,7 @@ const MarryDate = () => {
 
             if (response.status === 200) {
                 alert("결혼 예정일이 성공적으로 업데이트되었습니다.");
-                window.location.href = "http://172.30.1.7:3000";
+                window.location.href = "http://localhost:3000";
             } else {
                 alert("결혼 예정일 업데이트에 실패하였습니다.");
             }
@@ -71,7 +71,7 @@ const MarryDate = () => {
     };
 
     return (
-        <div>
+        <div className="add-container">
             <form onSubmit={handleSubmit}>
                 <div className="marrydate-header text-[#b4b4b4] pt-3">결혼 예정일을 선택해주세요</div>
                 <div className="marrydate-contents">

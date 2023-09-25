@@ -53,7 +53,7 @@ const Schedule = () => {
                 memberSeq: userSeq,
             };
             await axios
-                .post("http://172.30.1.7:8085/schedule", data)
+                .post("http://localhost:8085/schedule", data)
                 .then((res) => {
                     console.log("스프링으로 넘기는 값 -> ", data);
                     //                fetchData();
@@ -81,7 +81,7 @@ const Schedule = () => {
 
             //backend axios통신
             await axios
-                .post("http://172.30.1.7:8085/todolist", data)
+                .post("http://localhost:8085/todolist", data)
                 .then((res) => {
                     console.log("스프링으로 넘기는 값 -> ", data);
                     //                fetchData();
@@ -98,7 +98,7 @@ const Schedule = () => {
     const allSchedule = () => {
         try {
             axios
-                .get(`http://172.30.1.7:8085/all-schedule/${userSeq}`)
+                .get(`http://localhost:8085/all-schedule/${userSeq}`)
                 .then((res) => {
                     console.log("전체 일정 조회 response : ", res.data);
                     setSchedule(res.data);
@@ -120,7 +120,7 @@ const Schedule = () => {
                         onChange={(e) => setTitle(e.target.value)}
                         className={style.input}
                         type="text"
-                        style={{ textAlign: "center", border: "none", background: "transparent", outline: "none" }}
+                        style={{ textAlign: "center", border: "none", background: "transparent", outline: "none"}}
                         placeholder="일정을 입력하세요"
                     />
                 </div>
@@ -145,12 +145,14 @@ const Schedule = () => {
                     </div>
                 </div>
             </div>
-            <button className="Add-Schedule-btn" onClick={createSchedule}>
-                일정 추가
-            </button>
-            <button className="Add-TodoList-btn" onClick={createTodo}>
-                투두리스트 추가
-            </button>
+            <div className="Add-Schedule">
+                <button className="Add-Schedule-btn" onClick={createSchedule}>
+                    일정 추가
+                </button>
+                <button className="Add-TodoList-btn" onClick={createTodo}>
+                    투두리스트 추가
+                </button>
+            </div>
         </div>
     );
 };

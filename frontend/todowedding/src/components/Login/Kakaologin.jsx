@@ -27,12 +27,12 @@ const Kakaologin = () => {
     }, [userSeq]);
 
     // 사용자가 로그인 버튼 선택시 이동되는 URL
-    const loginURL = `https://kauth.kakao.com/oauth/authorize?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&redirect_uri=http://172.30.1.7:3000/auth/kakao/callback&response_type=code`;
+    const loginURL = `https://kauth.kakao.com/oauth/authorize?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`;
 
     return (
-        <div className="Login-Page">
-            <img src={Logo} width="300px" style={{ marginBottom: "30px" }} />
-            <p style={{ margin: "0 0 20px 20px" }}>
+        <div className="Login-Page" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+            <img src={Logo} width="300px" style={{ margin: "20px 0 0 0" }}/>
+            <p style={{ margin: "10% 0 11% 0", textAlign:"center"}}>
                 카카오 계정으로 간편하게 로그인하고
                 <br />
                 TodoWedding의 다양한 서비스를
@@ -41,9 +41,8 @@ const Kakaologin = () => {
             <a className="kakao" href={loginURL}>
                 <img
                     src={KakaoLogin}
-                    width={300}
                     alt="Kakao Login"
-                    style={{ margin: "0 0 5px 9px" }}
+                    style={{alignItems:"center"}}
                     onClick={() => {
                         console.log("kakaologin 클릭!");
                     }}
@@ -51,7 +50,7 @@ const Kakaologin = () => {
             </a>
             <div className="Partner-Login">
                 <Link to="../partner/login" relative="path" className="Partner-Login-Link">
-                    <p style={{ marginLeft: "10px", paddingTop: "5px" }}>기업계정으로 시작하기</p>
+                    <p style={{paddingTop: "10%" }}>기업계정으로 시작하기</p>
                 </Link>
             </div>
         </div>

@@ -36,7 +36,7 @@ const PartnerLogin = () => {
     //로그인 버튼 클릭했을 때 이벤트
     const login = async () => {
         await axios
-            .post("http://172.30.1.7:8085/partner/login", {
+            .post("http://localhost:8085/partner/login", {
                 partner_id: id,
                 partner_pw: pw,
             })
@@ -68,10 +68,10 @@ const PartnerLogin = () => {
     };
 
     return (
-        <div className="flex flex-col mx-auto mt-[130px]">
-            <img src={TodoLogo} className="w-72 self-center my-14"></img>
+        <div className=" flex flex-col mx-[58px] mt-[130px]">
+            <img src={TodoLogo} className="w-[90%] self-center] mt-14 mb-10"></img>
             <div className="self-center text-center">
-                <p id="login-info" className="mb-10">
+                <p id="login-info" className="mb-10 text-sm">
                     기업 전용 로그인 페이지입니다. <br></br>
                     아이디와 비밀번호를 입력해주세요.
                 </p>
