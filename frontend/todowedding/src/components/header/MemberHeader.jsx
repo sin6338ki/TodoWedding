@@ -60,10 +60,10 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
             ) : (
                 <Link to="/todowedding/marrydate" className="no-underline">
                     {/* <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} /> */}
-                    <button className="flex relative w-[120px]  mt-0">
+                    <button className="flex relative w-[120px] mt-1">
                         <img src={TodoLogo} style={{ width: "27px" }} className="mt-3 ml-4 mb-3" />
-                        <div className="ml-1 mt-4 font-bold text-[#7555d3] text-[13px]">
-                            결혼예정일을 <br /> 등록해주세요
+                        <div className="ml-1 mt-4 font-bold text-[#7555d3] text-[11px] tracking-tighter">
+                            결혼 예정일을 <br /> 등록해 주세요
                         </div>
                     </button>
                 </Link>
