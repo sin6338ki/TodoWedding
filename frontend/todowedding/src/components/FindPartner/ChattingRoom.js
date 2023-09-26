@@ -249,9 +249,9 @@ const ChattingRoom = () => {
                 id="chatting-banner"
                 className="flex flex-row bg-[#D0CFFA] text-lg font-bold h-10 border rounded-t-2xl"
             >
-                <p className="text-left ml-4 mt-[6px] text-[14px]">1:1 상담하기</p>
+                <p className="text-left ml-4 mt-1 text-[14px]">1:1 상담하기</p>
                 <button
-                    className="font-light text-sm ml-60 border border-black self-center px-2 py-1 rounded-md text-gray-600"
+                    className="font-light text-sm ml-52 border border-black self-center px-2 py-1 rounded-md text-gray-600"
                     onClick={() => {
                         disConnect();
                     }}

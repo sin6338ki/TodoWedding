@@ -1,20 +1,20 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 
 //Guide Image
-import Guide1 from "../../assets/images/Guide1.png";
-import Guide2 from "../../assets/images/Guide2.png";
-import Guide3 from "../../assets/images/Guide2.png";
-import Guide4 from "../../assets/images/Guide2.png";
-import Guide5 from "../../assets/images/Guide2.png";
+import Guide1 from "../../assets/images/card-news/Guide1.png";
+import Guide2 from "../../assets/images/card-news/Guide2.png";
+import Guide3 from "../../assets/images/card-news/Guide3.png";
+import Guide4 from "../../assets/images/card-news/Guide4.png";
+import Guide5 from "../../assets/images/card-news/Guide5.png";
 const GuidePage = () => {
     const { id } = useParams();
     const images = [Guide1, Guide2, Guide3, Guide4, Guide5];
 
     return (
-        <div style={{marginTop: "81px"}}>
-        <img src={images[Number(id) - 1]} alt={`Image${id}`} />
-    </div>
+        <div style={{ marginTop: "81px" }}>
+            <img src={images[Number(id) - 1]} alt={`Image${id}`} />
+        </div>
     );
 };
 

@@ -4,6 +4,13 @@
  * 작성일 : 2023.09.05
  */
 
+//반응형
+@media (max-width: 560px) {
+    .web-image {
+        display: none;
+    }
+}
+
 // 폰트 적용 (신지영, 2023.09.16)
 @font-face {
     font-family: "Pretendard-Regular";
@@ -65,21 +72,21 @@ Header 관련
 }
 
 // 비로그인시 헤더
-.not-login-header{
+.not-login-header {
     width: 100%;
     max-width: 560px;
     margin: 0 auto;
 }
 
 // admin header
-.admin-header{
+.admin-header {
     display: flex;
     height: 70px;
     background-color: rgb(255, 255, 255);
     padding-top: 3px;
     padding-left: 5px;
     padding-bottom: 15px;
-} 
+}
 
 // member-header
 .member-header {

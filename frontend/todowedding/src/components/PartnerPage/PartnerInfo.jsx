@@ -29,28 +29,28 @@ const PartnerInfo = () => {
 
     //업체 정보 조회 메서드
     const findPartnerInfo = () => {
-        axios
-            .get(`http://localhost:8085/partner/info/${token.userSeq}`)
-            .then((res) => {
-                console.log("업체 정보 조회 result : ", res.data);
-                setPartnerInfo(res.data);
-                setPartnerPw(res.data.partner_pw);
-                setPartnerName(res.data.partner_name);
-                setPartnerRegistration(res.data.partner_registration);
-                setPartnerTel(res.data.partner_tel);
-                setPartnerLink(res.data.partner_link);
-                setPartnerManager(res.data.partner_manager);
-                setPartnerManagerTel(res.data.partner_manager_tel);
-                setPartnerAddress(res.data.partner_address);
-            })
-            .catch((err) => {
-                console.log("업체 정보 조회 err : ", err);
-            });
+        token &&
+            axios
+                .get(`http://localhost:8085/partner/info/${token.userSeq}`)
+                .then((res) => {
+                    console.log("업체 정보 조회 result : ", res.data);
+                    setPartnerInfo(res.data);
+                    setPartnerPw(res.data.partner_pw);
+                    setPartnerName(res.data.partner_name);
+                    setPartnerRegistration(res.data.partner_registration);
+                    setPartnerTel(res.data.partner_tel);
+                    setPartnerLink(res.data.partner_link);
+                    setPartnerManager(res.data.partner_manager);
+                    setPartnerManagerTel(res.data.partner_manager_tel);
+                    setPartnerAddress(res.data.partner_address);
+                })
+                .catch((err) => {
+                    console.log("업체 정보 조회 err : ", err);
+                });
     };
 
     //비밀번호 확인
     useEffect(() => {
-        console.log("first");
         if (checkPartnerPw != partnerPw) {
             document.getElementById("checkPw").innerText = "비밀번호가 틀립니다.";
             document.getElementById("checkPw").style.color = "red";
@@ -61,17 +61,18 @@ const PartnerInfo = () => {
 
     //업체 정보 변경
     useEffect(() => {
-        setPartnerUpdateDto({
-            partnerSeq: token.userSeq,
-            partnerPw: partnerPw,
-            partnerName: partnerName,
-            partnerRegistration: partnerRegistration,
-            partnerTel: partnerTel,
-            partnerLink: partnerLink,
-            partnerManager: partnerManager,
-            partnerManagerTel: partnerManagerTel,
-            partnerAddress: partnerAddress,
-        });
+        token &&
+            setPartnerUpdateDto({
+                partnerSeq: token.userSeq,
+                partnerPw: partnerPw,
+                partnerName: partnerName,
+                partnerRegistration: partnerRegistration,
+                partnerTel: partnerTel,
+                partnerLink: partnerLink,
+                partnerManager: partnerManager,
+                partnerManagerTel: partnerManagerTel,
+                partnerAddress: partnerAddress,
+            });
     }, [
         token,
         partnerPw,

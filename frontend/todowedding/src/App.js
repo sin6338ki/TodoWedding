@@ -136,16 +136,15 @@ function AppContent() {
                     </div>
                     <BottomBar />
                 </div>
-
                 {/* 웹 이미지 */}
-                {/* <div style={{ backgroundColor: "#F8FAF9", height: "100%" }} className="web-image">
+                <div style={{ backgroundColor: "#F8FAF9", height: "100%" }} className="web-image">
                     <img src={MarginImage} alt="margin-image" style={{ height: "90px" }} />
                     <div style={{ backgroundColor: "#F8FAF9", paddingLeft: "30px", paddingRight: "30px" }}>
                         <ADSlickSlider />
                     </div>
                     <img src={WebImage} alt="web-image" style={{ width: "100%" }} />
                     <img src={MarginImage} alt="margin-image" style={{ height: "190px" }} />
-                </div> */}
+                </div>
             </div>
         </div>
     );

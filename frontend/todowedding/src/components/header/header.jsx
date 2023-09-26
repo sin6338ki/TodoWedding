@@ -38,7 +38,9 @@ const Header = () => {
             .get(`http://localhost:8085/marry-d-day/${token.userSeq}`)
             .then((res) => {
                 console.log("결혼일 조회 결과 : ", res.data);
-                if (res.data >= 0) {
+                if (res.data === 9999) {
+                    return;
+                } else if (res.data >= 0) {
                     setMarryDt("-" + res.data);
                 } else {
                     let date = res.data * -1;
