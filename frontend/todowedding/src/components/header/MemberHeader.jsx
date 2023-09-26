@@ -46,7 +46,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     }, []);
 
     return (
-        <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 bg-gradient-to-r to-white from-[#D4C7F9]">  
+        <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2" style={{ backgroundImage: 'linear-gradient(to right, #D4C7F9, white)', backdropFilter: 'blur(10px)' }}>
        
         {/* // <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 " style={{ backdropFilter: 'blur(10px)' }}>   */}
             {marryDt ? (

@@ -33,21 +33,22 @@ const Budget = (props) => {
     // 로그인 이전 Home 으로이동
     const nav = useNavigate();
     const token = useSelector((state) => state.Auth.token);
-    const [memberSeq, setMemberSeq] = useState();
+    // const [memberSeq, setMemberSeq] = useState();
+    const memberSeq = token ? token.userSeq : 0;
+
+    // useEffect(() => {
+    //     if (token && token.userSeq) {
+    //         console.log("token, ", token);
+    //         setMemberSeq(token.userSeq);
+    //     } else {
+    //         console.error("Token or user sequence is not defined." , token);
+    //         setMemberSeq(0); // or set it to a fallback value if necessary
+    //     }
+    // }, [token]);
 
     useEffect(() => {
-        if (token && token.userSeq) {
-            console.log("token, ", token);
-            setMemberSeq(token.userSeq);
-        } else {
-            console.error("Token or user sequence is not defined.");
-            setMemberSeq(0); // or set it to a fallback value if necessary
-        }
-    }, [token]);
-
-    useEffect(() => {
-        if (!token) {
-            alert("로그인 후 진행해 주세요");
+        if (!memberSeq) {
+            // alert("로그인 후 진행해 주세요");
             nav("/");
         } else {
             const memberSeqObj = {
