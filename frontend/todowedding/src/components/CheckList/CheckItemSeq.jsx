@@ -89,6 +89,22 @@ const CheckItemSeq = () => {
         }
     };
 
+    //체크 표시
+
+    const isChecked = (e) => {
+        console.log("isChecked 실행", e.target.id);
+        console.log("checkedContents : ", document.getElementById(e.target.id + "text").style.textDecoration);
+
+        if (document.getElementById(e.target.id + "text").style.textDecoration) {
+            console.log("if문 실행");
+            document.getElementById(e.target.id + "text").style.removeProperty("text-decoration");
+            document.getElementById(e.target.id + "text").style.removeProperty("color");
+        } else {
+            document.getElementById(e.target.id + "text").style.setProperty("text-decoration", "line-through");
+            document.getElementById(e.target.id + "text").style.setProperty("color", "rgb(195,195,195)");
+        }
+    };
+
     return (
         <div>
             <ToastContainer />
@@ -104,8 +120,16 @@ const CheckItemSeq = () => {
             <div className="checkitemseq-item">
                 {items.map((item, index) => (
                     <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                        <input type="checkbox" />
-                        <p className="checkitemseq-content">{item.checkitem_list_contents}</p>
+                        <input
+                            type="checkbox"
+                            id={index}
+                            onClick={(e) => {
+                                isChecked(e);
+                            }}
+                        />
+                        <p className="checkitemseq-content" id={index + "text"}>
+                            {item.checkitem_list_contents}
+                        </p>
                         {!checkedItems.includes(item.checkitem_list_seq) && (
                             <button className="checkitemseq-plus">
                                 <img src={addTodo} alt="addTodo" width="20px" onClick={() => addToDo(item)} />
