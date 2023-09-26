@@ -62,22 +62,17 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         };
 
         try {
-            const checkResult = await axios.put(`http://172.30.1.9:8085/todolist/check`, data); //`http://172.30.1.9:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
-            console.log("성공 checked ", checkResult);  // 3 
+            const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+            console.log("성공 checked ", checkResult); // 3
             await setChangeCheck(!changeCheck);
         } catch (err) {
             console.error("Error checked: ", err);
         }
     };
-    
-
-
-   
-
 
     useEffect(() => {
         toggleComplete;
-        console.log("todolistContents", todolistContents.todolistSeq); //2 
+        console.log("todolistContents", todolistContents.todolistSeq); //2
     }, [isChecked]);
 
     return (

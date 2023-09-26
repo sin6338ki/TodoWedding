@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import addBtn from "../../assets/images/icon/plus (1).png"
+import addBtn from "../../assets/images/icon/plus (1).png";
 
 /*
 
@@ -105,7 +105,7 @@ const TodoList = () => {
 
         // try~catch (추가작성 09.15)
         try {
-            const response = await axios.post("http://172.30.1.9:8085/todolist", data);
+            const response = await axios.post("http://localhost:8085/todolist", data);
             console.log("response : ", response);
 
             // 서버로부터 반환된 새로운 투두 데이터
@@ -130,7 +130,7 @@ const TodoList = () => {
     //         memberSeq: todo.memberSeq,
     //     };
     //     try {
-    //         await axios.put(`http://172.30.1.9:8085/todolist/check`, data); //`http://172.30.1.9:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
+    //         await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
     //         console.log("성공 checked ");
     //     } catch (err) {
     //         console.error("Error checked: ", err);
@@ -141,7 +141,7 @@ const TodoList = () => {
     const deleteTodo = async (todolistSeq) => {
         try {
             console.log("투두리스트 삭제 실행, todolistSeq : ", todolistSeq);
-            const response = await axios.delete(`http://172.30.1.9:8085/todolist/${todolistSeq}`);
+            const response = await axios.delete(`http://localhost:8085/todolist/${todolistSeq}`);
             console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
             if (response.data === 1) {
@@ -157,7 +157,7 @@ const TodoList = () => {
     const fetchData = async () => {
         // fetchData 수정(09.15)
         try {
-            const res = await axios.get(`http://172.30.1.9:8085/todolist/${memberSeq}`);
+            const res = await axios.get(`http://localhost:8085/todolist/${memberSeq}`);
             console.log("findallTodolist 조회 response : ", res.data);
             setTodos(res.data);
         } catch (error) {
@@ -172,7 +172,7 @@ const TodoList = () => {
 
     const cntTodoList = async () => {
         try {
-            const res = await axios.get(`http://172.30.1.9:8085/count-of-todolist/${memberSeq}`);
+            const res = await axios.get(`http://localhost:8085/count-of-todolist/${memberSeq}`);
             console.log("cntTodoList response", res.data);
             console.log("cntTodoList response length", res.data.length);
             // setUnCompletedCnt(res.data[0].count)
@@ -221,7 +221,10 @@ const TodoList = () => {
                 </div>
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
-                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[25px] mx-[5%] mb-[25px]">
+                <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                    className="mt-[25px] mx-[5%] mb-[25px]"
+                >
                     {todos.length < 1 ? null : (
                         <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}건`}</span>
                     )}
@@ -240,14 +243,14 @@ const TodoList = () => {
                     />
                     <button className={style.button}>
                         {/* <AiOutlinePlus size={30} /> */}
-                        <img src={addBtn} style={{width:"35px", margin:"10%"}}/>
+                        <img src={addBtn} style={{ width: "35px", margin: "10%" }} />
                     </button>
                 </form>
                 <div className="mt-[60px] mb-10">
                     {todos.map((todolistContents) => (
                         <Todo
                             // key 값 수정중 (09.25 >> 삭제 수정)
-                            key={todolistContents.todolistSeq} 
+                            key={todolistContents.todolistSeq}
                             setChangeCheck={setChangeCheck}
                             changeCheck={changeCheck}
                             todolistContents={todolistContents}

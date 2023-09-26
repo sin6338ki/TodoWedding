@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     const token = useSelector((state) => state.Auth.token);
     //Pagination
-    const limits = 10;  // 수입리스트 개수 항목 
+    const limits = 10; // 수입리스트 개수 항목
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limits;
 
@@ -41,7 +41,7 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     const incomeDelete = async (incomeSeq) => {
         try {
             console.log("income리스트 삭제실행 , incomeSeq", incomeSeq);
-            const response = await axios.delete(`http://172.30.1.9:8085/income/delete/${incomeSeq}`);
+            const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
 
             // 지영 수정 부분 =============================

@@ -41,14 +41,14 @@ const KakaologOut = () => {
                     }
                 })
                 .catch((error) => {
-                // 에러가 발생하면 강제로 투두 웨딩쪽 세션 정보(토큰 등) 삭제
-                if (error.response && error.response.status === 401){
-                    dispatch(deleteToken(token));
-                    navigate("/");
-                 }
-                //  console.error(error);
-             });
-            }
+                    // 에러가 발생하면 강제로 투두 웨딩쪽 세션 정보(토큰 등) 삭제
+                    if (error.response && error.response.status === 401) {
+                        dispatch(deleteToken(token));
+                        navigate("/");
+                    }
+                    //  console.error(error);
+                });
+        }
     }, []);
 
     return <div></div>;

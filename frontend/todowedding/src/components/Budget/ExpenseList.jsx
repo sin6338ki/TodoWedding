@@ -18,7 +18,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const [Expenses, setExpenses] = useState([]); //09.20추가
 
     //Pagination
-    const limits = 10; // 지출 리스트 개수 
+    const limits = 10; // 지출 리스트 개수
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limits;
 
@@ -44,7 +44,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const expenseDelete = async (budgetSeq) => {
         try {
             console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
-            const response = await axios.delete(`http://172.30.1.9:8085/budget/delete/${budgetSeq}`);
+            const response = await axios.delete(`http://localhost:8085/budget/delete/${budgetSeq}`);
             console.log("지출list 삭제성공 :", response.data);
             // 삭제 추가코드(09.20)
             // 지영 수정 부분 ===============================================
