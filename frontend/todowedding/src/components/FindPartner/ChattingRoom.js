@@ -251,7 +251,7 @@ const ChattingRoom = () => {
             >
                 <p className="text-left ml-4 mt-1 text-[14px]">1:1 상담하기</p>
                 <button
-                    className="font-light text-sm ml-52 border border-black self-center px-2 py-1 rounded-md text-gray-600"
+                    className="font-light text-xs ml-auto mr-1 border border-black self-center px-2 py-1 rounded-md text-gray-600"
                     onClick={() => {
                         disConnect();
                     }}

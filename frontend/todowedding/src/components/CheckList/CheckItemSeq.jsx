@@ -58,23 +58,22 @@ const CheckItemSeq = () => {
             console.log(response.data);
 
             // // 알림 메시지 표시
-            // alert(`'${item.checkitem_list_contents}' 일정이 Todo List에 추가되었습니다.`);
+            alert(`'${item.checkitem_list_contents}' 일정이 Todo List에 추가되었습니다.`);
 
             // 알림 메시지 표시
-            toast.success(`'${item.checkitem_list_contents}' 일정이 Todo List에 추가되었습니다.`, {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            // toast.success(`'${item.checkitem_list_contents}' 일정이 Todo List에 추가되었습니다.`, {
+            //     position: "top-center",
+            //     autoClose: 2000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
         } catch (error) {
             console.error("Error adding todo list item : ", error);
-            toast.error("일정 추가에 실패했습니다.", {
-                position: "top-right",
-            });
+            // toast.error("일정 추가에 실패했습니다.", {
+            //    position: "top-right",});
         }
     };
 

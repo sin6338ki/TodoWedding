@@ -54,6 +54,13 @@ html {
     background-color: rgb(255, 255, 255);
 }
 
+//반응형
+@media (max-width: 560px) {
+    .web-image {
+        display: none;
+    }
+}
+
 /**************************************************************************** Header
 Header 관련
 *******************/
@@ -202,27 +209,13 @@ Login 관련
 // partner 파트너 페이지
 .partner-page {
     width: 100%;
-    max-width: 560px;
+    max-width: 410px;
+    margin: 0 auto;
+    margin-top : 40px;
 }
 /**************************************************************************** Body
 Body 관련
 *******************/
-
-// //body
-// .body {
-//     position: absolute;
-//     width: 100%;
-//     max-width: 560px;
-//     padding-bottom: 100px;
-//     margin-bottom: 10%;
-//     overflow:hidden;
-//     //  background-color: #fff;
-// }
-// //web-image
-// .web-image {
-//     position:relative;
-//     width: 300px;
-// }
 
 //body
 .body {
@@ -506,14 +499,13 @@ Modal 관련
     color: black;
     font-size: 15px;
     text-decoration: none;
-    font-family: "Pretendard-Regular";
     margin-top: 1px;
 }
 
 //
 .add-container {
-    width: 100%;
-    max-width: 560px;
+    width: 85%;
+    max-width: 500px;
     margin: 10% 5% 0 5%;
 }
 
@@ -527,11 +519,11 @@ Modal 관련
 // 일정추가-제목-container
 .add-schedule-header {
     box-sizing: border-box;
-    width: 85%;
+    width: 100%;
     height: 15%;
     border: 1px solid #d4c7f9;
     border-radius: 10px 10px 0 0;
-    margin: 36% 3% 0 3%;
+    margin: 40% 3% 0 3%;
     background-color: #ded3ff;
     text-align: center;
     padding-top: 4px;
@@ -541,8 +533,8 @@ Modal 관련
 // 일정추가-일정시작,종료-container
 .add-schedule-date {
     box-sizing: border-box;
-    width: 85%;
-    border: 1px solid rgb(172, 150, 228);
+    width: 100%;
+    border: 1px solid rgb(240, 240, 240);
     border-radius: 0 0 10px 10px;
     margin: 0 3% 0 3%;
     padding: 15% 0 15% 0;
@@ -942,11 +934,11 @@ D-Day CheckList 관련
 
 .marrydate-header {
     box-sizing: border-box;
-    width: 80%;
+    width: 100%;
     height: 70px;
     border: 1px solid #d4c7f9;
     border-radius: 10px 10px 0 0;
-    margin: 160px 5% 0 5%;
+    margin: 50% 3% 0 3%;
     background-color: #d4c7f9;
     display: flex;
     padding-bottom: 3%;
@@ -959,11 +951,11 @@ D-Day CheckList 관련
 //결혼예정일 날짜 선택 container
 .marrydate-contents {
     box-sizing: border-box;
-    width: 80%;
+    width: 100%;
     border: 1px solid rgb(240, 240, 240);
     border-radius: 0 0 10px 10px;
-    margin: 0 5% 0 5%;
-    padding: 50px 0 10% 0;
+    margin: 0 3% 0 3%;
+    padding: 15% 0 15% 0;
     font-size: 17px;
     text-align: center;
     color: rgb(120, 120, 120);
@@ -973,8 +965,8 @@ D-Day CheckList 관련
 .marrydate-btn {
     width: 135px;
     height: 55px;
-    margin: 50px 40% 0 33%;
     border-radius: 10px;
+    margin: 50px auto;
     color: #ffffff;
     background-color: #9f7ffc;
     display: flex;
@@ -1107,5 +1099,5 @@ D-Day CheckList 관련
     width: 90%;
     max-width: 400px;
     height: 90%;
-    max-height: 540px;
+    max-height: 580px;
 }
