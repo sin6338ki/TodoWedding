@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { deleteToken } from "../../redux/reducers/AuthReducer";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 //React-Slick 라이브러리
 import "slick-carousel/slick/slick.css";
@@ -24,44 +24,43 @@ const Main = () => {
     const [checkItems, setCheckItems] = useState([]);
     const [checklist, setChecklist] = useState([]);
 
-
     //추가 : 2023.09.25 토큰 유무 확인 유광작성 카카오 토큰 사용자 유효성 확인
     const token = useSelector((state) => state.Auth.token);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('Token:', token); // 토큰 값 확인
-    
-        if (token) { // 토큰 유효성 확인경로
-            axios.get('https://kapi.kakao.com/v1/user/access_token_info', {
-                headers: { Authorization: `Bearer ${token.accessToken}` }
-            })
-            .then(response => {
-                console.log('Response:', response);
-                console.log('토큰이 유효합니다');
-            })
-            .catch(error => {
-                console.log('토큰 검증 중 오류 발생:', error);
-                if (error.response) {
+        console.log("Token:", token); // 토큰 값 확인
 
-                    alert('세션이 만료되었습니다. 다시 로그인해주세요.');
-    
-                    // 세션 값 삭제 및 로그아웃 처리
-                    dispatch(deleteToken());
-    
-                    // 메인 페이지로 이동
-                    nav('/');
-                }
-            });
+        if (token) {
+            // 토큰 유효성 확인경로
+            axios
+                .get("https://kapi.kakao.com/v1/user/access_token_info", {
+                    headers: { Authorization: `Bearer ${token.accessToken}` },
+                })
+                .then((response) => {
+                    console.log("Response:", response);
+                    console.log("토큰이 유효합니다");
+                })
+                .catch((error) => {
+                    console.log("토큰 검증 중 오류 발생:", error);
+                    if (error.response) {
+                        alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+
+                        // 세션 값 삭제 및 로그아웃 처리
+                        dispatch(deleteToken());
+
+                        // 메인 페이지로 이동
+                        nav("/");
+                    }
+                });
         } else {
             // 세션 값 삭제 및 로그아웃 처리
             dispatch(deleteToken());
 
             // 메인 페이지로 이동
-            nav('/');
+            nav("/");
         }
     }, [nav, dispatch, token]);
-
 
     //웨딩 항목별 체크리스트 ----------------------------------------------------------------
     useEffect(() => {
