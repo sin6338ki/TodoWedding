@@ -32,7 +32,7 @@ const NewItemContainer = () => {
         <div className="new-item__container" style={{ cursor: !isEditing ? "pointer" : "auto" }}>
             {!isEditing && (
                 <button
-                    className="fs-normal bg-gradient-to-r from-[#d68aff] to-[#9F7FFC] add-new-item-button"
+                    className="fs-normal font-semibold bg-gradient-to-r from-[#e4b1ff] to-[#9F7FFC] add-new-item-button"
                     onClick={startEditingHandler}
                     style={{
                         borderRadius: "15px",

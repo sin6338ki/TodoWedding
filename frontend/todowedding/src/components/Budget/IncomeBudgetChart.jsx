@@ -10,15 +10,15 @@ const IncomeBudgetChart = ({ fianlTotalIncome, fianlTotalExpense }) => {
 
   return (
     <span style={{position:'relative'}}>
-    <ResponsiveContainer style={{position:'relative',left:"-20px"}} width="100%" height={200}>
-      <BarChart data={data} layout="vertical" style={{margin : '-20px'}} barGap={-40}>
+    <ResponsiveContainer style={{position:'relative',left:"-20px"}} width="100%" height={160}>
+      <BarChart data={data} layout="vertical" style={{margin : '-10px'}} barGap={-40}>
        
         <XAxis type="number" />
         <YAxis dataKey="name" type="category" />
         <Tooltip />
         <Legend />
-        <Bar dataKey="income" fill="#9966ff" name="Incomes" />
-        <Bar dataKey="expense" fill="#4bc0c0" name="Expenses" />
+        <Bar dataKey="income" fill="#f5a2b6" name="Incomes" />
+        <Bar dataKey="expense" fill="#a6bbf5" name="Expenses" />
       </BarChart>
     </ResponsiveContainer>
     </span>

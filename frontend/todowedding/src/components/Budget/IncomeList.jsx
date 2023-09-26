@@ -58,10 +58,10 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
         <div style={{ marginTop: "-20px" }}>
             <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
                 {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
-                <div className="text-center text-xs font-bold col-span-3 mr-2 ">날짜</div>
-                <div className="text-center text-xs font-bold col-span-3 ">수입비용</div>
-                <div className="text-center text-xs font-bold col-span-3 ml-3">수입내역</div>
-                <div className="text-center text-xs font-bold col-span-2 ml-5">삭제</div>
+                <div className="text-center text-[13px] font-bold col-span-3 mr-2 ">날짜</div>
+                <div className="text-center text-[13px] font-bold col-span-3 ">수입비용</div>
+                <div className="text-center text-[13px] font-bold col-span-3 ml-4">수입내역</div>
+                <div className="text-center text-[13px] font-bold col-span-2 ml-5">삭제</div>
             </div>
 
             {sortedIncomes.slice(offset, offset + limits).map((incomes, idx) => {
@@ -70,15 +70,15 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
                 return (
                     <div className="grid grid-cols-12 ml-3 pt-3 mb-1" key={idx}>
                         {/* <div className="text-center col-span-1 mt-1 text-xs">{itemNumber}</div> : 인덱스번호  */}
-                        <div className="text-center col-span-3 mt-1 text-xs ">{incomes.income_dt}</div>
-                        <div className="text-center col-span-3 mt-1 text-xs">
+                        <div className="text-center col-span-3 mt-1 mr-2 text-[13px] ">{incomes.income_dt}</div>
+                        <div className="text-center col-span-3 mt-1 ml-1 text-[13px]">
                             {addComma(incomes.income_cost.toString())}원
                         </div>
-                        <div className="text-center col-span-3 mt-1 text-xs ml-4">{incomes.income_contents}</div>
+                        <div className="text-center col-span-3 mt-1 text-[13px] ml-4">{incomes.income_contents}</div>
                         {/* 삭제 버튼 */}
                         <button
                             onClick={() => incomeDelete(incomes.income_seq)}
-                            className="text-center col-span-2 mt-1 ml-5 text-xs ml-8"
+                            className="text-center col-span-2 mt-1 ml-9 text-[13px]"
                         >
                             {<FaRegTrashAlt />}
                         </button>

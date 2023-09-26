@@ -75,39 +75,18 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
     return (
         // <div className="grid grid-cols-2 gap-4"> // 배열을 세로로 바꿈
         <div>
-            <div className="rounded-md border shadow-md text-black">
-                <div className="text-xl text-black-500 m-4" style={{ textAlign: "center" }}>
-                    Total Expense 📊{" "}
+
+            <div className="rounded-md border shadow-md text-black bg-violet-100">
+                <div className="text-lg font-bold text-black-500 m-3" style={{ textAlign: "center" }}>
+                    수입 지출 그래프
                 </div>
-                <div className="text-4xl m-4 text-[#b66dff]" style={{ textAlign: "center" }}>
-                    {expenses.length} 건
-                </div>
-                <div className="text-m text-gray-500 m-4" style={{ textAlign: "center" }}>
-                    신랑 {broomPercentage.toFixed(0)}% 신부 {bridePercentage.toFixed(0)}% 공동{" "}
-                    {bothPercentage.toFixed(0)}% 기타 {etcPercentage.toFixed(0)}%{" "}
-                </div>
-                {/* <div className="text-xl text-gray-500 m-4">신부 {bridePercentage.toFixed(0)} %</div> */}
-                {/* <div className="text-xl text-gray-500 m-4">공동 {bothPercentage.toFixed(0)}%   기타 {etcPercentage.toFixed(0)}%</div> */}
-                {/* <div className="text-xl text-gray-500 m-4">기타 {etcPercentage.toFixed(0)} %</div> */}
-            </div>
-            <div className="my-5  w-full m-auto">
-                <BudgetRoleChart
-                    broomPercentage={broomPercentage}
-                    bridePercentage={bridePercentage}
-                    bothPercentage={bothPercentage}
-                    etcPercentage={etcPercentage}
-                    className="w-2/3"
-                />
-            </div>
-            <div className="rounded-md border shadow-md text-black">
-                <div className="text-xl text-black-500 m-4" style={{ textAlign: "center" }}>
-                    💰 수입 지출 그래프
-                </div>
-                <div className="text-m text-gray-500 m-4" style={{ textAlign: "center" }}>
-                    수입 {incomePercentage} %{" "}
-                </div>
-                <div className="text-m text-gray-500 m-4" style={{ textAlign: "center" }}>
-                    지출 {expensePercentage} %
+                <div style={{display:"flex", justifyContent:"center"}}>
+                    <div className="text-gray-800 mb-3 mx-3" style={{ textAlign: "center" }}>
+                        수입 {incomePercentage} %{""}
+                    </div>
+                    <div className="text-gray-800 mb-3 mx-3" style={{ textAlign: "center" }}>
+                        지출 {expensePercentage} %
+                    </div>
                 </div>
             </div>
 
@@ -116,6 +95,34 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
                     fianlTotalIncome={fianlTotalIncome}
                     fianlTotalExpense={fianlTotalExpense}
                     style={{ height: "100px", width: "100px" }}
+                />
+            </div>
+
+
+            <div className="rounded-md border shadow-md text-black bg-violet-100">
+                <div style={{display:"flex", justifyContent:"center"}}>
+                    <div className="text-lg font-bold text-black-500 mt-4 mx-3" style={{ textAlign: "center"}}>
+                        웨딩 지출 통계 {" "}
+                    </div>
+                    <div className="text-xl font-bold mt-4 mx-3 text-[#8c6adb]" style={{ textAlign: "center" }}>
+                        총 {expenses.length} 건
+                    </div>
+                </div>
+                <div className="text-m text-gray-800 m-3" style={{ textAlign: "center" }}>
+                    신랑 {broomPercentage.toFixed(0)}% | 신부 {bridePercentage.toFixed(0)}% | 공동{" "}
+                    {bothPercentage.toFixed(0)}% | 기타 {etcPercentage.toFixed(0)}%{" "}
+                </div>
+                {/* <div className="text-xl text-gray-500 m-4">신부 {bridePercentage.toFixed(0)} %</div> */}
+                {/* <div className="text-xl text-gray-500 m-4">공동 {bothPercentage.toFixed(0)}%   기타 {etcPercentage.toFixed(0)}%</div> */}
+                {/* <div className="text-xl text-gray-500 m-4">기타 {etcPercentage.toFixed(0)} %</div> */}
+            </div>
+            <div className="my-3">
+                <BudgetRoleChart
+                    broomPercentage={broomPercentage}
+                    bridePercentage={bridePercentage}
+                    bothPercentage={bothPercentage}
+                    etcPercentage={etcPercentage}
+                    className="w-2/3"
                 />
             </div>
         </div>

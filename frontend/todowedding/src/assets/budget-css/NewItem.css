@@ -6,8 +6,8 @@
   .new-item:before {
     content: "";
     position: absolute;
-    top: 70px; 
-    width: 320px;
+    top: 43px; 
+    width: 85%;
     height: 0px;
     opacity: 0.5;
     border: 1px solid #DEDEDE;

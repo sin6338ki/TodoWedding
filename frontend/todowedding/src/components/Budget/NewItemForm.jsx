@@ -71,10 +71,10 @@ const NewItemForm = () => {
         if (enteredAmountType === 'expense') {
           document.getElementById('expense').style.setProperty('background-color', '#9f7ffc');
           document.getElementById('expense').style.setProperty('color', '#FFFFFF');
-          document.getElementById('income').style.setProperty('background-color', '#808080');
+          document.getElementById('income').style.setProperty('background-color', 'rgb(223 223 223)');
           document.getElementById('income').style.setProperty('color', '#000000');
         } else if (enteredAmountType === 'income') {
-          document.getElementById('expense').style.setProperty('background-color', '#808080');
+          document.getElementById('expense').style.setProperty('background-color', 'rgb(223 223 223)');
           document.getElementById('expense').style.setProperty('color', '#000000');
           document.getElementById('income').style.setProperty('background-color', '#9f7ffc');
           document.getElementById('income').style.setProperty('color', '#FFFFFF');
@@ -172,10 +172,11 @@ const NewItemForm = () => {
                         style={{
                             backgroundColor: "#9f7ffc",
                             borderRadius: "10px",
-                            padding: "8px 16px",
+                            padding: "7% 30% 7% 30%",
                             color: "#ffffff",
                             border: "none",
-                            width: "150px",
+                            width: "160px",
+                            marginRight:"2%",
                             marginBottom: "20px",
                         }}
                     >
@@ -191,10 +192,11 @@ const NewItemForm = () => {
                         style={{
                             backgroundColor: "#9f7ffc",
                             borderRadius: "10px",
-                            padding: "8px 16px",
+                            padding: "7% 30% 7% 30%",
                             color: "#ffffff",
                             border: "none",
-                            width: "150px",
+                            width: "160px",
+                            marginLeft:"2%",
                             marginBottom: "20px",
                         }}
                     >
@@ -250,10 +252,12 @@ const NewItemForm = () => {
                         submitHandler(e);
                     }}
                     className="btn-purple"
+                    style={{marginTop: "5%", marginBottom:"10%", border:"1px solid #9F7FFC", color:"#FFFFFF", backgroundColor:"#9F7FFC" ,padding:"7px 13px 7px 13px", borderRadius:"10px"}}
                 >
                     등록
                 </button>
-                <button type="button" className="btn-white" onClick={stopEditingHandler}>
+                <button type="button" className="btn-white" onClick={stopEditingHandler}
+                    style={{marginTop: "5%", marginBottom:"10%", border:"1px solid #5E5459",padding:"7px 13px 7px 13px", borderRadius:"10px"}}>
                     취소
                 </button>
             </div>

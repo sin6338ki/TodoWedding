@@ -62,11 +62,11 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
         <div style={{ marginTop: "-20px" }}>
             <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
                 {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
-                <div className="text-center text-xs font-bold col-span-3 ">날짜</div>
-                <div className="text-center text-xs font-bold col-span-3 ">지출비용</div>
-                <div className="text-center text-xs font-bold col-span-3">내용</div>
-                <div className="text-center text-xs font-bold col-span-1">분담</div>
-                <div className="text-center text-xs font-bold col-span-2">삭제</div>
+                <div className="text-center text-[13px] font-bold col-span-3 ">날짜</div>
+                <div className="text-center text-[13px] font-bold col-span-3 ">지출비용</div>
+                <div className="text-center text-[13px] font-bold col-span-3">내용</div>
+                <div className="text-center text-[13px] font-bold col-span-1">분담</div>
+                <div className="text-center text-[13px] font-bold col-span-2">삭제</div>
             </div>
 
             {sortedExpenses.slice(offset, offset + limits).map((expenses, idx) => {
@@ -75,15 +75,15 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
                 return (
                     <div className="grid grid-cols-12 ml-3 pt-3 mb-1" key={idx}>
                         {/* <div className="text-center col-span-1 mt-1 text-xs">{itemNumber}</div> */}
-                        <div className="text-center col-span-3 mt-1 text-xs">{expenses.budget_expense_dt}</div>
-                        <div className="text-center col-span-3 mt-1 text-xs">
+                        <div className="text-center col-span-3 mt-1 text-[13px]">{expenses.budget_expense_dt}</div>
+                        <div className="text-center col-span-3 mt-1 text-[13px]">
                             {addComma(expenses.budget_cost.toString())}원
                         </div>
-                        <div className="text-center col-span-3 mt-1 text-xs">{expenses.budget_item}</div>
-                        <div className="text-center col-span-1 mt-1 text-xs">{expenses.budget_role}</div>
+                        <div className="text-center col-span-3 mt-1 text-[13px]">{expenses.budget_item}</div>
+                        <div className="text-center col-span-1 mt-1 text-[13px]">{expenses.budget_role}</div>
                         <button
                             onClick={() => expenseDelete(expenses.budget_seq)}
-                            className="text-center col-span-2 mt-1 ml-6 text-xs"
+                            className="text-center col-span-2 mt-1 ml-6 text-[13px]"
                         >
                             {<FaRegTrashAlt />}
                         </button>

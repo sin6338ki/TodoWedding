@@ -17,19 +17,19 @@ const BudgetRoleChart = ({ broomPercentage, bridePercentage, bothPercentage, etc
         { name: "기타", value: Math.round(etcPercentage) },
     ];
 
-    const COLORS = ["#36a2eb", "#ffce56", "#4bc0c0", "#9966ff"];
+    const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
     
 
     return (
-        <div>
-            <PieChart width={400} height={200}>
+        <div style={{ display: 'flex', justifyContent: 'center', height: '100px', marginTop:'30px'}}>
+            <PieChart width={300} height={220}>
                 <Pie
                     dataKey="value"
                     isAnimationActive={true}
                     data={data}
                     cx="50%"
                     cy="50%"
-                    outerRadius={60}
+                    outerRadius={80}
                     fill="#8884d8"
                     label
                 >

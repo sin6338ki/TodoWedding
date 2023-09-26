@@ -24,6 +24,9 @@ function Modal(props) {
                         ✖
                     </button>
                     {props.children}
+                    <Link to="/" className="add-content">
+                        메인페이지
+                    </Link>
                     <Link to="todowedding/schedule" className="add-content">
                         캘린더에 일정 추가
                     </Link>

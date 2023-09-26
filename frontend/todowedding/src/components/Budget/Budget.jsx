@@ -75,11 +75,11 @@ const Budget = (props) => {
 
             <div className="pocket__status-detail">
                 <div className="pocket__status-detail--desc">
-                    <span className="fs-normal fw-light">총수입</span>
+                    <span className="fs-normal fw-light">총 수입</span>
                     <strong className="fs-emphasis fc-green">{addComma(totalIncome.toString())}원</strong>
                 </div>
                 <div className="pocket__status-detail--desc">
-                    <span className="fs-normal fw-light">총지출</span>
+                    <span className="fs-normal fw-light">총 지출</span>
                     <strong className="fs-emphasis fc-red">{addComma(totalExpense.toString())}원</strong>
                 </div>
             </div>
