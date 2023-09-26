@@ -51,7 +51,7 @@ const BudgetContainer = (props) => {
 
                     <BudgetIndex />
 
-                    <BudgetRoleChart />
+                    {/* <BudgetRoleChart /> */}
                 </FilterContext.Provider>
             </div>
         </div>

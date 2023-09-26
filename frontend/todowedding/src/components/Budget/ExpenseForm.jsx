@@ -1,6 +1,7 @@
 
 
 /* Budget 예산 지출 입력 (내역추가)
+ * 수정 : Date 미래 날짜도 기입할 수 있도록 코드 수정 (09.26)
  * 작성자 : 양수진
  * 작성일 : 2023.09.15
  */
@@ -123,7 +124,7 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
                     value={budgetDate}
                     onChange={dateChangeHandler}
                     min="2020-01-01"
-                    max={getDate()}
+                    // max={getDate()}   
                     required
                     style={{marginTop:'-25px'}}
                 />
