@@ -74,9 +74,9 @@ import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
     return (
-        <div style={{ backgroundColor: "#F8FAF9", marginLeft: "23px", marginRight: "20px" }}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <div>
+        <div className="app-container" style={{ backgroundColor: "#F8FAF9", position: "relative", width: "100%" }}>
+            <div style={{ display: "flex" }}>
+                <div style={{ width: "80%" }}>
                     <Header />
                     <div className="body" id="Pretendard-Regular" style={{ backgroundColor: "#ffffff" }}>
                         <Routes>
