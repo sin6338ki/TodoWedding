@@ -7,7 +7,7 @@
 
 
 import React from "react";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, Tooltip , Legend} from "recharts";
 
 const BudgetRoleChart = ({ broomPercentage, bridePercentage, bothPercentage, etcPercentage }) => {
     const data = [
@@ -18,11 +18,16 @@ const BudgetRoleChart = ({ broomPercentage, bridePercentage, bothPercentage, etc
     ];
 
     const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
+
+
     
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '100px', marginTop:'30px'}}>
-            <PieChart width={300} height={220}>
+        <div style={{ display: 'flex', justifyContent: 'center', height: '100px', marginLeft:'30px', marginBottom:"30%"}}>
+            
+            <PieChart width={400} height={220}>
+                {/* 신랑신부공동기타 올리려면 verticalAlign을 top으로 수정 (09.26) */}
+                <Legend layout="vertical" verticalAlign="bottom" align="left-bottom" />
                 <Pie
                     dataKey="value"
                     isAnimationActive={true}
@@ -31,7 +36,7 @@ const BudgetRoleChart = ({ broomPercentage, bridePercentage, bothPercentage, etc
                     cy="50%"
                     outerRadius={80}
                     fill="#8884d8"
-                    label
+                    label 
                 >
                     {data.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
