@@ -48,7 +48,7 @@ const BudgetIndex = () => {
     const findIncomes = () => {
         // 수입조회
         axios
-            .post("http://localhost:8085/income/select", {
+            .post("http://172.30.1.9:8085/income/select", {
                 member_seq: token.userSeq,
             })
             .then((res) => {
@@ -63,7 +63,7 @@ const BudgetIndex = () => {
     //지출 조회 메서드
     const findExpenses = () => {
         axios
-            .post("http://localhost:8085/budget/select", {
+            .post("http://172.30.1.9:8085/budget/select", {
                 member_seq: token.userSeq, // memberSeq로 값 변경하기
             })
             .then((res) => {
