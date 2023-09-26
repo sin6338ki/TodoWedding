@@ -79,12 +79,14 @@ const MarryDate = () => {
                         type="date"
                         value={marryDate}
                         onChange={(e) => setMarryDate(e.target.value)}
-                        className="w-[230px]"
+                        style={{width:"50%"}}
                     />
                 </div>
-                <button className="marrydate-btn" type="submit">
-                    {hasMarryDate ? "수정" : "등록"}
-                </button>
+                <div className="pl-5">
+                    <button className="marrydate-btn" type="submit">
+                        {hasMarryDate ? "수정" : "등록"}
+                    </button>
+                </div>
             </form>
         </div>
     );

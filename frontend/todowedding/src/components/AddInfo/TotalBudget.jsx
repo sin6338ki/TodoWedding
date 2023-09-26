@@ -81,11 +81,15 @@ const TotalBudget = () => {
                         onChange={(e) => setTotalBudget(e.target.value)}
                         placeholder="총 예산을 입력해 주세요"
                         className="text-center border border-gray-300 rounded-md p-2"
-                    />
+                        style={{width:"70%"}}
+                    />  원
                 </div>
-                <button className="marrydate-btn" type="submit">
-                    {hasTotalBudget ? "수정" : "등록"}
-                </button>
+                <div className="pl-5">
+                    <button className="marrydate-btn" type="submit">
+                        {hasTotalBudget ? "수정" : "등록"}
+                    </button>
+                </div>
+
             </form>
         </div>
     );
