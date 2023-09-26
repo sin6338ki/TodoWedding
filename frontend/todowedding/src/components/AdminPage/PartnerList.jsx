@@ -42,13 +42,13 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
     return (
         <div>
             <div className="text-left text-xl font-bold mt-2 p-3 mx-4 border-b">업체 리스트</div>
-            <div className="flex flex-row my-4 mx-4" style={{justifyContent:"center"}}>
+            <div className="flex flex-row my-4 mx-4" style={{ justifyContent: "center" }}>
                 <h5 className="align-middle pt-2 text-xs">업체 검색</h5>
                 <input
                     type="text"
                     className="pl-2 border border-[#465973] ml-3 align-middle text-xs"
                     id="searchPartnerInput"
-                    style={{width:"50%"}}
+                    style={{ width: "50%" }}
                 ></input>
                 <button
                     className="bg-[#465973] w-10 text-white text-xs"
@@ -93,7 +93,7 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
                     </div>
                 );
             })}
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop:"30px"}}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "30px" }}>
                 <Pagination limits={limits} page={page} setPage={setPage} total={total} />
             </div>
         </div>

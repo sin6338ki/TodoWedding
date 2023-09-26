@@ -27,14 +27,8 @@ const BudgetIndex = () => {
     const [broomCnt, setBroomCnt] = useState(0);
     const [bothCnt, setBothCnt] = useState(0);
     const [etcCnt, setEtcCnt] = useState(0);
- 
-     /**로그인 userSeq err 처리 (09.25) */
 
-     
-
-
-
-
+    /**로그인 userSeq err 처리 (09.25) */
 
     /**
      * 지영 수정 부분 : 삭제 처리 시 바로 화면에 적용!

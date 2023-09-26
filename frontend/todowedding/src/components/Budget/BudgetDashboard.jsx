@@ -75,12 +75,11 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
     return (
         // <div className="grid grid-cols-2 gap-4"> // 배열을 세로로 바꿈
         <div>
-
             <div className="rounded-md border shadow-md text-black bg-violet-100">
                 <div className="text-lg font-bold text-black-500 m-3" style={{ textAlign: "center" }}>
                     수입 지출 그래프
                 </div>
-                <div style={{display:"flex", justifyContent:"center"}}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
                     <div className="text-gray-800 mb-3 mx-3" style={{ textAlign: "center" }}>
                         수입 {incomePercentage} %{""}
                     </div>
@@ -98,11 +97,10 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
                 />
             </div>
 
-
             <div className="rounded-md border shadow-md text-black bg-violet-100">
-                <div style={{display:"flex", justifyContent:"center"}}>
-                    <div className="text-lg font-bold text-black-500 mt-4 mx-3" style={{ textAlign: "center"}}>
-                        웨딩 지출 통계 {" "}
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div className="text-lg font-bold text-black-500 mt-4 mx-3" style={{ textAlign: "center" }}>
+                        웨딩 지출 통계{" "}
                     </div>
                     <div className="text-xl font-bold mt-4 mx-3 text-[#8c6adb]" style={{ textAlign: "center" }}>
                         총 {expenses.length} 건

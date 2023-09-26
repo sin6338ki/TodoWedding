@@ -119,7 +119,7 @@ const UpdateSchedule = () => {
                     삭제하기
                 </button>
             </div>
-            <div style={{display:"flex", justifyContent:"center"}}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
                 <Link to={URL} style={{ textDecorationLine: "none" }}>
                     <button className="add-talk-calendar" style={{ display: "flex" }}>
                         <img

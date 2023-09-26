@@ -216,7 +216,7 @@ const PartnerInfo = () => {
                         className="w-[380px] border text-[#8267d3] h-8 p-2"
                     />
                 </div>
-                <div style={{width:"35%", display:"flex"}} className="mx-auto mt-3 mb-5">
+                <div style={{ width: "35%", display: "flex" }} className="mx-auto mt-3 mb-5">
                     <input
                         type="button"
                         value="제출하기"

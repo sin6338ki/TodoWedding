@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import addBtn from "../../assets/images/icon/plus (1).png"
+import addBtn from "../../assets/images/icon/plus (1).png";
 
 /*
 
@@ -221,7 +221,10 @@ const TodoList = () => {
                 </div>
 
                 {/* 투두리스트 조회 (전체_진행_완료)  */}
-                <div style={{ display: "flex", justifyContent: "space-between" }} className="mt-[25px] mx-[5%] mb-[25px]">
+                <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                    className="mt-[25px] mx-[5%] mb-[25px]"
+                >
                     {todos.length < 1 ? null : (
                         <span className={style.count}> {`전체 : ${unCompletedCnt + completedCnt}건`}</span>
                     )}
@@ -240,14 +243,14 @@ const TodoList = () => {
                     />
                     <button className={style.button}>
                         {/* <AiOutlinePlus size={30} /> */}
-                        <img src={addBtn} style={{width:"35px", margin:"10%"}}/>
+                        <img src={addBtn} style={{ width: "35px", margin: "10%" }} />
                     </button>
                 </form>
                 <div className="mt-[60px] mb-10">
                     {todos.map((todolistContents) => (
                         <Todo
                             // key 값 수정중 (09.25 >> 삭제 수정)
-                            key={todolistContents.todolistSeq} 
+                            key={todolistContents.todolistSeq}
                             setChangeCheck={setChangeCheck}
                             changeCheck={changeCheck}
                             todolistContents={todolistContents}

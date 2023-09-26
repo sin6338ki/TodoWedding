@@ -46,9 +46,11 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     }, []);
 
     return (
-        <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2" style={{ backgroundImage: 'linear-gradient(to right, #D4C7F9, white)', backdropFilter: 'blur(10px)' }}>
-       
-        {/* // <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 " style={{ backdropFilter: 'blur(10px)' }}>   */}
+        <div
+            className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2"
+            style={{ backgroundImage: "linear-gradient(to right, #D4C7F9, white)", backdropFilter: "blur(10px)" }}
+        >
+            {/* // <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 " style={{ backdropFilter: 'blur(10px)' }}>   */}
             {marryDt ? (
                 <Link to="/" className="decoration-transparent self-cente pl-3 pt-4 ml-4 text-[#9F7FFC] font-bold">
                     <div className="decoration-solid underline underline-offset-8 text-[25px]" id="marryFont">
@@ -56,11 +58,13 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
                     </div>
                 </Link>
             ) : (
-                <Link to="/todowedding/marrydate"className="no-underline">
+                <Link to="/todowedding/marrydate" className="no-underline">
                     {/* <img src={TodoLogo} alt="ToDo" width="90px" style={{ cursor: "pointer" }} /> */}
                     <button className="flex relative w-[120px]  mt-0">
-                        <img src={TodoLogo} style={{width:"27px"}} className="mt-3 ml-4 mb-3"/>
-                        <div className="ml-1 mt-4 font-bold text-[#7555d3] text-[13px]">결혼예정일을 <br/> 등록해주세요</div>
+                        <img src={TodoLogo} style={{ width: "27px" }} className="mt-3 ml-4 mb-3" />
+                        <div className="ml-1 mt-4 font-bold text-[#7555d3] text-[13px]">
+                            결혼예정일을 <br /> 등록해주세요
+                        </div>
                     </button>
                 </Link>
             )}

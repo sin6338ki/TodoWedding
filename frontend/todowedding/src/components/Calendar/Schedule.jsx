@@ -120,7 +120,7 @@ const Schedule = () => {
                         onChange={(e) => setTitle(e.target.value)}
                         className={style.input}
                         type="text"
-                        style={{ textAlign: "center", border: "none", background: "transparent", outline: "none"}}
+                        style={{ textAlign: "center", border: "none", background: "transparent", outline: "none" }}
                         placeholder="일정을 입력하세요"
                     />
                 </div>

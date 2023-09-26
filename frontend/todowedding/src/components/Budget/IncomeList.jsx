@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     const token = useSelector((state) => state.Auth.token);
     //Pagination
-    const limits = 10;  // 수입리스트 개수 항목 
+    const limits = 10; // 수입리스트 개수 항목
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limits;
 
