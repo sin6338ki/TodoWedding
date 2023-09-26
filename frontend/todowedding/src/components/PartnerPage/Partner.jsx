@@ -17,7 +17,7 @@ const Partner = () => {
 
     //처음 화면 렌더링시 => 리덕스에서 값 (partner_seq) 가져오기
     useEffect(() => {
-        findChatRoom();
+        token && findChatRoom();
     }, [token]);
 
     //채팅방 조회하기 이벤트
