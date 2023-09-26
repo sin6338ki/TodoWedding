@@ -12,8 +12,8 @@ const Pagination = ({ total, limits, page, setPage }) => {
     };
 
     useEffect(() => {
-        console.log("total : ", total);
-        console.log("numPages : ", numPages);
+        // console.log("total : ", total);
+        // console.log("numPages : ", numPages);
         setActive(page);
     }, [total, numPages, page]);
 
