@@ -13,7 +13,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
         const input = document.getElementById("searchMemberInput").value;
         console.log("input : ", input);
         axios
-            .get(`http://localhost:8085/admin/member?keyword=${input}`)
+            .get(`http://172.30.1.9:8085/admin/member?keyword=${input}`)
             .then((res) => {
                 console.log("회원 검색 response : ", res.data);
                 setMembers(res.data);
@@ -26,13 +26,14 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
 
     return (
         <div>
-            <div className="text-left text-2xl font-bold mt-2 p-3 mx-4 border-b">회원 리스트</div>
-            <div className="flex flex-row my-4 mx-4">
+            <div className="text-left text-xl font-bold mt-2 p-3 mx-4 border-b">회원 리스트</div>
+            <div className="flex flex-row my-4 mx-4" style={{justifyContent:"center"}}>
                 <h5 className="align-middle pt-2 text-xs">회원 검색</h5>
                 <input
                     type="text"
                     id="searchMemberInput"
                     className="border border-[#465973] ml-3 pl-2 align-middle text-xs"
+                    style={{width:"50%"}}
                 ></input>
                 <button
                     className="bg-[#465973] w-10 text-white text-xs"
@@ -51,7 +52,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
                     전체 회원
                 </button>
             </div>
-            <div className="grid grid-cols-12 mx-4 pt-3 mb-5">
+            <div className="grid grid-cols-12 mx-2 pt-3 mb-5">
                 <div className="text-center font-bold col-span-1 text-xs">NO</div>
                 <div className="text-center font-bold col-span-3 text-xs">닉네임</div>
                 <div className="text-center font-bold col-span-4 text-xs">email</div>

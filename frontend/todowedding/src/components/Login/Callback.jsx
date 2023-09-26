@@ -39,7 +39,7 @@ const Callback = () => {
         // let logoutTimer; // setTimeout ID를 저장하기 위한 변수
 
         axios
-            .get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
+            .get(`http://172.30.1.9:8085/auth/kakao/callback?code=${code}`)
             .then((res) => {
                 const access_token = JSON.parse(res.data.kakaoAccess).access_token;
                 console.log("로그인 사용자 정보", res.data);

@@ -11,7 +11,7 @@ const BudgetItems = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get("http://localhost:8085/budget/select");
+                const res = await axios.get("http://172.30.1.9:8085/budget/select");
                 console.log("budget 지출 조회 response: ", res.data);
 
                 // 응답 데이터에서 필요한 정보 추출

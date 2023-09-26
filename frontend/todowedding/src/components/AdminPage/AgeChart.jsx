@@ -25,8 +25,9 @@ const AgeChart = ({ twentyCnt, thirtyCnt, fourtyCnt }) => {
     };
 
     return (
-        <div>
-            <Pie data={data} />
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <Pie data={data} 
+            style={{width:"90%", height:"90%"}}/>
         </div>
     );
 };

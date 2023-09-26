@@ -39,7 +39,7 @@ const PartnerJoin = () => {
     const applyJoin = () => {
         console.log("회원가입 폼 입력 데이터 확인 : ", joinData);
         axios
-            .post("http://localhost:8085/partner/join", joinData)
+            .post("http://172.30.1.9:8085/partner/join", joinData)
             .then((res) => {
                 console.log("회원가입 response : ", res.data);
                 if (res.data === "회원가입 완료") {
@@ -55,7 +55,7 @@ const PartnerJoin = () => {
     const checkSameId = () => {
         console.log("중복체크 아이디 : ", partnerId);
         axios
-            .get(`http://localhost:8085/partner/check-id?partnerId=${partnerId}`)
+            .get(`http://172.30.1.9:8085/partner/check-id?partnerId=${partnerId}`)
             .then((res) => {
                 if (res.data == 1) {
                     alert("사용 가능한 아이디입니다. ");
@@ -81,8 +81,8 @@ const PartnerJoin = () => {
 
     return (
         <div className="partner-page mx-[5px] mt-[130px] w-[380px] flex flex-col text-[#5d45a7]">
-            <div className="m-auto mt-4 mb-5 text-xl font-bold">업체 전용 회원가입</div>
-            <div className="mb-3 self-center w-[380px]">
+            <div className="m-auto mt-3 mb-5 text-xl font-bold">업체 전용 회원가입</div>
+            <div className="mb-3 self-center w-[360px]">
                 <p className="mb-2 text-left text-gray-500">아이디</p>
                 <div className="flex flex-row ">
                     <input
@@ -102,7 +102,7 @@ const PartnerJoin = () => {
                     </button>
                 </div>
             </div>
-            <div className="mb-3 self-center w-[380px]">
+            <div className="mb-3 self-center w-[360px]">
                 <p className="mb-2 text-left text-gray-500">비밀번호</p>
                 <input
                     onChange={(e) => {

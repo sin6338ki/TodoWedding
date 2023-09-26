@@ -22,7 +22,7 @@ instance.interceptors.response.use(
             console.log("refreshToken:", refreshToken);
 
             try {
-                const res = await instance.post("http://localhost:8085/member/refresh", { refreshToken });
+                const res = await instance.post("http://172.30.1.9:8085/member/refresh", { refreshToken });
                 const newAccessToken = res.data.accessToken; // 새로운 액세스 토큰 가져오기
 
                 // Redux 스토어의 액세스 토큰 업데이트하기
