@@ -244,13 +244,14 @@ const TodoList = () => {
                     </button>
                 </form>
                 <div className="mt-[60px] mb-10">
-                    {todos.map((todolistContents, index) => (
+                    {todos.map((todolistContents) => (
                         <Todo
-                            key={index}
+                            // key 값 수정중 (09.25 >> 삭제 수정)
+                            key={todolistContents.todolistSeq} 
                             setChangeCheck={setChangeCheck}
                             changeCheck={changeCheck}
                             todolistContents={todolistContents}
-                            toggleComplete={() => toggleComplete(todolistContents)}
+                            toggleComplete={() => toggleComplete(todolistContents.todolistSeq)}
                             deleteTodo={() => deleteTodo(todolistContents.todolistSeq)}
                         />
                     ))}

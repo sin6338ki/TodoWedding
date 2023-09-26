@@ -119,11 +119,11 @@ const BudgetIndex = () => {
                     />
                 </Tab>
                 {/* 지영 수정 부분 */}
-                <Tab eventKey="income" title="수입 리스트">
-                    <IncomeList incomes={incomes} findIncomes={findIncomes} />
-                </Tab>
                 <Tab eventKey="budget" title="지출 리스트">
                     <ExpenseList expenses={expenses} findExpenses={findExpenses} />
+                </Tab>
+                <Tab eventKey="income" title="수입 리스트">
+                    <IncomeList incomes={incomes} findIncomes={findIncomes} />
                 </Tab>
                 {/* 지영 수정 부분 끝 */}
             </Tabs>

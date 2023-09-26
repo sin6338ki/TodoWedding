@@ -46,7 +46,9 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     }, []);
 
     return (
-        <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 bg-gradient-to-r to-white from-[#D4C7F9]">
+        <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 bg-gradient-to-r to-white from-[#D4C7F9]">  
+       
+        {/* // <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 " style={{ backdropFilter: 'blur(10px)' }}>   */}
             {marryDt ? (
                 <Link to="/" className="decoration-transparent self-cente pl-3 pt-4 ml-4 text-[#9F7FFC] font-bold">
                     <div className="decoration-solid underline underline-offset-8 text-[25px]" id="marryFont">
