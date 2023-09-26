@@ -25,7 +25,7 @@ const Main = () => {
     const [checklist, setChecklist] = useState([]);
 
 
-    // 추가 : 2023.09.25 사용자토큰 유무 확인 유광작성 
+    //추가 : 2023.09.25 토큰 유무 확인 유광작성 카카오 토큰 사용자 유효성 확인
     const token = useSelector((state) => state.Auth.token);
     const dispatch = useDispatch();
 

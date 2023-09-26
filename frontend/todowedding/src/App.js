@@ -74,12 +74,11 @@ import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
     return (
-        <div className="app-container" style={{ backgroundColor: "#F8FAF9", position:"relative", width:"100%", 
-               }}>
-            <div style={{ display: "flex"}}>
-                <div style={{width:'80%'}}>
+        <div style={{ backgroundColor: "#F8FAF9", marginLeft: "23px", marginRight: "20px" }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div>
                     <Header />
-                    <div className="body" id="Pretendard-Regular" style={{ backgroundColor: "#ffffff"}}>
+                    <div className="body" id="Pretendard-Regular" style={{ backgroundColor: "#ffffff" }}>
                         <Routes>
                             <Route path="/" element={<Main />} />
                             <Route path="/todowedding/guide/:id" element={<GuidePage />} />
@@ -137,10 +136,10 @@ function AppContent() {
                     </div>
                     <BottomBar />
                 </div>
-                
-                {/*웹 이미지 */}
-                {/* <div style={{backgroundColor: "#F8FAF9"}} className="web-image">
-                        <img src={MarginImage} alt="margin-image" style={{ height: "90px" }} />
+
+                {/* 웹 이미지
+                <div style={{ width: " 350px", backgroundColor: "#F8FAF9"}}>
+                    <img src={MarginImage} alt="margin-image" style={{ height: "90px" }} />
                     <div style={{ paddingBottom: "20px" }}>
                         <ADSlickSlider />
                     </div>

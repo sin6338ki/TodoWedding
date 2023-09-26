@@ -36,7 +36,7 @@ const Callback = () => {
         console.log("code :", code);
         // 3가지의 정보 전달 (사용자 seq, nick, access)
 
-        let logoutTimer; // setTimeout ID를 저장하기 위한 변수
+        // let logoutTimer; // setTimeout ID를 저장하기 위한 변수
 
         axios
             .get(`http://localhost:8085/auth/kakao/callback?code=${code}`)
@@ -55,16 +55,16 @@ const Callback = () => {
                 );
 
                  
-                logoutTimer = setTimeout(() => { 
-                    dispatch(deleteToken());
-                    alert("로그인 유효시간이 경과하였습니다. 다시 로그인해 주세요.");  
-                }, 6 * 60 * 60 * 1000); // 6시간뒤 자동 로그아웃
+            //     logoutTimer = setTimeout(() => { 
+            //         dispatch(deleteToken());
+            //         alert("로그인 유효시간이 경과하였습니다. 다시 로그인해 주세요.");  
+            //     }, 6 * 60 * 60 * 1000); // 6시간뒤 자동 로그아웃
 
 
-            })
-            .catch((error) => {
-                console.log("유저 정보를 가져오는데 실패 ", error);
-                alert("로그인에 실패하였습니다.");
+            // })
+            // .catch((error) => {
+            //     console.log("유저 정보를 가져오는데 실패 ", error);
+            //     alert("로그인에 실패하였습니다.");
             });
 
     }, [code]);
