@@ -5,7 +5,7 @@ import Partner from "../../assets/images/icon/map.png";
 import Calendar from "../../assets/images/icon/calendar.png";
 import Budget from "../../assets/images/icon/wallet.png";
 import Home from "../../assets/images/icon/home.png";
-import ModalBtn from "../../assets/images/TodoModal_bg.png";
+import ModalBtn from "../../assets/images/ModalLogo.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Modal from "../../components/Main/Modal";
@@ -57,50 +57,53 @@ const MemberBottomBar = () => {
     );
 
     return (
-        // <div className="flex flex-col">
+        
         <div>
-            {/* AddButton */}
-            {/* Modal 설정 */}
-            {token === null ||
-                (token.type != "P" && (
-                    <>
-                        <LightTooltip
-                            title={
-                                <React.Fragment>
-                                    버튼을 클릭해 투두웨딩의 <br /> 다양한 기능을 이용해보세요!
-                                </React.Fragment>
-                            }
-                            placement="top"
-                        >
-                            <button className="ModalBtn" type="button" onClick={() => setAdd(!add)}>
-                                <img src={ModalBtn} className="ModalImage" alt="AddButton" />
-                            </button>
-                        </LightTooltip>
-                        {add && <Modal closeModal={() => setAdd(!add)} />}
-                    </>
-                ))}
+            <>
+                <LightTooltip
+                    title={
+                        <React.Fragment>
+                            버튼을 클릭해 투두웨딩의 <br /> 다양한 기능을 이용해보세요!
+                        </React.Fragment>}
+                        placement="top">
+                        <button 
+                            className="ModalBtn" 
+                            type="button" 
+                            onClick={() => {
+                                if (!userSeq) {
+                                    alert("로그인 후 서비스를 이용해주세요");
+                                    nav("/");
+                                    return;
+                                }
+                                setAdd(!add);
+                            }}>
+                            <img src={ModalBtn} className="ModalImage" alt="AddButton" />
+                        </button>
+                </LightTooltip>
+                {add && <Modal closeModal={() => setAdd(!add)} />}
+            </>
 
             <div className="bottom-bar">
-                <Link to="todowedding/calendar" className="footer-menu-right ml-1" onClick={handleButtonClick}>
+                <Link to="todowedding/calendar" className="footer-menu-left ml-1" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">CAL</span>
+                    <span className="text-[6px] mt-1 font-light">일정관리</span>
                 </Link>
-                <Link to="todowedding/todolist" className="footer-menu-right" onClick={handleButtonClick}>
+                <Link to="todowedding/todolist" className="footer-menu-left mr-12 ml-2" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Todolist} alt="Todolist" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">TODO</span>
+                    <span className="text-[6px] mt-1 font-light">투두리스트</span>
                 </Link>
-                <Link to="/" className="footer-menu-right" onClick={handleHomeButtonClick}>
+                {/* <Link to="/" className="footer-menu-right" onClick={handleHomeButtonClick}>
                     <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
                     <span className="text-[6px] mt-1 font-light">HOME</span>
-                </Link>
+                </Link> */}
 
-                <Link to="/todowedding/budget" className="footer-menu-right">
+                <Link to="/todowedding/budget" className="footer-menu-right ml-12" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Budget} alt="Budget" width="20px" />
-                    <span className="text-[6px] mt-1 font-light"> BUDGET</span>
+                    <span className="text-[6px] mt-1 font-light">예산관리</span>
                 </Link>
                 <Link to="todowedding/map" className=" footer-menu-right" onClick={handleButtonClick}>
                     <img className="bottom-bar-hover" src={Partner} alt="Partner" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">STORE</span>
+                    <span className="text-[6px] mt-1 font-light">업체찾기</span>
                 </Link>
             </div>
         </div>

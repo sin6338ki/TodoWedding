@@ -31,20 +31,21 @@
   
   .amount__type {
     display: flex;
+    width: 100%;
   }
   
   .amount__income {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px;
+    width: 100%;
   }
   
   .amount__expense {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right:  10px;
+    width: 100%;
   }
 /*   
   지출 수입 버튼 css적용 (09.25) */

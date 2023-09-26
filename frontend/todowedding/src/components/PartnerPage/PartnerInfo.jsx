@@ -101,18 +101,18 @@ const PartnerInfo = () => {
 
     return (
         <div className="partner-page mx-[5px] mt-[33px] w-[100%] flex flex-col">
-            <div className="flex relative w-[180px] mt-[120px] mb-4 mx-auto">
+            <div className="flex relative w-[180px] mt-[25%] mb-4 mx-auto">
                 <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
                 <div className="text-center font-bold absolute w-full h-full mt-2">업체 정보 수정하기</div>
             </div>
-            <div className=" flex flex-col">
-                <div className="mb-3 self-center w-[380px]">
+            <div className=" flex flex-col mr-[5%] ml-[2%]">
+                <div className="mb-3 self-center w-[100%]">
                     <p className="mb-2 text-left text-gray-500">아이디</p>
                     <input
                         value={partnerInfo.partner_id}
                         disabled
                         type="text"
-                        className="w-[380px] border text-[#8267d3] h-8 p-2"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
                     ></input>
                 </div>
                 <div className="mb-3 self-center w-[380px]">

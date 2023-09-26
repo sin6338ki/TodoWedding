@@ -6,7 +6,7 @@ import '../../assets/budget-css/NewItem.css'
 const NewItem = () => {
   return (
     <div className='new-item'>
-    <h1 className='fs-normal fw-bold text-2xl'>내역추가</h1>
+    <h1 className='fs-normal fw-bold text-xl'>내역 추가</h1>
     <NewItemForm />
     </div>
   )
