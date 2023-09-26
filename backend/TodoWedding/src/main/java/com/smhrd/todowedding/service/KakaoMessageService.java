@@ -202,17 +202,24 @@ public class KakaoMessageService {
    
    //D-day 계산 메서드 (출처 https://jamesdreaming.tistory.com/116)
    public Long dayCalculator(Long loginMemberSeq) throws Exception {
-      String marryDate = marryDateMapper.findMarryDate(loginMemberSeq);
+      
+	  String marryDate = marryDateMapper.findMarryDate(loginMemberSeq);
       Date now = new Date();
       Long diffDate = null;
-      //D-day 계산
-      try {
-         //string to date 변환
-         Date marryDateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(marryDate);
-         diffDate = (marryDateFormat.getTime() - now.getTime()) / (1000 * 24 * 60 * 60) + 1;
-      }catch(ParseException e) {
-         e.printStackTrace();
+      
+      if(marryDate != null) {
+    	  //D-day 계산
+          try {
+             //string to date 변환
+             Date marryDateFormat = new SimpleDateFormat("yyyy-MM-dd").parse(marryDate);
+             diffDate = (marryDateFormat.getTime() - now.getTime()) / (1000 * 24 * 60 * 60) + 1;
+          }catch(ParseException e) {
+             e.printStackTrace();
+          }
+      }else {
+    	diffDate = 9999L;  
       }
+
       log.info("d-day 계산 결과 확인 : " + diffDate);
       return diffDate;
    }
