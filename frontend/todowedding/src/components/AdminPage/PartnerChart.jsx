@@ -5,28 +5,34 @@
  */
 
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const PartnerChart = ({ hallCnt, studioCnt }) => {
-    ChartJS.register(ArcElement, Tooltip, Legend);
+    const data = [
+        { name: "웨딩홀", value: Math.round((hallCnt / (hallCnt + studioCnt)) * 100) },
+        { name: "스튜디오", value: Math.round((studioCnt / (hallCnt + studioCnt)) * 100) },
+    ];
+    const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
 
-    const data = {
-        labels: ["웨딩홀", "스튜디오"],
-        datasets: [
-            {
-                label: "Partners(개)",
-                data: [hallCnt, studioCnt],
-                backgroundColor: ["rgba(4, 135, 217, 0.5)", "rgb(4, 135, 217)"],
-                borderColor: ["rgba(255, 99, 132, 1)", "rgba(153, 102, 255, 1)"],
-                borderWidth: 0,
-            },
-        ],
-    };
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <Pie data={data} 
-            style={{width:"90%", height:"90%"}}/>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <PieChart width={400} height={220}>
+                <Legend layout="vertical" verticalAlign="middle" align="left-bottom" />
+                <Pie
+                    dataKey="value"
+                    isAnimationActive={true}
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                >
+                    {data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                </Pie>
+            </PieChart>
         </div>
     );
 };

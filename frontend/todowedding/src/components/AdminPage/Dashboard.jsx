@@ -16,16 +16,16 @@ const Dashboard = ({ partners, members, maleCnt, femaleCnt, twentyCnt, thirtyCnt
                 <div className="text-5xl m-4 text-[#2C3540]">{partners.length}</div>
             </div>
             <div className="col-span-2 px-5 pt-5">
-                <div className="pb-4 font-bold text-[#465973] underline underline-offset-4">User 성별 통계</div>
-                <GenderChart maleCnt={maleCnt} femaleCnt={femaleCnt} className="w-2/3"/>
+                <div className="pb-4 font-bold text-[#465973] underline underline-offset-4">User 성별 통계(%)</div>
+                <GenderChart maleCnt={maleCnt} femaleCnt={femaleCnt} />
             </div>
             <div className="col-span-2 px-5">
-                <div className="pb-4 font-bold text-[#465973] underline underline-offset-4">User 연령대 통계</div>
-                <AgeChart twentyCnt={twentyCnt} thirtyCnt={thirtyCnt} fourtyCnt={fourtyCnt} className="w-2/3" />
+                <div className="pb-4 font-bold text-[#465973] underline underline-offset-4">User 연령대 통계(%)</div>
+                <AgeChart twentyCnt={twentyCnt} thirtyCnt={thirtyCnt} fourtyCnt={fourtyCnt} />
             </div>
             <div className="col-span-2 px-5 font-bold text-[#465973] underline underline-offset-4">
-                <div className="pb-4">제휴업체 유형 통계</div>
-                <PartnerChart hallCnt={hallCnt} studioCnt={studioCnt} className="w-2/3" />
+                <div className="pb-4">제휴업체 유형 통계(%)</div>
+                <PartnerChart hallCnt={hallCnt} studioCnt={studioCnt} />
             </div>
         </div>
     );

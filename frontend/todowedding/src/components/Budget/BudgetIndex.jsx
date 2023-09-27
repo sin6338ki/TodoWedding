@@ -101,7 +101,7 @@ const BudgetIndex = () => {
 
     return (
         <div>
-            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 mt-1 text-[#8a6aec]">
+            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="budget-tabs">
                 <Tab eventKey="home" title="통계">
                     <BudgetDashboard
                         incomes={incomes}
