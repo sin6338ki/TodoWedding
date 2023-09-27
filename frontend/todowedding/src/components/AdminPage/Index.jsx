@@ -151,7 +151,7 @@ const Index = () => {
 
     return (
         <div>
-            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 mt-3  mx-1 text-[#A383FF]">
+            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="admin-tabs">
                 <Tab eventKey="home" title="통계">
                     <Dashboard
                         partners={partners}

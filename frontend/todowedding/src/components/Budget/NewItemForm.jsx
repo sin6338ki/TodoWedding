@@ -13,6 +13,7 @@ import ExpenseForm from "./ExpenseForm";
  * 예산관리 페이지 (DB-insert)
  * - 수입 , 지출 입력 form 컴포넌트 분리
  * 디자인 radio 에서 btn 으로 수정 (09.22)
+ * 예산관리 page expense 기본값으로 변경 (09.25)
  * 작성자 : 양수진
  * 작성일 : 2023.09.14
  */
@@ -32,8 +33,8 @@ const NewItemForm = () => {
     const [budgetDate, setBudgetDate] = useState("");
     const [budgetTitle, setBudgetTitle] = useState("");
     const [budgetCost, setBudgetCost] = useState("");
-    const [enteredAmountType, setEnteredAmountType] = useState("expense"); // default 내역추가 (지출로수정 09.25)
-    const [selectedType, setSelectedType] = useState("expense"); //버튼 이벤트함수 추가(09.25)
+    const [enteredAmountType, setEnteredAmountType] = useState("expense"); 
+    // const [selectedType, setSelectedType] = useState("expense"); //버튼 이벤트함수 추가(09.25)
 
     // 지출 항목 추가 input
     const [budgetRole, setBudgetRole] = useState("");
@@ -78,22 +79,13 @@ const NewItemForm = () => {
             document.getElementById("income").style.setProperty("background-color", "#9f7ffc");
             document.getElementById("income").style.setProperty("color", "#FFFFFF");
         } else {
-            // 아무것도 선택안했을때 버튼 둘다 보라색으로 ?
+            // 아무것도 선택안했을때 
             document.getElementById("expense").style.setProperty("background-color", "#9f7ffc");
             document.getElementById("expense").style.setProperty("color", "#FFFFFF");
             document.getElementById("income").style.setProperty("background-color", "#9f7ffc");
             document.getElementById("income").style.setProperty("color", "#FFFFFF");
         }
     }, [enteredAmountType]);
-
-    // back에서 BudgetDto에 맞춰 값 넣어주기 -->9/13 수정
-    //   const enteredData = {
-    //     id: nextItemId,
-    //     budget_expense_dt: formatDate(new Date(enteredDate)),
-    //     budget_item: enteredTitle,
-    //     budget_cost: deleteComma(budgetCost),
-    //     amountType: enteredAmountType, //수입인지 지출인지 구분 type
-    //    };
 
     // 수입 데이터 보내줄 때
     const [incomeData, setIncomeData] = useState({});
@@ -134,7 +126,7 @@ const NewItemForm = () => {
             axios
                 .post(
                     `http://localhost:8085/budget/insert`,
-                    newBudgetData // useState 훅으로 생성된 상태 사용
+                    newBudgetData 
                 )
                 .then((response) => {
                     console.log("Data insert 확인 : ", newBudgetData);
@@ -162,7 +154,7 @@ const NewItemForm = () => {
             {/* 수입인지 지출인지 체크  */}
             <div className="amount__type">
                 <div className="amount__expense">
-                    <button //버튼Type으로 수정 (09.22)
+                    <button 
                         type="button"
                         id="expense"
                         className={`amount__expense ${enteredAmountType === "expense" ? "active" : ""}`}
@@ -182,7 +174,7 @@ const NewItemForm = () => {
                     </button>
                 </div>
                 <div className="amount__income">
-                    <button //버튼Type으로 수정완료
+                    <button 
                         type="button"
                         id="income"
                         className={`amount__income ${enteredAmountType === "income" ? "active" : ""}`}

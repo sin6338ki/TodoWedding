@@ -5,29 +5,34 @@
  */
 
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const GenderChart = ({ maleCnt, femaleCnt }) => {
-    ChartJS.register(ArcElement, Tooltip, Legend);
-
-    const data = {
-        labels: ["남성", "여성"],
-        datasets: [
-            {
-                label: "Users(명)",
-                data: [maleCnt, femaleCnt],
-                backgroundColor: ["rgba(242, 160, 61, 0.5)", "rgba(242, 160, 61)"],
-                borderColor: ["rgba(44, 53, 64)", "rgba(44, 53, 64, 0.5)"],
-                borderWidth: 0,
-            },
-        ],
-    };
+    const data = [
+        { name: "남성", value: Math.round((maleCnt / (maleCnt + femaleCnt)) * 100) },
+        { name: "여성", value: Math.round((femaleCnt / (maleCnt + femaleCnt)) * 100) },
+    ];
+    const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <Pie data={data} 
-            style={{width:"90%", height:"90%"}}/>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <PieChart width={400} height={220}>
+                <Legend layout="vertical" verticalAlign="middle" align="left-bottom" />
+                <Pie
+                    dataKey="value"
+                    isAnimationActive={true}
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                >
+                    {data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                </Pie>
+            </PieChart>
         </div>
     );
 };

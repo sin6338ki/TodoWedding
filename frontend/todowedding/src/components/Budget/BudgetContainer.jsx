@@ -1,15 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Budget from "./Budget";
-import BudgetList from "./BudgetList";
-import BudgetChart from "./BudgetChart";
 import "../../assets/budget-css/BudgetContainer.css";
 import BudgetIndex from "./BudgetIndex";
-import BudgetRoleChart from "./BudgetRoleChart";
 import NewItemContainer from "./NewItemContainer";
 
 export const FilterContext = React.createContext();
 
-// PocketContainer
+// 예산관리 상위 컴포넌트
 const BudgetContainer = (props) => {
     const initialFilterBaseYear = new Date().getFullYear().toString();
     const [filterBaseYear, setFilterBaseYear] = useState(initialFilterBaseYear);
@@ -26,9 +23,9 @@ const BudgetContainer = (props) => {
     }, [props.items]);
 
     if (Array.isArray(filteredItems) && filteredItems.length > 0) {
-        //수정
+        
         filteredItems = props.items.filter((item) => item.date.getFullYear().toString() === filterBaseYear);
-        // db에 수입 지출 구분할수있는게 없음... 수입(비용,날짜,내용) &  지출 (비용,날짜,내용) 테이블 필요함
+       
         filteredExpenses = filteredItems.filter((item) => item.amountType === "expense");
     }
 
@@ -50,8 +47,6 @@ const BudgetContainer = (props) => {
                     <Budget />
 
                     <BudgetIndex />
-
-                    {/* <BudgetRoleChart /> */}
                 </FilterContext.Provider>
             </div>
         </div>

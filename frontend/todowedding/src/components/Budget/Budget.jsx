@@ -6,7 +6,7 @@ import "../../assets/budget-css/Budget.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-/* Budget 예산관리 [상위컴포넌트] : 총수입 , 총지출
+/* Budget 예산관리 : 총수입 , 총지출
  * 작성자 : 양수진
  * 작성일 : 2023.09.12
  * 로그인이전 home 으로 이동 (09.18)
@@ -36,19 +36,10 @@ const Budget = (props) => {
     // const [memberSeq, setMemberSeq] = useState();
     const memberSeq = token ? token.userSeq : 0;
 
-    // useEffect(() => {
-    //     if (token && token.userSeq) {
-    //         console.log("token, ", token);
-    //         setMemberSeq(token.userSeq);
-    //     } else {
-    //         console.error("Token or user sequence is not defined." , token);
-    //         setMemberSeq(0); // or set it to a fallback value if necessary
-    //     }
-    // }, [token]);
+
 
     useEffect(() => {
         if (!memberSeq) {
-            // alert("로그인 후 진행해 주세요");
             nav("/");
         } else {
             const memberSeqObj = {
@@ -58,7 +49,6 @@ const Budget = (props) => {
             axios
                 .post(`http://localhost:8085/member/total`, memberSeqObj)
                 .then((response) => {
-                    console.log("222", response);
                     setTotalExpense(response.data.budget_sum_cost);
                     setTotalIncome(response.data.income_total_cost);
                     setTotalBalance(response.data.marry_total_budget);
@@ -70,8 +60,6 @@ const Budget = (props) => {
     return (
         <div className="pocket__status">
             <div className="pocket__status-title">
-                {/* <h1 className={style.heading}>20{twoDigitYear}년 결혼 예산 관리</h1> */}
-                {/* <strong className="fs-title">웨딩 전체 예산 : {addComma(totalBalance.toString())}원</strong> */}
             </div>
 
             <div className="pocket__status-detail">

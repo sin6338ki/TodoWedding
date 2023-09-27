@@ -11,11 +11,10 @@ import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import zoombutton from "../../assets/images/icon/zoombutton.png";
 
 const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const token = useSelector((state) => state.Auth.token);
-    const [Expenses, setExpenses] = useState([]); //09.20추가
+    const [Expenses, setExpenses] = useState([]);
 
     //Pagination
     const limits = 10; // 지출 리스트 개수
@@ -43,15 +42,12 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     // 지출내역 삭제
     const expenseDelete = async (budgetSeq) => {
         try {
-            console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
+            // console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
             const response = await axios.delete(`http://localhost:8085/budget/delete/${budgetSeq}`);
             console.log("지출list 삭제성공 :", response.data);
-            // 삭제 추가코드(09.20)
-            // 지영 수정 부분 ===============================================
             if (response.data == "삭제 성공") {
                 findExpenses(token.userSeq);
             }
-            // ==============================================================
             setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.budget_seq !== budgetSeq));
         } catch (err) {
             console.log("지출리스트 삭제 err : ", err);
@@ -60,31 +56,20 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
 
     return (
         <div style={{ marginTop: "-20px" }}>
-            <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
-                {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
-                <div className="text-center text-[13px] font-bold col-span-3 ">날짜</div>
-                <div className="text-center text-[13px] font-bold col-span-3 ">지출비용</div>
-                <div className="text-center text-[13px] font-bold col-span-3">내용</div>
-                <div className="text-center text-[13px] font-bold col-span-1">분담</div>
-                <div className="text-center text-[13px] font-bold col-span-2">삭제</div>
-            </div>
-
             {sortedExpenses.slice(offset, offset + limits).map((expenses, idx) => {
-                // 새로운 변수를 사용하여 번호 계산
-                const itemNumber = (page - 1) * limits + idx + 1;
                 return (
-                    <div className="grid grid-cols-12 ml-3 pt-3 mb-1" key={idx}>
-                        {/* <div className="text-center col-span-1 mt-1 text-xs">{itemNumber}</div> */}
-                        <div className="text-center col-span-3 mt-1 text-[13px]">{expenses.budget_expense_dt}</div>
-                        <div className="text-center col-span-3 mt-1 text-[13px]">
-                            {addComma(expenses.budget_cost.toString())}원
+                    <div key={idx} className="flex flex-row mt-5">
+                        <div>
+                            <div className="text-xs text-gray-400">
+                                {expenses.budget_expense_dt} | {expenses.budget_role}
+                            </div>
+                            <div>{expenses.budget_item}</div>
                         </div>
-                        <div className="text-center col-span-3 mt-1 text-[13px]">{expenses.budget_item}</div>
-                        <div className="text-center col-span-1 mt-1 text-[13px]">{expenses.budget_role}</div>
-                        <button
-                            onClick={() => expenseDelete(expenses.budget_seq)}
-                            className="text-center col-span-2 mt-1 ml-6 text-[13px]"
-                        >
+                        <div className="self-center ml-auto text-lg font-bold text-[#9f7ffc]">
+                            -{addComma(expenses.budget_cost.toString())}원
+                        </div>
+                        {/* 삭제 버튼 */}
+                        <button className="self-center ml-10 mr-3" onClick={() => expenseDelete(expenses.budget_seq)}>
                             {<FaRegTrashAlt />}
                         </button>
                     </div>

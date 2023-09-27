@@ -5,29 +5,35 @@
  */
 
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const AgeChart = ({ twentyCnt, thirtyCnt, fourtyCnt }) => {
-    ChartJS.register(ArcElement, Tooltip, Legend);
-
-    const data = {
-        labels: ["20대", "30대", "40대"],
-        datasets: [
-            {
-                label: "Users(명)",
-                data: [twentyCnt, thirtyCnt, fourtyCnt],
-                backgroundColor: ["rgba(44, 191, 108, 0.5)", "rgba(44, 191, 108)", "rgba(44,191,108,0.2)"],
-                borderColor: ["rgba(255, 99, 132, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"],
-                borderWidth: 0,
-            },
-        ],
-    };
+    const data = [
+        { name: "20대", value: Math.round((twentyCnt / (twentyCnt + thirtyCnt + fourtyCnt)) * 100) },
+        { name: "30대", value: Math.round((thirtyCnt / (twentyCnt + thirtyCnt + fourtyCnt)) * 100) },
+        { name: "40대", value: Math.round((fourtyCnt / (twentyCnt + thirtyCnt + fourtyCnt)) * 100) },
+    ];
+    const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <Pie data={data} 
-            style={{width:"90%", height:"90%"}}/>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <PieChart width={400} height={220}>
+                <Legend layout="vertical" verticalAlign="middle" align="left-bottom" />
+                <Pie
+                    dataKey="value"
+                    isAnimationActive={true}
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                >
+                    {data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                </Pie>
+            </PieChart>
         </div>
     );
 };

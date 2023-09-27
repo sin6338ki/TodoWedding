@@ -66,6 +66,8 @@ public class KakaoMessageService {
 
       // HttpBody 오브젝트 생성
       JSONObject linkObj = new JSONObject();
+//        linkObj.put("web_url", "http://172.30.1.9:3000");
+//        linkObj.put("mobile_web_url", "http://172.30.1.9:3000");
         linkObj.put("web_url", "http://localhost:3000");
         linkObj.put("mobile_web_url", "http://localhost:3000");
       

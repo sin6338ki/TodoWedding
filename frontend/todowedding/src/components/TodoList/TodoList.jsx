@@ -27,18 +27,18 @@ const style = {
 //  const [unCompletedCnt, setUnCompletedCnt] = useState();
 
 const TodoList = () => {
-    //userSeq 받아오기 (로그인이전 일때 추가 코드1 +import 2줄 포함 useNavi , useSelector)
+    
     const nav = useNavigate();
     const token = useSelector((state) => state.Auth.token);
     const memberSeq = token ? token.userSeq : 0;
 
-    //로그인 전이면(userSeq가 0일 때) 다시 메인페이지로  (로그인이전 일때 추가 코드2)
+   
     useEffect(() => {
         if (!memberSeq) {
             nav("/");
         }
     }, [memberSeq, nav]);
-    // 여기까지 코드작성해줘야댐
+    
 
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
@@ -48,7 +48,7 @@ const TodoList = () => {
     useEffect(() => {
         const fetchDataAndCout = async () => {
             await fetchData();
-            await cntTodoList(); //수정
+            await cntTodoList(); 
         };
 
         fetchDataAndCout();
@@ -75,18 +75,7 @@ const TodoList = () => {
         setActiveButton("Budget");
     };
 
-    // GET : axios.get(url)
-    // POST : axios.post(url, data)
-    // PUT : axios.put(url, data)
-    // DELETE : axios.delete(url)
 
-    // axios 구조 : axios.get('url')
-    // .then((res)=>{
-    //       console.log("response : ", res.data);
-    //       어떤식 데이터를 받는지 확인 후 내가 뭘 필요하는가를 생각해본 뒤 프론트(화면 혹은 변수로 지정)
-    // }).catch((err)=>{
-    //       console.log("error : ", err)
-    // })
 
     // 1.투두리스트 추가 메서드
     const createTodo = async (e) => {
@@ -140,9 +129,9 @@ const TodoList = () => {
     // 삭제 실행 메서드 변경 코드
     const deleteTodo = async (todolistSeq) => {
         try {
-            console.log("투두리스트 삭제 실행, todolistSeq : ", todolistSeq);
+            // console.log("투두리스트 삭제 실행, todolistSeq : ", todolistSeq);
             const response = await axios.delete(`http://localhost:8085/todolist/${todolistSeq}`);
-            console.log("deleteTodolist 삭제성공 response : ", response.data);
+            // console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
             if (response.data === 1) {
                 setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== todolistSeq));
@@ -158,7 +147,7 @@ const TodoList = () => {
         // fetchData 수정(09.15)
         try {
             const res = await axios.get(`http://localhost:8085/todolist/${memberSeq}`);
-            console.log("findallTodolist 조회 response : ", res.data);
+            // console.log("findallTodolist 조회 response : ", res.data);
             setTodos(res.data);
         } catch (error) {
             console.error("Error", error);
@@ -173,10 +162,9 @@ const TodoList = () => {
     const cntTodoList = async () => {
         try {
             const res = await axios.get(`http://localhost:8085/count-of-todolist/${memberSeq}`);
-            console.log("cntTodoList response", res.data);
-            console.log("cntTodoList response length", res.data.length);
-            // setUnCompletedCnt(res.data[0].count)
-            // setCompletedCnt(res.data[1].count)
+            // console.log("cntTodoList response", res.data);
+            // console.log("cntTodoList response length", res.data.length);
+          
 
             /**
              * count를 불러왔을 때 배열의 크기가 1인 경우 => 전체가 진행이거나 전체가 완료인 상태
@@ -199,7 +187,7 @@ const TodoList = () => {
                 setCompletedCnt(res.data[1].count);
             }
         } catch (err) {
-            console.log("cntTodoList err : ", err);
+            // console.log("cntTodoList err : ", err);
         }
     };
 
