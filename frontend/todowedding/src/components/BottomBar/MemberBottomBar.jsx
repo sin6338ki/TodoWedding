@@ -4,7 +4,6 @@ import Todolist from "../../assets/images/icon/check-box.png";
 import Partner from "../../assets/images/icon/map.png";
 import Calendar from "../../assets/images/icon/calendar.png";
 import Budget from "../../assets/images/icon/wallet.png";
-import Home from "../../assets/images/icon/home.png";
 import ModalBtn from "../../assets/images/ModalLogo.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -38,11 +37,6 @@ const MemberBottomBar = () => {
         nav("/todowedding/calendar");
     };
 
-    //메인에서 Home 버튼 클릭시 메인페이지로 이동
-    const handleHomeButtonClick = () => {
-        nav("/");
-    };
-
     // Modal 버튼 Tooltip 스타일
     const LightTooltip = styled(({ className, ...props }) => <Tooltip {...props} classes={{ popper: className }} />)(
         ({ theme }) => ({
@@ -66,9 +60,7 @@ const MemberBottomBar = () => {
                             버튼을 클릭해 투두웨딩의 <br /> 다양한 기능을 이용해보세요!
                         </React.Fragment>}
                         placement="top">
-                        <button 
-                            className="ModalBtn" 
-                            type="button" 
+                        <button className="ModalBtn" type="button" 
                             onClick={() => {
                                 if (!userSeq) {
                                     alert("로그인 후 서비스를 이용해주세요");
@@ -84,26 +76,21 @@ const MemberBottomBar = () => {
             </>
 
             <div className="bottom-bar">
-                <Link to="todowedding/calendar" className="footer-menu-left ml-1" onClick={handleButtonClick}>
-                    <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">일정관리</span>
+                <Link to="todowedding/calendar" className="footer-menu-left ml-1 mt-1" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="18px" />
+                    <span className="text-[7px] mt-1 font-medium">일정관리</span>
                 </Link>
-                <Link to="todowedding/todolist" className="footer-menu-left mr-12 ml-2" onClick={handleButtonClick}>
-                    <img className="bottom-bar-hover" src={Todolist} alt="Todolist" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">투두리스트</span>
+                <Link to="todowedding/todolist" className="footer-menu-left mr-12 ml-2 mt-1" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Todolist} alt="Todolist" width="18px" />
+                    <span className="text-[7px] mt-1 font-medium">투두리스트</span>
                 </Link>
-                {/* <Link to="/" className="footer-menu-right" onClick={handleHomeButtonClick}>
-                    <img className="bottom-bar-hover" src={Home} alt="Home" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">HOME</span>
-                </Link> */}
-
-                <Link to="/todowedding/budget" className="footer-menu-right ml-12" onClick={handleButtonClick}>
-                    <img className="bottom-bar-hover" src={Budget} alt="Budget" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">예산관리</span>
+                <Link to="/todowedding/budget" className="footer-menu-right ml-12 mt-1" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Budget} alt="Budget" width="18px" />
+                    <span className="text-[7px] mt-1 font-medium">예산관리</span>
                 </Link>
-                <Link to="todowedding/map" className=" footer-menu-right" onClick={handleButtonClick}>
-                    <img className="bottom-bar-hover" src={Partner} alt="Partner" width="20px" />
-                    <span className="text-[6px] mt-1 font-light">업체찾기</span>
+                <Link to="todowedding/map" className="footer-menu-right mt-1 ml-4" onClick={handleButtonClick}>
+                    <img className="bottom-bar-hover" src={Partner} alt="Partner" width="18px" />
+                    <span className="text-[7px] mt-1 font-medium">업체찾기</span>
                 </Link>
             </div>
         </div>

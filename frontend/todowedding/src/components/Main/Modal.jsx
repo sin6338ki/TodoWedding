@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import TodoLogo from "../../assets/images/todo_logo.png";
 
 /*
- * BottomBar +버튼 눌렀을 때 Modal창
+ * BottomBar 버튼 눌렀을 때 뜨는 Modal창
  * 작성자 : 서현록
  * 작성일 : 2023.09.06
  */
@@ -18,7 +18,7 @@ function Modal(props) {
         <div className="Modal z-50 relative" onClick={closeModal}>
             <div className="modalBody" onClick={(e) => e.stopPropagation()}>
                 <button id="modalCloseBtn" onClick={closeModal}></button>
-                <img src={TodoLogo} width={"200px"} />
+                <img src={TodoLogo} width={"200px"} style={{marginBottom:"5px"}}/>
                 <div className="add-link" onClick={closeModal}>
                     <button id="modalCloseBtn" onClick={closeModal}>
                         ✖

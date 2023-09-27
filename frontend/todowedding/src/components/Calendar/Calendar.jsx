@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -29,25 +29,20 @@ const Calendar = () => {
 
 
     useEffect(() => {
-        console.log('Token:', token); // 토큰 값 확인
-    
         if (token) { // 토큰 유효성 확인경로
             axios.get('https://kapi.kakao.com/v1/user/access_token_info', {
                 headers: { Authorization: `Bearer ${token.accessToken}` }
             })
             .then(response => {
-                console.log('Response:', response);
-                console.log('토큰이 유효합니다');
+                // console.log('Response:', response);
+                // console.log('토큰이 유효합니다');
             })
             .catch(error => {
                 console.log('토큰 검증 중 오류 발생:', error);
                 if (error.response) {
-
                     alert('세션이 만료되었습니다. 다시 로그인해주세요.');
-    
                     // 세션 값 삭제 및 로그아웃 처리
                     dispatch(deleteToken());
-    
                     // 메인 페이지로 이동
                     nav('/');
                 }
@@ -60,8 +55,6 @@ const Calendar = () => {
             nav('/');
         }
     }, [nav, dispatch, token]);
-
-
 
     //일정추가 버튼 클릭 시 이동
     const addSchedule = () => {

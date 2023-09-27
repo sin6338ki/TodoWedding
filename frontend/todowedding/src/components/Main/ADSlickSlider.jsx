@@ -13,7 +13,7 @@ import AD3 from "../../assets/images/AD/todoImage3.png"
 import AD4 from "../../assets/images/AD/todoImage4.png"
 
 /*
- * AD react-slick 라이브러리 구성
+ * 메인페이지 우측 광고 컴포넌트 (AD react-slick 라이브러리 구성)
  * 작성자 : 서현록
  * 작성일 : 2023.09.16
  */

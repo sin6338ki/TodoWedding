@@ -41,9 +41,9 @@ const MyCalendar = () => {
                     endDate.setDate(endDate.getDate() + 1);
 
                     const hue = Math.round(Math.random() * 360); // 전체 hue 범위 내에서 랜덤한 값 생성
-                    const saturation = 80; // 채도
-                    const lightness = 60; // 밝기
-                    const alpha = 0.5; // 투명도 설정
+                    const saturation = 70; // 채도
+                    const lightness = 80; // 밝기
+                    const alpha = 0.7; // 투명도 설정
 
                     return {
                         id: event.schedule_seq,
@@ -67,8 +67,6 @@ const MyCalendar = () => {
         const eventsOnThisDay = events.filter(
             (event) => event.start.split("T")[0] === clickedDate || event.end.split("T")[0] === clickedDate
         );
-
-        console.log(eventsOnThisDay);
     };
 
     //이벤트 클릭하면 해당 이벤트 정보 출력

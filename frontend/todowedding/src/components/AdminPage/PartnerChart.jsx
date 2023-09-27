@@ -12,11 +12,11 @@ const PartnerChart = ({ hallCnt, studioCnt }) => {
         { name: "웨딩홀", value: Math.round((hallCnt / (hallCnt + studioCnt)) * 100) },
         { name: "스튜디오", value: Math.round((studioCnt / (hallCnt + studioCnt)) * 100) },
     ];
-    const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
+    const COLORS = ["#B7B3FF", "#FFB972", "#cdb0ff", "#94f2ce"];
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <PieChart width={400} height={220}>
+        <div style={{display: 'flex', justifyContent: 'center', height: '100px', marginLeft:"-10%", marginBottom:"40%"}}>
+            <PieChart width={370} height={220} style={{marginLeft:"12%"}}>
                 <Legend layout="vertical" verticalAlign="middle" align="left-bottom" />
                 <Pie
                     dataKey="value"

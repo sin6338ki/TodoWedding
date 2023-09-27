@@ -21,7 +21,7 @@ const CheckItemList = () => {
         try {
             const response = await axios.get("http://localhost:8085/checkitem");
             setCheckItems(response.data);
-            console.log("response.data : ", response.data);
+            // console.log("response.data : ", response.data);
         } catch (error) {
             console.error("checkitem 전체 불러오기 error : ", error);
         }
@@ -30,7 +30,6 @@ const CheckItemList = () => {
     //항목 클릭하면 해당 체크리스트로 이동
     const handleClick = (item) => {
         nav(`/checkitem/${item.check_item_seq}`, { state: item });
-        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq);
     };
 
     return (

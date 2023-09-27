@@ -21,7 +21,6 @@ const KakaologOut = () => {
 
     useEffect(() => {
         if (token != null) {
-            console.log("token : ", token.accessToken);
             axios
                 .post(
                     "https://kapi.kakao.com/v1/user/logout",
@@ -33,7 +32,6 @@ const KakaologOut = () => {
                     }
                 )
                 .then((response) => {
-                    console.log(response);
                     // 성공적으로 로그아웃 처리가 되었다면 세션 스토리지의 토큰 정보 제거
                     if (response.status == 200) {
                         dispatch(deleteToken(token));

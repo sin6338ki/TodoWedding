@@ -13,11 +13,11 @@ const AgeChart = ({ twentyCnt, thirtyCnt, fourtyCnt }) => {
         { name: "30대", value: Math.round((thirtyCnt / (twentyCnt + thirtyCnt + fourtyCnt)) * 100) },
         { name: "40대", value: Math.round((fourtyCnt / (twentyCnt + thirtyCnt + fourtyCnt)) * 100) },
     ];
-    const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
+    const COLORS = ["#FFDB61", "#FFB7B7", "#BAB7FF", "#94f2ce"];
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <PieChart width={400} height={220}>
+        <div style={{display: 'flex', justifyContent: 'center', height: '100px', marginLeft:"-10%", marginBottom:"40%"}}>
+            <PieChart width={370} height={220} style={{marginLeft:"12%"}}>
                 <Legend layout="vertical" verticalAlign="middle" align="left-bottom" />
                 <Pie
                     dataKey="value"

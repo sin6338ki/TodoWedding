@@ -22,7 +22,6 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
         axios
             .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
             .then((res) => {
-                console.log("최근 일정 조회 결과 : ", res.data);
                 if (res.data != "") {
                     //최신 일정 날짜 표시 변환
                     const dateData = res.data.schedule_start_dt.split("-");
@@ -48,9 +47,8 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     return (
         <div
             className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2"
-            style={{ backgroundImage: "linear-gradient(to right, #D4C7F9, white)", backdropFilter: "blur(10px)"  }}
+            style={{ backgroundImage: "linear-gradient(to right, #D4C7F9, white)", backdropFilter: "blur(10px)" }}
         >
-            {/* // <div className="member-header fixed top-0 z-50 flex flex-row h-[90px] pr-5 pb-2 " style={{ backdropFilter: 'blur(10px)' }}>   */}
             {marryDt ? (
                 <Link to="/" className="decoration-transparent self-cente pl-3 pt-4 ml-4 text-[#9F7FFC] font-bold ">
                     <div className="decoration-solid underline underline-offset-8 text-[25px]" id="marryFont">
