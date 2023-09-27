@@ -10,9 +10,11 @@
  *  - 관리자 페이지 추가 (신지영, 2023.09.12)
  *  - 마이페이지(로그아웃, 회원탈퇴) 추가 (서현록, 2023.09.16)
  *  - 결혼예정일 페이지, 총 예산 페이지 추가 (서현록, 2023.09.18)
+ *  - window.scrollTo 추가 (서현록, 2023.09.27)
  */
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./tailwind.css";
 import "./index.css";
 import "./FullCalendar.css";
@@ -73,6 +75,12 @@ import MarryDate from "./components/AddInfo/MarryDate";
 import TotalBudget from "./components/AddInfo/TotalBudget";
 
 function AppContent() {
+    // 페이지 이동시 항상 가장 상단으로 이동
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
+
     return (
         <div className="app-container" style={{ backgroundColor: "#F8FAF9", position: "relative", width: "100%" }}>
             <div style={{ display: "flex" }}>
@@ -137,7 +145,7 @@ function AppContent() {
                     <BottomBar />
                 </div>
                 {/* 웹 이미지 */}
-                <div style={{ backgroundColor: "#F8FAF9", height: "100%" }} className="web-image">
+                <div style={{ backgroundColor: "#F8FAF9", height: "100%"}} className="web-image">
                     <img src={MarginImage} alt="margin-image" style={{ height: "90px" }} />
                     <div style={{ backgroundColor: "#F8FAF9", paddingLeft: "30px", paddingRight: "30px" }}>
                         <ADSlickSlider />
