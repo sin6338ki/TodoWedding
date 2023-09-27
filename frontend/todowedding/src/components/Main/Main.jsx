@@ -114,7 +114,7 @@ const Main = () => {
     //--------------------------------------------------------------------------------------
 
     return (
-        <div>
+        <div style={{height:"700px"}}>
             <div>
                 <SlickSlider />
             </div>
@@ -139,7 +139,7 @@ const Main = () => {
             </div>
             <div style={{ display: "flex" }}>
                 <p className="main-ddaychecklist">
-                    웨딩 D-Day
+                    D-Day
                     <br />
                     체크리스트
                 </p>

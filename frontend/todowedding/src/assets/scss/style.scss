@@ -366,15 +366,14 @@ BottomBar 관련
 .main-itemchecklist {
     box-sizing: border-box;
     position: relative;
-    width: 160px;
+    width: 155px;
     height: 50px;
-    border: 1px solid #9f7ffc;
     border-radius: 30px;
     padding-top: 5px;
     padding-left: 12px;
     padding-right: 12px;
-    margin: 48px 0 0 26px;
-    background-color: #9f7ffc;
+    margin: 50px 0 0 26px;
+    background-color: #aa91f3;
     font-family: "Pretendard-Regular";
     color: #ffffff;
     text-align: center;
@@ -385,15 +384,14 @@ BottomBar 관련
 .main-ddaychecklist {
     box-sizing: border-box;
     position: relative;
-    width: 160px;
+    width: 140px;
     height: 50px;
-    border: 1px solid #9f7ffc;
     border-radius: 30px;
     padding-top: 5px;
     padding-left: 14px;
     padding-right: 14px;
-    margin: 40px 0 0 26px;
-    background-color: #9f7ffc; //#a5a4dd;
+    margin: 48px 0 0 26px;
+    background-color: #aa91f3; //#a5a4dd;
     font-family: "Pretendard-Regular";
     color: #ffffff;
     text-align: center;
@@ -404,15 +402,15 @@ BottomBar 관련
 .main-itemchecklist-item {
     box-sizing: border-box;
     height: 28px;
-    border: 1px solid #9f7ffc;
     border-radius: 20px;
-    padding: 3px 10px 0 10px;
+    padding: 4px 10px 0 10px;
     margin: 10px 7px 0 5px;
     background-color: #ffffff;
     font-family: "Pretendard-Regular";
     color: #9f7ffc;
     text-align: center;
     font-size: small;
+    box-shadow: 1px 2px 5px #a1a0ca;
 }
 
 .main-itemchecklist-item:hover {
@@ -421,7 +419,7 @@ BottomBar 관련
 }
 
 //메인페이지 - 웨딩 항목별 체크리스트 Container
-.main-itemchecklist-container {
+.main-itemchecklist-container, .main-ddaychecklist-container {
     justify-content: center;
     margin: 30px 10px 0 10px;
 }
@@ -440,11 +438,6 @@ BottomBar 관련
     font-size: 1;
 }
 
-//메인페이지 - 웨딩 D-Day 체크리스트 Container
-.main-ddaychecklist-container {
-    justify-content: center;
-    margin: 23px 55px 50px 10px;
-}
 
 /**************************************************************************** Modal
 Modal 관련
@@ -781,7 +774,7 @@ FullCalendar 관련
     width: 90%;
     max-width: 560px;
     margin: 0 auto;
-    margin: 5% 10% 0 5%;
+    margin: 5% 5% 0 5%;
     background: #ffffff;
     border: 1px solid #9f7ffc;
     border-radius: 15px;
