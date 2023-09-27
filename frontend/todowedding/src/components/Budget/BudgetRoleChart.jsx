@@ -23,9 +23,9 @@ const BudgetRoleChart = ({ broomPercentage, bridePercentage, bothPercentage, etc
     
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '100px', marginLeft:'30px', marginBottom:"30%"}}>
+        <div style={{ display: 'flex', justifyContent: 'center', height: '100px', marginLeft:"-10%", marginBottom:"40%"}}>
             
-            <PieChart width={400} height={220}>
+            <PieChart width={370} height={220} style={{marginLeft:"12%"}}>
                 {/* 신랑신부공동기타 올리려면 verticalAlign을 top으로 수정 (09.26) */}
                 <Legend layout="vertical" verticalAlign="bottom" align="left-bottom" />
                 <Pie
@@ -36,13 +36,13 @@ const BudgetRoleChart = ({ broomPercentage, bridePercentage, bothPercentage, etc
                     cy="50%"
                     outerRadius={80}
                     fill="#8884d8"
-                    label 
+                    label
                 >
                     {data.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
-                <Tooltip formatter={(value) => `${Math.round(value)}`} />
+                <Tooltip formatter={(value) => `${Math.round(value)}`} />   
             </PieChart>
         </div>
     );

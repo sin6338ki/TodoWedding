@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 /*
- * 캘린더 하단 예산관리리포트
+ * 캘린더 하단 예산관리 리포트
  * 작성자 : 서현록
  * 작성일 : 2023.09.16
  *  - 수정 : 총 예산 불러오기 마무리 (서현록, 2023.09.19)
@@ -26,7 +26,7 @@ const BudgetReport = () => {
                 const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
                 if (budgetResponse.data) {
                     setTotalBudget(budgetResponse.data.total_budget);
-                    console.log("등록된 총 예산 : ", budgetResponse.data.total_budget);
+                    // console.log("등록된 총 예산 : ", budgetResponse.data.total_budget);
                 }
 
                 // 백엔드로 수입/지출 결과 조회 요청 보내기

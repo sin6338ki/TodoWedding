@@ -37,7 +37,6 @@ const Header = () => {
         axios
             .get(`http://localhost:8085/marry-d-day/${token.userSeq}`)
             .then((res) => {
-                console.log("결혼일 조회 결과 : ", res.data);
                 if (res.data === 9999) {
                     return;
                 } else if (res.data >= 0) {
@@ -68,7 +67,6 @@ const Header = () => {
     //토큰 정보 확인 후 헤더 결정
     useEffect(() => {
         if (token != null) {
-            console.log("token : ", token);
             if (token.type === "M") {
                 const selectUserInfo = async () => {
                     await setHeaderType("member");

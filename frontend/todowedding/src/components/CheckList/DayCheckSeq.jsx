@@ -12,6 +12,7 @@ import { useParams, useLocation } from "react-router-dom";
 
 const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
     let { checkdaySeqParams } = useParams();
+    
     let location = useLocation();
     const script = document.createElement("script");
 
@@ -34,9 +35,6 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
 
     useEffect(() => {
         if (contentsLocal.length > 0 && checkDayContents) {
-            console.log("selectOptions : ", checkDayContents);
-            //메시지 가공
-            console.log("message 원본 : ", contentsLocal);
             let newMessage = "💑TodoWedding만의 서비스! \n";
             newMessage += "💌 결혼 예정일 " + checkDayContents + " 체크리스트 💌\n\n";
             contentsLocal.forEach((element, idx) => (newMessage += idx + 1 + ". " + element + "\n"));
@@ -47,7 +45,6 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
     }, [checkDayContents, contentsLocal]);
 
     useEffect(() => {
-        console.log("message : ", message);
         setKakaoMessage(message);
     }, [message]);
 
@@ -78,14 +75,12 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
     useEffect(() => {
         getDayCheckContents(checkdaySeq || checkdaySeqParams);
         if (location.state && location.pathname !== "/daychecklist") {
-            console.log("D-Day 넘겨받기 : ", location.state.checkday_contents);
             setCheckDayContents(location.state.checkday_contents);
         }
     }, [checkdaySeq]);
 
     const getDayCheckContents = async (checkdaySeq) => {
         try {
-            console.log("checkdaySeq: ", checkdaySeq);
             const response = await axios.get(`http://localhost:8085/daychecklist/${checkdaySeq}`);
 
             setContentsLocal(response.data.map((item) => item.checkday_list_contents));

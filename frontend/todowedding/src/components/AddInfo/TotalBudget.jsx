@@ -30,7 +30,6 @@ const TotalBudget = () => {
                 if (response.data) {
                     setTotalBudget(response.data.total_budget);
                     setHasTotalBudget(true);
-                    console.log("등록된 총 예산 : ", response.data.total_budget);
                 }
             } catch (error) {
                 console.error("총 예산 조회 에러 : ", error);

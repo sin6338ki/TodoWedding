@@ -11,7 +11,7 @@ const IncomeBudgetChart = ({ fianlTotalIncome, fianlTotalExpense }) => {
   return (
     <span style={{position:'relative'}}>
     <ResponsiveContainer style={{position:'relative',left:"-20px"}} width="100%" height={160}>
-      <BarChart data={data} layout="vertical" style={{margin : '-10px'}} barGap={-40}>
+      <BarChart data={data} layout="vertical" style={{margin : '-15px'}} barGap={-35}>
        
         <XAxis type="number" />
         <YAxis dataKey="name" type="category" />

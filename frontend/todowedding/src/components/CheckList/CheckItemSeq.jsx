@@ -4,10 +4,6 @@ import axios from "axios";
 import addTodo from "../../assets/images/icon/plus (1).png";
 import { useSelector } from "react-redux";
 
-// React-Toastify 알림창
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 /*
  * CheckItemSeq에 저장된 항목별 체크리스트, Todo List에 추가
  * 작성자 : 서현록
@@ -26,7 +22,6 @@ const CheckItemSeq = () => {
     const userSeq = token ? token.userSeq : 0;
 
     useEffect(() => {
-        console.log(location.state);
         fetchItems();
     }, [checkItemSeq]);
 
@@ -35,7 +30,6 @@ const CheckItemSeq = () => {
         try {
             const response = await axios.get(`http://localhost:8085/checkitem/${checkItemSeq}`);
             setItems(response.data);
-            console.log(response.data);
         } catch (error) {
             console.error("Checklist items fetching error : ", error);
         }
@@ -48,32 +42,15 @@ const CheckItemSeq = () => {
             alert("로그인 이후 서비스를 이용해주세요");
             return;
         }
-        console.log("Todo List에 추가 내용 : ", item.checkitem_list_contents);
         const data = {
             todolistContents: item.checkitem_list_contents,
             memberSeq: userSeq,
         };
         try {
             const response = await axios.post("http://localhost:8085/todolist", data);
-            console.log(response.data);
-
-            // // 알림 메시지 표시
             alert(`'${item.checkitem_list_contents}' 일정이 Todo List에 추가되었습니다.`);
-
-            // 알림 메시지 표시
-            // toast.success(`'${item.checkitem_list_contents}' 일정이 Todo List에 추가되었습니다.`, {
-            //     position: "top-center",
-            //     autoClose: 2000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
         } catch (error) {
             console.error("Error adding todo list item : ", error);
-            // toast.error("일정 추가에 실패했습니다.", {
-            //    position: "top-right",});
         }
     };
 
@@ -89,10 +66,9 @@ const CheckItemSeq = () => {
     };
 
     //체크 표시
-
     const isChecked = (e) => {
-        console.log("isChecked 실행", e.target.id);
-        console.log("checkedContents : ", document.getElementById(e.target.id + "text").style.textDecoration);
+        // console.log("isChecked 실행", e.target.id);
+        // console.log("checkedContents : ", document.getElementById(e.target.id + "text").style.textDecoration);
 
         if (document.getElementById(e.target.id + "text").style.textDecoration) {
             console.log("if문 실행");
@@ -106,7 +82,7 @@ const CheckItemSeq = () => {
 
     return (
         <div>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
             {location.state && (
                 <div className="checkitemseq-intro">
                     <p>

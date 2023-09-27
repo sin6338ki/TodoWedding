@@ -14,7 +14,7 @@ import Main4 from "../../assets/images/SlickSlider/Slick_Img4.png";
 import Main5 from "../../assets/images/SlickSlider/Slick_Img5.png";
 
 /*
- * react-slick 라이브러리 구성
+ * 메인페이지 react-slick 라이브러리 구성
  * 작성자 : 서현록
  * 작성일 : 2023.09.14
  */
@@ -39,7 +39,7 @@ const SlickSlider = () => {
                 {images.map((image, index) => (
                     <div key={index}>
                         <Link to={`/todowedding/guide/${index + 1}`}>
-                            <img src={image} alt={`Image${index + 1}`} />
+                            <img src={image} alt={`Image${index + 1}`}/>
                         </Link>
                     </div>
                 ))}

@@ -23,7 +23,6 @@ function BottomBar() {
         axios
             .get(`http://localhost:8085/admin/${token.userSeq}`)
             .then((res) => {
-                console.log("isAdmin response : ", res.data);
                 setIsAdminCk(res.data);
             })
             .catch((err) => {

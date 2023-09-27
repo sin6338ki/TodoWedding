@@ -54,7 +54,7 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
         <div style={{ marginTop: "-20px" }}>
             {sortedIncomes.slice(offset, offset + limits).map((incomes, idx) => {
                 return (
-                    <div key={idx} className="flex flex-row mt-5">
+                    <div key={idx} className="flex flex-row mt-5 ml-3">
                         <div>
                             <div className="text-xs text-gray-400">{incomes.income_dt}</div>
                             <div>{incomes.income_contents}</div>
@@ -63,7 +63,7 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
                             +{addComma(incomes.income_cost.toString())}원
                         </div>
                         {/* 삭제 버튼 */}
-                        <button className="self-center ml-10 mr-3" onClick={() => incomeDelete(incomes.income_seq)}>
+                        <button className="self-center ml-7 mr-3" onClick={() => incomeDelete(incomes.income_seq)}>
                             {<FaRegTrashAlt />}
                         </button>
                     </div>
