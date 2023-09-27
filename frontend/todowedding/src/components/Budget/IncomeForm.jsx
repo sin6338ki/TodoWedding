@@ -14,8 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, incomeDt, setIncomeDt, incomeContents, setIncomeContents, incomeCost, setIncomeCost  }) => {
 
-    // const token = useSelector((state) => state.Auth.token);  // 여기로 이동
-    // const memberSeq = token ? token.userSeq : 0;  
+
 
     const token = useSelector((state) => state.Auth.token);
     let memberSeq;
@@ -23,18 +22,13 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
             memberSeq = token.userSeq;
         } else {
             console.error('Token or user sequence is not defined.');
-            memberSeq = 0; // or set it to a fallback value if necessary
+            memberSeq = 0; 
         }
 
     const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
 
     const TITLE_SIZE = 35;
-
-    // const [incomeDt, setIncomeDt] = useState("");
-    // const [incomeContents, setIncomeContents] = useState("");
-    // const [incomeCost, setIncomeCost] = useState("");
-    // const [enteredAmountType, setEnteredAmountType] = useState("income");
 
     const [isTitleSizeOver, setIsTitleSizeOver] = useState(false);
     const [isEnteredWrongAmount, setIsEnteredWrongAmount] = useState(false);
@@ -51,7 +45,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
 
     // 제목
     const titleChangeHandler = (event) => {
-        // console.log("제목 입력 :" , event.target.value);
+       
         let isSizeOver = event.target.value.length > TITLE_SIZE ? true : false;
         setIsTitleSizeOver(isSizeOver);
 
@@ -60,7 +54,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
 
     // 금액
     const amountChangeHandler = (event) => {
-        console.log("금액 입력 :" , event.target.value);
+       
         let isNotNumber = /^[^1-9][^0-9]{0,11}$/g.test(event.target.value) ? true : false;
         setIsEnteredWrongAmount(isNotNumber);
         if (isNotNumber) return;
@@ -75,7 +69,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
         income_dt : incomeDt,
         income_cost :deleteComma(incomeCost).toString() ,
         income_contents : incomeContents,
-        member_seq : memberSeq // 여기부분 수정하기 
+        member_seq : memberSeq 
       }
 
     setIncomeData(incomeData);
@@ -96,7 +90,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
 
   return (
     <div>
-     {/* 내역추가(날짜) */}
+       {/* 날짜 */}
      <div className="new-item__form-info">
                 <h1 className="fs-normal fw-bold text-base font-extrabold">날짜</h1>
                 <input

@@ -4,6 +4,11 @@ import NewItemContainer from "./NewItemContainer";
 
 export const ItemDispatchContext = React.createContext();
 
+
+/* Budget 예산관리 [상위컴포넌트] 
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.12
+ */
 const BudgetApp = () => {
     const [isAddItem, setIsAddItem] = useState(false);
     const [nextItemId, setNextItemId] = useState(0);

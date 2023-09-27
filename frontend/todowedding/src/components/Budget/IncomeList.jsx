@@ -40,15 +40,12 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     // 삭제
     const incomeDelete = async (incomeSeq) => {
         try {
-            console.log("income리스트 삭제실행 , incomeSeq", incomeSeq);
+          
             const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
-
-            // 지영 수정 부분 =============================
             if (response.data === "삭제 성공") {
                 findIncomes(token.userSeq);
             }
-            // ============================================
         } catch (err) {
             console.error("incomeList 삭제 error : ", err);
         }
@@ -57,7 +54,6 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     return (
         <div style={{ marginTop: "-20px" }}>
             <div className="grid grid-cols-12 ml-3 pt-3 mb-1">
-                {/* <div className="text-center font-bold col-span-1 ">NO</div> */}
                 <div className="text-center text-[13px] font-bold col-span-3 mr-2 ">날짜</div>
                 <div className="text-center text-[13px] font-bold col-span-3 ">수입비용</div>
                 <div className="text-center text-[13px] font-bold col-span-3 ml-4">수입내역</div>
@@ -65,11 +61,8 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
             </div>
 
             {sortedIncomes.slice(offset, offset + limits).map((incomes, idx) => {
-                // 새로운 변수를 사용하여 번호 계산
-                const itemNumber = (page - 1) * limits + idx + 1;
                 return (
                     <div className="grid grid-cols-12 ml-3 pt-3 mb-1" key={idx}>
-                        {/* <div className="text-center col-span-1 mt-1 text-xs">{itemNumber}</div> : 인덱스번호  */}
                         <div className="text-center col-span-3 mt-1 mr-2 text-[13px] ">{incomes.income_dt}</div>
                         <div className="text-center col-span-3 mt-1 ml-1 text-[13px]">
                             {addComma(incomes.income_cost.toString())}원

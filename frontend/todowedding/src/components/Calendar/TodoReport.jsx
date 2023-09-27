@@ -22,7 +22,7 @@ const TodoReport = () => {
             try {
                 const response = await axios.get(`http://localhost:8085/count-of-todolist/${userSeq}`);
                 setTodoListCount(response.data);
-                console.log("TodoReport 결과 : ", response.data);
+                // console.log("TodoReport 결과 : ", response.data);
             } catch (error) {
                 console.log("투두리스트 카운트 조회 에러 : ", error);
             }

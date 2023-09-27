@@ -46,7 +46,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
     };
 
     useEffect(() => {
-        console.log("todolistContents >>>>> ", todolistContents);
+        //console.log("todolistContents (todo_내역불러오기) ", todolistContents);
         //하나의 투두리스트 항목을 불러왔을 때 체크, 미체크 여부 판단해서 적용하기
         todolistContents.todolist_completed === "Y" ? setIsChecked(true) : setIsChecked(false);
     }, []);
@@ -54,16 +54,16 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
     // 3 Backend [check_Todolist]
     //  투두리스트 체크했을 때 실행되는 메서드
     const toggleComplete = async (todolistSeq) => {
-        console.log("check_실행"); // 1
+        // console.log("check실행"); 
         const data = {
-            todolistCompleted: isChecked ? "N" : "Y", //checked 수정(09.13)
+            todolistCompleted: isChecked ? "N" : "Y", 
             todolistSeq: todolistContents.todolistSeq,
             memberSeq: todolistContents.memberSeq,
         };
 
         try {
             const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
-            console.log("성공 checked ", checkResult); // 3
+            // console.log("성공 checked ", checkResult); 
             await setChangeCheck(!changeCheck);
         } catch (err) {
             console.error("Error checked: ", err);
@@ -72,7 +72,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
 
     useEffect(() => {
         toggleComplete;
-        console.log("todolistContents", todolistContents.todolistSeq); //2
+        // console.log("todolistContents", todolistContents.todolistSeq);
     }, [isChecked]);
 
     return (
@@ -80,7 +80,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
             <div className={style.row}>
                 <input onChange={completedTodolist} type="checkbox" checked={isChecked} className="mb-2" />
                 <p
-                    onClick={completedTodolist} //toggleComplete(todolistContents)
+                    onClick={completedTodolist} 
                     className={isChecked ? style.textComplete : style.text}
                 >
                     {todolistContents.todolistContents}

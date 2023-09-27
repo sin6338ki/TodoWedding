@@ -33,7 +33,7 @@ const BudgetReport = () => {
                 const resultResponse = await axios.post(`http://localhost:8085/member/total`, {
                     member_seq: userSeq,
                 });
-                console.log("BudgetReport 결과 : ", resultResponse.data);
+                // console.log("BudgetReport 결과 : ", resultResponse.data);
 
                 setTotalIncome(resultResponse.data.income_total_cost);
                 setTotalExpense(resultResponse.data.budget_sum_cost);
