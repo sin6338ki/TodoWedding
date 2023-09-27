@@ -11,11 +11,10 @@ import Pagination from ".././AdminPage/Pagination";
 import axios from "axios";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import zoombutton from "../../assets/images/icon/zoombutton.png";
 
 const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     const token = useSelector((state) => state.Auth.token);
-    const [Expenses, setExpenses] = useState([]); //09.20추가
+    const [Expenses, setExpenses] = useState([]);
 
     //Pagination
     const limits = 10; // 지출 리스트 개수
@@ -43,15 +42,12 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     // 지출내역 삭제
     const expenseDelete = async (budgetSeq) => {
         try {
-            console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
+            // console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
             const response = await axios.delete(`http://localhost:8085/budget/delete/${budgetSeq}`);
             console.log("지출list 삭제성공 :", response.data);
-            // 삭제 추가코드(09.20)
-            // 지영 수정 부분 ===============================================
             if (response.data == "삭제 성공") {
                 findExpenses(token.userSeq);
             }
-            // ==============================================================
             setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.budget_seq !== budgetSeq));
         } catch (err) {
             console.log("지출리스트 삭제 err : ", err);

@@ -44,13 +44,13 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
 
     // 날짜
     const dateChangeHandler = (event) => {
-        console.log("날짜 입력", event.target.value)
+        // console.log("날짜 입력", event.target.value)
         setBudgetDate(event.target.value);
     };
 
     // 제목
     const titleChangeHandler = (event) => {
-        console.log("제목 입력 :" , event.target.value);
+        // console.log("제목 입력 :" , event.target.value);
         let isSizeOver = event.target.value.length > TITLE_SIZE ? true : false;
         setIsTitleSizeOver(isSizeOver);
 
@@ -67,25 +67,20 @@ const ExpenseForm = ({newBudgetData, budgetDate, setBudgetDate,  budgetTitle, se
         setBudgetCost(amount);
     };
 
-    // //수입 인지 지출인지 type확인 
-    // const amountTypeChangeHandler = (event) => {
-    //     setEnteredAmountType(event.target.value);
-    // };
 
-    //               --- 추가 input ---  
     // 예상지출 
     const budgetCostChangeHandler = (event) => {
-        console.log("예상지출 입력", event.target.value)
+        // console.log("예상지출 입력", event.target.value)
         setBudgetExpenseCost(event.target.value);
     };
     // 비용분담
     const budgetRoleChangeHandler = (event) => {
-        console.log("비용분담 입력", event.target.value)
+        // console.log("비용분담 입력", event.target.value)
         setBudgetRole(event.target.value);
     };
     // 비고 (메모)
     const budgetMemoChangeHandler = (event) => {
-        console.log("비고 입력", event.target.value)
+        // console.log("비고 입력", event.target.value)
         setBudgetMemo(event.target.value);
     };
 

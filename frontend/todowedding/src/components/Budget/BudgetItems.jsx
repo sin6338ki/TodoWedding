@@ -4,6 +4,10 @@ import { FilterContext } from "./BudgetContainer";
 import "../../assets/budget-css/BudgetItems.css";
 import axios from "axios";
 
+/* Budget 예산관리 정보
+ * 작성자 : 양수진
+ * 작성일 : 2023.09.14
+ */
 const BudgetItems = () => {
     const { filteredItems } = useContext(FilterContext);
     const [budget, setBudget] = useState([]);

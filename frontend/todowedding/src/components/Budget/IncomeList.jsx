@@ -40,15 +40,11 @@ const IncomeList = ({ incomes = [], findIncomes }, { total }) => {
     // 삭제
     const incomeDelete = async (incomeSeq) => {
         try {
-            console.log("income리스트 삭제실행 , incomeSeq", incomeSeq);
             const response = await axios.delete(`http://localhost:8085/income/delete/${incomeSeq}`);
             console.log("incomelist 삭제성공 :", response.data);
-
-            // 지영 수정 부분 =============================
             if (response.data === "삭제 성공") {
                 findIncomes(token.userSeq);
             }
-            // ============================================
         } catch (err) {
             console.error("incomeList 삭제 error : ", err);
         }
