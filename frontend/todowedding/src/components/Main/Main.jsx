@@ -29,7 +29,7 @@ const Main = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("Token:", token); // 토큰 값 확인
+        // console.log("Token:", token); // 토큰 값 확인
 
         if (token) {
             // 토큰 유효성 확인경로
@@ -38,8 +38,7 @@ const Main = () => {
                     headers: { Authorization: `Bearer ${token.accessToken}` },
                 })
                 .then((response) => {
-                    console.log("Response:", response);
-                    console.log("토큰이 유효합니다");
+                    // console.log("토큰이 유효합니다");
                 })
                 .catch((error) => {
                     console.log("토큰 검증 중 오류 발생:", error);
@@ -72,7 +71,7 @@ const Main = () => {
         try {
             const response = await axios.get("http://localhost:8085/checkitem");
             setCheckItems(response.data);
-            console.log("항목별 체크리스트 : ", response.data);
+            // console.log("항목별 체크리스트 : ", response.data);
         } catch (error) {
             console.error("checkitem 전체 불러오기 error : ", error);
         }
@@ -81,7 +80,7 @@ const Main = () => {
     //항목 클릭하면 해당 체크리스트로 이동
     const handleClick = (item) => {
         nav(`/checkitem/${item.check_item_seq}`, { state: item });
-        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq);
+        // console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.check_item_seq);
     };
     //--------------------------------------------------------------------------------------
 
@@ -99,7 +98,7 @@ const Main = () => {
         try {
             const response = await axios.get("http://localhost:8085/daychecklist");
             setChecklist(response.data);
-            console.log("D-Day 체크리스트 : ", response.data);
+            // console.log("D-Day 체크리스트 : ", response.data);
         } catch (error) {
             console.error("D-Day 리스트 error : ", error);
         }
@@ -108,8 +107,6 @@ const Main = () => {
     //항목 클릭하면 해당 체크리스트로 이동
     const handleDdayClick = (item) => {
         nav(`/daychecklist/${item.checkday_seq}`, { state: item });
-        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_seq);
-        console.log("항목 클릭하면 해당 체크리스트로 이동 : ", item.checkday_contents);
     };
     //--------------------------------------------------------------------------------------
 

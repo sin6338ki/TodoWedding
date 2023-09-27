@@ -22,7 +22,7 @@ const CalCallback = () => {
     // console.log("code :", code);
 
     useEffect(() => {
-        console.log("code :", code);
+        // console.log("code :", code);
         // 3가지의 정보 전달 (사용자 seq, nick, access)
         axios
             .get(`http://localhost:8085/auth/kakao/cal/callback?code=${code}`)

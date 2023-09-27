@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 /*
  * 일정추가 페이지에서 캘린더 추가하기, TodoList 추가하기
@@ -22,16 +21,10 @@ const Schedule = () => {
     const token = useSelector((state) => state.Auth.token);
     const userSeq = token.userSeq;
 
-    useEffect(() => {
-        console.log("accessToken : ", token);
-    }, []);
-
     const nav = useNavigate();
 
     const location = useLocation();
     const [title, setTitle] = useState(location.state ? location.state.title : ""); //(09.14수진추가)
-
-    // const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [schedule, setSchedule] = useState([]);
@@ -39,13 +32,12 @@ const Schedule = () => {
     //'캘린더 일정 추가' 버튼 클릭
     const createSchedule = async (e) => {
         e.preventDefault(e);
-        console.log("캘린더 일정 추가 버튼 클릭!");
+
         if (title === "" || startDate === "" || endDate === "") {
             alert("일정 제목과 날짜를 입력해주세요!");
         } else if (new Date(startDate) > new Date(endDate)) {
             alert("일정 종료일을 일정 시작일보다 빠르게 설정할 수 없습니다. 일정 날짜를 다시 선택해주세요");
         } else {
-            console.log("일정추가 제목 -> ", title);
             const data = {
                 scheduleStartDt: startDate,
                 scheduleEndDt: endDate,
@@ -55,8 +47,6 @@ const Schedule = () => {
             await axios
                 .post("http://localhost:8085/schedule", data)
                 .then((res) => {
-                    console.log("스프링으로 넘기는 값 -> ", data);
-                    //                fetchData();
                     allSchedule();
                     nav("/todowedding/calendar");
                 })
@@ -100,7 +90,6 @@ const Schedule = () => {
             axios
                 .get(`http://localhost:8085/all-schedule/${userSeq}`)
                 .then((res) => {
-                    console.log("전체 일정 조회 response : ", res.data);
                     setSchedule(res.data);
                 })
                 .catch((err) => {

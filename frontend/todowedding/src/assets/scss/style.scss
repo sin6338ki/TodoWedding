@@ -54,13 +54,6 @@ html {
     background-color: rgb(255, 255, 255);
 }
 
-//반응형
-@media (max-width: 560px) {
-    .web-image {
-        display: none;
-    }
-}
-
 /**************************************************************************** Header
 Header 관련
 *******************/
@@ -232,7 +225,8 @@ Body 관련
 .web-image {
     left: 560px;
     position: absolute;
-    width: 400px; /* 일정한 너비 유지 */
+    top: 0px !important;
+    width: 400px; 
     background-color: #f8faf9;
 }
 
@@ -926,7 +920,8 @@ D-Day CheckList 관련
 }
 
 .budget-tabs button {
-    color: #9f7ffc;
+    color: #6242c4;
+    font-weight: bold;
 }
 
 .budget-tabs :focus {
@@ -945,6 +940,7 @@ D-Day CheckList 관련
 
 .admin-tabs button {
     color: #455871;
+    font-weight: bold;
 }
 
 .admin-tabs :focus {

@@ -58,7 +58,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
         <div style={{ marginTop: "-20px" }}>
             {sortedExpenses.slice(offset, offset + limits).map((expenses, idx) => {
                 return (
-                    <div key={idx} className="flex flex-row mt-5">
+                    <div key={idx} className="flex flex-row mt-5 ml-3">
                         <div>
                             <div className="text-xs text-gray-400">
                                 {expenses.budget_expense_dt} | {expenses.budget_role}
@@ -69,7 +69,7 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
                             -{addComma(expenses.budget_cost.toString())}원
                         </div>
                         {/* 삭제 버튼 */}
-                        <button className="self-center ml-10 mr-3" onClick={() => expenseDelete(expenses.budget_seq)}>
+                        <button className="self-center ml-7 mr-3" onClick={() => expenseDelete(expenses.budget_seq)}>
                             {<FaRegTrashAlt />}
                         </button>
                     </div>

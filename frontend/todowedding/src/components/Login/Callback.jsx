@@ -33,7 +33,7 @@ const Callback = () => {
     // console.log("code :", code);
 
     useEffect(() => {
-        console.log("code :", code);
+        // console.log("code :", code);
         // 3가지의 정보 전달 (사용자 seq, nick, access)
 
         // let logoutTimer; // setTimeout ID를 저장하기 위한 변수
@@ -65,7 +65,6 @@ const Callback = () => {
     }, [code]);
 
     useEffect(() => {
-        console.log("redux 저장 후 token : ", token);
         if (token) {
             if (token.type == "M") {
                 navigate("/todowedding/calendar");

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Select from "react-select";
 import DayCheckSeq from "./DayCheckSeq";
-import { useSelector } from "react-redux";
 
 /*
  * D-Day 체크리스트
@@ -47,7 +46,6 @@ const DayCheckList = () => {
         try {
             const response = await axios.get("http://localhost:8085/daychecklist");
             setChecklist(response.data);
-            console.log("D-Day 리스트 : ", response.data);
 
             let combinedContents = [];
             response.data.forEach((item) => {
@@ -99,11 +97,11 @@ const DayCheckList = () => {
     //end -----------------------------------------------------------------------------------
 
     useEffect(() => {
-        console.log("selectOption 변경");
+        
         if (selectedOption) {
-            console.log("selectOptions : ", selectedOption.label);
-            //메시지 가공
-            console.log("message 원본 : ", contents);
+            // console.log("selectOptions : ", selectedOption.label);
+                //메시지 가공
+            // console.log("message 원본 : ", contents);
             let newMessage = "💑TodoWedding만의 서비스! \n";
             newMessage += "💌 결혼 예정일 " + selectedOption.label + " 체크리스트 💌\n\n";
             contents.forEach((element, idx) => (newMessage += idx + 1 + ". " + element + "\n"));
@@ -113,11 +111,10 @@ const DayCheckList = () => {
     }, [selectedOption, contents]);
 
     useEffect(() => {
-        console.log("contents 변경 : ", contents);
+        // console.log("contents 변경 : ", contents);
     }, [contents]);
 
     useEffect(() => {
-        console.log("message : ", message);
         setKakaoMessage(message);
     }, [message]);
 

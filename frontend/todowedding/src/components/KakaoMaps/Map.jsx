@@ -61,7 +61,7 @@ const Map = () => {
             .get("http://localhost:8085/kakaomaps")
             .then((response) => {
                 // 응답 데이터 설정 (위도와 경도 정보를 가진 배열)
-                console.log("DB에서 가져온 데이터", response.data); // <-- 여기서 데이터 확인
+                // console.log("DB에서 가져온 데이터", response.data); // <-- 여기서 데이터 확인
                 setDbPlaces(
                     response.data.map((item) => ({
                         /* 받아온 정보

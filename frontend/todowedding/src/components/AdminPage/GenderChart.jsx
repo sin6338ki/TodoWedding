@@ -12,11 +12,11 @@ const GenderChart = ({ maleCnt, femaleCnt }) => {
         { name: "남성", value: Math.round((maleCnt / (maleCnt + femaleCnt)) * 100) },
         { name: "여성", value: Math.round((femaleCnt / (maleCnt + femaleCnt)) * 100) },
     ];
-    const COLORS = ["#ffbdbd", "#a8cbff", "#cdb0ff", "#94f2ce"];
+    const COLORS = ["#a8cbff", "#FFB593", "#cdb0ff", "#94f2ce"];
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <PieChart width={400} height={220}>
+        <div style={{display: 'flex', justifyContent: 'center', height: '100px', marginLeft:"-10%", marginBottom:"40%"}}>
+            <PieChart width={370} height={220} style={{marginLeft:"12%"}}>
                 <Legend layout="vertical" verticalAlign="middle" align="left-bottom" />
                 <Pie
                     dataKey="value"

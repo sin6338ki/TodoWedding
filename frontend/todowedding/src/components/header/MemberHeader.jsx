@@ -22,7 +22,6 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
         axios
             .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
             .then((res) => {
-                console.log("최근 일정 조회 결과 : ", res.data);
                 if (res.data != "") {
                     //최신 일정 날짜 표시 변환
                     const dateData = res.data.schedule_start_dt.split("-");

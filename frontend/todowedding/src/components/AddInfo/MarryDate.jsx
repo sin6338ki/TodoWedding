@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
  */
 
 const MarryDate = () => {
-    const nav = useNavigate();
-
     //userSeq 받아오기
     const token = useSelector((state) => state.Auth.token);
     const userSeq = token ? token.userSeq : 0;
@@ -29,7 +27,6 @@ const MarryDate = () => {
                 if (response.data) {
                     setMarryDate(response.data);
                     setHasMarryDate(true); // 등록된 결혼 예정일이 있다면 hasMarryData를 true로 설정
-                    console.log("등록된 결혼 예정일 :", response.data);
                 }
             } catch (error) {
                 console.error("결혼예정일 조회 에러 : ", error);

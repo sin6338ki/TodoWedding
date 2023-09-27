@@ -67,8 +67,6 @@ const MyCalendar = () => {
         const eventsOnThisDay = events.filter(
             (event) => event.start.split("T")[0] === clickedDate || event.end.split("T")[0] === clickedDate
         );
-
-        console.log(eventsOnThisDay);
     };
 
     //이벤트 클릭하면 해당 이벤트 정보 출력
