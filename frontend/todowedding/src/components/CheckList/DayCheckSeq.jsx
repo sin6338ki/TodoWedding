@@ -37,7 +37,7 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
             console.log("selectOptions : ", checkDayContents);
             //메시지 가공
             console.log("message 원본 : ", contentsLocal);
-            let newMessage = "💑TodoWedding만의 서비스! \n";
+            let newMessage = "💑TodoWedding만의 서비스 \n\n";
             newMessage += "💌 결혼 예정일 " + checkDayContents + " 체크리스트 💌\n\n";
             contentsLocal.forEach((element, idx) => (newMessage += idx + 1 + ". " + element + "\n"));
 

@@ -77,20 +77,29 @@ public class KakaoMessageService {
         
         String oneLineMessage = "";
         
-        if(sendType.equals("dDay")) {           
-           //message 한 줄로 통합
-           oneLineMessage = "안녕하세요. " + loginNickname + "님!\n결혼식까지 " + dDay + "일 남으셨어요💏\n" + dDay + "일 남은 결혼식을 위한 \n결혼 준비 체크리스트를 확인해보세요😀\n\n";
-           for(String msg : message) {
-              oneLineMessage += "💌  " + msg + "\n";
-           }
+        if(dDay == 9999) {
+        	if(sendType.equals("schedule")) {           
+                oneLineMessage = "안녕하세요. " + loginNickname + "님!\n\n\n결혼식 준비를 위해 곧 다가오는 일정이 있어요\n";
+                for(String msg : message) {
+                   oneLineMessage += "✅"+ msg + "\n";
+                }
+                oneLineMessage += "\n\n일정 확인하시고, 오늘도 행복한 하루 보내세요❤";
+             }
         }else {
-           oneLineMessage = "안녕하세요. " + loginNickname + "님!\n결혼식까지 " + dDay + "일 남으셨어요💏\n\n\n결혼식 준비를 위한 곧 다가오는 일정이 있어요😎\n";
-           for(String msg : message) {
-              oneLineMessage += "✅"+ msg + "\n";
-           }
-           oneLineMessage += "\n\n일정 확인하시고, 오늘도 행복한 하루 보내세요❤";
+        	if(sendType.equals("dDay")) {           
+                //message 한 줄로 통합
+                oneLineMessage = "안녕하세요. " + loginNickname + "님!\n결혼식까지 " + dDay + "일 남으셨어요💏\n\n" + dDay + "일 남은 결혼식을 위한 \n결혼 준비 체크리스트를 확인해보세요😀\n\n";
+                for(String msg : message) {
+                   oneLineMessage += "💌  " + msg + "\n";
+                }
+             }else {
+                oneLineMessage = "안녕하세요. " + loginNickname + "님!\n결혼식까지 " + dDay + "일 남으셨어요💏\n\n\n결혼식 준비를 위해 곧 다가오는 일정이 있어요\n";
+                for(String msg : message) {
+                   oneLineMessage += "✅"+ msg + "\n";
+                }
+                oneLineMessage += "\n\n일정 확인하시고,\n오늘도 행복한 하루 보내세요❤";
+             }
         }
-        
         
         JSONObject template_object = new JSONObject();
         template_object.put("object_type", "text");
@@ -180,11 +189,11 @@ public class KakaoMessageService {
          log.info("gettime of today : {}", now);
          //오늘 날짜 
          Period diffDate = Period.between(now, scheduleDateFormat);
-         log.info("diffDate : {}", diffDate.getDays());
+         log.info("diffDate : {}", diffDate);
          
-         if(diffDate.getDays() == 0) {
+         if(diffDate.getDays() == 0 && diffDate.getMonths() == 0 && diffDate.getYears() == 0) {
             message.add("오늘 일정 : " + (String)scheduleItem.get("schedule_contents"));
-         }else if(diffDate.getDays() == 1) {
+         }else if(diffDate.getDays() == 1 && diffDate.getMonths() == 0 && diffDate.getYears() == 0) {
         	 message.add("하루 남은 일정 : " + (String)scheduleItem.get("schedule_contents")); 
          }
       }

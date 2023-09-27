@@ -41,7 +41,8 @@ const CalCallback = () => {
             })
             .catch((error) => {
                 console.log("유저 정보를 가져오는데 실패 ", error);
-                alert("로그인에 실패하였습니다.");
+                alert("관리자의 동의가 필요합니다.");
+                navigate("/todowedding/calendar");
             });
     }, [code]);
 
