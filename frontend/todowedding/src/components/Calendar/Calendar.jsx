@@ -6,9 +6,9 @@ import MyCalendar from "./MyCalendar";
 import MyTodoList from "./MyTodoList";
 import BudgetReport from "./BudgetReport";
 import TodoReport from "./TodoReport";
-import add_schedule from "../../assets/images/add_schedule.png";
-import item_checklist from "../../assets/images/item_checklist.png";
-import dday_checklist from "../../assets/images/dday_checklist.png";
+import add_schedule from "../../assets/images/icon/add_schedule.png";
+import item_checklist from "../../assets/images/icon/item_checklist.png";
+import dday_checklist from "../../assets/images/icon/dday_checklist.png";
 import { deleteToken } from "../../redux/reducers/AuthReducer";
 import { useSelector, useDispatch } from 'react-redux';
 

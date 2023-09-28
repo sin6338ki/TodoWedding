@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import TodoLogo from "../../assets/images/todo_logo.png";
+import TodoLogo from "../../assets/images/Logo/todo_logo.png";
 import axios from "axios";
 import { setToken } from "../../redux/reducers/AuthReducer";
 

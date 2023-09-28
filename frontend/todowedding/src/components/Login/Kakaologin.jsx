@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import KakaoLogin from "../../assets/images/KakaoLogin.png";
-import Logo from "../../assets/images/todo_logo.png";
+import KakaoLogin from "../../assets/images/Logo/KakaoLogin.png";
+import Logo from "../../assets/images/Logo/todo_logo.png";
 import { useSelector } from "react-redux";
 
 /*

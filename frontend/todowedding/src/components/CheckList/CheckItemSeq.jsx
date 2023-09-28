@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import addTodo from "../../assets/images/icon/plus (1).png";
+import addTodo from "../../assets/images/icon/Plus-Btn.png";
 import { useSelector } from "react-redux";
 
 /*

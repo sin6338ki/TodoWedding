@@ -6,7 +6,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import TodoLogo from "../../assets/images/icon/header_logo_white.png";
+import TodoLogo from "../../assets/images/Logo/header_logo_white.png";
 
 const Admin = ({ loginUserNickname }) => {
     return (

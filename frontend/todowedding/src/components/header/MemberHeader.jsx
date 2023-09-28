@@ -8,7 +8,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import headerBtn from "../../assets/images/icon/header-btn.png";
-import TodoLogo from "../../assets/images/icon/logo_img.png";
+import TodoLogo from "../../assets/images/Logo/logo_img.png";
 import axios from "axios";
 import { useSelector } from "react-redux";
 

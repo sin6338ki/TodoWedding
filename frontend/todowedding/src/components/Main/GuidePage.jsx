@@ -2,11 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 //Guide Image
-import Guide1 from "../../assets/images/card-news/Guide1.png";
-import Guide2 from "../../assets/images/card-news/Guide2.png";
-import Guide3 from "../../assets/images/card-news/Guide3.png";
-import Guide4 from "../../assets/images/card-news/Guide4.png";
-import Guide5 from "../../assets/images/card-news/Guide5.png";
+import Guide1 from "../../assets/images/Card-News/Guide1.png";
+import Guide2 from "../../assets/images/Card-News/Guide2.png";
+import Guide3 from "../../assets/images/Card-News/Guide3.png";
+import Guide4 from "../../assets/images/Card-News/Guide4.png";
+import Guide5 from "../../assets/images/Card-News/Guide5.png";
 
 /*
  * 메인페이지 React-Slider 클릭시 이동하는 웨딩가이드페이지

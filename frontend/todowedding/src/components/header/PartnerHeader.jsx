@@ -6,7 +6,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import TodoLogo from "../../assets/images/todo_logo.png";
+import TodoLogo from "../../assets/images/Logo/todo_logo.png";
 import bell from "../../assets/images/icon/bell.png";
 
 const PartnerHeader = ({ loginUserNickname }) => {

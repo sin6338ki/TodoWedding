@@ -43,7 +43,7 @@ const MyCalendar = () => {
                     const hue = Math.round(Math.random() * 360); // 전체 hue 범위 내에서 랜덤한 값 생성
                     const saturation = 70; // 채도
                     const lightness = 80; // 밝기
-                    const alpha = 0.7; // 투명도 설정
+                    const alpha = 0.8; // 투명도 설정
 
                     return {
                         id: event.schedule_seq,

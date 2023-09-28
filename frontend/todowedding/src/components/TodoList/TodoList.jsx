@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import addBtn from "../../assets/images/icon/plus (1).png";
+import addBtn from "../../assets/images/icon/Plus-Btn.png";
 
 /*
 
