@@ -24,9 +24,9 @@ const Partner = () => {
     const findChatRoom = () => {
         token &&
             axios
-                .get(`http://localhost:8085/chat/${token.userSeq}`)
+                .get(`${process.env.REACT_APP_API_URL}/chat/${token.userSeq}`)
                 .then((res) => {
-                    console.log("채팅방 조회 response : ", res.data);
+                    // console.log("채팅방 조회 response : ", res.data);
                     setResultFindChatRoom(res.data);
                 })
                 .catch((err) => {
@@ -36,7 +36,7 @@ const Partner = () => {
 
     //입장 버튼 클릭시 발생 이벤트
     const enterToChat = (chatRoomSeq, partnerSeq, memberSeq) => {
-        console.log("enterToChat chatRoomSeq : ", chatRoomSeq);
+        // console.log("enterToChat chatRoomSeq : ", chatRoomSeq);
         navigate(`/todowedding/chat-room/${chatRoomSeq}`, {
             state: { partnerSeq: partnerSeq, memberSeq: memberSeq },
         });

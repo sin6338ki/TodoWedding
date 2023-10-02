@@ -42,9 +42,8 @@ const ExpenseList = ({ expenses = [], findExpenses }, { total }) => {
     // 지출내역 삭제
     const expenseDelete = async (budgetSeq) => {
         try {
-            // console.log("지출리스트 삭제실제, budgetSeq", budgetSeq);
-            const response = await axios.delete(`http://localhost:8085/budget/delete/${budgetSeq}`);
-            console.log("지출list 삭제성공 :", response.data);
+            const response = await axios.delete(`${process.env.REACT_APP_API_URL}/budget/delete/${budgetSeq}`);
+
             if (response.data == "삭제 성공") {
                 findExpenses(token.userSeq);
             }

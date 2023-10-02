@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { deleteToken } from "../../redux/reducers/AuthReducer";
 
 /**
  * redux 실행관련
@@ -26,21 +25,13 @@ const Callback = () => {
     const navigate = useNavigate();
     const token = useSelector((state) => state.Auth.token);
 
-    // useSearchParams() : URL의 쿼리파라미터에 대한 접근과 조작을 할 수 있음
     const [searchParams] = useSearchParams();
     // Callback 화면 URL에서 code값 가져오기
     const code = searchParams.get("code");
-    // console.log("code :", code);
 
     useEffect(() => {
-        // console.log("code :", code);
-        // 3가지의 정보 전달 (사용자 seq, nick, access)
-
-        // let logoutTimer; // setTimeout ID를 저장하기 위한 변수
-
-        axios.get(`http://localhost:8085/auth/kakao/callback?code=${code}`).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/auth/kakao/callback?code=${code}`).then((res) => {
             const access_token = JSON.parse(res.data.kakaoAccess).access_token;
-            console.log("로그인 사용자 정보", res.data);
             //리덕스에 사용자 정보 저장
             dispatch(
                 setToken({
@@ -51,16 +42,6 @@ const Callback = () => {
                     refreshToken: res.data.kakaoRefresh,
                 })
             );
-
-            //     logoutTimer = setTimeout(() => {
-            //         dispatch(deleteToken());
-            //         alert("로그인 유효시간이 경과하였습니다. 다시 로그인해 주세요.");
-            //     }, 6 * 60 * 60 * 1000); // 6시간뒤 자동 로그아웃
-
-            // })
-            // .catch((error) => {
-            //     console.log("유저 정보를 가져오는데 실패 ", error);
-            //     alert("로그인에 실패하였습니다.");
         });
     }, [code]);
 

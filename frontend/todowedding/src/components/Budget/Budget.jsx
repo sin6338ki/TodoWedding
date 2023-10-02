@@ -12,33 +12,22 @@ import { useSelector } from "react-redux";
  * 로그인이전 home 으로 이동 (09.18)
  */
 
-const style = {
-    bg: `bg-gradient-to-r from-[#F9FAFB] to-[#F9FAFB]`,
-    container: `w-[433px] m-auto rounded-md  p-4`,
-    heading: `text-3xl font-bold text-center text-gray-800 p-2`,
-    form: `flex justify-between`,
-    input: `border p-2 w-full text-xl`,
-    button: `border p-4 ml-2 bg-purple-500 text-slate-100`,
-    count: `text-center p-2`,
-};
-
-//PocketStatus (상위컴포넌트) --> 입력하면 바로렌더링 하는 부분 수정필요
 const Budget = (props) => {
-    const { filteredItems, filterBaseYear } = useContext(FilterContext);
     const [totalBalance, setTotalBalance] = useState(0); //결혼 준비 총예산
     const [totalIncome, setTotalIncome] = useState(0); // 총수입
     const [totalExpense, setTotalExpense] = useState(0); // 총지출
-    const twoDigitYear = filterBaseYear.slice(-2);
 
     // 로그인 이전 Home 으로이동
     const nav = useNavigate();
     const token = useSelector((state) => state.Auth.token);
-    // const [memberSeq, setMemberSeq] = useState();
     const memberSeq = token ? token.userSeq : 0;
 
-
-
     useEffect(() => {
+        findTotalBudget();
+    }, [memberSeq, props.incomes, props.expenses]);
+
+    //총지출, 총수입 조회
+    const findTotalBudget = () => {
         if (!memberSeq) {
             nav("/");
         } else {
@@ -47,7 +36,7 @@ const Budget = (props) => {
             };
 
             axios
-                .post(`http://localhost:8085/member/total`, memberSeqObj)
+                .post(`${process.env.REACT_APP_API_URL}/member/total`, memberSeqObj)
                 .then((response) => {
                     setTotalExpense(response.data.budget_sum_cost);
                     setTotalIncome(response.data.income_total_cost);
@@ -55,12 +44,11 @@ const Budget = (props) => {
                 })
                 .catch((error) => console.error("Error:", error));
         }
-    }, [memberSeq]);
+    };
 
     return (
         <div className="pocket__status">
-            <div className="pocket__status-title">
-            </div>
+            <div className="pocket__status-title"></div>
 
             <div className="pocket__status-detail">
                 <div className="pocket__status-detail--desc">

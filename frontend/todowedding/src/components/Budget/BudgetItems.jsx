@@ -15,8 +15,7 @@ const BudgetItems = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get("http://localhost:8085/budget/select");
-                console.log("budget 지출 조회 response: ", res.data);
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/budget/select`);
 
                 // 응답 데이터에서 필요한 정보 추출
                 const budgetData = res.data.map((item) => ({
@@ -49,17 +48,6 @@ const BudgetItems = () => {
             </div>
         );
     }
-
-    const copyFilteredItems = [...filteredItems];
-    const sortedFilteredItems = copyFilteredItems.sort((a, b) => {
-        // 날짜가 최근일수록 상단에 위치하도록 정렬
-        // 만약 날짜가 같다면 id 값이 작은 순으로(최근에 입력한 순으로) 상단에 위치하도록 정렬
-        if (new Date(a.date).getTime() === new Date(b.date).getTime()) {
-            return b.id - a.id;
-        }
-
-        return new Date(b.date) - new Date(a.date);
-    });
 
     return (
         <div className="pocket__items">

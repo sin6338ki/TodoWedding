@@ -1,3 +1,8 @@
+/**
+ * partner info 수정 페이지
+ * 작성자 : 신지영
+ */
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -24,16 +29,16 @@ const PartnerInfo = () => {
     useEffect(() => {
         //업체 정보 조회
         findPartnerInfo();
-        console.log("partnerUpdateDto", partnerUpdateDto);
+        // console.log("partnerUpdateDto", partnerUpdateDto);
     }, [partnerUpdateDto]);
 
     //업체 정보 조회 메서드
     const findPartnerInfo = () => {
         token &&
             axios
-                .get(`http://localhost:8085/partner/info/${token.userSeq}`)
+                .get(`${process.env.REACT_APP_API_URL}/partner/info/${token.userSeq}`)
                 .then((res) => {
-                    console.log("업체 정보 조회 result : ", res.data);
+                    // console.log("업체 정보 조회 result : ", res.data);
                     setPartnerInfo(res.data);
                     setPartnerPw(res.data.partner_pw);
                     setPartnerName(res.data.partner_name);
@@ -88,14 +93,14 @@ const PartnerInfo = () => {
     //회원 정보 업데이트
     const updatePartnerInfo = () => {
         axios
-            .put(`http://localhost:8085/partner`, partnerUpdateDto)
+            .put(`${process.env.REACT_APP_API_URL}/partner`, partnerUpdateDto)
             .then((res) => {
-                console.log("기업 회원 정보 update response", res.data);
+                // console.log("기업 회원 정보 update response", res.data);
                 alert("회원 정보 수정이 완료되었습니다.!");
                 navigate("/todowedding/partner");
             })
             .catch((err) => {
-                console.log("기업 회원 정보 update error", err);
+                // console.log("기업 회원 정보 update error", err);
                 alert("회원 정보 수정에 실패했습니다.");
             });
     };

@@ -59,8 +59,12 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
                 {members.map((member, idx) => {
                     return (
                         <>
-                            <div className="text-center col-span-1 mt-2 text-xs">{idx + 1}</div>
-                            <div className="text-center col-span-3 mt-2 text-xs">{member.nickname}</div>
+                            <div className="text-center col-span-1 mt-2 text-xs" key={idx}>
+                                {idx + 1}
+                            </div>
+                            <div className="text-center col-span-3 mt-2 text-xs" key={idx + member.nickname}>
+                                {member.nickname}{" "}
+                            </div>
                             <div className="text-center col-span-4 mt-2 text-xs">
                                 {member.e_mail ? member.e_mail : "동의안함"}
                             </div>

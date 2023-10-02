@@ -9,26 +9,18 @@ import React, { useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
 import IncomeList from "./IncomeList";
 import ExpenseList from "./ExpenseList";
 import BudgetDashboard from "./BudgetDashboard";
 
-const BudgetIndex = () => {
+const BudgetIndex = ({ incomes, setIncomes, expenses, setExpenses }) => {
     const token = useSelector((state) => state.Auth.token);
-    const memberSeq = token ? token.userSeq : 0;
-
-    const [incomes, setIncomes] = useState([]);
-    const [expenses, setExpenses] = useState([]);
 
     // chart정보
     const [brideCnt, setBrideCnt] = useState(0);
     const [broomCnt, setBroomCnt] = useState(0);
     const [bothCnt, setBothCnt] = useState(0);
     const [etcCnt, setEtcCnt] = useState(0);
-
-    /**로그인 userSeq err 처리 (09.25) */
 
     /**
      * 지영 수정 부분 : 삭제 처리 시 바로 화면에 적용!
@@ -42,11 +34,10 @@ const BudgetIndex = () => {
     const findIncomes = () => {
         // 수입조회
         axios
-            .post("http://localhost:8085/income/select", {
+            .post(`${process.env.REACT_APP_API_URL}/income/select`, {
                 member_seq: token.userSeq,
             })
             .then((res) => {
-                console.log("수입 전체 조회 :", res.data);
                 setIncomes(res.data);
             })
             .catch((err) => {
@@ -57,11 +48,10 @@ const BudgetIndex = () => {
     //지출 조회 메서드
     const findExpenses = () => {
         axios
-            .post("http://localhost:8085/budget/select", {
+            .post(`${process.env.REACT_APP_API_URL}/budget/select`, {
                 member_seq: token.userSeq, // memberSeq로 값 변경하기
             })
             .then((res) => {
-                console.log("지출 전체 조회 : ", res.data);
                 setExpenses(res.data);
             })
             .catch((err) => {
@@ -112,14 +102,12 @@ const BudgetIndex = () => {
                         etcCnt={etcCnt}
                     />
                 </Tab>
-                {/* 지영 수정 부분 */}
                 <Tab eventKey="budget" title="지출 리스트">
                     <ExpenseList expenses={expenses} findExpenses={findExpenses} />
                 </Tab>
                 <Tab eventKey="income" title="수입 리스트">
                     <IncomeList incomes={incomes} findIncomes={findIncomes} />
                 </Tab>
-                {/* 지영 수정 부분 끝 */}
             </Tabs>
         </div>
     );

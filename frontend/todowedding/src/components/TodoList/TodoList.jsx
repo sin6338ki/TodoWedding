@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
 import Todo from "./Todo";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,33 +20,25 @@ const style = {
     count: `text-center px-7 py-2 box-content bg-violet-300 rounded-full text-sm`,
 };
 
-//  // 투두 전체-진행-미진행 조회
-//  const [completedCnt, setCompletedCnt] = useState();
-//  const [unCompletedCnt, setUnCompletedCnt] = useState();
-
 const TodoList = () => {
-    
     const nav = useNavigate();
     const token = useSelector((state) => state.Auth.token);
     const memberSeq = token ? token.userSeq : 0;
 
-   
     useEffect(() => {
         if (!memberSeq) {
             nav("/");
         }
     }, [memberSeq, nav]);
-    
 
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
-    const [isChecked, setIsChecked] = useState();
 
     // 2.전체 투두리스트 조회
     useEffect(() => {
         const fetchDataAndCout = async () => {
             await fetchData();
-            await cntTodoList(); 
+            await cntTodoList();
         };
 
         fetchDataAndCout();
@@ -57,30 +47,10 @@ const TodoList = () => {
     // 버튼 활성화
     const [activeButton, setActiveButton] = useState("");
 
-    //캘린더 버튼 클릭 시 이동
-    const calendarOnclick = () => {
-        nav("/todowedding/calendar");
-        setActiveButton("Calendar");
-    };
-
-    //투두리스트 클릭 시 이동
-    const todoOnclick = () => {
-        nav("/todowedding/todolist");
-        setActiveButton("Todolist");
-    };
-
-    //예산관리 클릭 시 이동
-    const budgetOnclick = () => {
-        nav("/todowedding/budget");
-        setActiveButton("Budget");
-    };
-
-
-
     // 1.투두리스트 추가 메서드
     const createTodo = async (e) => {
         e.preventDefault(e);
-        console.log("실행", input);
+        // console.log("실행", input);
         if (input === "") {
             alert("내용을 입력해주세요");
             return;
@@ -94,8 +64,8 @@ const TodoList = () => {
 
         // try~catch (추가작성 09.15)
         try {
-            const response = await axios.post("http://localhost:8085/todolist", data);
-            console.log("response : ", response);
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/todolist`, data);
+            // console.log("response : ", response);
 
             // 서버로부터 반환된 새로운 투두 데이터
             const newTodo = response.data;
@@ -110,12 +80,10 @@ const TodoList = () => {
         }
     };
 
-   
     // 삭제 실행 메서드 변경 코드
     const deleteTodo = async (todolistSeq) => {
         try {
-            // console.log("투두리스트 삭제 실행, todolistSeq : ", todolistSeq);
-            const response = await axios.delete(`http://localhost:8085/todolist/${todolistSeq}`);
+            const response = await axios.delete(`${process.env.REACT_APP_API_URL}/todolist/${todolistSeq}`);
             // console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
             if (response.data === 1) {
@@ -129,9 +97,8 @@ const TodoList = () => {
 
     //전체 투두리스트 조회 메서드
     const fetchData = async () => {
-        // fetchData 수정(09.15)
         try {
-            const res = await axios.get(`http://localhost:8085/todolist/${memberSeq}`);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/todolist/${memberSeq}`);
             // console.log("findallTodolist 조회 response : ", res.data);
             setTodos(res.data);
         } catch (error) {
@@ -140,16 +107,12 @@ const TodoList = () => {
     };
 
     //완료, 미완료 건수 조회하기
-
     const [completedCnt, setCompletedCnt] = useState();
     const [unCompletedCnt, setUnCompletedCnt] = useState();
 
     const cntTodoList = async () => {
         try {
-            const res = await axios.get(`http://localhost:8085/count-of-todolist/${memberSeq}`);
-            // console.log("cntTodoList response", res.data);
-            // console.log("cntTodoList response length", res.data.length);
-          
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/count-of-todolist/${memberSeq}`);
 
             /**
              * count를 불러왔을 때 배열의 크기가 1인 경우 => 전체가 진행이거나 전체가 완료인 상태
@@ -172,7 +135,7 @@ const TodoList = () => {
                 setCompletedCnt(res.data[1].count);
             }
         } catch (err) {
-            // console.log("cntTodoList err : ", err);
+            console.log("cntTodoList err : ", err);
         }
     };
 
@@ -222,7 +185,6 @@ const TodoList = () => {
                 <div className="mt-[60px] mb-10">
                     {todos.map((todolistContents) => (
                         <Todo
-                            // key 값 수정중 (09.25 >> 삭제 수정)
                             key={todolistContents.todolistSeq}
                             setChangeCheck={setChangeCheck}
                             changeCheck={changeCheck}

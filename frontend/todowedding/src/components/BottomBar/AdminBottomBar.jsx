@@ -20,7 +20,7 @@ import Logout from "../../assets/images/icon/logout_white.png";
 import Home from "../../assets/images/icon/home_white.png";
 import Withdrawal from "../../assets/images/icon/trash_white.png";
 
-const AdminBottomBar = () => {
+const AdminBottomBar = ({ setIsAdminCk }) => {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.Auth.token);
     const navigate = useNavigate();
@@ -47,7 +47,7 @@ const AdminBottomBar = () => {
     //회원탈퇴 이벤트
     const withDrawal = () => {
         axios
-            .delete(`http://localhost:8085/partner/${token.userSeq}`)
+            .delete(`${process.env.REACT_APP_API_URL}/partner/${token.userSeq}`)
             .then((res) => {
                 console.log("회원 탈퇴 결과 : ", res.data);
 
@@ -67,9 +67,8 @@ const AdminBottomBar = () => {
     //Admin 계정 여부 확인
     const isAdmin = () => {
         axios
-            .get(`http://localhost:8085/admin/${token.userSeq}`)
+            .get(`${process.env.REACT_APP_API_URL}/admin/${token.userSeq}`)
             .then((res) => {
-                console.log("isAdmin response : ", res.data);
                 setIsAdminCk(res.data);
             })
             .catch((err) => {

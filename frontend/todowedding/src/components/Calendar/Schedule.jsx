@@ -45,7 +45,7 @@ const Schedule = () => {
                 memberSeq: userSeq,
             };
             await axios
-                .post("http://localhost:8085/schedule", data)
+                .post(`${process.env.REACT_APP_API_URL}/schedule`, data)
                 .then((res) => {
                     allSchedule();
                     nav("/todowedding/calendar");
@@ -71,10 +71,8 @@ const Schedule = () => {
 
             //backend axios통신
             await axios
-                .post("http://localhost:8085/todolist", data)
+                .post(`${process.env.REACT_APP_API_URL}/todolist`, data)
                 .then((res) => {
-                    console.log("스프링으로 넘기는 값 -> ", data);
-                    //                fetchData();
                     allSchedule();
                     nav("/todowedding/todolist");
                 })
@@ -88,7 +86,7 @@ const Schedule = () => {
     const allSchedule = () => {
         try {
             axios
-                .get(`http://localhost:8085/all-schedule/${userSeq}`)
+                .get(`${process.env.REACT_APP_API_URL}/all-schedule/${userSeq}`)
                 .then((res) => {
                     setSchedule(res.data);
                 })

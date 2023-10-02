@@ -1,11 +1,7 @@
-import React, { useCallback, useState, useContext, useEffect } from "react";
-import { ItemDispatchContext } from "./BudgetApp";
-import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
+import React, { useState, useContext, useEffect } from "react";
 import { StopEditContext } from "./NewItemContainer";
 import "../../assets/budget-css/NewItemForm.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
-
 import IncomeForm from "./IncomeForm";
 import ExpenseForm from "./ExpenseForm";
 
@@ -19,8 +15,6 @@ import ExpenseForm from "./ExpenseForm";
  */
 
 const NewItemForm = () => {
-    const token = useSelector((state) => state.Auth.token);
-    const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
     const { stopEditingHandler } = useContext(StopEditContext);
 
     //props - 수입
@@ -28,13 +22,10 @@ const NewItemForm = () => {
     const [incomeContents, setIncomeContents] = useState("");
     const [incomeCost, setIncomeCost] = useState("");
 
-    const TITLE_SIZE = 35;
-
     const [budgetDate, setBudgetDate] = useState("");
     const [budgetTitle, setBudgetTitle] = useState("");
     const [budgetCost, setBudgetCost] = useState("");
-    const [enteredAmountType, setEnteredAmountType] = useState("expense"); 
-    // const [selectedType, setSelectedType] = useState("expense"); //버튼 이벤트함수 추가(09.25)
+    const [enteredAmountType, setEnteredAmountType] = useState("expense");
 
     // 지출 항목 추가 input
     const [budgetRole, setBudgetRole] = useState("");
@@ -42,29 +33,6 @@ const NewItemForm = () => {
     const [budgetExpenseCost, setBudgetExpenseCost] = useState("");
 
     const [enteredDate, setEnteredDate] = useState("");
-
-    // 날짜를 문자열로 변환하는 함수
-    const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = ("0" + (date.getMonth() + 1)).slice(-2); // 월은 0부터 시작하므로 1을 더함.
-        const day = ("0" + date.getDate()).slice(-2);
-
-        return `${year}-${month}-${day}`;
-    };
-
-    const [isTitleSizeOver, setIsTitleSizeOver] = useState(false);
-    const [isEnteredWrongAmount, setIsEnteredWrongAmount] = useState(false);
-
-    const getDate = useCallback(() => {
-        return new Date().toISOString().substring(0, 10);
-    }, []);
-
-    //
-
-    // 수입 인지 지출인지 type확인
-    const amountTypeChangeHandler = (event) => {
-        setEnteredAmountType(event.target.value);
-    };
 
     // 내역추가 지출-수입 버튼 색상 변경 (09.25)
     useEffect(() => {
@@ -79,7 +47,7 @@ const NewItemForm = () => {
             document.getElementById("income").style.setProperty("background-color", "#9f7ffc");
             document.getElementById("income").style.setProperty("color", "#FFFFFF");
         } else {
-            // 아무것도 선택안했을때 
+            // 아무것도 선택안했을때
             document.getElementById("expense").style.setProperty("background-color", "#9f7ffc");
             document.getElementById("expense").style.setProperty("color", "#FFFFFF");
             document.getElementById("income").style.setProperty("background-color", "#9f7ffc");
@@ -98,17 +66,12 @@ const NewItemForm = () => {
         event.preventDefault();
 
         if (enteredAmountType === "income") {
-            console.log("수입 선택", incomeData);
             axios
                 .post(
-                    `http://localhost:8085/income/insert`,
+                    `${process.env.REACT_APP_API_URL}/income/insert`,
                     incomeData // useState 훅으로 생성된 상태 사용
                 )
-
                 .then((response) => {
-                    console.log("Data insert 확인 : ", incomeData);
-                    console.log("수입날짜입력콘솔찍기", response);
-
                     if (response.status == 200) {
                         // 수입 입력창 초기화
                         setIncomeDt("");
@@ -122,16 +85,9 @@ const NewItemForm = () => {
                     console.error("지출 budget error!", error);
                 });
         } else {
-            console.log("지출 선택", newBudgetData);
             axios
-                .post(
-                    `http://localhost:8085/budget/insert`,
-                    newBudgetData 
-                )
+                .post(`${process.env.REACT_APP_API_URL}/budget/insert`, newBudgetData)
                 .then((response) => {
-                    console.log("Data insert 확인 : ", newBudgetData);
-                    console.log("지출날짜입력콘솔찍기", response);
-
                     if (response.status == 200) {
                         // 지출 입력창 초기화
                         setBudgetDate("");
@@ -154,7 +110,7 @@ const NewItemForm = () => {
             {/* 수입인지 지출인지 체크  */}
             <div className="amount__type">
                 <div className="amount__expense">
-                    <button 
+                    <button
                         type="button"
                         id="expense"
                         className={`amount__expense ${enteredAmountType === "expense" ? "active" : ""}`}
@@ -174,7 +130,7 @@ const NewItemForm = () => {
                     </button>
                 </div>
                 <div className="amount__income">
-                    <button 
+                    <button
                         type="button"
                         id="income"
                         className={`amount__income ${enteredAmountType === "income" ? "active" : ""}`}

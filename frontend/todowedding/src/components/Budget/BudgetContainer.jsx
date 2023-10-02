@@ -13,6 +13,9 @@ const BudgetContainer = (props) => {
     let filteredItems = [];
     let filteredExpenses = [];
 
+    const [incomes, setIncomes] = useState([]);
+    const [expenses, setExpenses] = useState([]);
+
     useEffect(() => {
         if (props.isAddItem) {
             let lastedItemId = Math.max(...props.items.map((item) => item.id));
@@ -23,9 +26,7 @@ const BudgetContainer = (props) => {
     }, [props.items]);
 
     if (Array.isArray(filteredItems) && filteredItems.length > 0) {
-        
         filteredItems = props.items.filter((item) => item.date.getFullYear().toString() === filterBaseYear);
-       
         filteredExpenses = filteredItems.filter((item) => item.amountType === "expense");
     }
 
@@ -38,15 +39,20 @@ const BudgetContainer = (props) => {
     }, [filteredItems, filterBaseYear]);
 
     return (
-            <div >
-            <div >
+        <div>
+            <div>
                 <NewItemContainer />
             </div>
             <div className="pocket__container">
                 <FilterContext.Provider value={memoizedFilter}>
-                    <Budget />
+                    <Budget incomes={incomes} expenses={expenses} />
 
-                    <BudgetIndex />
+                    <BudgetIndex
+                        incomes={incomes}
+                        setIncomes={setIncomes}
+                        expenses={expenses}
+                        setExpenses={setExpenses}
+                    />
                 </FilterContext.Provider>
             </div>
         </div>

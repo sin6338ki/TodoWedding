@@ -4,7 +4,7 @@
  * 작성일 : 2023.09.10, 13
  */
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import TodoLogo from "../../assets/images/todo_logo.png";
 import axios from "axios";
@@ -19,7 +19,6 @@ const PartnerLogin = () => {
     const navigate = useNavigate();
     //redux 액션 실행을 위한 dispatch 선언
     const dispatch = useDispatch();
-    const token = useSelector((state) => state.Auth.token);
 
     //아이디, 비밀번호 입력값 가져오기
     const [id, setId] = useState();
@@ -36,12 +35,12 @@ const PartnerLogin = () => {
     //로그인 버튼 클릭했을 때 이벤트
     const login = async () => {
         await axios
-            .post("http://localhost:8085/partner/login", {
+            .post(`${process.env.REACT_APP_API_URL}/partner/login`, {
                 partner_id: id,
                 partner_pw: pw,
             })
             .then(async (res) => {
-                console.log("login response : ", res.data);
+                // console.log("login response : ", res.data);
                 //redux에 로그인 정보 저장
                 await dispatch(
                     setToken({
@@ -59,7 +58,7 @@ const PartnerLogin = () => {
                 }
             })
             .catch((err) => {
-                console.log("login fail : ", err);
+                // console.log("login fail : ", err);
                 const loginInfo = document.getElementById("login-info");
                 loginInfo.innerText = "회원 정보가 일치하지 않습니다. \n 아이디와 비밀번호를 다시 입력해 주세요.";
                 loginInfo.style.color = "red";

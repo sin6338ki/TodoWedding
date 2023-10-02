@@ -21,7 +21,7 @@ function BottomBar() {
     //Admin 계정 여부 확인
     const isAdmin = () => {
         axios
-            .get(`http://localhost:8085/admin/${token.userSeq}`)
+            .get(`${process.env.REACT_APP_API_URL}/admin/${token.userSeq}`)
             .then((res) => {
                 setIsAdminCk(res.data);
             })
@@ -38,7 +38,7 @@ function BottomBar() {
         <>
             {token == null && <MemberBottomBar />}
             {token != null && token.type == "M" && <MemberBottomBar />}
-            {token != null && isAdminCk == "Y" && <AdminBottomBar />}
+            {token != null && isAdminCk == "Y" && <AdminBottomBar setIsAdminCk={setIsAdminCk} />}
             {token != null && isAdminCk != "Y" && token.type == "P" && <PartnerBottomBar />}
         </>
     );

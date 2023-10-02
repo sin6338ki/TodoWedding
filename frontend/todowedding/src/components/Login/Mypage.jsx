@@ -32,11 +32,13 @@ const Mypage = () => {
                     { headers: { Authorization: `Bearer ${accessToken}` } }
                 );
 
-                console.log("Unlink response:", unlinkResponse);
+                // console.log("Unlink response:", unlinkResponse);
 
                 // 서버에 회원 정보 삭제 요청
-                const deleteResponse = await axios.delete(`http://localhost:8085/member/delete?member_seq=${userSeq}`);
-                console.log("Delete response:", deleteResponse);
+                const deleteResponse = await axios.delete(
+                    `${process.env.REACT_APP_API_URL}/member/delete?member_seq=${userSeq}`
+                );
+                // console.log("Delete response:", deleteResponse);
 
                 // 로그아웃 처리
                 sessionStorage.clear();

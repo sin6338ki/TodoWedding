@@ -1,4 +1,3 @@
-import axios from "axios";
 import { store } from "./store"; // Redux 스토어
 import { setToken } from "./actions"; // 액세스 토큰을 업데이트하는 action creator 함수
 
@@ -22,7 +21,7 @@ instance.interceptors.response.use(
             console.log("refreshToken:", refreshToken);
 
             try {
-                const res = await instance.post("http://localhost:8085/member/refresh", { refreshToken });
+                const res = await instance.post(`${process.env.REACT_APP_API_URL}/member/refresh`, { refreshToken });
                 const newAccessToken = res.data.accessToken; // 새로운 액세스 토큰 가져오기
 
                 // Redux 스토어의 액세스 토큰 업데이트하기

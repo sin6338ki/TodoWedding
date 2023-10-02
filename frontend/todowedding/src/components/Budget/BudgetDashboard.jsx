@@ -6,16 +6,14 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 
-
 /* Budget 예산관리 대시보드
  * 작성자 : 양수진
  * 작성일 : 2023.09.12
- */ 
+ */
 
 const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCnt }) => {
     // (수입/지출) 백분율 계산
     const totalExpenses = expenses.length;
-    const totalIncomes = incomes.length;
 
     // 지출 분담 비율 계산
     const broomPercentage = (broomCnt / totalExpenses) * 100;
@@ -24,8 +22,8 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
     const etcPercentage = (etcCnt / totalExpenses) * 100;
 
     const [totalBudget, setTotalBudget] = useState(null);
-    const [totalIncome, setTotalIncome] = useState(0); 
-    const [totalExpense, setTotalExpense] = useState(0); 
+    const [totalIncome, setTotalIncome] = useState(0);
+    const [totalExpense, setTotalExpense] = useState(0);
 
     //userSeq 받아오기
     const token = useSelector((state) => state.Auth.token);
@@ -49,18 +47,17 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
         const fetchTotalBudgetAndResult = async () => {
             try {
                 // 백엔드로 총예산 조회 요청 보내기
-                const budgetResponse = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+                const budgetResponse = await axios.get(
+                    `${process.env.REACT_APP_API_URL}/totalbudget/select/${userSeq}`
+                );
                 if (budgetResponse.data) {
                     setTotalBudget(budgetResponse.data.total_budget);
-                    // console.log("등록된 총 예산 : ", budgetResponse.data.total_budget);
                 }
 
                 // 백엔드로 수입/지출 결과 조회 요청 보내기
-                const resultResponse = await axios.post(`http://localhost:8085/member/total`, {
+                const resultResponse = await axios.post(`${process.env.REACT_APP_API_URL}/member/total`, {
                     member_seq: userSeq,
                 });
-                // console.log("BudgetReport 결과 : ", resultResponse.data);
-
                 setTotalIncome(resultResponse.data.income_total_cost);
                 setTotalExpense(resultResponse.data.budget_sum_cost);
             } catch (error) {
@@ -70,13 +67,10 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
         fetchTotalBudgetAndResult();
     }, [userSeq]);
 
-   
     const fianlTotalIncome = totalIncome || 0; // 총 수입
     const fianlTotalExpense = totalExpense || 0; //총 지출
 
-
     return (
-      
         <div>
             <div className="rounded-md border shadow-md text-black bg-violet-100">
                 <div className="text-lg font-bold text-black-500 m-3" style={{ textAlign: "center" }}>

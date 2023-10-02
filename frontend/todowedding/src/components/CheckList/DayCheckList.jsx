@@ -44,7 +44,7 @@ const DayCheckList = () => {
     // D-Day 체크리스트 전체 조회
     const getDayChecklist = async () => {
         try {
-            const response = await axios.get("http://localhost:8085/daychecklist");
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/daychecklist`);
             setChecklist(response.data);
 
             let combinedContents = [];
@@ -97,10 +97,9 @@ const DayCheckList = () => {
     //end -----------------------------------------------------------------------------------
 
     useEffect(() => {
-        
         if (selectedOption) {
             // console.log("selectOptions : ", selectedOption.label);
-                //메시지 가공
+            //메시지 가공
             // console.log("message 원본 : ", contents);
             let newMessage = "💑TodoWedding만의 서비스! \n";
             newMessage += "💌 결혼 예정일 " + selectedOption.label + " 체크리스트 💌\n\n";

@@ -81,7 +81,7 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
 
     const getDayCheckContents = async (checkdaySeq) => {
         try {
-            const response = await axios.get(`http://localhost:8085/daychecklist/${checkdaySeq}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/daychecklist/${checkdaySeq}`);
 
             setContentsLocal(response.data.map((item) => item.checkday_list_contents));
         } catch (error) {

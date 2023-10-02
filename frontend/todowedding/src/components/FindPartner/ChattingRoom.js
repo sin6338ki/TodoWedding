@@ -35,9 +35,9 @@ const ChattingRoom = () => {
         const render = async () => {
             //이전 채팅 내역 불러오기
             await axios
-                .get(`http://localhost:8085/chat/message/${chatRoomSeq}`)
+                .get(`${process.env.REACT_APP_API_URL}/chat/message/${chatRoomSeq}`)
                 .then((res) => {
-                    console.log("채팅 내역 불러오기", res.data);
+                    // console.log("채팅 내역 불러오기", res.data);
                     res.data.forEach((element) => {
                         const chatting = {
                             chatRoomSeq: element.chat_room_seq,
@@ -58,8 +58,6 @@ const ChattingRoom = () => {
         };
 
         render();
-
-        // return () => disConnect();
     }, []);
 
     //스크롤 적용
@@ -81,10 +79,8 @@ const ChattingRoom = () => {
         }
 
         try {
-            console.log("로그인 접속자 확인", token.type, token.userNick);
-
             const newClient = new StompJs.Client({
-                brokerURL: "ws://localhost:8085/stomp-chat",
+                brokerURL: process.env.REACT_APP_BROKER_URL,
                 connectHeaders: {
                     //header에 채팅방과 참가자 정보 함께 전송
                     chatRoomSeq: location.pathname.split("/")[3],
@@ -92,7 +88,7 @@ const ChattingRoom = () => {
                     partnerSeq: locationData.partnerSeq,
                 },
                 debug: function (str) {
-                    console.log("웹소켓 연결 debug : ", str);
+                    // console.log("웹소켓 연결 debug : ", str);
                 },
                 // reconnectDelay: 5000, //자동재연결
                 heartbeatIncoming: 4000,
@@ -121,7 +117,7 @@ const ChattingRoom = () => {
 
     //callback 함수
     const callback = async (message) => {
-        console.log("message : ", message.body);
+        // console.log("message : ", message.body);
 
         if (message.body) {
             let chatting = await JSON.parse(message.body);
@@ -161,7 +157,7 @@ const ChattingRoom = () => {
             return;
         }
 
-        console.log("propertied : ", chatRoomSeq, token.userSeq, content, token.type, token.userNick);
+        // console.log("propertied : ", chatRoomSeq, token.userSeq, content, token.type, token.userNick);
 
         let sendTime = new Date();
         let month = ("0" + (sendTime.getMonth() + 1)).slice(-2);
@@ -186,10 +182,10 @@ const ChattingRoom = () => {
 
     // 내가 보낸 메시지, 받은 메시지에 각각의 스타일을 지정해 주기 위함
     const msgBox = () => {
-        console.log("chatList : ", chatList);
+        // console.log("chatList : ", chatList);
         return chatList.map((item, idx) => {
             if (item.type === "ENTER") {
-                console.log("ENTER : ", item.chattingContents);
+                // console.log("ENTER : ", item.chattingContents);
                 return (
                     <div
                         key={idx}

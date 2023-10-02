@@ -1,35 +1,31 @@
-
 /* Budget 예산 수입 입력 (내역추가)
  * 작성자 : 양수진
  * 작성일 : 2023.09.15
  */
 
 import React, { useCallback, useState, useContext, useEffect } from "react";
-import { ItemDispatchContext } from "./BudgetApp";
 import { enteredOnlyNumber, addComma, deleteComma } from "../utils/numberUtils";
-import { StopEditContext } from "./NewItemContainer";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
-
-const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, incomeDt, setIncomeDt, incomeContents, setIncomeContents, incomeCost, setIncomeCost  }) => {
-
-
-
+const IncomeForm = ({
+    setIncomeData,
+    incomeDt,
+    setIncomeDt,
+    incomeContents,
+    setIncomeContents,
+    incomeCost,
+    setIncomeCost,
+}) => {
     const token = useSelector((state) => state.Auth.token);
     let memberSeq;
-        if (token && token.userSeq) {
-            memberSeq = token.userSeq;
-        } else {
-            console.error('Token or user sequence is not defined.');
-            memberSeq = 0; 
-        }
-
-    const [{ onAdd }, { nextItemId }] = useContext(ItemDispatchContext);
-    const { stopEditingHandler } = useContext(StopEditContext);
+    if (token && token.userSeq) {
+        memberSeq = token.userSeq;
+    } else {
+        console.error("Token or user sequence is not defined.");
+        memberSeq = 0;
+    }
 
     const TITLE_SIZE = 35;
-
     const [isTitleSizeOver, setIsTitleSizeOver] = useState(false);
     const [isEnteredWrongAmount, setIsEnteredWrongAmount] = useState(false);
 
@@ -39,22 +35,18 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
 
     // 날짜
     const dateChangeHandler = (event) => {
-        console.log("날짜 입력", event.target.value)
         setIncomeDt(event.target.value);
     };
 
     // 제목
     const titleChangeHandler = (event) => {
-       
         let isSizeOver = event.target.value.length > TITLE_SIZE ? true : false;
         setIsTitleSizeOver(isSizeOver);
-
         setIncomeContents(event.target.value);
     };
 
     // 금액
     const amountChangeHandler = (event) => {
-       
         let isNotNumber = /^[^1-9][^0-9]{0,11}$/g.test(event.target.value) ? true : false;
         setIsEnteredWrongAmount(isNotNumber);
         if (isNotNumber) return;
@@ -64,47 +56,35 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
     };
 
     // 수입 데이터 보내줄 때
-    useEffect(()=>{
-      const incomeData = {
-        income_dt : incomeDt,
-        income_cost :deleteComma(incomeCost).toString() ,
-        income_contents : incomeContents,
-        member_seq : memberSeq 
-      }
+    useEffect(() => {
+        const incomeData = {
+            income_dt: incomeDt,
+            income_cost: deleteComma(incomeCost).toString(),
+            income_contents: incomeContents,
+            member_seq: memberSeq,
+        };
+        setIncomeData(incomeData);
+    }, [incomeDt, incomeCost, incomeContents]);
 
-    setIncomeData(incomeData);
-
-// stopEditingHandler();
-  }, [incomeDt, incomeCost, incomeContents]);
-
-
-
-
-
-
-
-
-
-
-  
-
-  return (
-    <div>
-       {/* 날짜 */}
-     <div className="new-item__form-info">
+    return (
+        <div>
+            {/* 날짜 */}
+            <div className="new-item__form-info">
                 <h1 className="fs-normal fw-bold text-base font-extrabold">날짜</h1>
                 <input
                     type="date"
                     name="income_dt"
                     value={incomeDt}
-                    onChange={(e)=>{dateChangeHandler(e)}}
+                    onChange={(e) => {
+                        dateChangeHandler(e);
+                    }}
                     min="2020-01-01"
                     max={getDate()}
                     required
-                    style={{marginTop:'-25px'}}
+                    style={{ marginTop: "-25px" }}
                 />
             </div>
-        {/* 내용 */}
+            {/* 내용 */}
             <div className="new-item__form-info">
                 <div className="new-item__form-info--title">
                     <h2 className="fs-normal fw-bold text-base font-extrabold">제목</h2>
@@ -122,7 +102,7 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
                     required
                 />
             </div>
-        {/* 금액 */}
+            {/* 금액 */}
             <div className="new-item__form-info">
                 <div className="new-item__form-info--title">
                     <h2 className="fs-normal fw-bold text-base font-extrabold">금액</h2>
@@ -143,8 +123,8 @@ const IncomeForm = ({ enteredDate, setIncomeData, budgetCost, enteredTitle, inco
                     required
                 />
             </div>
-    </div>
-  )
+        </div>
+    );
 };
 
-export default IncomeForm
+export default IncomeForm;

@@ -1,12 +1,10 @@
-import React, { useDebugValue, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Todo_calendaricon from "../../assets/images/icon/Todo_calendaricon.png";
 
 /*
-
 Todo
 작성자 : 양수진
 작성일 : 2023.09.04
@@ -14,6 +12,7 @@ Todo
 수정 : check시 text style 변경(9.14) 
 수정 : todolist 전체 - 완료 - 미완료조회
 */
+
 const style = {
     li: `mx-[35px] mt-4 flex justify-between capitalize border-b`,
     liComplete: `flex justify-between bg-slate-400 capitalize`,
@@ -54,16 +53,16 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
     // 3 Backend [check_Todolist]
     //  투두리스트 체크했을 때 실행되는 메서드
     const toggleComplete = async (todolistSeq) => {
-        // console.log("check실행"); 
+        // console.log("check실행");
         const data = {
-            todolistCompleted: isChecked ? "N" : "Y", 
+            todolistCompleted: isChecked ? "N" : "Y",
             todolistSeq: todolistContents.todolistSeq,
             memberSeq: todolistContents.memberSeq,
         };
 
         try {
-            const checkResult = await axios.put(`http://localhost:8085/todolist/check`, data); //`http://localhost:8085/todolist/${memberSeq}/${todo.todolistSeq}`, data
-            // console.log("성공 checked ", checkResult); 
+            const checkResult = await axios.put(`${process.env.REACT_APP_API_URL}/todolist/check`, data);
+            // console.log("성공 checked ", checkResult);
             await setChangeCheck(!changeCheck);
         } catch (err) {
             console.error("Error checked: ", err);
@@ -79,10 +78,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         <li className={todolistContents.completed ? style.liComplete : style.li}>
             <div className={style.row}>
                 <input onChange={completedTodolist} type="checkbox" checked={isChecked} className="mb-2" />
-                <p
-                    onClick={completedTodolist} 
-                    className={isChecked ? style.textComplete : style.text}
-                >
+                <p onClick={completedTodolist} className={isChecked ? style.textComplete : style.text}>
                     {todolistContents.todolistContents}
                 </p>
                 <hr />

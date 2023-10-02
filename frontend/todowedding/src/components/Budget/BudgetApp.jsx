@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect, useState, useMemo } from "react";
-import BudgetContainer, { FilterContext } from "./BudgetContainer";
-import NewItemContainer from "./NewItemContainer";
+import BudgetContainer from "./BudgetContainer";
 
 export const ItemDispatchContext = React.createContext();
 
-
-/* Budget 예산관리 [상위컴포넌트] 
+/* Budget 예산관리 [상위컴포넌트]
  * 작성자 : 양수진
  * 작성일 : 2023.09.12
  */
+
 const BudgetApp = () => {
     const [isAddItem, setIsAddItem] = useState(false);
     const [nextItemId, setNextItemId] = useState(0);
@@ -20,7 +19,6 @@ const BudgetApp = () => {
         if (localItems === null) {
             localStorage.setItem("items", JSON.stringify(items));
             localStorage.setItem("nextItemId", nextItemId);
-
             return;
         }
 
@@ -74,7 +72,6 @@ const BudgetApp = () => {
     return (
         <>
             <ItemDispatchContext.Provider value={[memoizedDispatches, memoizedNextItemId]}>
-                {/* <NewItemContainer />   */}
                 <BudgetContainer items={items} isAddItem={isAddItem} />
             </ItemDispatchContext.Provider>
         </>

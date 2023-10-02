@@ -20,7 +20,7 @@ const MemberHeader = ({ marryDt, loginUserNickname }) => {
     //최근 일정 조회
     const findLatestSchedule = () => {
         axios
-            .get(`http://localhost:8085/latest-schedule/${token.userSeq}`)
+            .get(`${process.env.REACT_APP_API_URL}/latest-schedule/${token.userSeq}`)
             .then((res) => {
                 if (res.data != "") {
                     //최신 일정 날짜 표시 변환

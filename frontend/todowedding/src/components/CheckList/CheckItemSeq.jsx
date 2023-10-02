@@ -28,7 +28,7 @@ const CheckItemSeq = () => {
     // CheckItemSeq에 저장된 항목별 체크리스트 불러오기
     const fetchItems = async () => {
         try {
-            const response = await axios.get(`http://localhost:8085/checkitem/${checkItemSeq}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/checkitem/${checkItemSeq}`);
             setItems(response.data);
         } catch (error) {
             console.error("Checklist items fetching error : ", error);
@@ -47,7 +47,7 @@ const CheckItemSeq = () => {
             memberSeq: userSeq,
         };
         try {
-            const response = await axios.post("http://localhost:8085/todolist", data);
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/todolist`, data);
             alert(`'${item.checkitem_list_contents}' 일정이 Todo List에 추가되었습니다.`);
         } catch (error) {
             console.error("Error adding todo list item : ", error);
@@ -71,7 +71,7 @@ const CheckItemSeq = () => {
         // console.log("checkedContents : ", document.getElementById(e.target.id + "text").style.textDecoration);
 
         if (document.getElementById(e.target.id + "text").style.textDecoration) {
-            console.log("if문 실행");
+            // console.log("if문 실행");
             document.getElementById(e.target.id + "text").style.removeProperty("text-decoration");
             document.getElementById(e.target.id + "text").style.removeProperty("color");
         } else {

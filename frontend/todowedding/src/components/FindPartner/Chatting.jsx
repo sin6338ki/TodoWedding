@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders } from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
  * 작성자 : 신지영
  * 작성일 : 2023.09.05
  */
+
 const Chatting = () => {
     const navigate = useNavigate();
     const { partnerSeq } = useParams();
@@ -26,7 +27,6 @@ const Chatting = () => {
 
     //data 정보가 변경되면 채팅방 입장
     useEffect(() => {
-        console.log("data, ", data);
         enterChat();
     }, [data]);
 
@@ -36,15 +36,10 @@ const Chatting = () => {
         await isAlivedChat();
     };
 
-    useEffect(() => {
-        console.log("chatRoomSeq 변화 확인 : ", chatRoomSeq);
-    }, [chatRoomSeq]);
-
     //채팅방 만드는 이벤트
     const createChat = () => {
-        console.log("createChat 실행!");
         axios
-            .post("http://localhost:8085/chat", data)
+            .post(`${process.env.REACT_APP_API_URL}/chat`, data)
             .then((res) => {
                 let result = res.data;
                 result === 1 && isAlivedChat();
@@ -57,8 +52,8 @@ const Chatting = () => {
     //채팅방 유무 확인 이벤트
     const isAlivedChat = async () => {
         try {
-            const res = await axios.get(`http://localhost:8085/chat/${token.userSeq}/${partnerSeq}`);
-            console.log("isAlivedChat result : ", res.data);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/chat/${token.userSeq}/${partnerSeq}`);
+            // console.log("isAlivedChat result : ", res.data);
             let result = res.data;
             if (result != "none") {
                 setChatRoomSeq(res.data);

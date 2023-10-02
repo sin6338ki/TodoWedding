@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import checkIcon from "../../assets/images/icon/check.png";
 
 /*

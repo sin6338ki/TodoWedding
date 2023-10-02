@@ -51,26 +51,30 @@ const MemberBottomBar = () => {
     );
 
     return (
-        
         <div>
             <>
                 <LightTooltip
                     title={
                         <React.Fragment>
                             버튼을 클릭해 투두웨딩의 <br /> 다양한 기능을 이용해보세요!
-                        </React.Fragment>}
-                        placement="top">
-                        <button className="ModalBtn" type="button" 
-                            onClick={() => {
-                                if (!userSeq) {
-                                    alert("로그인 후 서비스를 이용해주세요");
-                                    nav("/");
-                                    return;
-                                }
-                                setAdd(!add);
-                            }}>
-                            <img src={ModalBtn} className="ModalImage" alt="AddButton" />
-                        </button>
+                        </React.Fragment>
+                    }
+                    placement="top"
+                >
+                    <button
+                        className="ModalBtn"
+                        type="button"
+                        onClick={() => {
+                            if (!userSeq) {
+                                alert("로그인 후 서비스를 이용해주세요");
+                                nav("/");
+                                return;
+                            }
+                            setAdd(!add);
+                        }}
+                    >
+                        <img src={ModalBtn} className="ModalImage" alt="AddButton" />
+                    </button>
                 </LightTooltip>
                 {add && <Modal closeModal={() => setAdd(!add)} />}
             </>
@@ -80,7 +84,11 @@ const MemberBottomBar = () => {
                     <img className="bottom-bar-hover" src={Calendar} alt="Calendar" width="18px" />
                     <span className="text-[7px] mt-1 font-medium">일정관리</span>
                 </Link>
-                <Link to="todowedding/todolist" className="footer-menu-left mr-12 ml-2 mt-1" onClick={handleButtonClick}>
+                <Link
+                    to="todowedding/todolist"
+                    className="footer-menu-left mr-12 ml-2 mt-1"
+                    onClick={handleButtonClick}
+                >
                     <img className="bottom-bar-hover" src={Todolist} alt="Todolist" width="18px" />
                     <span className="text-[7px] mt-1 font-medium">투두리스트</span>
                 </Link>
