@@ -63,8 +63,8 @@ public class KakaoMessageService {
 
       // HttpBody 오브젝트 생성
       JSONObject linkObj = new JSONObject();
-        linkObj.put("web_url", "http://43.202.52.202:3000");
-        linkObj.put("mobile_web_url", "http://43.202.52.202:3000");
+        linkObj.put("web_url", "http://3.36.100.163:3000");
+        linkObj.put("mobile_web_url", "http://3.36.100.163:3000");
       
         //로그인 멤버 닉네임 조회
         String loginNickname = findNickname(loginMemberSeq);
