@@ -5,10 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/*
+/**
  * 지출,수입 각각 식별값,비용,날짜,내용 관련 DTO
- * 작성자 : 서유광
- * 작성일 : 2023.09.18
+ * @author 서유광
+ * @since 2023.09.18
  */
 
 @NoArgsConstructor

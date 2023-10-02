@@ -135,7 +135,7 @@ const TodoList = () => {
                 setCompletedCnt(res.data[1].count);
             }
         } catch (err) {
-            console.log("cntTodoList err : ", err);
+            // console.log("cntTodoList err : ", err);
         }
     };
 
@@ -185,6 +185,7 @@ const TodoList = () => {
                 <div className="mt-[60px] mb-10">
                     {todos.map((todolistContents) => (
                         <Todo
+                            // key 값 수정중 (09.25 >> 삭제 수정)
                             key={todolistContents.todolistSeq}
                             setChangeCheck={setChangeCheck}
                             changeCheck={changeCheck}

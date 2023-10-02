@@ -14,13 +14,12 @@ import com.smhrd.todowedding.model.IncomeDto;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 지출,수입 각각 식별값,비용,날짜,내용 관련 Service
- * 작성자 : 서유광
- * 작성일 : 2023.09.18
+ * @author SMHRD 서유광
+ * @since 2023.09.18
  */
 
-@Slf4j
 @Service
 public class BudgetListService{
 	
@@ -37,6 +36,4 @@ public class BudgetListService{
 
         return result;
     }
-	
-	
 }

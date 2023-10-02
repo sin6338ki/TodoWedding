@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * 업체 정보 수정 DTO
- * 작성자 : 신지영
- * 작성일 : 2023.09.16
+ * @author 신지영
+ * @since 2023.09.16
  */
 
 @AllArgsConstructor

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.smhrd.todowedding.mapper.ChecklistMapper;
 
-/*
+/**
  * 체크리스트 관련 서비스
  * - D-day 체크리스트 조회 
  * 		- 항목 조회
@@ -17,8 +17,8 @@ import com.smhrd.todowedding.mapper.ChecklistMapper;
  * 		- 항목 조회
  * 		- 리스트 조회
  * 
- * 작성자 : 신지영
- * 작성일 : 2023.09.08
+ * @author 신지영
+ * @since 2023.09.08
  */
 
 @Service

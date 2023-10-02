@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.smhrd.todowedding.mapper.PartnerMapper;
 import com.smhrd.todowedding.model.KakaoMapsDto;
-import com.smhrd.todowedding.model.MemberResponseDto;
 import com.smhrd.todowedding.model.PartnerDTO;
 import com.smhrd.todowedding.model.PartnerResponseDto;
 import com.smhrd.todowedding.model.PartnerUpdateDto;
@@ -18,10 +17,11 @@ import com.smhrd.todowedding.model.PartnerUpdateDto;
 import lombok.extern.slf4j.Slf4j;
 
 
-/*
+/**
  * 업체 및 관리자 관련 컨트롤러 
- * 작성 : 서유광
- * 일자 : 2023.09.08
+ * @author 서유광
+ * @since 2023.09.08
+ * 
  * 수정 
  * 	- 전체 partner 불러오기, partnerInfo 조회 기능 추가 (신지영, 2023.09.10, 12)
  *  - 로그인시 조회 항목에 partner_name 추가 (신지영, 2023.09.10)
@@ -41,8 +41,6 @@ public class PartnerService {
 	public Map<String, Object> partnerlogin(PartnerDTO partner) {
 		String partnerId = partner.getPartner_id();
 		String partnerPw = partner.getPartner_pw();
-//        System.out.println("사용자 아이디 "+partnerId);
-//        System.out.println("사용자 패스워드 "+partnerId);
 
 		// 입력 받은 아이디로 데이터베이스에서 파트너 정보를 조회
 		PartnerDTO foundPartner = partnerMapper.partnerLogin(partnerId, partnerPw);
@@ -107,7 +105,6 @@ public class PartnerService {
 	public int checkedSameId(String partnerId) {
 		int checkedSameIdResult = -1;
 		try {
-			
 			if(partnerMapper.checkedSameId(partnerId) == null) {
 				checkedSameIdResult = 1;
 			}else {

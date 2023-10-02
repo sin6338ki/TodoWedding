@@ -1,28 +1,26 @@
 package com.smhrd.todowedding.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.smhrd.todowedding.mapper.TodolistMapper;
-import com.smhrd.todowedding.model.CountTodolist;
 import com.smhrd.todowedding.model.IsCheckedTodolist;
 import com.smhrd.todowedding.model.Todolist;
 import com.smhrd.todowedding.model.TodolistDto;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 투두리스트 관련 서비스
  *  - 등록, 해당 id에 대한 전체조회, 삭제, 수정
  *  - 완료로 수정하기
  *  - 총 개수 / 완료 건수 / 미완료 건수 불러오기
- *  작성자 : 신지영
- *  작성일 : 2023.09.05 
+ *  @author 신지영
+ *  @since 2023.09.05 
  */
+
 @Slf4j
 @Service
 public class TodolistService {

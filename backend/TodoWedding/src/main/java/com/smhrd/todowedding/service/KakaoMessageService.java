@@ -5,11 +5,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +24,15 @@ import com.smhrd.todowedding.mapper.ChecklistMapper;
 import com.smhrd.todowedding.mapper.MarryDateMapper;
 import com.smhrd.todowedding.mapper.MemberMapper;
 import com.smhrd.todowedding.mapper.ScheduleMapper;
-import com.smhrd.todowedding.model.Schedule;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 카카오 메시지 보내기 Service
  *    - D-day 계산 메서드
  *  - 메시지 보내기 메서드
- * 작성자 : 신지영
- * 작성일 : 2023.09.12
+ * @author 신지영
+ * @since 2023.09.12
  */
 
 @Slf4j
@@ -66,15 +63,11 @@ public class KakaoMessageService {
 
       // HttpBody 오브젝트 생성
       JSONObject linkObj = new JSONObject();
-//        linkObj.put("web_url", "http://172.30.1.9:3000");
-//        linkObj.put("mobile_web_url", "http://172.30.1.9:3000");
         linkObj.put("web_url", "http://localhost:3000");
         linkObj.put("mobile_web_url", "http://localhost:3000");
       
         //로그인 멤버 닉네임 조회
         String loginNickname = findNickname(loginMemberSeq);
-        
-        
         String oneLineMessage = "";
         
         if(dDay == 9999) {
@@ -187,6 +180,7 @@ public class KakaoMessageService {
          log.info("dateFormat : {}", scheduleDateFormat);
          log.info("gettime of schedule : {}", scheduleDateFormat);
          log.info("gettime of today : {}", now);
+         
          //오늘 날짜 
          Period diffDate = Period.between(now, scheduleDateFormat);
          log.info("diffDate : {}", diffDate);

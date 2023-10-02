@@ -1,15 +1,13 @@
 package com.smhrd.todowedding.model;
 
-import org.apache.ibatis.ognl.ASTThisVarRef;
-
-import lombok.Builder;
 import lombok.Data;
 
-/*
+/**
  * 카카오에 로그인한 사용자 정보 저장
- * 작성 : 서유광
- * 일자 : 2023.09.06
+ * @author 서유광
+ * @since 2023.09.06
  */
+
 @Data
 public class KakaoProfile {
 
@@ -20,9 +18,7 @@ public class KakaoProfile {
 
 	@Data
 	public class Properties {
-
 		public String nickname;
-
 	}
 
 	@Data
@@ -44,14 +40,8 @@ public class KakaoProfile {
 
 		@Data
 		public class Profile {
-
 			public String nickname;
-			
-
 		}
 	}
-	
-	
-
 	
 }

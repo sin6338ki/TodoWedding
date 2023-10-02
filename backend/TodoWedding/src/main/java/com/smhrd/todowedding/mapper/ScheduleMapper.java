@@ -12,11 +12,10 @@ import org.json.simple.JSONObject;
 
 import com.smhrd.todowedding.model.Schedule;
 
-
-/*
+/**
  * 스케쥴 관련 mapper
- * 작성자 : 신지영
- * 작성일 : 2023.09.06
+ * @author 신지영
+ * @since 2023.09.06
  */
 
 @Mapper

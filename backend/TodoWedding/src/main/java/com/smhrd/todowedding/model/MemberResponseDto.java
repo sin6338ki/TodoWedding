@@ -2,15 +2,17 @@ package com.smhrd.todowedding.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-/*
+/**
  * Member 정보 조회 ResponseDTO
- * 작성자 : 신지영
- * 작성일 : 2023.09.10
+ * @author 신지영
+ * @since 2023.09.10
  */
 
 @AllArgsConstructor
 @Getter
+@NoArgsConstructor
 public class MemberResponseDto {
 	private Long member_seq;
 	private String nickname;

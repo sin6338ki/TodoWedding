@@ -26,10 +26,10 @@ import com.smhrd.todowedding.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 카카오 로그인 컨트롤러
- * 작성 : 서유광
- * 일자 : 2023.09.05
+ * @author 서유광
+ * @since 2023.09.05
  * 수정
  * 	- 전체 회원 정보 불러오기 기능 추가 (신지영, 2023.09.10)
  *  - 카카오톡 나에게 보내기 (예약) 기능 추가 (신지영, 2023.09.12)
@@ -37,7 +37,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 @RestController
 public class KakaoLoginController {
 	
@@ -70,7 +69,6 @@ public class KakaoLoginController {
 		return KakaoData;
 	}
 	
-	
 	// 리프레시 토큰 검증 로직
     // 검증에 성공하면 새로운 액세스 토큰 발급
 	@PostMapping("/member/refresh")
@@ -83,15 +81,13 @@ public class KakaoLoginController {
 	    response.put("accessToken", newAccessToken);
 	    
 	    return ResponseEntity.ok(response);
-	}
-	
+	}	
 	
 	// 전체 회원 조회 
 	@GetMapping("/member")
 	public List<MemberResponseDto> findAllMember() {
 		return memberService.findAllMember();
 	}
-	
 	
 	// 회원 정보 전부 삭제
 	@DeleteMapping("/member/delete")
@@ -108,7 +104,6 @@ public class KakaoLoginController {
 	
 	//예약 메시지 보내기 - D-day 안내 메시지
 	@Scheduled(cron = "0 0 10 * * *", zone = "Asia/Seoul")
-//	@Scheduled(cron = "15 * * * * *", zone = "Asia/Seoul")
 	public void dDayMessageSendRun() throws Exception {
 
 		log.info("d-day 메시지 보내기 스케쥴러 실행 : {}", accessToken);
@@ -120,9 +115,7 @@ public class KakaoLoginController {
 	}
 	
 	//예약 메시지 보내기 - 하루 남은, 당일 일정 안내 메시지
-    	@Scheduled(cron = "10 0 10 * * *", zone = "Asia/Seoul")
-	// 10초 마다 메세지 오게 설정하는 코드가 아래 코드여서 아래꺼 124번 풀고 동영상찍기  
-//	@Scheduled(cron = "10 * * * * *", zone = "Asia/Seoul")
+	@Scheduled(cron = "10 0 10 * * *", zone = "Asia/Seoul")
 	public void ScheduleMessageSendRun() throws Exception {
 		log.info("하루 남은 일정 알림 메시지 보내기 스케쥴러 실행 : {}", accessToken);
 		

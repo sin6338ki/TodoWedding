@@ -24,7 +24,7 @@ import com.smhrd.todowedding.service.ScheduleService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 일정 관련 컨트롤러
  * - 해당 유저의 해당 월에 대한 일정 조회 (완)
  * - 해당 유저의 전체 일정 조회 (완)
@@ -36,12 +36,11 @@ import lombok.extern.slf4j.Slf4j;
  * 
  * 성공시 1, 실패시 0, 서버 문제시 -1 return / 조회 결과 제외
  * 
- * 작성자 : 신지영
- * 작성일 : 2023.09.06
+ * @author 신지영
+ * @since 2023.09.06
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 @RestController
 public class ScheduleController {
 	

@@ -1,16 +1,15 @@
 package com.smhrd.todowedding.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/*
+/**
  * 기업회원 정보
- * 작성자 : 서유광
- * 작성일 : 2023.09.08
+ * @author 서유광
+ * @since 2023.09.08
  * 수정 
  * 	- 회원가입용, 회원확인용 Builder 추가
 */
@@ -57,7 +56,5 @@ public class PartnerDTO {
 		this.partner_address = partner_address;
 		this.partner_code = partner_code;
 	}
-	
-	
 
 }

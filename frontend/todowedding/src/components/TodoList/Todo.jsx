@@ -45,7 +45,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
     };
 
     useEffect(() => {
-        //console.log("todolistContents (todo_내역불러오기) ", todolistContents);
+        // console.log("todolistContents (todo_내역불러오기) ", todolistContents);
         //하나의 투두리스트 항목을 불러왔을 때 체크, 미체크 여부 판단해서 적용하기
         todolistContents.todolist_completed === "Y" ? setIsChecked(true) : setIsChecked(false);
     }, []);
@@ -71,7 +71,7 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
 
     useEffect(() => {
         toggleComplete;
-        // console.log("todolistContents", todolistContents.todolistSeq);
+        // console.log("todolistContents", todolistContents);
     }, [isChecked]);
 
     return (

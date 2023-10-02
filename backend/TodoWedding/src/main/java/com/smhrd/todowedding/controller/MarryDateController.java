@@ -14,14 +14,13 @@ import com.smhrd.todowedding.service.KakaoMessageService;
 import com.smhrd.todowedding.service.MarryDateService;
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 결혼식 D-day 컨트롤러 - 등록, 조회
- * 작성 : 신지영
- * 일자 : 2023.09.04
+ * @author 신지영
+ * @since 2023.09.04
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 @RestController
 public class MarryDateController {
 

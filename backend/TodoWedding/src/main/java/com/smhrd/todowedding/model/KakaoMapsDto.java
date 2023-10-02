@@ -5,10 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/*
+/**
  * 카카오맵에 표시할 마커 관련 DTO
- * 작성자 : 서유광
- * 작성일 : 2023.09.12
+ * @author 서유광
+ * @since 2023.09.12
  */
 
 @NoArgsConstructor

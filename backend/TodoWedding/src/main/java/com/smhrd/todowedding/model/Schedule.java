@@ -4,10 +4,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/*
+/**
  * 스케줄 추가 DTO
- * 작성자 : 신지영
- * 작성일 : 2023.09.06
+ * @author 신지영
+ * @since 2023.09.06
  */
 
 @Getter

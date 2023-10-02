@@ -22,13 +22,12 @@ import com.smhrd.todowedding.service.IncomeService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/* 예산관리 컨트롤러
- * 작성 : 서유광
- * 일자 : 2023.09.11
+/** 예산관리 컨트롤러
+ * @author 서유광
+ * @since 2023.09.11
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 @RestController
 public class BudgetController {
 
@@ -102,7 +101,6 @@ public class BudgetController {
 			return new ResponseEntity<>("삭제 실패", HttpStatus.NOT_FOUND);
 		}
 	}
-	
 	
 	// 수입관리 추가 (insert)
 	@PostMapping("/income/insert")

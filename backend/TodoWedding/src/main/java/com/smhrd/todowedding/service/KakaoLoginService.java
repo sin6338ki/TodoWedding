@@ -1,6 +1,5 @@
 package com.smhrd.todowedding.service;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +8,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -23,13 +21,12 @@ import com.smhrd.todowedding.model.KakaoProfile;
 import com.smhrd.todowedding.model.Member;
 import com.smhrd.todowedding.model.OAuthToken;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * KakaoLogin 서비스
- * 작성자 : 서유광
- * 작성일 : 2023.09.06
+ * @author 서유광
+ * @since 2023.09.06
  */
 
 @Slf4j
@@ -54,10 +51,8 @@ public class KakaoLoginService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
-//		params.add("redirect_uri", "http://172.30.1.9:3000/auth/kakao/callback");
 		params.add("redirect_uri", "http://localhost:3000/auth/kakao/callback");
 		params.add("code", code);
-		
 
 		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
@@ -68,7 +63,7 @@ public class KakaoLoginService {
 		log.info("토큰 요청 완료" + response.getBody());
 
 		ObjectMapper objectMapper = new ObjectMapper();
-//		OAuthToken oauthToken = null;
+
 		try {
 			oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
 		} catch (JsonMappingException e) {
@@ -109,7 +104,6 @@ public class KakaoLoginService {
 			e.printStackTrace();
 		}
 		
-		
 		log.info("닉네임 : " + kakaoProfile.getProperties().nickname);
 		log.info("카카오 이메일 : " + kakaoProfile.getKakao_account().email);
 		log.info("성별 : " + kakaoProfile.getKakao_account().getGender());
@@ -134,7 +128,6 @@ public class KakaoLoginService {
 			 // DB에 저장하기 위해 매퍼 메서드 호출
 			kakaoLoginMapper.kakaoUserData(member);
 		}
-		
 		
 		// 해당 사용자의 seq, nickname 보내기
 		Map<String, Object> KakaoData = new HashMap<>();

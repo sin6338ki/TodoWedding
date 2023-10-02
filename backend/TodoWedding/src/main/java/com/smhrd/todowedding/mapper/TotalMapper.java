@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.Update;
 
 import com.smhrd.todowedding.model.TotalDto;
 
-/*
+/**
  * 금액 총합, 예상 비용 관련 매퍼
  *  - tw_budget 테이블에 budget_cost(예상 지출액) 총합 , budget_expense_cost(지출액) 총합
  *  - tw_income 테이블에 income_cost(수입액)
  *  - tw_marrydate 테이블에 total_budget(결혼 예상금액)
- *  작성자 : 서유광
- *  작성일 : 2023.09.13
+ *  @author 서유광
+ *  @since 2023.09.13
  */
 
 @Mapper

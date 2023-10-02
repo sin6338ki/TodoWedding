@@ -14,10 +14,10 @@ import com.smhrd.todowedding.service.ChatService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 웹소켓 메시지 핸들링 컨트롤러
- * 작성자 : 신지영
- * 작성일 : 2023.09.07
+ * @author 신지영
+ * @since 2023.09.07
  * 수정 
  * 	- 입장, 퇴장 메시지 기능 추가 (2023.09.22 신지영)
  */

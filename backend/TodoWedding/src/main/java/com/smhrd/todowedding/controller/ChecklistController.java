@@ -13,7 +13,7 @@ import com.smhrd.todowedding.service.ChecklistService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 체크리스트 관련 컨트롤러
  * - D-day 체크리스트 조회 
  * 		- 항목 조회
@@ -22,12 +22,12 @@ import lombok.extern.slf4j.Slf4j;
  * 		- 항목 조회
  * 		- 리스트 조회
  * 
- * 작성자 : 신지영
- * 작성일 : 2023.09.08
+ * @author 신지영
+ * @since 2023.09.08
  */
+
 @Slf4j
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 public class ChecklistController {
 	
 	@Autowired
@@ -59,6 +59,4 @@ public class ChecklistController {
 	public List<JSONObject> findDayChecklistContents(@PathVariable(name="checkdaySeq") Long checkdaySeq){
 		return checklistService.findDayChecklistContents(checkdaySeq);
 	}
-	
-
 }

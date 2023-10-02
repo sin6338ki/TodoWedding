@@ -13,20 +13,18 @@ import com.smhrd.todowedding.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 회원 관련 컨트롤러
- * 작성 : 신지영
- * 일자 : 2023.09.18
+ * @author 신지영
+ * @since 2023.09.18
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 @RestController
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
-	
 	
 	//회원 검색
 	@GetMapping(value="admin/member")

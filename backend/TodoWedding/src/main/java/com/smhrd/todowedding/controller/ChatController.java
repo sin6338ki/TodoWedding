@@ -17,17 +17,16 @@ import com.smhrd.todowedding.service.ChatService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 채팅 기능 관련 컨트롤러
  * - 채팅방 생성(완), 전체 채팅방 조회(완), 특정 채팅방 조회(완), 채팅방 삭제(완)
  * - 전체 채팅 내역 조회 (하나의 채팅방에 대한), 채팅 내용 저장(완 -> websocketController)
- * 작성자 : 신지영
- * 작성일 : 20203.09.05
+ * @author 신지영
+ * @since 20203.09.05
  */
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 public class ChatController {
 
 	@Autowired

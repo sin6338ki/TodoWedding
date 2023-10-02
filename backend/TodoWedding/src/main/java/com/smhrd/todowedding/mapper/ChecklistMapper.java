@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.json.simple.JSONObject;
 
-/*
+/**
  * 체크리스트 관련 mapper
  * - D-day 체크리스트 조회 
  * 		- 항목 조회
@@ -15,8 +15,8 @@ import org.json.simple.JSONObject;
  * 		- 항목 조회
  * 		- 리스트 조회
  * 
- * 작성자 : 신지영
- * 작성일 : 2023.09.08
+ * @author 신지영
+ * @since 2023.09.08
  */
 
 @Mapper

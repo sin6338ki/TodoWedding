@@ -11,10 +11,10 @@ import org.json.simple.JSONObject;
 import com.smhrd.todowedding.model.Chatroom;
 import com.smhrd.todowedding.model.Chatting;
 
-/*
+/**
  * 채팅 관련 Mapper
- * 작성자 : 신지영
- * 작성일 : 2023.09.07
+ * @author 신지영
+ * @since 2023.09.07
  */
 
 @Mapper

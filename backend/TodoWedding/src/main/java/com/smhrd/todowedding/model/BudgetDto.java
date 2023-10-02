@@ -6,14 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
-/*
+/**
  * 지출 관련 DTO
- * 작성자 : 서유광
- * 작성일 : 2023.09.11
+ * @author 서유광
+ * @since 2023.09.11
  */
-
 
 @NoArgsConstructor
 @Getter
@@ -33,6 +30,5 @@ public class BudgetDto {
 	public BudgetDto(long member_seq) {
 		this.member_seq = member_seq;
 	}
-	
 
 }

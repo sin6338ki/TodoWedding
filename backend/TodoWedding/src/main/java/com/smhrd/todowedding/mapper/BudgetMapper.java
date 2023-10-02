@@ -11,13 +11,12 @@ import org.apache.ibatis.annotations.Update;
 import com.smhrd.todowedding.model.BudgetDto;
 import com.smhrd.todowedding.model.IncomeDto;
 
-/*
+/**
  * 예산 관련 Mapper
- * 작성자 : 서유광
- * 작성일 : 2023.09.11
+ * @author 서유광
+ * @since 2023.09.11
  */
 
-// 예산 관리 매퍼
 @Mapper
 public interface BudgetMapper {
 
@@ -52,6 +51,5 @@ public interface BudgetMapper {
     // 수입 관리 정보 조회
     @Select("SELECT income_seq, income_dt, income_cost, income_contents, member_seq FROM tw_income where member_seq= #{member_seq} ")
     public List<IncomeDto> selectIncome(IncomeDto income);
-    
-	
+   
 }

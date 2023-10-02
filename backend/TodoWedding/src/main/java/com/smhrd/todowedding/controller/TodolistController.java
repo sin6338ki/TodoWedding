@@ -21,16 +21,15 @@ import com.smhrd.todowedding.service.TodolistService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 투두리스트 관련 컨틀롤러
  *  - 등록, 해당 id에 대한 전체조회, 삭제, 수정
  *  - 총 개수 / 완료 건수 / 미완료 건수 불러오기
- *  작성자 : 신지영
- *  작성일 : 2023.09.05 
+ *  @author 신지영
+ *  @since 2023.09.05 
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 @RestController
 public class TodolistController {
 
@@ -40,6 +39,7 @@ public class TodolistController {
 	//해당 유저에 대하여 투두리스트 1개 추가하기
 	@PostMapping(value="todolist")
 	public int addTodoList(@RequestBody TodolistDto todoListDto) {
+		log.info("todolist 추가 실행, {}", todoListDto);
 		//성공시 1 리턴, 실패시 0, 백엔드 에러 발생시 -1 리턴
 		return todolistService.addTodoList(todoListDto);
 	}

@@ -13,16 +13,16 @@ import com.smhrd.todowedding.model.TotalDto;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
-
-금액 총합, 예상 비용 관련 서비스
-tw_budget 테이블에 budget_cost(예상 지출액) 총합 , budget_expense_cost(지출액) 총합
-tw_income 테이블에 income_cost(수입액)
-tw_marrydate 테이블에 total_budget(결혼 예상금액)
-작성자 : 서유광
-작성일 : 2023.09.13 
-
-* 09.19 유광 : 결혼 총 예상 비용 update,insert,select 추가
+/**
+* 금액 총합, 예상 비용 관련 서비스
+* tw_budget 테이블에 budget_cost(예상 지출액) 총합 , budget_expense_cost(지출액) 총합
+* tw_income 테이블에 income_cost(수입액)
+* tw_marrydate 테이블에 total_budget(결혼 예상금액)
+* @author 서유광
+* @since 2023.09.13 
+* 
+* 수정
+* 	- 09.19 유광 : 결혼 총 예상 비용 update,insert,select 추가
 */
 
 @Slf4j
@@ -67,8 +67,6 @@ public class TotalService {
 		} catch (Exception e) {
 			result.put("income_total_cost", "오류: " + e.getMessage());
 		}
-
-
 		return result;
 	}
 	

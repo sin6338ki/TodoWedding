@@ -8,11 +8,12 @@ import org.apache.ibatis.annotations.Update;
 import com.smhrd.todowedding.model.MarryDate;
 import com.smhrd.todowedding.model.MarryDateDto;
 
-/*
+/**
  * 결혼식 디데이 설정 관련 mapper
- * 작성자 : 신지영
- * 작성일 : 2023.09.04
+ * @author 신지영
+ * @since 2023.09.04
  */
+
 @Mapper
 public interface MarryDateMapper {
 	
@@ -27,4 +28,5 @@ public interface MarryDateMapper {
 	// memberSeq에 대한 marryDate 수정하기
 	@Update("UPDATE tw_marrydate SET marry_dt = #{marryDt} where member_seq = #{memberSeq}")
 	public int updateMarryDate(MarryDateDto marrayDataDto);
+	
 }

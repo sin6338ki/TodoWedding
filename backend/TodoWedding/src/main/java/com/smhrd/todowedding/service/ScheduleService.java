@@ -28,11 +28,12 @@ import com.smhrd.todowedding.model.Schedule;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 스케쥴 관련 서비스
- * 작성자 : 신지영
- * 작성일 : 2023.09.06
+ * @author 신지영
+ * @since 2023.09.06
  */
+
 @Slf4j
 @Service
 public class ScheduleService {
@@ -153,7 +154,6 @@ public class ScheduleService {
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
 		params.add("redirect_uri", "http://localhost:3000/auth/kakaoCal/callback");
 		params.add("code", code);
-		
 
 		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
@@ -205,7 +205,6 @@ public class ScheduleService {
 			e.printStackTrace();
 		}
 		
-		
 		log.info("닉네임 : " + kakaoProfile.getProperties().nickname);
 		log.info("카카오 이메일 : " + kakaoProfile.getKakao_account().email);
 		log.info("성별 : " + kakaoProfile.getKakao_account().getGender());
@@ -230,7 +229,6 @@ public class ScheduleService {
 			 // DB에 저장하기 위해 매퍼 메서드 호출
 			kakaoLoginMapper.kakaoUserData(member);
 		}
-		
 		
 		// 해당 사용자의 seq, nickname 보내기
 		Map<String, Object> KakaoData = new HashMap<>();

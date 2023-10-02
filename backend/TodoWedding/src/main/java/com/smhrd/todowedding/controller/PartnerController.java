@@ -27,9 +27,10 @@ import com.smhrd.todowedding.service.PartnerService;
 import lombok.extern.slf4j.Slf4j;
 
 
-/* 업체 및 관리자 관련 컨트롤러 
- * 작성 : 서유광
- * 일자 : 2023.09.08
+/**
+ * 업체 및 관리자 관련 컨트롤러 
+ * @author 서유광
+ * @since 2023.09.08
  * 수정 
  * 	- 기업 전체 조회 기능 추가 (신지영, 2023.09.12)
  *  - 기업 회웥탈퇴, 중복 아이디 체크, 1개 업체 정보 조회 기능 추가 (신지영, 2023.09.15)
@@ -38,7 +39,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.30.1.9:3000", "http://3.36.116.165:3000"})
 @RestController
 public class PartnerController {
 
@@ -84,7 +84,6 @@ public class PartnerController {
 	public ResponseEntity<?> deletePartner(@PathVariable Long partnerSeq){
 		String deletePartnerResult = partnerService.deletePartner(partnerSeq);
 		return new ResponseEntity<>(deletePartnerResult, HttpStatus.OK);
-		
 	}
 	
 	// 카카오맵에 표시할 업체 데이터 프론트로 보내기 (위치 정보)

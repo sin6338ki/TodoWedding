@@ -2,14 +2,17 @@ package com.smhrd.todowedding.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-/*
+/**
  * 채팅 메시지 DTO
- * 작성자 : 신지영
- * 작성일 : 2023.09.05
+ * @author 신지영
+ * @since 2023.09.05
  */
+
 @AllArgsConstructor
 @Getter
+@NoArgsConstructor
 public class ChatMessageDto {
 	
 	private Long chattingSeq;

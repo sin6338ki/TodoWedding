@@ -1,7 +1,7 @@
 package com.smhrd.todowedding.service;
+
 import java.util.List;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +9,12 @@ import com.smhrd.todowedding.mapper.KakaoLoginMapper;
 import com.smhrd.todowedding.model.MemberResponseDto;
 
 import com.smhrd.todowedding.mapper.MemberMapper;
-import com.smhrd.todowedding.model.Member;
 
-import lombok.extern.slf4j.Slf4j;
-
-
-/*
+/**
  * 카카오 로그인 성공후에 투두웨딩 웹에서 관리하는 서비스
- * 작성 : 서유광
- * 일자 : 2023.09.08
+ * @author 서유광
+ * @since 2023.09.08
+ * 
  * 수정 
  *  - 회원 정보 관련 서비스 기능 추가 (신지영, 2023.09.10)
  *  - 회원 검색 기능 추가 (신지영, 2023.09.18)
@@ -31,7 +28,6 @@ public class MemberService {
 	
 	@Autowired
 	private MemberMapper mapper;
-
 	
 	public List<MemberResponseDto> findAllMember(){
 		List<MemberResponseDto> allMemberList = null;
@@ -56,6 +52,7 @@ public class MemberService {
 	            mapper.deleteTodolist(member_seq);
 	           
 	            return "회원 정보 삭제 완료";
+	            
 	        } catch (Exception e) { 
 	        	return "회원 정보 삭제 실패: " + e.getMessage();
 	        }
@@ -71,6 +68,6 @@ public class MemberService {
 		}
 		return searchMemberList;
 	}
-
-	}
+	
+}
 

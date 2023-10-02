@@ -4,14 +4,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-/*
+/**
  * marryDate DTO
- * 작성자 : 신지영
- * 작성일 : 2023.09.04
+ * @author 신지영
+ * @since 2023.09.04
  */
+
 @AllArgsConstructor
 @Getter
+@NoArgsConstructor
 public class MarryDateDto {
 
 	//데이터 포맷 변환

@@ -11,10 +11,10 @@ import com.smhrd.todowedding.model.IncomeDto;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  * 수입 관련 Service
- * 작성자 : 서유광
- * 작성일 : 2023.09.11
+ * @author 서유광
+ * @since 2023.09.11
  */
 
 @Slf4j

@@ -96,7 +96,7 @@ const Main = () => {
     //D-Day 체크리스트 전체 조회
     const getDayChecklist = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}5/daychecklist`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/daychecklist`);
             setChecklist(response.data);
             // console.log("D-Day 체크리스트 : ", response.data);
         } catch (error) {

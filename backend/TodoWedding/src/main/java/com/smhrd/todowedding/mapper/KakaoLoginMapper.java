@@ -10,11 +10,10 @@ import com.smhrd.todowedding.model.KakaoProfile;
 import com.smhrd.todowedding.model.Member;
 import com.smhrd.todowedding.model.MemberResponseDto;
 
-
-/*
+/**
  * 카카오에 로그인 매퍼
- * 작성 : 서유광
- * 일자 : 2023.09.06
+ * @author 서유광
+ * @since 2023.09.06
  * 수정
  * 	- 전체 회원 정보 조회 추가 (신지영, 2023.09.10)
  *  - 회원 검색 기능 추가 (신지영, 2023.09.18)

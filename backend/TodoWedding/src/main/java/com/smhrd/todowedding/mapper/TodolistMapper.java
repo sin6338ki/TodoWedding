@@ -13,11 +13,12 @@ import com.smhrd.todowedding.model.IsCheckedTodolist;
 import com.smhrd.todowedding.model.Todolist;
 import com.smhrd.todowedding.model.TodolistDto;
 
-/*
+/**
  * 투두리스트 관련 mapper
- * 작성자 : 신지영
- * 작성일 : 2023.09.05
+ * @author 신지영
+ * @sisnce 2023.09.05
  */
+
 @Mapper
 public interface TodolistMapper {
 
