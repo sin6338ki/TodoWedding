@@ -55,8 +55,7 @@ const Mypage = () => {
         }
     };
 
-    const logoutURL =
-        "https://kauth.kakao.com/oauth/logout?client_id=05e6f6ac6b8cd6cf3b1ec2a9ca6542de&logout_redirect_uri=http://localhost:3000/auth/kakao/logout";
+    const logoutURL = process.env.REACT_APP_LOGOUT_URL;
 
     return (
         <div className="Login-Page" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
