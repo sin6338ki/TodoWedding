@@ -1,4 +1,9 @@
-import axios from "axios";
+/**
+ * admin page - dashboard
+ * 사용자 성별, 연령대, 업체 종류 통계 그래프
+ * 작성자 : 신지영
+ */
+
 import React from "react";
 import GenderChart from "./GenderChart";
 import AgeChart from "./AgeChart";

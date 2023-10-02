@@ -26,7 +26,6 @@ const PartnerInfo = () => {
 
     useEffect(() => {
         setPartnerSeq(location.state.partnerSeq);
-        console.log("partnerSeq : ", partnerSeq);
         //업체 정보 조회
         findPartnerInfo(partnerSeq);
     }, [location, partnerSeq]);
@@ -34,9 +33,8 @@ const PartnerInfo = () => {
     //업체 정보 조회 메서드
     const findPartnerInfo = (partnerSeq) => {
         axios
-            .get(`http://localhost:8085/partner/info/${partnerSeq}`)
+            .get(`${process.env.REACT_APP_API_URL}/partner/info/${partnerSeq}`)
             .then((res) => {
-                console.log("업체 정보 조회 result : ", res.data);
                 setPartnerInfo(res.data);
             })
             .catch((err) => {
@@ -71,9 +69,8 @@ const PartnerInfo = () => {
     //회원 정보 업데이트
     const updatePartnerInfo = () => {
         axios
-            .put(`http://localhost:8085/partner`, partnerUpdateDto)
+            .put(`${process.env.REACT_APP_API_URL}/partner`, partnerUpdateDto)
             .then((res) => {
-                console.log("기업 회원 정보 update response", res.data);
                 alert("회원 정보 수정이 완료되었습니다.!");
                 navigate("/todowedding/admin");
             })
@@ -86,7 +83,7 @@ const PartnerInfo = () => {
     //업체 정보 삭제
     const deletePartner = () => {
         axios
-            .delete(`http://localhost:8085/partner/${partnerSeq}`)
+            .delete(`${process.env.REACT_APP_API_URL}/partner/${partnerSeq}`)
             .then((res) => {
                 console.log("deletepartner response", res.data);
                 if (res.data === "success") {

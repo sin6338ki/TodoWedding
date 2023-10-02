@@ -23,7 +23,7 @@ const MarryDate = () => {
     useEffect(() => {
         const fetchMarryDate = async () => {
             try {
-                const response = await axios.get(`http://localhost:8085/marrydate/${userSeq}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/marrydate/${userSeq}`);
                 if (response.data) {
                     setMarryDate(response.data);
                     setHasMarryDate(true); // 등록된 결혼 예정일이 있다면 hasMarryData를 true로 설정
@@ -44,13 +44,13 @@ const MarryDate = () => {
 
             if (hasMarryDate) {
                 // 등록된 결혼예정일이 있으면 업데이트 호출
-                response = await axios.post(`http://localhost:8085/marrydate/update`, {
+                response = await axios.post(`${process.env.REACT_APP_API_URL}/marrydate/update`, {
                     marryDt: marryDate,
                     memberSeq: userSeq,
                 });
             } else {
                 // 등록된 결혼예정일이 없으면 등록하기 호출
-                response = await axios.post(`http://localhost:8085/marrydate`, {
+                response = await axios.post(`${process.env.REACT_APP_API_URL}/marrydate`, {
                     marryDt: marryDate,
                     memberSeq: userSeq,
                 });
@@ -76,7 +76,7 @@ const MarryDate = () => {
                         type="date"
                         value={marryDate}
                         onChange={(e) => setMarryDate(e.target.value)}
-                        style={{width:"50%"}}
+                        style={{ width: "50%" }}
                     />
                 </div>
                 <div className="pl-5">

@@ -16,8 +16,16 @@ const AgeChart = ({ twentyCnt, thirtyCnt, fourtyCnt }) => {
     const COLORS = ["#FFDB61", "#FFB7B7", "#BAB7FF", "#94f2ce"];
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', height: '100px', marginLeft:"-10%", marginBottom:"40%"}}>
-            <PieChart width={370} height={220} style={{marginLeft:"12%"}}>
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                height: "100px",
+                marginLeft: "-10%",
+                marginBottom: "40%",
+            }}
+        >
+            <PieChart width={370} height={220} style={{ marginLeft: "12%" }}>
                 <Legend layout="vertical" verticalAlign="middle" align="left-bottom" />
                 <Pie
                     dataKey="value"

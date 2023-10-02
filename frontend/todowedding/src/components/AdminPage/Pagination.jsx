@@ -1,3 +1,8 @@
+/**
+ * admin page - 업체리스트 페이징 처리
+ * 작성자 : 신지영
+ */
+
 import React, { useEffect, useState } from "react";
 import PaginationComp from "react-bootstrap/Pagination";
 
@@ -7,13 +12,10 @@ const Pagination = ({ total, limits, page, setPage }) => {
     let items = [];
 
     const moveToPage = (e) => {
-        console.log("moveToPage key : ", e.target.innerText);
         setPage(e.target.innerText);
     };
 
     useEffect(() => {
-        // console.log("total : ", total);
-        // console.log("numPages : ", numPages);
         setActive(page);
     }, [total, numPages, page]);
 

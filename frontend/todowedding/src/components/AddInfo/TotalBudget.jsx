@@ -26,7 +26,7 @@ const TotalBudget = () => {
         const fetchTotalBudget = async () => {
             try {
                 //백엔드로 총 예산 조회 요청 보내기
-                const response = await axios.get(`http://localhost:8085/totalbudget/select/${userSeq}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/totalbudget/select/${userSeq}`);
                 if (response.data) {
                     setTotalBudget(response.data.total_budget);
                     setHasTotalBudget(true);
@@ -46,13 +46,13 @@ const TotalBudget = () => {
             let response;
             if (hasTotalBudget) {
                 //이미 등록된 총 예산이 있는 경우 수정 API 호출하기
-                response = await axios.post("http://localhost:8085/totalbudget/update", {
+                response = await axios.post(`${process.env.REACT_APP_API_URL}/totalbudget/update`, {
                     total_budget: totalBudget,
                     member_seq: userSeq,
                 });
             } else {
                 //등록된 총 예산이 없는 경우 등록 API 호출하기
-                response = await axios.post("http://localhost:8085/totalbudget/insert", {
+                response = await axios.post(`${process.env.REACT_APP_API_URL}/totalbudget/insert`, {
                     total_budget: totalBudget,
                     member_seq: userSeq,
                 });
@@ -80,15 +80,15 @@ const TotalBudget = () => {
                         onChange={(e) => setTotalBudget(e.target.value)}
                         placeholder="총 예산을 입력해 주세요"
                         className="text-center border border-gray-300 rounded-md p-2"
-                        style={{width:"70%"}}
-                    />  원
+                        style={{ width: "70%" }}
+                    />{" "}
+                    원
                 </div>
                 <div className="pl-5">
                     <button className="marrydate-btn" type="submit">
                         {hasTotalBudget ? "수정" : "등록"}
                     </button>
                 </div>
-
             </form>
         </div>
     );

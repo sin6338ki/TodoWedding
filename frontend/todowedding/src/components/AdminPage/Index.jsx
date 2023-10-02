@@ -3,6 +3,7 @@
  * 작성자 : 신지영
  * 작성일 : 2023.09.17
  */
+
 import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -50,7 +51,7 @@ const Index = () => {
 
     //Admin 계정 여부 확인
     const isAdmin = () => {
-        axios.get(`http://localhost:8085/admin/${token.userSeq}`).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/${token.userSeq}`).then((res) => {
             if (res.data != "Y") {
                 alert("관리자 계정이 아닙니다. 관리자 계정으로 로그인 후 접속해 주세요.");
                 navigate("/");
@@ -62,9 +63,8 @@ const Index = () => {
     //전체 멤버 조회
     const findAllMember = () => {
         axios
-            .get("http://localhost:8085/member")
+            .get(`${process.env.REACT_APP_API_URL}/member`)
             .then((res) => {
-                console.log("전체 멤버 조회", res.data);
                 setMembers(res.data);
             })
             .catch((err) => {
@@ -75,17 +75,14 @@ const Index = () => {
     //전체 업체 조회
     const findAllPartner = () => {
         axios
-            .get("http://localhost:8085/partner")
+            .get(`${process.env.REACT_APP_API_URL}/partner`)
             .then((res) => {
-                console.log("전체 업체 조회", res.data);
                 setPartners(res.data);
                 setTotal(res.data.length);
             })
             .catch((err) => {
                 console.log("전체 업체 조회 에러", err);
             });
-
-        console.log("total : ", total);
     };
 
     //User 성별 조회
@@ -143,9 +140,7 @@ const Index = () => {
     //파트너 정보, 유저 정보 불러왔을 때 chart 정보 이벤트 실행
     useEffect(() => {
         chartMember();
-        console.log("Member Chart Cnt (male, female) : ", maleCnt, femaleCnt);
         chartPartner();
-        console.log("Partner Chart Cnt (hall, studio) : ", hallCnt, studioCnt);
         chartAgeMember();
     }, [partners, members]);
 

@@ -20,13 +20,10 @@ const PartnerList = ({ partners, setPartners, findAllPartner, total }) => {
     //업체검색
     const searchPartner = () => {
         const input = document.getElementById("searchPartnerInput").value;
-        console.log("input : ", input);
         axios
-            .get(`http://localhost:8085/admin/partner?keyword=${input}`)
+            .get(`${process.env.REACT_APP_API_URL}/admin/partner?keyword=${input}`)
             .then((res) => {
-                console.log("업체 검색 response : ", res.data);
                 setPartners(res.data);
-
                 document.getElementById("searchPartnerInput").value = "";
             })
             .catch((err) => {

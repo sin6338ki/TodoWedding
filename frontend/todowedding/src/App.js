@@ -13,7 +13,7 @@
  *  - window.scrollTo 추가 (서현록, 2023.09.27)
  */
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./tailwind.css";
 import "./index.css";
@@ -145,7 +145,7 @@ function AppContent() {
                     <BottomBar />
                 </div>
                 {/* 웹 이미지 */}
-                <div style={{ backgroundColor: "#F8FAF9", height: "100%"}} className="web-image">
+                <div style={{ backgroundColor: "#F8FAF9", height: "100%" }} className="web-image">
                     <img src={MarginImage} alt="margin-image" style={{ height: "90px" }} />
                     <div style={{ backgroundColor: "#F8FAF9", paddingLeft: "30px", paddingRight: "30px" }}>
                         <ADSlickSlider />
