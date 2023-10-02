@@ -99,7 +99,7 @@ const TodoList = () => {
     const fetchData = async () => {
         try {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/todolist/${memberSeq}`);
-            // console.log("findallTodolist 조회 response : ", res.data);
+            console.log("findallTodolist 조회 response : ", res.data);
             setTodos(res.data);
         } catch (error) {
             console.error("Error", error);
