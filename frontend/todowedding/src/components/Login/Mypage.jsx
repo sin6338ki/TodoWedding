@@ -14,6 +14,7 @@ import { deleteToken } from "../../redux/reducers/AuthReducer"; // 로그아웃 
 const Mypage = () => {
     const dispatch = useDispatch();
     const nav = useNavigate();
+    const logoutURL = process.env.REACT_APP_LOGOUT_URL;
 
     //userSeq 받아오기
     const token = useSelector((state) => state.Auth.token);
@@ -54,8 +55,6 @@ const Mypage = () => {
             }
         }
     };
-
-    const logoutURL = process.env.REACT_APP_LOGOUT_URL;
 
     return (
         <div className="Login-Page" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>

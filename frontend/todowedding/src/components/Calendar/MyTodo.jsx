@@ -16,7 +16,7 @@ const MyTodo = ({ todolistContents }) => {
         <div>
             <div className={style.row}>
                 <img src={checkIcon} className="MyTodo-Icon"></img>
-                <p>{todolistContents.todolistContents}</p>
+                <p>{todolistContents.todolist_contents}</p>
             </div>
         </div>
     );
