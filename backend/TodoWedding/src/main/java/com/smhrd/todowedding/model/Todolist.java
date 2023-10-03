@@ -1,6 +1,5 @@
 package com.smhrd.todowedding.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,7 @@ import lombok.NoArgsConstructor;
  */
 
 @Getter
+@NoArgsConstructor
 public class Todolist {
 	
 	private Long todolistSeq;
@@ -29,7 +29,6 @@ public class Todolist {
 	
 	@Builder
 	public Todolist(Long todolistSeq, String todolistContents, String todolist_completed, Long memberSeq, String date) {
-		super();
 		this.todolistSeq = todolistSeq;
 		this.todolistContents = todolistContents;
 		this.todolist_completed = todolist_completed;

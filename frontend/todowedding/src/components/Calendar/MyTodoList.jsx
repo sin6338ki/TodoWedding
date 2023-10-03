@@ -41,6 +41,7 @@ const MyTodoList = () => {
                 .get(`${process.env.REACT_APP_API_URL}/todolist/${userSeq}`)
                 .then((res) => {
                     // 최근 투두리스트 3개만 가져오기
+                    // console.log("최근 투두리스트", res);
                     const firstThreeItems = res.data.slice(0, 3);
                     setTodos(firstThreeItems);
                 })

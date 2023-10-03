@@ -46,7 +46,7 @@ public class TodolistController {
 	
 	//해당 유저에 대하여 투두리스트 전체 조회하기
 	@GetMapping(value="todolist/{memberSeq}")
-	public List<Todolist> findAllTodolist(@PathVariable(name="memberSeq") Long memberSeq){
+	public List<JSONObject> findAllTodolist(@PathVariable(name="memberSeq") Long memberSeq){
 		return todolistService.findAllTodolist(memberSeq);
 	}
 	

@@ -28,8 +28,8 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
     const handleCalendarButtonClick = () => {
         navigate("/todowedding/schedule", {
             state: {
-                title: todolistContents.todolistContents,
-                todolistSeq: todolistContents.todolistSeq,
+                title: todolistContents.todolist_contents,
+                todolistSeq: todolistContents.todolist_seq,
             },
         });
     };
@@ -56,8 +56,8 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
         // console.log("check실행");
         const data = {
             todolistCompleted: isChecked ? "N" : "Y",
-            todolistSeq: todolistContents.todolistSeq,
-            memberSeq: todolistContents.memberSeq,
+            todolistSeq: todolistContents.todolist_seq,
+            memberSeq: todolistContents.member_seq,
         };
 
         try {
@@ -79,12 +79,12 @@ const Todo = ({ todolistContents, deleteTodo, setChangeCheck, changeCheck }) => 
             <div className={style.row}>
                 <input onChange={completedTodolist} type="checkbox" checked={isChecked} className="mb-2" />
                 <p onClick={completedTodolist} className={isChecked ? style.textComplete : style.text}>
-                    {todolistContents.todolistContents}
+                    {todolistContents.todolist_contents}
                 </p>
                 <hr />
             </div>
             <button
-                onClick={() => deleteTodo(todolistContents.todolistSeq)}
+                onClick={() => deleteTodo(todolistContents.todolist_seq)}
                 className="trashBtn"
                 style={{ marginLeft: "67%" }}
             >

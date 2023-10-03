@@ -46,10 +46,11 @@ public class TodolistService {
 	}
 	
 	//memberSeq에 대한 todolist 전체 조회하기 
-	public List<Todolist> findAllTodolist(Long memberSeq){
-		List<Todolist> allTodolist = null;
+	public List<JSONObject> findAllTodolist(Long memberSeq){
+		List<JSONObject> allTodolist = null;
 		try {
 			allTodolist = todolistMapper.findAllTodolist(memberSeq);
+			log.info("todolist, {}", allTodolist.get(0).toJSONString());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -84,10 +84,9 @@ const TodoList = () => {
     const deleteTodo = async (todolistSeq) => {
         try {
             const response = await axios.delete(`${process.env.REACT_APP_API_URL}/todolist/${todolistSeq}`);
-            // console.log("deleteTodolist 삭제성공 response : ", response.data);
             // 화면에서 삭제 시각적인 효과 적용
             if (response.data === 1) {
-                setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolistSeq !== todolistSeq));
+                setTodos((prevTodos) => prevTodos.filter((todo) => todo.todolist_seq !== todolistSeq));
                 cntTodoList();
             }
         } catch (err) {
@@ -186,12 +185,12 @@ const TodoList = () => {
                     {todos.map((todolistContents) => (
                         <Todo
                             // key 값 수정중 (09.25 >> 삭제 수정)
-                            key={todolistContents.todolistSeq}
+                            key={todolistContents.todolist_seq}
                             setChangeCheck={setChangeCheck}
                             changeCheck={changeCheck}
                             todolistContents={todolistContents}
-                            toggleComplete={() => toggleComplete(todolistContents.todolistSeq)}
-                            deleteTodo={() => deleteTodo(todolistContents.todolistSeq)}
+                            toggleComplete={() => toggleComplete(todolistContents.todolist_seq)}
+                            deleteTodo={() => deleteTodo(todolistContents.todolist_seq)}
                         />
                     ))}
                 </div>
