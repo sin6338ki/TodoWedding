@@ -62,8 +62,8 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
                 objectType: "text",
                 text: kakaoMessage,
                 link: {
-                    mobileWebUrl: "https://developers.kakao.com",
-                    webUrl: "https://developers.kakao.com",
+                    mobileWebUrl: process.env.REACT_APP_MAIN_URL,
+                    webUrl: process.env.REACT_APP_MAIN_URL,
                 },
             });
         }

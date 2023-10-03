@@ -30,8 +30,8 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
     const userSeq = token ? token.userSeq : 0;
 
     // 수입, 지출 백분율 계산 ================================================
-    const [expensePercentage, setExpensePercentage] = useState();
-    const [incomePercentage, setIncomePercentage] = useState();
+    const [expensePercentage, setExpensePercentage] = useState(0);
+    const [incomePercentage, setIncomePercentage] = useState(0);
 
     useEffect(() => {
         const tempExpense = (totalExpense / (totalIncome + totalExpense)) * 100;
@@ -65,7 +65,7 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
             }
         };
         fetchTotalBudgetAndResult();
-    }, [userSeq]);
+    }, [userSeq, incomes, expenses]);
 
     const fianlTotalIncome = totalIncome || 0; // 총 수입
     const fianlTotalExpense = totalExpense || 0; //총 지출

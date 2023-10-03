@@ -7,6 +7,7 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -45,6 +46,9 @@ public class ScheduleService {
 	private KakaoLoginMapper kakaoLoginMapper;
 	
 	private static OAuthToken oauthToken = null;
+	
+	@Value("${kakao.cal.url}")
+	private String kakaoCalUrl;
 	
 	//스케쥴 추가
 	public int addSchedule(Schedule shedule) {
@@ -152,7 +156,7 @@ public class ScheduleService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
-		params.add("redirect_uri", "http://localhost:3000/auth/kakaoCal/callback");
+		params.add("redirect_uri", kakaoCalUrl);
 		params.add("code", code);
 
 		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기

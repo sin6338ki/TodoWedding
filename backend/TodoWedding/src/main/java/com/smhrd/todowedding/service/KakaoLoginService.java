@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -37,6 +38,9 @@ public class KakaoLoginService {
 	private KakaoLoginMapper kakaoLoginMapper;
 	
 	private static OAuthToken oauthToken = null;
+	
+	@Value("${kakao.url}")
+	private String kakaoUrl;
 
 	public Map<String, Object> getAccessToken(String code) {
 		log.info("서비스에서 받은 카카오 코드값: " + code);
@@ -51,7 +55,7 @@ public class KakaoLoginService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "05e6f6ac6b8cd6cf3b1ec2a9ca6542de");
-		params.add("redirect_uri", "http://43.200.245.4:3000/auth/kakao/callback");
+		params.add("redirect_uri", kakaoUrl);
 		params.add("code", code);
 
 		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기

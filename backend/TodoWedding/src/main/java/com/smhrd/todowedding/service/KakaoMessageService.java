@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -51,6 +52,9 @@ public class KakaoMessageService {
    @Autowired
    private ScheduleMapper scheduleMapper;
    
+	@Value("${kakao.message.url}")
+	private String kakaoMessageUrl;
+   
    //메시지 요청 URL
    String url = "https://kapi.kakao.com/v2/api/talk/memo/default/send";
    
@@ -63,8 +67,8 @@ public class KakaoMessageService {
 
       // HttpBody 오브젝트 생성
       JSONObject linkObj = new JSONObject();
-        linkObj.put("web_url", "http://43.200.245.4:3000");
-        linkObj.put("mobile_web_url", "http://43.200.245.4:3000");
+        linkObj.put("web_url", kakaoMessageUrl);
+        linkObj.put("mobile_web_url", kakaoMessageUrl);
       
         //로그인 멤버 닉네임 조회
         String loginNickname = findNickname(loginMemberSeq);
