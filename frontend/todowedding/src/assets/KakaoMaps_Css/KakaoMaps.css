@@ -10,7 +10,7 @@
     text-align: left;
     overflow: hidden;
     font-size: 12px;
-    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+    font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
     line-height: 1.5;
 }
 
@@ -46,7 +46,6 @@
     flex-direction: column;
   } */
 
-
 /*  카테고리에 따른 색변경 */
 
 .map_info .map_weddinghall {
@@ -77,7 +76,7 @@
     width: initial;
     padding: 5px 50px 15px 10px;
     height: 30px;
-    background: #B0D2FF;
+    background: #b0d2ff;
     border-bottom: 1px solid #ddd;
     font-size: 14px;
     font-weight: bold;
@@ -93,7 +92,7 @@
     color: #888;
     width: 17px;
     height: 17px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+    background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
 }
 
 .map_info .map_close:hover {
@@ -113,7 +112,6 @@
     padding: 10px 0 10px 0;
     text-align: center;
     align-items: center;
-   
 }
 
 .map_desc .map_ellipsis {
@@ -129,7 +127,7 @@
 }
 
 .map_info:after {
-    content: '';
+    content: "";
     position: absolute;
     margin-left: -12px;
     left: 50%;
@@ -140,7 +138,7 @@
 }
 
 .map_info .map_link {
-    color: #5085BB;
+    color: #5085bb;
 }
 
 .map_body div {
@@ -157,9 +155,8 @@
     font-size: 15px;
 }
 
-
 .map_desc .consult_button {
-    background-color: #a155e9;
+    background-color: #9f7ffc;
     color: #fff;
     padding: 5px 10px;
     margin-top: -4px;
@@ -178,10 +175,7 @@
     display: flex;
     justify-content: space-between;
     width: 103%;
-    
- }
-
-
+}
 
 /* 카카오 커스텀 원본 */
 /* .customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
@@ -189,4 +183,3 @@
   .customoverlay button {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #9F7FFC;background: #9F7FFC url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
   .customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
   .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')} */
-
