@@ -12,8 +12,8 @@ import { useSelector } from "react-redux";
 
 const TodoReport = () => {
     //완료, 미완료 건수 조회하기
-    const [completedCnt, setCompletedCnt] = useState();
-    const [unCompletedCnt, setUnCompletedCnt] = useState();
+    const [completedCnt, setCompletedCnt] = useState(0);
+    const [unCompletedCnt, setUnCompletedCnt] = useState(0);
 
     //userSeq 받아오기
     const token = useSelector((state) => state.Auth.token);

@@ -50,7 +50,7 @@ public class TodolistService {
 		List<JSONObject> allTodolist = null;
 		try {
 			allTodolist = todolistMapper.findAllTodolist(memberSeq);
-			log.info("todolist, {}", allTodolist.get(0).toJSONString());
+//			log.info("todolist, {}", allTodolist.get(0).toJSONString());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

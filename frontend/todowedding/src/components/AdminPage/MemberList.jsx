@@ -58,7 +58,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
                 <div className="text-center font-bold col-span-2 text-xs">성별 </div>
                 {members.map((member, idx) => {
                     return (
-                        <>
+                        <React.Fragment key={idx}>
                             <div className="text-center col-span-1 mt-2 text-xs" key={idx}>
                                 {idx + 1}
                             </div>
@@ -74,7 +74,7 @@ const MemberList = ({ members, setMembers, findAllMember }) => {
                             <div className="text-center col-span-2 mt-2 text-xs">
                                 {member.gender ? member.gender : "동의안함"}
                             </div>
-                        </>
+                        </React.Fragment>
                     );
                 })}
             </div>

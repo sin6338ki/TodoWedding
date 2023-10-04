@@ -16,10 +16,22 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
     const totalExpenses = expenses.length;
 
     // 지출 분담 비율 계산
-    const broomPercentage = (broomCnt / totalExpenses) * 100;
-    const bridePercentage = (brideCnt / totalExpenses) * 100;
-    const bothPercentage = (bothCnt / totalExpenses) * 100;
-    const etcPercentage = (etcCnt / totalExpenses) * 100;
+    // const broomPercentage = (broomCnt / totalExpenses) * 100;
+    // const bridePercentage = (brideCnt / totalExpenses) * 100;
+    // const bothPercentage = (bothCnt / totalExpenses) * 100;
+    // const etcPercentage = (etcCnt / totalExpenses) * 100;
+
+    let broomPercentage = 0,
+        bridePercentage = 0,
+        bothPercentage = 0,
+        etcPercentage = 0;
+
+    if (totalExpenses !== 0) {
+        broomPercentage = (broomCnt / totalExpenses) * 100;
+        bridePercentage = (brideCnt / totalExpenses) * 100;
+        bothPercentage = (bothCnt / totalExpenses) * 100;
+        etcPercentage = (etcCnt / totalExpenses) * 100;
+    }
 
     const [totalBudget, setTotalBudget] = useState(null);
     const [totalIncome, setTotalIncome] = useState(0);
@@ -33,9 +45,22 @@ const BudgetDashboard = ({ incomes, expenses, brideCnt, broomCnt, bothCnt, etcCn
     const [expensePercentage, setExpensePercentage] = useState(0);
     const [incomePercentage, setIncomePercentage] = useState(0);
 
+    // useEffect(() => {
+    //     const tempExpense = (totalExpense / (totalIncome + totalExpense)) * 100;
+    //     const tempIncome = (totalIncome / (totalIncome + totalExpense)) * 100;
+    //     setExpensePercentage(Math.round(tempExpense));
+    //     setIncomePercentage(Math.round(tempIncome));
+    // }, [totalIncome, totalExpense]);
+
     useEffect(() => {
-        const tempExpense = (totalExpense / (totalIncome + totalExpense)) * 100;
-        const tempIncome = (totalIncome / (totalIncome + totalExpense)) * 100;
+        let tempExpense = 0;
+        let tempIncome = 0;
+
+        if (totalIncome + totalExpense !== 0) {
+            tempExpense = (totalExpense / (totalIncome + totalExpense)) * 100;
+            tempIncome = (totalIncome / (totalIncome + totalExpense)) * 100;
+        }
+
         setExpensePercentage(Math.round(tempExpense));
         setIncomePercentage(Math.round(tempIncome));
     }, [totalIncome, totalExpense]);
