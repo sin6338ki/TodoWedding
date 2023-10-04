@@ -58,7 +58,7 @@ const Partner = () => {
                 {resultFindChatRoom &&
                     resultFindChatRoom.map((chatRoom, idx) => {
                         return (
-                            <>
+                            <React.Fragment key={idx}>
                                 <div className="text-center col-span-1">{idx + 1}</div>
                                 <div className="text-center col-span-1">{chatRoom.nickname}</div>
                                 <div className="text-center col-span-2">{chatRoom.last_date}</div>
@@ -70,7 +70,7 @@ const Partner = () => {
                                 >
                                     입장
                                 </button>
-                            </>
+                            </React.Fragment>
                         );
                     })}
             </div>
