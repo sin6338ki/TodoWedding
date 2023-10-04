@@ -22,9 +22,7 @@ const style = {
     count: `text-center px-7 py-2 box-content bg-violet-300 rounded-full text-sm`,
 };
 
-//  // 투두 전체-진행-미진행 조회
-//  const [completedCnt, setCompletedCnt] = useState();
-//  const [unCompletedCnt, setUnCompletedCnt] = useState();
+
 
 const TodoList = () => {
     
@@ -54,29 +52,7 @@ const TodoList = () => {
         fetchDataAndCout();
     }, [input]);
 
-    // 버튼 활성화
-    const [activeButton, setActiveButton] = useState("");
-
-    //캘린더 버튼 클릭 시 이동
-    const calendarOnclick = () => {
-        nav("/todowedding/calendar");
-        setActiveButton("Calendar");
-    };
-
-    //투두리스트 클릭 시 이동
-    const todoOnclick = () => {
-        nav("/todowedding/todolist");
-        setActiveButton("Todolist");
-    };
-
-    //예산관리 클릭 시 이동
-    const budgetOnclick = () => {
-        nav("/todowedding/budget");
-        setActiveButton("Budget");
-    };
-
-
-
+ 
     // 1.투두리스트 추가 메서드
     const createTodo = async (e) => {
         e.preventDefault(e);
@@ -222,7 +198,7 @@ const TodoList = () => {
                 <div className="mt-[60px] mb-10">
                     {todos.map((todolistContents) => (
                         <Todo
-                            // key 값 수정중 (09.25 >> 삭제 수정)
+                            // key 값 수정 (09.25 >> 삭제 수정)
                             key={todolistContents.todolistSeq}
                             setChangeCheck={setChangeCheck}
                             changeCheck={changeCheck}
