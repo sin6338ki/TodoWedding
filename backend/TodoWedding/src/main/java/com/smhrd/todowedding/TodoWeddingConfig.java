@@ -18,7 +18,7 @@ public class TodoWeddingConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-        .allowedOrigins("http://localhost:3000", "http://172.30.1.9:3000", "http://43.200.245.4:3000")
+        .allowedOrigins("http://localhost:3000", "http://172.30.1.9:3000", "http://52.78.165.180:3000")
         .allowedMethods("GET","POST", "PUT", "DELETE", "OPTIONS")
         .allowedHeaders("*");
 	}
