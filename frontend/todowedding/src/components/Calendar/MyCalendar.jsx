@@ -97,7 +97,6 @@ const MyCalendar = () => {
                     right: "prev,next",
                 }}
                 locale="ko" //한국어 설정
-                //initialDate="2022-12-25"
                 height={"49vh"} //50
                 events={events}
                 contentHeight={"600"}

@@ -71,7 +71,7 @@ const CheckItemSeq = () => {
         // console.log("checkedContents : ", document.getElementById(e.target.id + "text").style.textDecoration);
 
         if (document.getElementById(e.target.id + "text").style.textDecoration) {
-            console.log("if문 실행");
+            // console.log("if문 실행");
             document.getElementById(e.target.id + "text").style.removeProperty("text-decoration");
             document.getElementById(e.target.id + "text").style.removeProperty("color");
         } else {
