@@ -16,11 +16,10 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./tailwind.css";
-import "./index.css";
 import "./FullCalendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MarginImage from "./assets/images/MarginImage.png";
-import WebImage from "./assets/images/intro_img.png";
+import MarginImage from "./assets/images/AD/MarginImage.png";
+import WebImage from "./assets/images/AD/intro_img.png";
 
 import Header from "./components/Header/Header";
 import BottomBar from "./components/BottomBar/BottomBar";

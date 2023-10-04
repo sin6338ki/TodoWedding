@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import TodoBg from "../../assets/images/Todo_BG.png";
+import TodoBg from "../../assets/images/Logo/Todo_BG.png";
 import axios from "axios";
 
 const PartnerInfo = () => {

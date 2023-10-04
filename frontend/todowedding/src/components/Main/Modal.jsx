@@ -1,7 +1,7 @@
 // Modal.js
 import React from "react";
 import { Link } from "react-router-dom";
-import TodoLogo from "../../assets/images/todo_logo.png";
+import TodoLogo from "../../assets/images/Logo/todo_logo.png";
 
 /*
  * BottomBar 버튼 눌렀을 때 뜨는 Modal창

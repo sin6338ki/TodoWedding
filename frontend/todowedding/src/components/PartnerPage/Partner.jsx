@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import TodoBg from "../../assets/images/Todo_BG.png";
+import TodoBg from "../../assets/images/Logo/Todo_BG.png";
 
 const Partner = () => {
     const navigate = useNavigate();

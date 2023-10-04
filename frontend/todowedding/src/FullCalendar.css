@@ -80,7 +80,7 @@ FullCalendar 관련
   z-index: -2 !important;
 }
 
-/* 일-토 주 컬럼 */
+/*일-토 주 컬럼*/
 .fc-col-header-cell {
   background-color:rgb(230, 217, 243);
 }

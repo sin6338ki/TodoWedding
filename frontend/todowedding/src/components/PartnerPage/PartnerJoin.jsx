@@ -6,8 +6,8 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TodoBg from "../../assets/images/Todo_BG.png";
+import { useNavigate, Link } from "react-router-dom";
+import TodoBg from "../../assets/images/Logo/Todo_BG.png";
 
 const PartnerJoin = () => {
     const navigate = useNavigate();

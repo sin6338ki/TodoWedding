@@ -23,7 +23,7 @@ const DayCheckSeq = ({ checkdaySeq, setContents, contents }) => {
     const [message, setMessage] = useState("");
     const [kakaoMessage, setKakaoMessage] = useState();
 
-    const addKakaoSDK = () => {
+    const addKakaoSDK = () => {S
         //카카오톡 sdk 추가
         script.src = "https://developers.kakao.com/sdk/js/kakao.js";
         script.type = "text/javascript";

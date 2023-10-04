@@ -4,7 +4,7 @@ import Todolist from "../../assets/images/icon/check-box.png";
 import Partner from "../../assets/images/icon/map.png";
 import Calendar from "../../assets/images/icon/calendar.png";
 import Budget from "../../assets/images/icon/wallet.png";
-import ModalBtn from "../../assets/images/ModalLogo.png";
+import ModalBtn from "../../assets/images/Logo/ModalLogo.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Modal from "../../components/Main/Modal";

@@ -7,7 +7,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import TodoBg from "../../assets/images/Todo_BG.png";
+import TodoBg from "../../assets/images/Logo/Todo_BG.png";
 
 const PartnerInfo = () => {
     const token = useSelector((state) => state.Auth.token);
