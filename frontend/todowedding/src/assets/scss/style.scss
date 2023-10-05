@@ -5,7 +5,7 @@
  */
 
 //반응형 1024
-@media (max-width: 560px) { 
+@media (max-width: 1024px) {
     .web-image {
         display: none;
     }
@@ -226,7 +226,7 @@ Body 관련
     left: 560px;
     position: absolute;
     top: 0px !important;
-    width: 400px; 
+    width: 400px;
     background-color: #f8faf9;
 }
 
@@ -413,7 +413,8 @@ BottomBar 관련
 }
 
 //메인페이지 - 웨딩 항목별 체크리스트 Container
-.main-itemchecklist-container, .main-ddaychecklist-container {
+.main-itemchecklist-container,
+.main-ddaychecklist-container {
     justify-content: center;
     margin: 30px 10px 0 10px;
 }
@@ -431,7 +432,6 @@ BottomBar 관련
     text-align: center;
     font-size: 1;
 }
-
 
 /**************************************************************************** Modal
 Modal 관련
