@@ -1,69 +1,110 @@
 /**
- * Admin page 업체 정보 변경 페이지
+ * partner info 수정 페이지
  * 작성자 : 신지영
- * 작성일 : 2023.09.18
  */
 
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import TodoBg from "../../assets/images/Logo/Todo_BG.png";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import TodoBg from "../../assets/images/Logo/Todo_BG.png";
 
 const PartnerInfo = () => {
-    const location = useLocation();
-    const [partnerSeq, setPartnerSeq] = useState();
+    const token = useSelector((state) => state.Auth.token);
     const navigate = useNavigate();
-
     const [partnerInfo, setPartnerInfo] = useState({});
-    const [partnerName, setPartnerName] = useState();
-    const [partnerRegistration, setPartnerRegistration] = useState();
-    const [partnerTel, setPartnerTel] = useState();
-    const [partnerLink, setPartnerLink] = useState();
-    const [partnerManager, setPartnerManager] = useState();
-    const [partnerManagerTel, setPartnerManagerTel] = useState();
-    const [partnerAddress, setPartnerAddress] = useState();
+
+    const [partnerPw, setPartnerPw] = useState("");
+    const [inputPartnerPw, setInputPartnerPw] = useState(partnerPw);
+
+    const [checkPartnerPw, setCheckPartnerPw] = useState("");
+
+    const [partnerName, setPartnerName] = useState("");
+    const [inputPartnerName, setInputPartnerName] = useState(partnerName);
+
+    const [partnerRegistration, setPartnerRegistration] = useState("");
+    const [inputPartnerRegistration, setInputPartnerRegistration] = useState(partnerRegistration);
+
+    const [partnerTel, setPartnerTel] = useState("");
+    const [inputPartnerTel, setInputPartnerTel] = useState(partnerTel);
+
+    const [partnerLink, setPartnerLink] = useState("");
+    const [inputPartnerLink, setInputPartnerLink] = useState(partnerLink);
+
+    const [partnerManager, setPartnerManager] = useState("");
+    const [inputPartnerManager, setInputPartnerManager] = useState(partnerManager);
+
+    const [partnerManagerTel, setPartnerManagerTel] = useState("");
+    const [inputPartnerManagerTel, setInputPartnerManagerTel] = useState(partnerManagerTel);
+
+    const [partnerAddress, setPartnerAddress] = useState("");
+    const [inputPartnerAddress, setInputPartnerAddress] = useState(partnerAddress);
+
     const [partnerUpdateDto, setPartnerUpdateDto] = useState();
 
     useEffect(() => {
-        setPartnerSeq(location.state.partnerSeq);
         //업체 정보 조회
-        partnerSeq && findPartnerInfo(partnerSeq);
-    }, [location, partnerSeq]);
+        findPartnerInfo();
+        // console.log("partnerUpdateDto", partnerUpdateDto);
+    }, [partnerUpdateDto]);
 
     //업체 정보 조회 메서드
-    const findPartnerInfo = (partnerSeq) => {
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/partner/info/${partnerSeq}`)
-            .then((res) => {
-                setPartnerInfo(res.data);
-            })
-            .catch((err) => {
-                console.log("업체 정보 조회 err : ", err);
-            });
+    const findPartnerInfo = () => {
+        token &&
+            axios
+                .get(`${process.env.REACT_APP_API_URL}/partner/info/${token.userSeq}`)
+                .then((res) => {
+                    // console.log("업체 정보 조회 result : ", res.data);
+                    setPartnerInfo(res.data);
+                    setPartnerPw(res.data.partner_pw);
+                    setPartnerName(res.data.partner_name);
+                    setPartnerRegistration(res.data.partner_registration);
+                    setPartnerTel(res.data.partner_tel);
+                    setPartnerLink(res.data.partner_link);
+                    setPartnerManager(res.data.partner_manager);
+                    setPartnerManagerTel(res.data.partner_manager_tel);
+                    setPartnerAddress(res.data.partner_address);
+                })
+                .catch((err) => {
+                    console.log("업체 정보 조회 err : ", err);
+                });
     };
+
+    //비밀번호 확인
+    useEffect(() => {
+        if (checkPartnerPw != partnerPw) {
+            document.getElementById("checkPw").innerText = "비밀번호가 틀립니다.";
+            document.getElementById("checkPw").style.color = "red";
+        } else {
+            document.getElementById("checkPw").innerText = "";
+        }
+    }, [checkPartnerPw]);
 
     //업체 정보 변경
     useEffect(() => {
-        setPartnerUpdateDto({
-            partnerSeq: partnerSeq,
-            partnerName: partnerInfo.partner_name,
-            partnerPw: partnerInfo.partner_pw,
-            partnerRegistration: partnerRegistration,
-            partnerTel: partnerTel,
-            partnerLink: partnerLink,
-            partnerManager: partnerManager,
-            partnerManagerTel: partnerManagerTel,
-            partnerAddress: partnerAddress,
-        });
+        // console.log("partnerName", partnerName);
+        token &&
+            setPartnerUpdateDto({
+                partnerSeq: token.userSeq,
+                partnerPw: inputPartnerPw || partnerInfo.partner_pw,
+                partnerName: inputPartnerName || partnerInfo.partner_name,
+                partnerRegistration: inputPartnerRegistration || partnerInfo.partner_registration,
+                partnerTel: inputPartnerTel || partnerInfo.partner_tel,
+                partnerLink: inputPartnerLink || partnerInfo.partner_link,
+                partnerManager: inputPartnerManager || partnerInfo.partner_manager,
+                partnerManagerTel: inputPartnerManagerTel || partnerInfo.partner_manager_tel,
+                partnerAddress: inputPartnerAddress || partnerInfo.partner_address,
+            });
     }, [
-        partnerSeq,
-        partnerName,
-        partnerRegistration,
-        partnerTel,
-        partnerLink,
-        partnerManager,
-        partnerManagerTel,
-        partnerAddress,
+        token,
+        inputPartnerPw,
+        inputPartnerName,
+        inputPartnerRegistration,
+        inputPartnerTel,
+        inputPartnerLink,
+        inputPartnerManager,
+        inputPartnerManagerTel,
+        inputPartnerAddress,
     ]);
 
     //회원 정보 업데이트
@@ -71,152 +112,143 @@ const PartnerInfo = () => {
         axios
             .put(`${process.env.REACT_APP_API_URL}/partner`, partnerUpdateDto)
             .then((res) => {
+                // console.log("기업 회원 정보 update response", res);
                 alert("회원 정보 수정이 완료되었습니다.!");
-                navigate("/todowedding/admin");
+                navigate("/todowedding/partner");
             })
             .catch((err) => {
-                console.log("기업 회원 정보 update error", err);
+                // console.log("기업 회원 정보 update error", err);
                 alert("회원 정보 수정에 실패했습니다.");
             });
     };
 
-    //업체 정보 삭제
-    const deletePartner = () => {
-        axios
-            .delete(`${process.env.REACT_APP_API_URL}/partner/${partnerSeq}`)
-            .then((res) => {
-                console.log("deletepartner response", res.data);
-                if (res.data === "success") {
-                    navigate("/todowedding/admin");
-                }
-            })
-            .catch((err) => {
-                console.log("deletePartner error", err);
-            });
-    };
-
     return (
-        <div>
-            <div>
-                <div className="flex relative w-[180px] mt-5 mx-auto">
-                    <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
-                    <div className="text-center font-bold absolute w-full h-full mt-2">업체 정보 수정하기</div>
+        <div className="partner-page mx-[10px] mt-[33px] w-[80%] flex flex-col">
+            <div className="flex relative w-[180px] mt-[25%] mb-4 mx-auto">
+                <img src={TodoBg} className="bg-cover bg-center w-full h-full self-center"></img>
+                <div className="text-center font-bold absolute w-full h-full mt-2">업체 정보 수정하기</div>
+            </div>
+            <div className="flex flex-col mr-[5%] ml-[5%]">
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">아이디</p>
+                    <input
+                        value={partnerInfo.partner_id || ""}
+                        disabled
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    ></input>
                 </div>
-                <div className="ml-10 mt-10 w-[480px] flex flex-col">
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">아이디</p>
-                        <input
-                            value={partnerInfo.partner_id}
-                            disabled
-                            type="text"
-                            className="w-[480px] border text-[#A383FF] h-8 p-2"
-                        ></input>
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">비밀번호</p>
-                        <input
-                            defaultValue={partnerInfo.partner_pw}
-                            disabled
-                            type="password"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        ></input>
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">기업명</p>
-                        <input
-                            defaultValue={partnerInfo.partner_name}
-                            onChange={(e) => {
-                                setPartnerName(e.target.value);
-                            }}
-                            type="text"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        />
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">사업자등록번호</p>
-                        <input
-                            defaultValue={partnerInfo.partner_registration}
-                            onChange={(e) => {
-                                setPartnerRegistration(e.target.value);
-                            }}
-                            type="text"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        />
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">전화번호</p>
-                        <input
-                            defaultValue={partnerInfo.partner_tel}
-                            onChange={(e) => {
-                                setPartnerTel(e.target.value);
-                            }}
-                            type="text"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        />
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">홈페이지</p>
-                        <input
-                            placeholder="http://"
-                            defaultValue={partnerInfo.partner_link}
-                            onChange={(e) => {
-                                setPartnerLink(e.target.value);
-                            }}
-                            type="text"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        ></input>
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">담당자</p>
-                        <input
-                            defaultValue={partnerInfo.partner_manager}
-                            onChange={(e) => {
-                                setPartnerManager(e.target.value);
-                            }}
-                            type="text"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        />
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">담당자 연락처</p>
-                        <input
-                            defaultValue={partnerInfo.partner_manager_tel}
-                            onChange={(e) => {
-                                setPartnerManagerTel(e.target.value);
-                            }}
-                            type="text"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        />
-                    </div>
-                    <div className="mb-3 self-center w-[480px]">
-                        <p className="mb-2 text-left text-gray-500">업체 주소</p>
-                        <input
-                            defaultValue={partnerInfo.partner_address}
-                            onChange={(e) => {
-                                setPartnerAddress(e.target.value);
-                            }}
-                            type="text"
-                            className="w-[480px] border h-8 p-2 text-[#A383FF] "
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="button"
-                            value="제출하기"
-                            onClick={() => {
-                                updatePartnerInfo();
-                            }}
-                            className="self-center h-[40px] w-full rounded-md bg-[#A383FF] text-white mt-2"
-                        />
-                        <input
-                            type="button"
-                            value="삭제하기"
-                            onClick={() => {
-                                deletePartner();
-                            }}
-                            className="self-center h-[40px] w-full rounded-md bg-gray-400 text-white mt-2"
-                        />
-                    </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">비밀번호</p>
+                    <input
+                        defaultValue={partnerInfo.partner_pw}
+                        onChange={(e) => {
+                            setInputPartnerPw(e.target.value);
+                        }}
+                        type="password"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2 "
+                    ></input>
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">비밀번호 확인</p>
+                    <p id="checkPw"></p>
+                    <input
+                        defaultValue={partnerInfo.partner_pw}
+                        onChange={(e) => {
+                            setCheckPartnerPw(e.target.value);
+                        }}
+                        type="password"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    ></input>
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">기업명</p>
+                    <input
+                        defaultValue={partnerInfo.partner_name}
+                        onChange={(e) => {
+                            // console.log("기업명 변경", e.target.value);
+                            setInputPartnerName(e.target.value);
+                        }}
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    />
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">사업자등록번호</p>
+                    <input
+                        defaultValue={partnerInfo.partner_registration}
+                        onChange={(e) => {
+                            setInputPartnerRegistration(e.target.value);
+                        }}
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    />
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">전화번호</p>
+                    <input
+                        defaultValue={partnerInfo.partner_tel}
+                        onChange={(e) => {
+                            setInputPartnerTel(e.target.value);
+                        }}
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    />
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">홈페이지</p>
+                    <input
+                        placeholder="http://"
+                        defaultValue={partnerInfo.partner_link}
+                        onChange={(e) => {
+                            setInputPartnerLink(e.target.value);
+                        }}
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    ></input>
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">담당자</p>
+                    <input
+                        defaultValue={partnerInfo.partner_manager}
+                        onChange={(e) => {
+                            setInputPartnerManager(e.target.value);
+                        }}
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    />
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">담당자 연락처</p>
+                    <input
+                        defaultValue={partnerInfo.partner_manager_tel}
+                        onChange={(e) => {
+                            setInputPartnerManagerTel(e.target.value);
+                        }}
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    />
+                </div>
+                <div className="mb-3 self-center w-[100%]">
+                    <p className="mb-2 text-left text-gray-500">업체 주소</p>
+                    <input
+                        defaultValue={partnerInfo.partner_address}
+                        onChange={(e) => {
+                            setInputPartnerAddress(e.target.value);
+                        }}
+                        type="text"
+                        className="w-[100%] border text-[#8267d3] h-8 p-2"
+                    />
+                </div>
+                <div style={{ width: "35%", display: "flex" }} className="mx-auto mt-3 mb-5">
+                    <input
+                        type="button"
+                        value="제출하기"
+                        onClick={() => {
+                            updatePartnerInfo();
+                        }}
+                        className="self-center h-[40px] w-full rounded-md bg-[#A383FF] text-white mt-2"
+                    />
                 </div>
             </div>
         </div>
