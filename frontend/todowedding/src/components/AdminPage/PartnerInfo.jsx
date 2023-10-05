@@ -15,27 +15,51 @@ const PartnerInfo = () => {
     const navigate = useNavigate();
 
     const [partnerInfo, setPartnerInfo] = useState({});
+
     const [partnerName, setPartnerName] = useState();
+    const [inputPartnerName, setInputPartnerName] = useState(partnerName);
+
     const [partnerRegistration, setPartnerRegistration] = useState();
+    const [inputPartnerRegistration, setInputPartnerRegistration] = useState(partnerRegistration);
+
     const [partnerTel, setPartnerTel] = useState();
+    const [inputPartnerTel, setInputPartnerTel] = useState(partnerTel);
+
     const [partnerLink, setPartnerLink] = useState();
+    const [inputPartnerLink, setInputPartnerLink] = useState(partnerLink);
+
     const [partnerManager, setPartnerManager] = useState();
+    const [inputPartnerManager, setInputPartnerManager] = useState(partnerManager);
+
     const [partnerManagerTel, setPartnerManagerTel] = useState();
+    const [inputPartnerManagerTel, setInputPartnerManagerTel] = useState(partnerManagerTel);
+
     const [partnerAddress, setPartnerAddress] = useState();
+    const [inputPartnerAddress, setInputPartnerAddress] = useState(partnerAddress);
+
     const [partnerUpdateDto, setPartnerUpdateDto] = useState();
 
     useEffect(() => {
-        setPartnerSeq(location.state.partnerSeq);
+        const newPartnerSeq = location.state.partnerSeq;
+        setPartnerSeq(newPartnerSeq);
         //업체 정보 조회
-        findPartnerInfo(partnerSeq);
-    }, [location, partnerSeq]);
+        findPartnerInfo(newPartnerSeq);
+    }, [location]);
 
     //업체 정보 조회 메서드
     const findPartnerInfo = (partnerSeq) => {
         axios
             .get(`${process.env.REACT_APP_API_URL}/partner/info/${partnerSeq}`)
             .then((res) => {
-                setPartnerInfo(res.data);
+                const data = res.data;
+                setPartnerInfo(data);
+                setPartnerName(data.partner_name);
+                setPartnerRegistration(data.partner_registration);
+                setPartnerTel(data.partner_tel);
+                setPartnerLink(data.partner_link);
+                setPartnerManager(data.partner_manager);
+                setPartnerManagerTel(data.partner_manager_tel);
+                setPartnerAddress(data.partner_address);
             })
             .catch((err) => {
                 console.log("업체 정보 조회 err : ", err);
@@ -46,24 +70,24 @@ const PartnerInfo = () => {
     useEffect(() => {
         setPartnerUpdateDto({
             partnerSeq: partnerSeq,
-            partnerName: partnerInfo.partner_name,
             partnerPw: partnerInfo.partner_pw,
-            partnerRegistration: partnerRegistration,
-            partnerTel: partnerTel,
-            partnerLink: partnerLink,
-            partnerManager: partnerManager,
-            partnerManagerTel: partnerManagerTel,
-            partnerAddress: partnerAddress,
+            partnerName: inputPartnerName || partnerInfo.partner_name,
+            partnerRegistration: inputPartnerRegistration || partnerRegistration,
+            partnerTel: inputPartnerTel || partnerTel,
+            partnerLink: inputPartnerLink || partnerLink,
+            partnerManager: inputPartnerManager || partnerManager,
+            partnerManagerTel: inputPartnerManagerTel || partnerManagerTel,
+            partnerAddress: inputPartnerAddress || partnerAddress,
         });
     }, [
         partnerSeq,
-        partnerName,
-        partnerRegistration,
-        partnerTel,
-        partnerLink,
-        partnerManager,
-        partnerManagerTel,
-        partnerAddress,
+        inputPartnerName,
+        inputPartnerRegistration,
+        inputPartnerTel,
+        inputPartnerLink,
+        inputPartnerManager,
+        inputPartnerManagerTel,
+        inputPartnerAddress,
     ]);
 
     //회원 정보 업데이트
@@ -87,6 +111,7 @@ const PartnerInfo = () => {
             .then((res) => {
                 console.log("deletepartner response", res.data);
                 if (res.data === "success") {
+                    alert("회원 정보 삭제가 완료되었습니다.!");
                     navigate("/todowedding/admin");
                 }
             })
@@ -106,7 +131,7 @@ const PartnerInfo = () => {
                     <div className="mb-3 self-center w-[480px]">
                         <p className="mb-2 text-left text-gray-500">아이디</p>
                         <input
-                            value={partnerInfo.partner_id}
+                            value={partnerInfo.partner_id || ""}
                             disabled
                             type="text"
                             className="w-[480px] border text-[#A383FF] h-8 p-2"
@@ -115,7 +140,7 @@ const PartnerInfo = () => {
                     <div className="mb-3 self-center w-[480px]">
                         <p className="mb-2 text-left text-gray-500">비밀번호</p>
                         <input
-                            defaultValue={partnerInfo.partner_pw}
+                            defaultValue={partnerInfo.partner_pw || ""}
                             disabled
                             type="password"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
@@ -126,7 +151,7 @@ const PartnerInfo = () => {
                         <input
                             defaultValue={partnerInfo.partner_name}
                             onChange={(e) => {
-                                setPartnerName(e.target.value);
+                                setInputPartnerName(e.target.value);
                             }}
                             type="text"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
@@ -137,7 +162,7 @@ const PartnerInfo = () => {
                         <input
                             defaultValue={partnerInfo.partner_registration}
                             onChange={(e) => {
-                                setPartnerRegistration(e.target.value);
+                                setInputPartnerRegistration(e.target.value);
                             }}
                             type="text"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
@@ -148,7 +173,7 @@ const PartnerInfo = () => {
                         <input
                             defaultValue={partnerInfo.partner_tel}
                             onChange={(e) => {
-                                setPartnerTel(e.target.value);
+                                setInputPartnerTel(e.target.value);
                             }}
                             type="text"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
@@ -160,7 +185,7 @@ const PartnerInfo = () => {
                             placeholder="http://"
                             defaultValue={partnerInfo.partner_link}
                             onChange={(e) => {
-                                setPartnerLink(e.target.value);
+                                setInputPartnerLink(e.target.value);
                             }}
                             type="text"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
@@ -171,7 +196,7 @@ const PartnerInfo = () => {
                         <input
                             defaultValue={partnerInfo.partner_manager}
                             onChange={(e) => {
-                                setPartnerManager(e.target.value);
+                                setInputPartnerManager(e.target.value);
                             }}
                             type="text"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
@@ -182,7 +207,7 @@ const PartnerInfo = () => {
                         <input
                             defaultValue={partnerInfo.partner_manager_tel}
                             onChange={(e) => {
-                                setPartnerManagerTel(e.target.value);
+                                setInputPartnerManagerTel(e.target.value);
                             }}
                             type="text"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
@@ -193,7 +218,7 @@ const PartnerInfo = () => {
                         <input
                             defaultValue={partnerInfo.partner_address}
                             onChange={(e) => {
-                                setPartnerAddress(e.target.value);
+                                setInputPartnerAddress(e.target.value);
                             }}
                             type="text"
                             className="w-[480px] border h-8 p-2 text-[#A383FF] "
