@@ -27,7 +27,7 @@ const PartnerInfo = () => {
     useEffect(() => {
         setPartnerSeq(location.state.partnerSeq);
         //업체 정보 조회
-        findPartnerInfo(partnerSeq);
+        partnerSeq && findPartnerInfo(partnerSeq);
     }, [location, partnerSeq]);
 
     //업체 정보 조회 메서드
