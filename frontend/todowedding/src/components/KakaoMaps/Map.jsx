@@ -364,7 +364,7 @@ const Map = () => {
             <div
                 id="KakaoMap"
                 className="Kakao_Conainer border border-[#9F7FFC] mx-auto"
-                style={{ width: "97%", height: "800px", marginTop: "10px" }}
+                style={{ width: "97%", height: "1000px", marginTop: "10px" }}
             ></div>
         </div>
     );

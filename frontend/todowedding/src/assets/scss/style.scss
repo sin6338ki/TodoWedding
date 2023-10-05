@@ -1125,7 +1125,14 @@ D-Day CheckList 관련
 //채팅 박스
 #chatting-container {
     width: 90%;
-    max-width: 400px;
+    max-width: 560px;
     height: 90%;
-    max-height: 580px;
+    max-height: 1300px;
+}
+
+// 채팅방 모바일 height 반응형 조정
+@media (max-width: 560px) {
+    #chatting-container {
+        height: 67.5vh;
+    }
 }
