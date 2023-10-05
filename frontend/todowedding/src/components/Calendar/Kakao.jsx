@@ -68,6 +68,7 @@ const Kakao = () => {
             })
             .catch((err) => {
                 console.log("addKakaoCal error : ", err);
+                alert("카카오톡 로그인이 필요합니다!");
             });
     };
 
