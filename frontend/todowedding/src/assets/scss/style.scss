@@ -189,16 +189,6 @@ Login 관련
     font-size: medium;
 }
 
-// .main-login{
-//   color: black;
-//   text-decoration: none;
-//   margin-left: 350px;  // nickname 로그인 이후 넣어야 되어서 사이즈 수정함
-//   margin-top: 4px;
-//   font-family: 'Pretendard-Regular';
-//   align-items: center;
-//   text-align: center;
-// }
-
 // partner 파트너 페이지
 .partner-page {
     width: 100%;
@@ -431,6 +421,18 @@ BottomBar 관련
     color: #ffffff;
     text-align: center;
     font-size: 1;
+}
+
+// main
+.guide-to-main {
+    display: block;
+    margin: 50px auto 80px;
+    width: 160px;
+    height: 47px;
+    color: #ffffff;
+    background-color: #9f7ffc;
+    border-radius: 10px;
+    padding-top: 2px;
 }
 
 /**************************************************************************** Modal
