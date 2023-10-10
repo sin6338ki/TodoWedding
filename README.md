@@ -6,7 +6,10 @@
 * 프로젝트 기간 : 2023.08.24 ~ 2023.10.06
 * 프로젝트 설명 : 복잡하고 까다로운 결혼 준비를 쉽고, 체계적으로 관리할 수 있도록 돕는 결혼 준비 일정 및 예산 관리 플랫폼
 
-## 2. 주요기능
+## 2. 시연영상
+https://www.youtube.com/watch?v=ZtA-vr4f5VE
+
+## 3. 주요기능
 * Kakao 로그인 API 연동 소셜 로그인, 로그아웃, 회원가입, 회원탈퇴
 * 결혼 준비와 관련된 카드 뉴스 및 체크리스트 제공 - React-Slick 활용
 * 모달창을 통한 결혼 일정, 결혼 예정일, 총 예산 등록 및 이에 따른 커스텀 헤더 적용
@@ -57,16 +60,16 @@
   
   ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/faf05eea-4b73-49a7-a677-f7e526cd7d43)
 <br><br>
-## 3. 사용언어 및 도구
+## 4. 사용언어 및 도구
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/91ca8d97-3ed7-4ff8-b911-71a6ac4821dc)
 
-## 4. 시스템 아키텍쳐
+## 5. 시스템 아키텍쳐
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/607c764a-415b-4115-b926-2979f17f460a)
 
-## 5. 주요 메뉴 구성도
+## 6. 주요 메뉴 구성도
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/fc7b356c-e7df-42d8-b924-81c3ce97cbac)
 
-## 6. 역할분담
+## 7. 역할분담
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/c80dde4c-c88b-48bc-8b04-44a133bc2827)
 ### 신지영
   * 프로젝트 팀장, **프로젝트 총괄 및 결과 발표**
@@ -86,7 +89,7 @@
 ### 서현록
 ### 양수진
 
-## 7. 트러블슈팅
+## 8. 트러블슈팅
 ### 7-1) AWS 배포 관련 트러블슈팅
   ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/bcf67b6c-a2c9-45e4-a162-7ced8fb41c0f)
 ### 7-2) 카카오 로그아웃 에러 발생 관련 
