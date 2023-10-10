@@ -90,6 +90,8 @@
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/32bf466c-0409-44e9-86c5-33368d39d340)
 <br><br>
 * 카카오 톡캘린더 일정 추가 요청 에러 관련
+  * 카카오 톡캘린더 www-form-urlencoded 타입으로 요청 받음 > qs 라이브러리 활용하여 event 객체를 해당 타입으로 변환하였으나 지속적으로 에러 발생
+  * 중첩된 객체는 라이브러리를 통해 json 문자열로 변환하고, 다시 qs 라이브러리를 활용해 event 객체를 www-form-urlencoded 타입으로 변환하여 요청함으로써 문제 해결
   ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/6c2b75b8-6b6a-43a6-b7c1-9c71c615eaf1)
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/6927602f-1ae6-476d-b8b3-ddf2d7232c17)
 
