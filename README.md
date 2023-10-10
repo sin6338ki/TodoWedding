@@ -55,7 +55,7 @@
 ## 5. 주요 메뉴 구성도
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/fc7b356c-e7df-42d8-b924-81c3ce97cbac)
 
-## 7. 역할분담
+## 6. 역할분담
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/c80dde4c-c88b-48bc-8b04-44a133bc2827)
 * 신지영
   * 프로젝트 팀장, **프로젝트 총괄 및 결과 발표**
@@ -74,7 +74,7 @@
 * 서현록
 * 양수진
 
-## 8. 트러블슈팅
+## 7. 트러블슈팅
 * AWS 배포 중 문제 발생 관련
   ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/bcf67b6c-a2c9-45e4-a162-7ced8fb41c0f)
 <br><br>
