@@ -13,7 +13,8 @@ https://www.youtube.com/watch?v=ZtA-vr4f5VE
 ![image](https://github.com/2023-SMHRD-SW-Fullstack-1/TodoWedding/assets/130349912/91ca8d97-3ed7-4ff8-b911-71a6ac4821dc)
 
 ## 4. 시스템 아키텍쳐
-![image](https://github.com/sin6338ki/TodoWedding/assets/130349912/20ab2e48-3fd3-4b44-a1e4-19d4fb0b9708)
+![image](https://github.com/sin6338ki/TodoWedding/assets/130349912/9cc746d6-5f3a-48db-a44c-d3acf2e8a05b)
+
 
 ## 5. 맡은 역할
   * 프로젝트 팀장, 프로젝트 총괄 및 결과 발표
